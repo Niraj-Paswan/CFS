@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 @theme {
-  --font-family-sans: "Inter", sans-serif;
+  --font-family-sans: "Poppins", sans-serif;
   --color-primary: #fcaf1b;
   --color-secondary: #161f48;
 }
