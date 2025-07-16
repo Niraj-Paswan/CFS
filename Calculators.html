@@ -1,0 +1,1979 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CFS - Financial Calculator Suite</title>
+    <link rel="shortcut icon" href="./assets/Logo.svg" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "groww-green": "#00D09C",
+              "groww-blue": "#5367FF",
+              "groww-gray": "#44475B",
+              "groww-light": "#F8F9FA",
+              "groww-orange": "#FF6B35",
+              "groww-teal": "#20B2AA",
+              primary: "#fcaf1b",
+              secondary: "#161f48",
+            },
+            fontFamily: {
+              inter: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-white font-inter">
+    <div class="min-h-screen py-8 px-4">
+      <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+          <h1 class="text-2xl lg:text-4xl font-semibold text-black mb-3">
+            Complete Financial
+            <span class="text-[#fcaf1b]">Calculator Suite</span>
+          </h1>
+          <p class="text-gray-500 text-base">
+            Plan your investments with our comprehensive calculator tools
+          </p>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-300 mb-6">
+          <div class="flex flex-wrap">
+            <button
+              onclick="switchCalculator('sip')"
+              id="sip-tab"
+              class="calculator-tab active flex-1 py-4 px-4 text-center rounded-tl-2xl rounded-bl-2xl font-semibold transition-all duration-200 text-sm lg:text-base"
+            >
+              SIP
+            </button>
+            <button
+              onclick="switchCalculator('lumpsum')"
+              id="lumpsum-tab"
+              class="calculator-tab flex-1 py-4 px-4 text-center font-semibold transition-all duration-200 text-sm lg:text-base"
+            >
+              Lumpsum
+            </button>
+            <button
+              onclick="switchCalculator('stepup')"
+              id="stepup-tab"
+              class="calculator-tab flex-1 py-4 px-4 text-center font-semibold transition-all duration-200 text-sm lg:text-base"
+            >
+              Step-up
+            </button>
+            <button
+              onclick="switchCalculator('target')"
+              id="target-tab"
+              class="calculator-tab flex-1 py-4 px-4 text-center font-semibold transition-all duration-200 text-sm lg:text-base"
+            >
+              Target Amount
+            </button>
+            <button
+              onclick="switchCalculator('swp')"
+              id="swp-tab"
+              class="calculator-tab flex-1 py-4 px-4 text-center font-semibold rounded-tr-2xl rounded-br-2xl transition-all duration-200 text-sm lg:text-base"
+            >
+              SWP
+            </button>
+          </div>
+        </div>
+
+        <!-- SIP Calculator -->
+        <div id="sip-calculator" class="calculator-content">
+          <div
+            class="bg-white rounded-2xl shadow-sm border border-gray-300 overflow-hidden"
+          >
+            <div class="grid lg:grid-cols-5 min-h-[600px]">
+              <!-- Left Panel - Inputs -->
+              <div class="lg:col-span-2 p-8 border-r border-gray-100">
+                <div class="space-y-10">
+                  <!-- Monthly Investment -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Monthly investment</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <span class="text-gray-400 text-sm mr-1">₹</span>
+                        <input
+                          type="text"
+                          id="sip-monthlyAmount"
+                          value="25000"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-20"
+                        />
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="sip-monthlyRange"
+                        min="500"
+                        max="100000"
+                        value="25000"
+                        step="500"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>₹500</span>
+                      <span>₹1L</span>
+                    </div>
+                  </div>
+                  <!-- Expected Return Rate -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Expected return rate (p.a)</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <input
+                          type="text"
+                          id="sip-returnRate"
+                          value="12"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-12"
+                        />
+                        <span class="text-gray-400 text-sm ml-1">%</span>
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="sip-returnRange"
+                        min="1"
+                        max="30"
+                        value="12"
+                        step="0.5"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>1%</span>
+                      <span>30%</span>
+                    </div>
+                  </div>
+                  <!-- Time Period -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Time period</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <input
+                          type="text"
+                          id="sip-timePeriod"
+                          value="10"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-8"
+                        />
+                        <span class="text-gray-400 text-sm ml-1">Y</span>
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="sip-timeRange"
+                        min="1"
+                        max="40"
+                        value="10"
+                        step="1"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>1Y</span>
+                      <span>40Y</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Right Panel - Results -->
+              <div class="lg:col-span-3 p-8">
+                <div class="h-full flex flex-col">
+                  <!-- Chart Section -->
+                  <div class="flex-1 flex items-center justify-center mb-8">
+                    <div class="relative">
+                      <canvas id="sipChart" width="280" height="280"></canvas>
+                      <div
+                        class="absolute inset-0 flex items-center justify-center"
+                      >
+                        <div class="text-center">
+                          <div
+                            class="text-xs text-gray-400 mb-2 flex items-center justify-center"
+                          >
+                            <span
+                              class="w-2 h-2 bg-gray-300 rounded-full mr-2"
+                            ></span>
+                            Invested amount
+                          </div>
+                          <div
+                            class="text-xs text-gray-400 flex items-center justify-center"
+                          >
+                            <span
+                              class="w-2 h-2 bg-groww-blue rounded-full mr-2"
+                            ></span>
+                            Est. returns
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Results Display -->
+                  <div class="space-y-4">
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium"
+                        >Invested amount</span
+                      >
+                      <span
+                        class="font-semibold text-lg text-groww-gray"
+                        id="sip-investedAmount"
+                        >₹30,00,000</span
+                      >
+                    </div>
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium"
+                        >Est. returns</span
+                      >
+                      <span
+                        class="font-semibold text-lg text-groww-gray"
+                        id="sip-estReturns"
+                        >₹25,00,897</span
+                      >
+                    </div>
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium">Total value</span>
+                      <span
+                        class="font-semibold text-xl text-groww-gray"
+                        id="sip-totalValue"
+                        >₹55,00,897</span
+                      >
+                    </div>
+                    <div class="pt-6 space-y-3">
+                      <a
+                        href="./index.html#consultation"
+                        class="relative flex w-full items-center justify-center bg-primary text-white pl-5 pr-14 py-4 rounded-full text-lg group transition hover:bg-secondary"
+                      >
+                        Invest Now
+                        <span
+                          class="absolute right-3 bg-white text-black rounded-full p-2.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+                        >
+                          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lumpsum Calculator -->
+        <div id="lumpsum-calculator" class="calculator-content hidden">
+          <div
+            class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
+          >
+            <div class="grid lg:grid-cols-5 min-h-[600px]">
+              <!-- Left Panel - Inputs -->
+              <div class="lg:col-span-2 p-8 border-r border-gray-100">
+                <div class="space-y-10">
+                  <!-- Total Investment -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Total investment</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <span class="text-gray-400 text-sm mr-1">₹</span>
+                        <input
+                          type="text"
+                          id="lumpsum-totalAmount"
+                          value="500000"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-24"
+                        />
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="lumpsum-totalRange"
+                        min="10000"
+                        max="10000000"
+                        value="500000"
+                        step="10000"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>₹10K</span>
+                      <span>₹1Cr</span>
+                    </div>
+                  </div>
+                  <!-- Expected Return Rate -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Expected return rate (p.a)</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <input
+                          type="text"
+                          id="lumpsum-returnRate"
+                          value="12"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-12"
+                        />
+                        <span class="text-gray-400 text-sm ml-1">%</span>
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="lumpsum-returnRange"
+                        min="1"
+                        max="30"
+                        value="12"
+                        step="0.5"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>1%</span>
+                      <span>30%</span>
+                    </div>
+                  </div>
+                  <!-- Time Period -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Time period</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <input
+                          type="text"
+                          id="lumpsum-timePeriod"
+                          value="10"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-8"
+                        />
+                        <span class="text-gray-400 text-sm ml-1">Y</span>
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="lumpsum-timeRange"
+                        min="1"
+                        max="40"
+                        value="10"
+                        step="1"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>1Y</span>
+                      <span>40Y</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Right Panel - Results -->
+              <div class="lg:col-span-3 p-8">
+                <div class="h-full flex flex-col">
+                  <!-- Chart Section -->
+                  <div class="flex-1 flex items-center justify-center mb-8">
+                    <div class="relative">
+                      <canvas
+                        id="lumpsumChart"
+                        width="280"
+                        height="280"
+                      ></canvas>
+                      <div
+                        class="absolute inset-0 flex items-center justify-center"
+                      >
+                        <div class="text-center">
+                          <div
+                            class="text-xs text-gray-400 mb-2 flex items-center justify-center"
+                          >
+                            <span
+                              class="w-2 h-2 bg-gray-300 rounded-full mr-2"
+                            ></span>
+                            Invested amount
+                          </div>
+                          <div
+                            class="text-xs text-gray-400 flex items-center justify-center"
+                          >
+                            <span
+                              class="w-2 h-2 bg-groww-green rounded-full mr-2"
+                            ></span>
+                            Est. returns
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Results Display -->
+                  <div class="space-y-4">
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium"
+                        >Invested amount</span
+                      >
+                      <span
+                        class="font-semibold text-lg text-groww-gray"
+                        id="lumpsum-investedAmount"
+                        >₹5,00,000</span
+                      >
+                    </div>
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium"
+                        >Est. returns</span
+                      >
+                      <span
+                        class="font-semibold text-lg text-groww-gray"
+                        id="lumpsum-estReturns"
+                        >₹10,52,338</span
+                      >
+                    </div>
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium">Total value</span>
+                      <span
+                        class="font-semibold text-xl text-groww-gray"
+                        id="lumpsum-totalValue"
+                        >₹15,52,338</span
+                      >
+                    </div>
+                    <div class="pt-6 space-y-3">
+                      <a
+                        href="./index.html#consultation"
+                        class="relative flex w-full items-center justify-center bg-primary text-white pl-5 pr-14 py-4 rounded-full text-lg group transition hover:bg-secondary"
+                      >
+                        Invest Now
+                        <span
+                          class="absolute right-3 bg-white text-black rounded-full p-2.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+                        >
+                          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step-up SIP Calculator -->
+        <div id="stepup-calculator" class="calculator-content hidden">
+          <div
+            class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
+          >
+            <div class="grid lg:grid-cols-5 min-h-[600px]">
+              <!-- Left Panel - Inputs -->
+              <div class="lg:col-span-2 p-8 border-r border-gray-100">
+                <div class="space-y-8">
+                  <!-- Monthly Investment -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Monthly investment</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <span class="text-gray-400 text-sm mr-1">₹</span>
+                        <input
+                          type="text"
+                          id="stepup-monthlyAmount"
+                          value="25000"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-20"
+                        />
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="stepup-monthlyRange"
+                        min="500"
+                        max="100000"
+                        value="25000"
+                        step="500"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>₹500</span>
+                      <span>₹1L</span>
+                    </div>
+                  </div>
+                  <!-- Annual Step-up -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Annual step-up</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <input
+                          type="text"
+                          id="stepup-stepupRate"
+                          value="10"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-8"
+                        />
+                        <span class="text-gray-400 text-sm ml-1">%</span>
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="stepup-stepupRange"
+                        min="0"
+                        max="25"
+                        value="10"
+                        step="1"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>0%</span>
+                      <span>25%</span>
+                    </div>
+                  </div>
+                  <!-- Expected Return Rate -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Expected return rate (p.a)</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <input
+                          type="text"
+                          id="stepup-returnRate"
+                          value="12"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-12"
+                        />
+                        <span class="text-gray-400 text-sm ml-1">%</span>
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="stepup-returnRange"
+                        min="1"
+                        max="30"
+                        value="12"
+                        step="0.5"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>1%</span>
+                      <span>30%</span>
+                    </div>
+                  </div>
+                  <!-- Time Period -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Time period</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <input
+                          type="text"
+                          id="stepup-timePeriod"
+                          value="10"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-8"
+                        />
+                        <span class="text-gray-400 text-sm ml-1">Y</span>
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="stepup-timeRange"
+                        min="1"
+                        max="40"
+                        value="10"
+                        step="1"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>1Y</span>
+                      <span>40Y</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Right Panel - Results -->
+              <div class="lg:col-span-3 p-8">
+                <div class="h-full flex flex-col">
+                  <!-- Chart Section -->
+                  <div class="flex-1 flex items-center justify-center mb-8">
+                    <div class="relative">
+                      <canvas
+                        id="stepupChart"
+                        width="280"
+                        height="280"
+                      ></canvas>
+                      <div
+                        class="absolute inset-0 flex items-center justify-center"
+                      >
+                        <div class="text-center">
+                          <div
+                            class="text-xs text-gray-400 mb-2 flex items-center justify-center"
+                          >
+                            <span
+                              class="w-2 h-2 bg-gray-300 rounded-full mr-2"
+                            ></span>
+                            Invested amount
+                          </div>
+                          <div
+                            class="text-xs text-gray-400 flex items-center justify-center"
+                          >
+                            <span
+                              class="w-2 h-2 bg-purple-500 rounded-full mr-2"
+                            ></span>
+                            Est. returns
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Results Display -->
+                  <div class="space-y-4">
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium"
+                        >Invested amount</span
+                      >
+                      <span
+                        class="font-semibold text-lg text-groww-gray"
+                        id="stepup-investedAmount"
+                        >₹41,25,000</span
+                      >
+                    </div>
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium"
+                        >Est. returns</span
+                      >
+                      <span
+                        class="font-semibold text-lg text-groww-gray"
+                        id="stepup-estReturns"
+                        >₹45,67,890</span
+                      >
+                    </div>
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium">Total value</span>
+                      <span
+                        class="font-semibold text-xl text-groww-gray"
+                        id="stepup-totalValue"
+                        >₹86,92,890</span
+                      >
+                    </div>
+                    <div class="pt-6 space-y-3">
+                      <div class="pt-6 space-y-3">
+                        <a
+                          href="./index.html#consultation"
+                          class="relative flex w-full items-center justify-center bg-primary text-white pl-5 pr-14 py-4 rounded-full text-lg group transition hover:bg-secondary"
+                        >
+                          Invest Now
+                          <span
+                            class="absolute right-3 bg-white text-black rounded-full p-2.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+                          >
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Target Amount Calculator -->
+        <div id="target-calculator" class="calculator-content hidden">
+          <div
+            class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
+          >
+            <div class="grid lg:grid-cols-5 min-h-[600px]">
+              <!-- Left Panel - Inputs -->
+              <div class="lg:col-span-2 p-8 border-r border-gray-100">
+                <div class="space-y-10">
+                  <!-- Target Amount -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Target amount</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <span class="text-gray-400 text-sm mr-1">₹</span>
+                        <input
+                          type="text"
+                          id="target-targetAmount"
+                          value="5000000"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-24"
+                        />
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="target-targetRange"
+                        min="100000"
+                        max="50000000"
+                        value="5000000"
+                        step="100000"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>₹1L</span>
+                      <span>₹5Cr</span>
+                    </div>
+                  </div>
+                  <!-- Expected Return Rate -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Expected return rate (p.a)</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <input
+                          type="text"
+                          id="target-returnRate"
+                          value="12"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-12"
+                        />
+                        <span class="text-gray-400 text-sm ml-1">%</span>
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="target-returnRange"
+                        min="1"
+                        max="30"
+                        value="12"
+                        step="0.5"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>1%</span>
+                      <span>30%</span>
+                    </div>
+                  </div>
+                  <!-- Time Period -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Time period</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <input
+                          type="text"
+                          id="target-timePeriod"
+                          value="10"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-8"
+                        />
+                        <span class="text-gray-400 text-sm ml-1">Y</span>
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="target-timeRange"
+                        min="1"
+                        max="40"
+                        value="10"
+                        step="1"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>1Y</span>
+                      <span>40Y</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Right Panel - Results -->
+              <div class="lg:col-span-3 p-8">
+                <div class="h-full flex flex-col">
+                  <!-- Chart Section -->
+                  <div class="flex-1 flex items-center justify-center mb-8">
+                    <div class="relative">
+                      <canvas
+                        id="targetChart"
+                        width="280"
+                        height="280"
+                      ></canvas>
+                      <div
+                        class="absolute inset-0 flex items-center justify-center"
+                      >
+                        <div class="text-center">
+                          <div
+                            class="text-xs text-gray-400 mb-2 flex items-center justify-center"
+                          >
+                            <span
+                              class="w-2 h-2 bg-gray-300 rounded-full mr-2"
+                            ></span>
+                            Required investment
+                          </div>
+                          <div
+                            class="text-xs text-gray-400 flex items-center justify-center"
+                          >
+                            <span
+                              class="w-2 h-2 bg-groww-orange rounded-full mr-2"
+                            ></span>
+                            Expected returns
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Results Display -->
+                  <div class="space-y-4">
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium"
+                        >Monthly SIP required</span
+                      >
+                      <span
+                        class="font-semibold text-lg text-groww-gray"
+                        id="target-monthlyRequired"
+                        >₹21,245</span
+                      >
+                    </div>
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium"
+                        >Total investment</span
+                      >
+                      <span
+                        class="font-semibold text-lg text-groww-gray"
+                        id="target-totalInvestment"
+                        >₹25,49,400</span
+                      >
+                    </div>
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium"
+                        >Expected returns</span
+                      >
+                      <span
+                        class="font-semibold text-xl text-groww-gray"
+                        id="target-expectedReturns"
+                        >₹24,50,600</span
+                      >
+                    </div>
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium"
+                        >Target amount</span
+                      >
+                      <span
+                        class="font-semibold text-xl text-groww-gray"
+                        id="target-targetValue"
+                        >₹50,00,000</span
+                      >
+                    </div>
+                    <div class="pt-6 space-y-3">
+                      <a
+                        href="./index.html#consultation"
+                        class="relative flex w-full items-center justify-center bg-primary text-white pl-5 pr-14 py-4 rounded-full text-lg group transition hover:bg-secondary"
+                      >
+                        Invest Now
+                        <span
+                          class="absolute right-3 bg-white text-black rounded-full p-2.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+                        >
+                          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SWP Calculator -->
+        <div id="swp-calculator" class="calculator-content hidden">
+          <div
+            class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
+          >
+            <div class="grid lg:grid-cols-5 min-h-[600px]">
+              <!-- Left Panel - Inputs -->
+              <div class="lg:col-span-2 p-8 border-r border-gray-100">
+                <div class="space-y-8">
+                  <!-- Initial Corpus -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Initial corpus</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <span class="text-gray-400 text-sm mr-1">₹</span>
+                        <input
+                          type="text"
+                          id="swp-initialCorpus"
+                          value="8000000"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-24"
+                        />
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="swp-corpusRange"
+                        min="100000"
+                        max="50000000"
+                        value="5000000"
+                        step="100000"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>₹5L</span>
+                      <span>₹5Cr</span>
+                    </div>
+                  </div>
+                  <!-- Monthly Withdrawal -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Monthly withdrawal</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <span class="text-gray-400 text-sm mr-1">₹</span>
+                        <input
+                          type="text"
+                          id="swp-monthlyWithdrawal"
+                          value="50000"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-20"
+                        />
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="swp-withdrawalRange"
+                        min="5000"
+                        max="500000"
+                        value="50000"
+                        step="5000"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>₹5K</span>
+                      <span>₹5L</span>
+                    </div>
+                  </div>
+                  <!-- Expected Return Rate -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Expected return rate (p.a)</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <input
+                          type="text"
+                          id="swp-returnRate"
+                          value="8"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-12"
+                        />
+                        <span class="text-gray-400 text-sm ml-1">%</span>
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="swp-returnRange"
+                        min="1"
+                        max="20"
+                        value="8"
+                        step="0.5"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>1%</span>
+                      <span>20%</span>
+                    </div>
+                  </div>
+                  <!-- Time Period -->
+                  <div>
+                    <div class="flex justify-between items-center mb-6">
+                      <label class="text-groww-gray font-medium"
+                        >Time period</label
+                      >
+                      <div
+                        class="flex items-center bg-gray-50 rounded-lg px-3 py-2"
+                      >
+                        <input
+                          type="text"
+                          id="swp-timePeriod"
+                          value="15"
+                          class="bg-transparent text-right font-semibold text-lg text-groww-gray border-none outline-none w-8"
+                        />
+                        <span class="text-gray-400 text-sm ml-1">Y</span>
+                      </div>
+                    </div>
+                    <div class="relative mb-2">
+                      <input
+                        type="range"
+                        id="swp-timeRange"
+                        min="1"
+                        max="40"
+                        value="15"
+                        step="1"
+                        class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-custom"
+                      />
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                      <span>1Y</span>
+                      <span>40Y</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Right Panel - Results -->
+              <div class="lg:col-span-3 p-8">
+                <div class="h-full flex flex-col">
+                  <!-- Chart Section -->
+                  <div class="flex-1 flex items-center justify-center mb-8">
+                    <div class="relative">
+                      <canvas id="swpChart" width="280" height="280"></canvas>
+                      <div
+                        class="absolute inset-0 flex items-center justify-center"
+                      >
+                        <div class="text-center">
+                          <div
+                            class="text-xs text-gray-400 mb-2 flex items-center justify-center"
+                          >
+                            <span
+                              class="w-2 h-2 bg-gray-400 rounded-full mr-2"
+                            ></span>
+                            Total withdrawals
+                          </div>
+                          <div
+                            class="text-xs text-gray-400 flex items-center justify-center"
+                          >
+                            <span
+                              class="w-2 h-2 bg-emerald-500 rounded-full mr-2"
+                            ></span>
+                            Remaining corpus
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Results Display -->
+                  <div class="space-y-4">
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium"
+                        >Corpus duration</span
+                      >
+                      <span
+                        class="font-semibold text-lg text-groww-gray"
+                        id="swp-duration"
+                        >15 Years</span
+                      >
+                    </div>
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium"
+                        >Total withdrawals</span
+                      >
+                      <span
+                        class="font-semibold text-lg text-groww-gray"
+                        id="swp-totalWithdrawals"
+                        >₹90,00,000</span
+                      >
+                    </div>
+                    <div
+                      class="flex justify-between items-center py-4 border-b border-gray-100"
+                    >
+                      <span class="text-gray-500 font-medium"
+                        >Remaining corpus</span
+                      >
+                      <span
+                        class="font-semibold text-xl text-groww-gray"
+                        id="swp-remainingCorpus"
+                        >₹5,00,000</span
+                      >
+                    </div>
+                    <div class="pt-6 space-y-3">
+                      <a
+                        href="./index.html#consultation"
+                        class="relative flex w-full items-center justify-center bg-primary text-white pl-5 pr-14 py-4 rounded-full text-lg group transition hover:bg-secondary"
+                      >
+                        Invest Now
+                        <span
+                          class="absolute right-3 bg-white text-black rounded-full p-2.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+                        >
+                          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .calculator-tab {
+        border-bottom: 3px solid transparent;
+      }
+      .calculator-tab.active {
+        background-color: #f8f9fa;
+        border-bottom-color: #fcaf1b;
+        color: #161f48;
+      }
+      .calculator-tab:not(.active) {
+        color: #6b7280;
+      }
+      .calculator-tab:not(.active):hover {
+        background-color: #f9fafb;
+        color: #374151;
+      }
+      .slider-custom::-webkit-slider-thumb {
+        appearance: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #fcaf1b;
+        cursor: pointer;
+        box-shadow: 0 2px 8px #fcaf1b;
+        transition: all 0.2s ease;
+      }
+      .slider-custom::-webkit-slider-thumb:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px #fcaf1b;
+      }
+      .slider-custom::-moz-range-thumb {
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #fcaf1b;
+        cursor: pointer;
+        border: none;
+        box-shadow: 0 2px 8px #fcaf1b;
+      }
+      .slider-custom::-webkit-slider-track {
+        background: linear-gradient(
+          to right,
+          #fcaf1b 0%,
+          #fcaf1b var(--progress, 25%),
+          #e5e7eb var(--progress, 25%),
+          #e5e7eb 100%
+        );
+        height: 4px;
+        border-radius: 2px;
+      }
+      .slider-custom::-moz-range-track {
+        background: #fcaf1b;
+        height: 4px;
+        border-radius: 2px;
+      }
+      .slider-custom:focus {
+        outline: none;
+      }
+      .slider-custom:focus::-webkit-slider-thumb {
+        box-shadow: 0 0 0 3px rgba(0, 208, 156, 0.1), 0 2px 8px #fcaf1b;
+      }
+      input[type="text"]:focus {
+        outline: none;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
+      }
+    </style>
+
+    <script>
+      lucide.createIcons();
+    </script>
+    <script>
+      let sipChart, lumpsumChart, stepupChart, targetChart, swpChart;
+      let currentCalculator = "sip";
+
+      // Switch between calculators
+      function switchCalculator(type) {
+        // Hide all calculators
+        document.querySelectorAll(".calculator-content").forEach((el) => {
+          el.classList.add("hidden");
+        });
+        // Remove active class from all tabs
+        document.querySelectorAll(".calculator-tab").forEach((el) => {
+          el.classList.remove("active");
+        });
+        // Show selected calculator
+        document
+          .getElementById(`${type}-calculator`)
+          .classList.remove("hidden");
+        document.getElementById(`${type}-tab`).classList.add("active");
+        currentCalculator = type;
+        // Initialize chart for the selected calculator
+        setTimeout(() => {
+          if (type === "sip" && !sipChart) initSIPChart();
+          if (type === "lumpsum" && !lumpsumChart) initLumpsumChart();
+          if (type === "stepup" && !stepupChart) initStepupChart();
+          if (type === "target" && !targetChart) initTargetChart();
+          if (type === "swp" && !swpChart) initSWPChart();
+          // Calculate values
+          if (type === "sip") calculateSIP();
+          if (type === "lumpsum") calculateLumpsum();
+          if (type === "stepup") calculateStepup();
+          if (type === "target") calculateTarget();
+          if (type === "swp") calculateSWP();
+        }, 100);
+      }
+
+      // Initialize charts
+      function initSIPChart() {
+        const ctx = document.getElementById("sipChart").getContext("2d");
+        sipChart = new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            datasets: [
+              {
+                data: [30, 25],
+                backgroundColor: ["#F9FAFB", "#5367FF"],
+                borderWidth: 0,
+                cutout: "75%",
+              },
+            ],
+          },
+          options: {
+            responsive: false,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { enabled: false },
+            },
+            animation: {
+              animateRotate: true,
+              duration: 800,
+              easing: "easeOutCubic",
+            },
+          },
+        });
+      }
+
+      function initLumpsumChart() {
+        const ctx = document.getElementById("lumpsumChart").getContext("2d");
+        lumpsumChart = new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            datasets: [
+              {
+                data: [30, 25],
+                backgroundColor: ["#E5E7EB", "#00D09C"],
+                borderWidth: 0,
+                cutout: "75%",
+              },
+            ],
+          },
+          options: {
+            responsive: false,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { enabled: false },
+            },
+            animation: {
+              animateRotate: true,
+              duration: 800,
+              easing: "easeOutCubic",
+            },
+          },
+        });
+      }
+
+      function initStepupChart() {
+        const ctx = document.getElementById("stepupChart").getContext("2d");
+        stepupChart = new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            datasets: [
+              {
+                data: [30, 25],
+                backgroundColor: ["#E5E7EB", "#8B5CF6"],
+                borderWidth: 0,
+                cutout: "75%",
+              },
+            ],
+          },
+          options: {
+            responsive: false,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { enabled: false },
+            },
+            animation: {
+              animateRotate: true,
+              duration: 800,
+              easing: "easeOutCubic",
+            },
+          },
+        });
+      }
+
+      function initTargetChart() {
+        const ctx = document.getElementById("targetChart").getContext("2d");
+        targetChart = new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            datasets: [
+              {
+                data: [30, 25],
+                backgroundColor: ["#E5E7EB", "#FF6B35"],
+                borderWidth: 0,
+                cutout: "75%",
+              },
+            ],
+          },
+          options: {
+            responsive: false,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { enabled: false },
+            },
+            animation: {
+              animateRotate: true,
+              duration: 800,
+              easing: "easeOutCubic",
+            },
+          },
+        });
+      }
+
+      function initSWPChart() {
+        const ctx = document.getElementById("swpChart").getContext("2d");
+        swpChart = new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            datasets: [
+              {
+                data: [65, 35],
+                backgroundColor: ["#F9FAFB", "#10B981"], // Red for withdrawals, Emerald for remaining
+                borderWidth: 0,
+                cutout: "75%",
+              },
+            ],
+          },
+          options: {
+            responsive: false,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { enabled: false },
+            },
+            animation: {
+              animateRotate: true,
+              duration: 1000,
+              easing: "easeOutCubic",
+            },
+          },
+        });
+      }
+
+      // Format currency
+      function formatCurrency(amount) {
+        if (amount >= 10000000) {
+          return `₹${(amount / 10000000).toFixed(2)} Cr`;
+        } else if (amount >= 100000) {
+          return `₹${(amount / 100000).toFixed(2)} L`;
+        } else {
+          return new Intl.NumberFormat("en-IN", {
+            style: "currency",
+            currency: "INR",
+            maximumFractionDigits: 0,
+          }).format(amount);
+        }
+      }
+
+      function formatNumber(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+
+      // Extract numeric value from formatted text
+      function extractNumericValue(text) {
+        if (!text) return 0;
+
+        // Remove all non-numeric characters except decimal point
+        let cleanText = text.toString().replace(/[₹,\s]/g, "");
+
+        // Handle Cr (Crore) and L (Lakh) suffixes
+        if (cleanText.includes("Cr")) {
+          return parseFloat(cleanText.replace("Cr", "")) * 10000000;
+        } else if (cleanText.includes("L")) {
+          return parseFloat(cleanText.replace("L", "")) * 100000;
+        }
+
+        return parseFloat(cleanText) || 0;
+      }
+
+      // Calculate SIP
+      function calculateSIP() {
+        const monthlyAmount =
+          parseFloat(
+            document.getElementById("sip-monthlyAmount").value.replace(/,/g, "")
+          ) || 0;
+        const returnRate =
+          parseFloat(document.getElementById("sip-returnRate").value) || 0;
+        const timePeriod =
+          parseFloat(document.getElementById("sip-timePeriod").value) || 0;
+
+        if (monthlyAmount <= 0 || returnRate <= 0 || timePeriod <= 0) return;
+
+        const monthlyRate = returnRate / 100 / 12;
+        const totalMonths = timePeriod * 12;
+        const futureValue =
+          monthlyAmount *
+          (((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) *
+            (1 + monthlyRate));
+        const investedAmount = monthlyAmount * totalMonths;
+        const estimatedReturns = futureValue - investedAmount;
+
+        animateValue("sip-investedAmount", investedAmount);
+        animateValue("sip-estReturns", estimatedReturns);
+        animateValue("sip-totalValue", futureValue);
+
+        if (sipChart) {
+          const investedRatio =
+            (investedAmount / (investedAmount + estimatedReturns)) * 100;
+          const returnsRatio =
+            (estimatedReturns / (investedAmount + estimatedReturns)) * 100;
+          sipChart.data.datasets[0].data = [investedRatio, returnsRatio];
+          sipChart.update("active");
+        }
+        updateSliderProgress();
+      }
+
+      // Calculate Lumpsum
+      function calculateLumpsum() {
+        const totalAmount =
+          parseFloat(
+            document
+              .getElementById("lumpsum-totalAmount")
+              .value.replace(/,/g, "")
+          ) || 0;
+        const returnRate =
+          parseFloat(document.getElementById("lumpsum-returnRate").value) || 0;
+        const timePeriod =
+          parseFloat(document.getElementById("lumpsum-timePeriod").value) || 0;
+
+        if (totalAmount <= 0 || returnRate <= 0 || timePeriod <= 0) return;
+
+        const futureValue =
+          totalAmount * Math.pow(1 + returnRate / 100, timePeriod);
+        const estimatedReturns = futureValue - totalAmount;
+
+        animateValue("lumpsum-investedAmount", totalAmount);
+        animateValue("lumpsum-estReturns", estimatedReturns);
+        animateValue("lumpsum-totalValue", futureValue);
+
+        if (lumpsumChart) {
+          const investedRatio =
+            (totalAmount / (totalAmount + estimatedReturns)) * 100;
+          const returnsRatio =
+            (estimatedReturns / (totalAmount + estimatedReturns)) * 100;
+          lumpsumChart.data.datasets[0].data = [investedRatio, returnsRatio];
+          lumpsumChart.update("active");
+        }
+        updateSliderProgress();
+      }
+
+      // Calculate Step-up SIP
+      function calculateStepup() {
+        const monthlyAmount =
+          parseFloat(
+            document
+              .getElementById("stepup-monthlyAmount")
+              .value.replace(/,/g, "")
+          ) || 0;
+        const stepupRate =
+          parseFloat(document.getElementById("stepup-stepupRate").value) || 0;
+        const returnRate =
+          parseFloat(document.getElementById("stepup-returnRate").value) || 0;
+        const timePeriod =
+          parseFloat(document.getElementById("stepup-timePeriod").value) || 0;
+
+        if (monthlyAmount <= 0 || returnRate <= 0 || timePeriod <= 0) return;
+
+        const monthlyRate = returnRate / 100 / 12;
+        const stepupDecimal = stepupRate / 100;
+        let totalInvested = 0;
+        let futureValue = 0;
+        let currentMonthlyAmount = monthlyAmount;
+
+        for (let year = 1; year <= timePeriod; year++) {
+          const monthsInYear = 12;
+          const yearlyInvestment = currentMonthlyAmount * monthsInYear;
+          totalInvested += yearlyInvestment;
+
+          const remainingYears = timePeriod - year + 1;
+          const yearFutureValue =
+            (yearlyInvestment *
+              (((Math.pow(1 + monthlyRate, remainingYears * 12) - 1) /
+                monthlyRate) *
+                (1 + monthlyRate))) /
+            12;
+          futureValue += yearFutureValue;
+
+          if (year < timePeriod) {
+            currentMonthlyAmount = currentMonthlyAmount * (1 + stepupDecimal);
+          }
+        }
+
+        const estimatedReturns = futureValue - totalInvested;
+
+        animateValue("stepup-investedAmount", totalInvested);
+        animateValue("stepup-estReturns", estimatedReturns);
+        animateValue("stepup-totalValue", futureValue);
+
+        if (stepupChart) {
+          const investedRatio =
+            (totalInvested / (totalInvested + estimatedReturns)) * 100;
+          const returnsRatio =
+            (estimatedReturns / (totalInvested + estimatedReturns)) * 100;
+          stepupChart.data.datasets[0].data = [investedRatio, returnsRatio];
+          stepupChart.update("active");
+        }
+        updateSliderProgress();
+      }
+
+      // Calculate Target Amount
+      function calculateTarget() {
+        const targetAmount =
+          parseFloat(
+            document
+              .getElementById("target-targetAmount")
+              .value.replace(/,/g, "")
+          ) || 0;
+        const returnRate =
+          parseFloat(document.getElementById("target-returnRate").value) || 0;
+        const timePeriod =
+          parseFloat(document.getElementById("target-timePeriod").value) || 0;
+
+        if (targetAmount <= 0 || returnRate <= 0 || timePeriod <= 0) return;
+
+        const monthlyRate = returnRate / 100 / 12;
+        const totalMonths = timePeriod * 12;
+
+        // Calculate required monthly SIP using PMT formula
+        const monthlyRequired =
+          targetAmount /
+          (((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) *
+            (1 + monthlyRate));
+        const totalInvestment = monthlyRequired * totalMonths;
+        const expectedReturns = targetAmount - totalInvestment;
+
+        animateValue("target-monthlyRequired", monthlyRequired);
+        animateValue("target-totalInvestment", totalInvestment);
+        animateValue("target-expectedReturns", expectedReturns);
+        document.getElementById("target-targetValue").textContent =
+          formatCurrency(targetAmount);
+
+        if (targetChart) {
+          const investedRatio = (totalInvestment / targetAmount) * 100;
+          const returnsRatio = (expectedReturns / targetAmount) * 100;
+          targetChart.data.datasets[0].data = [investedRatio, returnsRatio];
+          targetChart.update("active");
+        }
+        updateSliderProgress();
+      }
+
+      // Calculate SWP - Enhanced with Time Period
+      function calculateSWP() {
+        const initialCorpus =
+          parseFloat(
+            document.getElementById("swp-initialCorpus").value.replace(/,/g, "")
+          ) || 0;
+        const monthlyWithdrawal =
+          parseFloat(
+            document
+              .getElementById("swp-monthlyWithdrawal")
+              .value.replace(/,/g, "")
+          ) || 0;
+        const returnRate =
+          parseFloat(document.getElementById("swp-returnRate").value) || 0;
+        const timePeriod =
+          parseFloat(document.getElementById("swp-timePeriod").value) || 0;
+
+        if (
+          initialCorpus <= 0 ||
+          monthlyWithdrawal <= 0 ||
+          returnRate <= 0 ||
+          timePeriod <= 0
+        )
+          return;
+
+        const monthlyRate = returnRate / 100 / 12;
+        const totalMonths = timePeriod * 12;
+        let currentCorpus = initialCorpus;
+        let months = 0;
+        let totalWithdrawals = 0;
+
+        // Calculate withdrawals for the specified time period
+        while (months < totalMonths && currentCorpus > 0) {
+          currentCorpus = currentCorpus * (1 + monthlyRate) - monthlyWithdrawal;
+          totalWithdrawals += monthlyWithdrawal;
+          months++;
+
+          if (currentCorpus < 0) {
+            // Adjust for partial withdrawal in the last month
+            totalWithdrawals += currentCorpus; // currentCorpus is negative, so this reduces totalWithdrawals
+            currentCorpus = 0;
+            break;
+          }
+        }
+
+        // If corpus lasts the full time period, calculate remaining corpus
+        if (months >= totalMonths && currentCorpus > 0) {
+          // Corpus survives the full period
+          const years = Math.floor(totalMonths / 12);
+          const remainingMonths = totalMonths % 12;
+          const durationText =
+            years > 0
+              ? remainingMonths > 0
+                ? `${years} Years ${remainingMonths} Months`
+                : `${years} Years`
+              : `${remainingMonths} Months`;
+
+          document.getElementById(
+            "swp-duration"
+          ).textContent = `${durationText}`;
+        } else {
+          // Corpus gets exhausted before time period
+          const years = Math.floor(months / 12);
+          const remainingMonths = months % 12;
+          const durationText =
+            years > 0
+              ? remainingMonths > 0
+                ? `${years} Years ${remainingMonths} Months`
+                : `${years} Years`
+              : `${remainingMonths} Months`;
+
+          document.getElementById(
+            "swp-duration"
+          ).textContent = `${durationText} (Exhausted)`;
+        }
+
+        animateValue("swp-totalWithdrawals", totalWithdrawals);
+        animateValue("swp-remainingCorpus", Math.max(0, currentCorpus));
+
+        if (swpChart) {
+          // Calculate chart ratios based on total value
+          const totalValue = totalWithdrawals + Math.max(0, currentCorpus);
+          const withdrawalPercentage =
+            totalValue > 0 ? (totalWithdrawals / totalValue) * 100 : 100;
+          const remainingPercentage =
+            totalValue > 0
+              ? (Math.max(0, currentCorpus) / totalValue) * 100
+              : 0;
+
+          swpChart.data.datasets[0].data = [
+            withdrawalPercentage,
+            remainingPercentage,
+          ];
+          swpChart.update("active");
+        }
+        updateSliderProgress();
+      }
+
+      // Enhanced Animate value changes
+      function animateValue(elementId, targetValue) {
+        const element = document.getElementById(elementId);
+        if (!element) return;
+
+        // Get current value using the enhanced extraction function
+        const currentText = element.textContent || "₹0";
+        const startValue = extractNumericValue(currentText);
+
+        const duration = 1000; // Smooth 1 second animation
+        const startTime = performance.now();
+
+        function updateValue(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+
+          // Smooth easing function
+          const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+          const currentValue =
+            startValue + (targetValue - startValue) * easeOutQuart;
+
+          element.textContent = formatCurrency(currentValue);
+
+          if (progress < 1) {
+            requestAnimationFrame(updateValue);
+          } else {
+            // Ensure final value is exact
+            element.textContent = formatCurrency(targetValue);
+          }
+        }
+        requestAnimationFrame(updateValue);
+      }
+
+      // Update slider progress
+      function updateSliderProgress() {
+        const sliders = document.querySelectorAll(".slider-custom");
+        sliders.forEach((slider) => {
+          const value =
+            ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+          slider.style.setProperty("--progress", value + "%");
+        });
+      }
+
+      // Setup input synchronization
+      function setupInputSync() {
+        const calculators = ["sip", "lumpsum", "stepup", "target", "swp"];
+
+        calculators.forEach((calc) => {
+          let inputs = [];
+
+          if (calc === "sip") {
+            inputs = [
+              {
+                text: `${calc}-monthlyAmount`,
+                range: `${calc}-monthlyRange`,
+                formatter: formatNumber,
+              },
+              {
+                text: `${calc}-returnRate`,
+                range: `${calc}-returnRange`,
+                formatter: null,
+              },
+              {
+                text: `${calc}-timePeriod`,
+                range: `${calc}-timeRange`,
+                formatter: null,
+              },
+            ];
+          } else if (calc === "lumpsum") {
+            inputs = [
+              {
+                text: `${calc}-totalAmount`,
+                range: `${calc}-totalRange`,
+                formatter: formatNumber,
+              },
+              {
+                text: `${calc}-returnRate`,
+                range: `${calc}-returnRange`,
+                formatter: null,
+              },
+              {
+                text: `${calc}-timePeriod`,
+                range: `${calc}-timeRange`,
+                formatter: null,
+              },
+            ];
+          } else if (calc === "stepup") {
+            inputs = [
+              {
+                text: `${calc}-monthlyAmount`,
+                range: `${calc}-monthlyRange`,
+                formatter: formatNumber,
+              },
+              {
+                text: `${calc}-stepupRate`,
+                range: `${calc}-stepupRange`,
+                formatter: null,
+              },
+              {
+                text: `${calc}-returnRate`,
+                range: `${calc}-returnRange`,
+                formatter: null,
+              },
+              {
+                text: `${calc}-timePeriod`,
+                range: `${calc}-timeRange`,
+                formatter: null,
+              },
+            ];
+          } else if (calc === "target") {
+            inputs = [
+              {
+                text: `${calc}-targetAmount`,
+                range: `${calc}-targetRange`,
+                formatter: formatNumber,
+              },
+              {
+                text: `${calc}-returnRate`,
+                range: `${calc}-returnRange`,
+                formatter: null,
+              },
+              {
+                text: `${calc}-timePeriod`,
+                range: `${calc}-timeRange`,
+                formatter: null,
+              },
+            ];
+          } else if (calc === "swp") {
+            inputs = [
+              {
+                text: `${calc}-initialCorpus`,
+                range: `${calc}-corpusRange`,
+                formatter: formatNumber,
+              },
+              {
+                text: `${calc}-monthlyWithdrawal`,
+                range: `${calc}-withdrawalRange`,
+                formatter: formatNumber,
+              },
+              {
+                text: `${calc}-returnRate`,
+                range: `${calc}-returnRange`,
+                formatter: null,
+              },
+              {
+                text: `${calc}-timePeriod`,
+                range: `${calc}-timeRange`,
+                formatter: null,
+              },
+            ];
+          }
+
+          inputs.forEach(({ text, range, formatter }) => {
+            const textInput = document.getElementById(text);
+            const rangeInput = document.getElementById(range);
+
+            if (!textInput || !rangeInput) return;
+
+            textInput.addEventListener("input", (e) => {
+              let value = e.target.value.replace(/,/g, "");
+              if (!isNaN(value) && value !== "") {
+                rangeInput.value = value;
+                if (formatter) {
+                  e.target.value = formatter(value);
+                }
+                // Trigger calculation with slight delay for better performance
+                setTimeout(() => {
+                  if (calc === "sip") calculateSIP();
+                  if (calc === "lumpsum") calculateLumpsum();
+                  if (calc === "stepup") calculateStepup();
+                  if (calc === "target") calculateTarget();
+                  if (calc === "swp") calculateSWP();
+                }, 50);
+              }
+            });
+
+            textInput.addEventListener("blur", (e) => {
+              let value = e.target.value.replace(/,/g, "");
+              if (!isNaN(value) && value !== "") {
+                if (formatter) {
+                  e.target.value = formatter(value);
+                }
+              }
+            });
+
+            rangeInput.addEventListener("input", (e) => {
+              const value = e.target.value;
+              textInput.value = formatter ? formatter(value) : value;
+              // Trigger calculation immediately for range inputs
+              if (calc === "sip") calculateSIP();
+              if (calc === "lumpsum") calculateLumpsum();
+              if (calc === "stepup") calculateStepup();
+              if (calc === "target") calculateTarget();
+              if (calc === "swp") calculateSWP();
+            });
+          });
+        });
+      }
+
+      // Initialize everything
+      document.addEventListener("DOMContentLoaded", function () {
+        initSIPChart();
+        setupInputSync();
+        calculateSIP();
+        updateSliderProgress();
+
+        // Add smooth transitions to all interactive elements
+        document.querySelectorAll("input, button").forEach((el) => {
+          el.style.transition = "all 0.2s ease";
+        });
+      });
+    </script>
+  </body>
+</html>
