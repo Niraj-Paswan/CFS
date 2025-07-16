@@ -4,24 +4,27 @@
     <!-- Basic Meta Tags for SEO and Performance -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <meta
       name="description"
-      content="Chimulkar Financial Services - Trusted financial planning and investment advisory services in Goa. 40+ years of experience serving 1000+ families."
+      content="Use Chimulkar Financial Services' online SIP and investment calculators to plan your wealth, set realistic targets, and achieve your financial goals easily."
     />
+
     <meta
       name="keywords"
-      content="financial planning, investment advisory, mutual funds, retirement planning, tax planning, insurance, Goa"
+      content="SIP calculator, step-up SIP calculator, target amount calculator, investment calculator, mutual fund calculator, financial planning tool, goal planning, wealth management, Chimulkar Financial Services"
     />
+
     <meta name="author" content="Chimulkar Financial Services" />
 
     <!-- Open Graph Meta Tags for Social Media -->
     <meta
       property="og:title"
-      content="Chimulkar Financial Services - Trust Is Everything"
+      content="Online SIP & Investment Calculators | Chimulkar Financial Services"
     />
     <meta
       property="og:description"
-      content="Professional financial planning services with 40+ years of experience serving families in Goa."
+      content="Plan your investments smartly with our easy-to-use SIP, Step-Up, and Target Amount calculators. Trusted by 1000+ families in Goa."
     />
     <meta property="og:type" content="website" />
 
@@ -171,25 +174,31 @@
               class="absolute top-full left-0 mt-2 bg-white rounded-lg min-w-[14rem] text-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-auto border border-gray-300 shadow-md"
             >
               <a
-                href="#calc-1"
+                href="./Calculators.html#sip-calculator"
                 class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-t-lg cursor-pointer"
               >
                 <i data-lucide="calculator" class="w-4 h-4"></i> SIP Calculator
               </a>
               <a
-                href="#calc-2"
+                href="./Calculators.html#lumpsum-calculator"
                 class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
               >
                 <i data-lucide="percent" class="w-4 h-4"></i> Lump Sum
               </a>
               <a
-                href="#calc-3"
+                href="./Calculators.html#stepup-calculator"
                 class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
               >
                 <i data-lucide="dollar-sign" class="w-4 h-4"></i> Step‑Up
               </a>
               <a
-                href="#calc-4"
+                href="./Calculators.html#target-calculator"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
+              >
+                <i data-lucide="target" class="w-4 h-4"></i> Target Amount
+              </a>
+              <a
+                href="./Calculators.html#swp-calculator"
                 class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-b-lg cursor-pointer"
               >
                 <i data-lucide="activity" class="w-4 h-4"></i> SPW Calculator
@@ -368,25 +377,31 @@
           </summary>
           <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
             <a
-              href="#calc-1"
+              href="./Calculators.html#sip-calculator"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
             >
               <i data-lucide="calculator" class="w-4 h-4"></i> SIP Calculator
             </a>
             <a
-              href="#calc-2"
+              href="./Calculators.html#lumpsum-calculator"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
             >
               <i data-lucide="percent" class="w-4 h-4"></i> Lump Sum
             </a>
             <a
-              href="#calc-3"
+              href="./Calculators.html#stepup-calculator"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
             >
               <i data-lucide="dollar-sign" class="w-4 h-4"></i> Step‑Up
             </a>
             <a
-              href="#calc-4"
+              href="./Calculators.html#target-calculator"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="target" class="w-4 h-4"></i> Target Amount
+            </a>
+            <a
+              href="./Calculators.html#swp-calculator"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
             >
               <i data-lucide="activity" class="w-4 h-4"></i> SPW Calculator
@@ -2264,7 +2279,7 @@
     <!-- =================================================================== -->
     <!-- FREE CONSULTATION SECTION - Free Consulation progess Form -->
     <!-- =================================================================== -->
-    <section class="bg-secondary w-full py-16 px-6">
+    <section class="bg-secondary w-full py-16 px-6" id="consultation">
       <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         <!-- Left Side - Contact Information -->
         <div class="h-full flex items-center">
@@ -3281,7 +3296,10 @@
             formData: {},
             validationRules: {
               fullName: { minLength: 5, required: true },
-              phoneNumber: { pattern: /^\+?[\d\s-()]{10,}$/, required: true },
+              phoneNumber: {
+                pattern: /^(?:\+91[\s-]?)?(7|8|9)\d{9}$/,
+                required: true,
+              },
               emailAddress: {
                 pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 required: true,
@@ -3510,9 +3528,9 @@
             const messages = {
               fullName: "Name verified",
               phoneNumber: "Phone verified",
-              emailAddress: "Email verified",
+              emailAddress: "",
             };
-            return messages[fieldName] || "Verified";
+            return messages[fieldName] || "";
           }
 
           // ===== BUTTON STATE UPDATE =====
