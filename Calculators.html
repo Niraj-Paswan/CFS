@@ -33,6 +33,15 @@
         },
       };
     </script>
+    <style>
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none; /* IE & Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+    </style>
   </head>
   <body class="bg-white font-inter">
     <div class="min-h-screen py-8 px-4">
@@ -49,40 +58,44 @@
         </div>
 
         <!-- Navigation Tabs -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-300 mb-6">
-          <div class="flex flex-wrap">
+        <div
+          class="bg-white rounded-2xl shadow-sm border border-gray-300 mb-4 sm:mb-6 sm:px-0 overflow-x-auto hide-scrollbar"
+        >
+          <div
+            class="flex min-w-max whitespace-nowrap sm:flex-wrap sm:whitespace-normal"
+          >
             <button
               onclick="switchCalculator('sip')"
               id="sip-tab"
-              class="calculator-tab active flex-1 py-4 px-4 text-center rounded-tl-2xl rounded-bl-2xl font-semibold transition-all duration-200 text-sm lg:text-base"
+              class="calculator-tab active flex-1 py-4 px-4 text-center rounded-tl-2xl rounded-bl-2xl font-medium transition-all duration-200 text-sm sm:text-base"
             >
               SIP
             </button>
             <button
               onclick="switchCalculator('lumpsum')"
               id="lumpsum-tab"
-              class="calculator-tab flex-1 py-4 px-4 text-center font-semibold transition-all duration-200 text-sm lg:text-base"
+              class="calculator-tab flex-1 py-4 px-4 text-center font-medium transition-all duration-200 text-sm sm:text-base"
             >
               Lumpsum
             </button>
             <button
               onclick="switchCalculator('stepup')"
               id="stepup-tab"
-              class="calculator-tab flex-1 py-4 px-4 text-center font-semibold transition-all duration-200 text-sm lg:text-base"
+              class="calculator-tab flex-1 py-4 px-4 text-center font-medium transition-all duration-200 text-sm sm:text-base"
             >
               Step-up
             </button>
             <button
               onclick="switchCalculator('target')"
               id="target-tab"
-              class="calculator-tab flex-1 py-4 px-4 text-center font-semibold transition-all duration-200 text-sm lg:text-base"
+              class="calculator-tab flex-1 py-4 px-4 text-center font-medium transition-all duration-200 text-sm sm:text-base"
             >
               Target Amount
             </button>
             <button
               onclick="switchCalculator('swp')"
               id="swp-tab"
-              class="calculator-tab flex-1 py-4 px-4 text-center font-semibold rounded-tr-2xl rounded-br-2xl transition-all duration-200 text-sm lg:text-base"
+              class="calculator-tab flex-1 py-4 px-4 text-center font-medium rounded-tr-2xl rounded-br-2xl transition-all duration-200 text-sm sm:text-base"
             >
               SWP
             </button>
