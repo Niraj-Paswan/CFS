@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumpsum Calculator - CFS</title>
+    <link rel="shortcut icon" href="../assets/Logo.svg" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Add html2canvas library for screenshots -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      /* Custom Slider Styles */
+      .custom-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 6px;
+        border-radius: 3px;
+        background: #e5e7eb; /* Light grey track - NOT FILLED */
+        outline: none;
+        transition: all 0.3s ease;
+      }
+      .custom-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fcaf1b; /* Primary color for thumb */
+        cursor: grab;
+        border: none;
+        box-shadow: 0 2px 6px rgba(252, 175, 27, 0.4); /* Shadow matching primary */
+        transition: all 0.2s ease;
+      }
+      .custom-slider::-webkit-slider-thumb:active {
+        cursor: grabbing;
+      }
+      .custom-slider::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fcaf1b; /* Primary color for thumb */
+        cursor: grab;
+        border: none;
+        box-shadow: 0 2px 6px rgba(252, 175, 27, 0.4); /* Shadow matching primary */
+        transition: all 0.2s ease;
+      }
+      /* Toggle Switch */
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 48px;
+        height: 28px;
+      }
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #e5e7eb;
+        transition: all 0.3s ease;
+        border-radius: 28px;
+      }
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: all 0.3s ease;
+        border-radius: 50%;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      }
+      input:checked + .toggle-slider {
+        background-color: #161f48; /* Secondary color for active toggle */
+      }
+      input:checked + .toggle-slider:before {
+        transform: translateX(20px);
+      }
+      /* Input field styling */
+      .input-value-box {
+        background-color: #f3f4f6; /* Light grey background */
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-weight: 600;
+        color: #1f2937;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.2s ease;
+      }
+      .input-value-box:focus-within {
+        box-shadow: 0 0 0 2px rgba(22, 31, 72, 0.2); /* Shadow matching secondary */
+      }
+      .input-value-box input {
+        background: none;
+        border: none;
+        outline: none;
+        width: 100%;
+        font-weight: 600;
+        color: #1f2937;
+        text-align: right; /* Align text to right */
+        padding: 0; /* Remove default padding */
+      }
+      /* Result item styling */
+      .result-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #f3f4f6;
+      }
+      .result-item:last-child {
+        border-bottom: none;
+      }
+      .result-item .label {
+        font-weight: 500;
+        color: #4b5563;
+      }
+      .result-item .value {
+        font-weight: 600;
+        color: #1f2937;
+      }
+      /* Chart legend dots */
+      .chart-legend-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 8px;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#fcaf1b]/10 flex items-center justify-center min-h-screen p-4"
+  >
+    <div
+      class="max-w-6xl w-full flex justify-center items-center text-center flex-col"
+    >
+      <div class="text-center mb-8 mt-8">
+        <h1 class="text-2xl lg:text-4xl font-semibold text-black mb-3">
+          Lumpsum Investment
+          <span class="text-[#fcaf1b]">Calculator</span>
+        </h1>
+        <p class="text-gray-500 text-base lg:text-lg">
+          Estimate your returns instantly. Save or share your results with ease.
+        </p>
+      </div>
+      <div
+        id="calculatorContainer"
+        class="max-w-6xl w-full bg-white p-4 rounded-3xl border border-gray-300 overflow-hidden"
+      >
+        <!-- Mode Toggle (Lumpsum vs Target) - Target is now default active -->
+        <div class="flex justify-center p-2 mt-1 border-b border-gray-100">
+          <div class="inline-flex bg-gray-100 rounded-lg p-1">
+            <button
+              id="lumpsumModeBtn"
+              class="px-5 py-2 text-sm font-medium rounded-md transition-colors duration-200 text-gray-600 hover:bg-gray-200 cursor-pointer"
+            >
+              Lumpsum Investment
+            </button>
+            <button
+              id="targetModeBtn"
+              class="px-5 py-2 text-sm font-medium rounded-md transition-colors duration-200 bg-white text-gray-800 shadow-sm cursor-pointer"
+            >
+              Target Amount
+            </button>
+          </div>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-8 p-8">
+          <!-- Left Side - Input Controls -->
+          <div class="space-y-8">
+            <!-- Target Amount / Lumpsum Investment -->
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <label
+                  id="amountLabel"
+                  class="text-lg font-medium text-gray-700"
+                  >Target Amount</label
+                >
+                <div class="input-value-box w-40">
+                  <span class="text-gray-500">₹</span>
+                  <input
+                    type="text"
+                    id="amountInput"
+                    value="10,00,000"
+                    min="100000"
+                    max="10000000"
+                    step="1000"
+                  />
+                </div>
+              </div>
+              <input
+                type="range"
+                id="amountSlider"
+                min="100000"
+                max="10000000"
+                value="1000000"
+                step="1000"
+                class="custom-slider w-full mt-4"
+              />
+              <div class="flex justify-between text-xs text-gray-500 mt-2">
+                <span>₹1L</span>
+                <span>₹1Cr</span>
+              </div>
+            </div>
+            <!-- Expected Return Rate -->
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <label class="text-lg font-medium text-gray-700"
+                  >Expected return rate (p.a)</label
+                >
+                <div class="input-value-box w-32">
+                  <input
+                    type="number"
+                    id="returnInput"
+                    value="12"
+                    min="1"
+                    max="30"
+                    step="0.1"
+                  />
+                  <span class="text-gray-500">%</span>
+                </div>
+              </div>
+              <input
+                type="range"
+                id="returnSlider"
+                min="1"
+                max="30"
+                value="12"
+                step="0.1"
+                class="custom-slider w-full mt-4"
+              />
+              <div class="flex justify-between text-xs text-gray-500 mt-2">
+                <span>1%</span>
+                <span>30%</span>
+              </div>
+            </div>
+            <!-- Time Period -->
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <label class="text-lg font-medium text-gray-700"
+                  >Time period</label
+                >
+                <div class="input-value-box w-32">
+                  <input
+                    type="number"
+                    id="timeInput"
+                    value="10"
+                    min="1"
+                    max="50"
+                  />
+                  <span class="text-gray-500">Y</span>
+                </div>
+              </div>
+              <input
+                type="range"
+                id="timeSlider"
+                min="1"
+                max="50"
+                value="10"
+                class="custom-slider w-full mt-4"
+              />
+              <div class="flex justify-between text-xs text-gray-500 mt-2">
+                <span>1Y</span>
+                <span>50Y</span>
+              </div>
+            </div>
+            <!-- Adjust for Inflation Toggle (Only visible in Target Mode) -->
+            <div id="inflationToggleSection">
+              <div class="flex items-center justify-between mb-3">
+                <label class="text-lg font-medium text-gray-700"
+                  >Adjust for inflation</label
+                >
+                <label class="toggle-switch">
+                  <input type="checkbox" id="inflationToggle" />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+            <!-- Expected Inflation (Visible when toggle is on and in Target Mode) -->
+            <div id="inflationSection" class="hidden">
+              <div class="flex items-center justify-between mb-3">
+                <label class="text-lg font-medium text-gray-700"
+                  >Expected Inflation (%.pa)</label
+                >
+                <div class="input-value-box w-32">
+                  <input
+                    type="number"
+                    id="inflationInput"
+                    value="5"
+                    min="0"
+                    max="15"
+                    step="0.1"
+                  />
+                  <span class="text-gray-500">%</span>
+                </div>
+              </div>
+              <input
+                type="range"
+                id="inflationSlider"
+                min="0"
+                max="15"
+                value="5"
+                step="0.1"
+                class="custom-slider w-full mt-4"
+              />
+              <div class="flex justify-between text-xs text-gray-500 mt-2">
+                <span>0%</span>
+                <span>15%</span>
+              </div>
+            </div>
+          </div>
+          <!-- Right Side - Results and Chart -->
+          <div class="space-y-8">
+            <!-- Chart -->
+            <div class="flex justify-center items-center h-64">
+              <div class="relative w-64 h-64">
+                <canvas id="lumpsumChart"></canvas>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="text-center">
+                    <div class="text-sm text-gray-500">Total Value</div>
+                    <div
+                      id="totalValueCenter"
+                      class="text-xl font-semibold text-gray-800"
+                    >
+                      ₹10.00 L
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Chart Legend -->
+            <div class="flex justify-center space-x-6 text-sm text-gray-600">
+              <div>
+                <span class="chart-legend-dot bg-gray-300"></span>
+                <span id="legendLabel1">Required Investment</span>
+              </div>
+              <div>
+                <span
+                  class="chart-legend-dot"
+                  style="background-color: #161f48"
+                ></span>
+                <span id="legendLabel2">Expected Growth</span>
+              </div>
+            </div>
+            <!-- Results -->
+            <div class="space-y-2">
+              <!-- Target Mode Results -->
+              <div id="targetModeResults">
+                <div class="result-item">
+                  <span class="label">Target Amount</span>
+                  <span id="targetAmountDisplay" class="value">₹10.00 L</span>
+                </div>
+                <div class="result-item">
+                  <span class="label">Time period</span>
+                  <span id="timePeriodDisplay" class="value">10 Y</span>
+                </div>
+                <div class="result-item">
+                  <span class="label" style="color: #161f48"
+                    >Lumpsum investment</span
+                  >
+                  <span
+                    id="requiredLumpsum"
+                    class="value"
+                    style="
+                      color: #161f48;
+                      font-size: 1.25rem;
+                      font-weight: medium;
+                    "
+                    >₹3.22 L</span
+                  >
+                </div>
+              </div>
+              <!-- Lumpsum Mode Results -->
+              <div id="lumpsumModeResults" class="hidden">
+                <div class="result-item">
+                  <span class="label">Invested amount</span>
+                  <span id="totalInvestment" class="value">₹10.00 L</span>
+                </div>
+                <div class="result-item">
+                  <span class="label">Est. returns</span>
+                  <span id="expectedGrowth" class="value">₹21.04 L</span>
+                </div>
+                <div class="result-item">
+                  <span class="label">Total value</span>
+                  <span id="totalValue" class="value text-lg font-bold"
+                    >₹31.04 L</span
+                  >
+                </div>
+                <div class="result-item">
+                  <span class="label">Growth Percentage</span>
+                  <span id="growthPercentage" class="value text-lg font-bold"
+                    >210.4%</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Action Buttons -->
+        <div class="p-8 border-t border-gray-200">
+          <div class="flex flex-wrap gap-4 justify-center">
+            <button
+              id="emailPlanBtn"
+              class="flex items-center gap-2 text-sm lg:text-base px-4 lg:px-6 py-2 lg:py-3 rounded-full text-black border border-gray-300 hover:bg-gray-100 transition-colors cursor-pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="24"
+                height="24"
+                viewBox="0 0 48 48"
+              >
+                <path
+                  fill="#4caf50"
+                  d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"
+                ></path>
+                <path
+                  fill="#1e88e5"
+                  d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"
+                ></path>
+                <polygon
+                  fill="#e53935"
+                  points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"
+                ></polygon>
+                <path
+                  fill="#c62828"
+                  d="M3,12.298V16.2l10,7.5V11.2L9.876,8.859C9.132,8.301,8.228,8,7.298,8h0C4.924,8,3,9.924,3,12.298z"
+                ></path>
+                <path
+                  fill="#fbc02d"
+                  d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341C38.868,8.301,39.772,8,40.702,8h0 C43.076,8,45,9.924,45,12.298z"
+                ></path>
+              </svg>
+              Email
+            </button>
+            <button
+              id="whatsappBtn"
+              class="flex items-center gap-2 text-base px-6 py-3 rounded-full text-black border border-gray-300 hover:bg-gray-100 transition-colors cursor-pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="24"
+                height="24"
+                viewBox="0 0 48 48"
+              >
+                <path
+                  fill="#fff"
+                  d="M4.9,43.3l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24 c0,10.5-8.5,19-19,19c0,0,0,0,0,0h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3z"
+                ></path>
+                <path
+                  fill="#fff"
+                  d="M4.9,43.8c-0.1,0-0.3-0.1-0.4-0.1c-0.1-0.1-0.2-0.3-0.1-0.5L7,33.5c-1.6-2.9-2.5-6.2-2.5-9.6  C4.5,13.2,13.3,4.5,24,4.5c5.2,0,10.1,2,13.8,5.7c3.7,3.7,5.7,8.6,5.7,13.8c0,10.7-8.7,19.5-19.5,19.5c-3.2,0-6.3-0.8-9.1-2.3 L5,43.8C5,43.8,4.9,43.8,4.9,43.8z"
+                ></path>
+                <path
+                  fill="#cfd8dc"
+                  d="M24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24c0,10.5-8.5,19-19,19h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3 l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5 M24,43L24,43L24,43 M24,43L24,43L24,43 M24,4L24,4C13,4,4,13,4,24  c0,3.4,0.8,6.7,2.5,9.6L3.9,43c-0.1,0.3,0,0.7,0.3,1c0.2,0.2,0.4,0.3,0.7,0.3c0.1,0,0.2,0,0.3,0l9.7-2.5c2.8,1.5,6,2.2,9.2,2.2  c11,0,20-9,20-20c0-5.3-2.1-10.4-5.8-14.1C34.4,6.1,29.4,4,24,4L24,4z"
+                ></path>
+                <path
+                  fill="#40c351"
+                  d="M35.2,12.8c-3-3-6.9-4.6-11.2-4.6C15.3,8.2,8.2,15.3,8.2,24c0,3,0.8,5.9,2.4,8.4L11,33l-1.6,5.8l6-1.6l0.6,0.3 c2.4,1.4,5.2,2.2,8,2.2h0c8.7,0,15.8-7.1,15.8-15.8C39.8,19.8,38.2,15.8,35.2,12.8z"
+                ></path>
+                <path
+                  fill="#fff"
+                  fill-rule="evenodd"
+                  d="M19.3,16c-0.4-0.8-0.7-0.8-1.1-0.8c-0.3,0-0.6,0-0.9,0s-0.8,0.1-1.3,0.6c-0.4,0.5-1.7,1.6-1.7,4 s1.7,4.6,1.9,4.9s3.3,5.3,8.1,7.2c4,1.6,4.8,1.3,5.7,1.2c0.9-0.1,2.8-1.1,3.2-2.3c0.4-1.1,0.4-2.1,0.3-2.3c-0.1-0.2-0.4-0.3-0.9-0.6 s-2.8-1.4-3.2-1.5c-0.4-0.2-0.8-0.2-1.1,0.2c-0.3,0.5-1.2,1.5-1.5,1.9c-0.3,0.3-0.6,0.4-1,0.1c-0.5-0.2-2-0.7-3.8-2.4 c-1.4-1.3-2.4-2.8-2.6-3.3c-0.3-0.5,0-0.7,0.2-1c0.2-0.2,0.5-0.6,0.7-0.8c0.2-0.3,0.3-0.5,0.5-0.8c0.2-0.3,0.1-0.6,0-0.8  C20.6,19.3,19.7,17,19.3,16z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              WhatsApp
+            </button>
+            <button
+              id="downloadImageBtn"
+              class="flex items-center gap-2 text-base px-6 py-3 rounded-full text-black border border-gray-300 hover:bg-gray-100 transition-colors cursor-pointer"
+            >
+              <i data-lucide="download" class="w-5 h-5"></i>
+              Download Image
+            </button>
+            <a
+              href="../index.html#consultation"
+              class="inline-flex items-center bg-[#fcaf1b] text-white pl-5 pr-3 py-3 rounded-full text-base gap-3 group transition hover:bg-[#161f48] shadow-md"
+            >
+              Start Investing
+              <span
+                class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+              >
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script>
+      let chart;
+      let isTargetMode = true; // Default to Target Amount Mode
+      // Global variables to store latest calculated results
+      let lastCalculatedInvestment = 0;
+      let lastCalculatedReturns = 0;
+      let lastCalculatedTotal = 0;
+      let lastCalculatedGrowthPercentage = 0;
+      let lastCalculatedRequiredLumpsum = 0;
+      let lastTargetAmount = 0;
+      let lastTimePeriod = 0;
+
+      // Initialize chart with specific colors and simplified legend
+      function initChart() {
+        const ctx = document.getElementById("lumpsumChart").getContext("2d");
+        chart = new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            labels: ["Required Investment", "Expected Growth"],
+            datasets: [
+              {
+                data: [322000, 678000], // Initial dummy data
+                backgroundColor: [
+                  "#d1d5db", // Light grey for required investment
+                  "#161f48", // Secondary color for expected growth
+                ],
+                borderColor: "white",
+                borderWidth: 2,
+                cutout: "80%",
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+              legend: {
+                display: false, // Custom legend handled in HTML
+              },
+              tooltip: {
+                enabled: true,
+                callbacks: {
+                  label: function (context) {
+                    let label = context.label || "";
+                    if (label) {
+                      label += ": ";
+                    }
+                    if (context.parsed !== null) {
+                      label += formatCurrency(context.parsed);
+                    }
+                    return label;
+                  },
+                },
+              },
+            },
+            animation: {
+              animateRotate: true,
+              duration: 800,
+              easing: "easeOutQuart",
+            },
+          },
+        });
+      }
+
+      // Format number to Indian currency format (Lakhs, Crores)
+      function formatCurrency(amount) {
+        if (amount >= 10000000) {
+          return "₹" + (amount / 10000000).toFixed(2) + " Crores";
+        } else if (amount >= 100000) {
+          return "₹" + (amount / 100000).toFixed(2) + " Lakhs";
+        } else {
+          return "₹" + Math.round(amount).toLocaleString("en-IN");
+        }
+      }
+
+      // Formats a number with Indian comma system for input fields
+      function formatNumberWithIndianCommas(num) {
+        if (isNaN(num) || num === null) return "";
+        return Number(num).toLocaleString("en-IN", {
+          maximumFractionDigits: 0,
+        });
+      }
+
+      // Parses an Indian-formatted string back to a number
+      function parseIndianFormattedNumber(str) {
+        if (!str) return 0;
+        return parseFloat(str.replace(/[^0-9.]/g, ""));
+      }
+
+      // Calculate required Lumpsum (Target Mode)
+      function calculateRequiredLumpsumInvestment() {
+        const targetAmount = parseIndianFormattedNumber(
+          document.getElementById("amountInput").value
+        );
+        const annualReturn = parseFloat(
+          document.getElementById("returnInput").value
+        );
+        const years = parseInt(document.getElementById("timeInput").value);
+        const inflationToggle =
+          document.getElementById("inflationToggle").checked;
+        const expectedInflation = parseFloat(
+          document.getElementById("inflationInput").value
+        );
+
+        let adjustedTargetAmount = targetAmount;
+
+        // Adjust target amount for inflation if toggle is on
+        if (inflationToggle) {
+          const inflationRatePerPeriod = expectedInflation / 100;
+          adjustedTargetAmount =
+            targetAmount / Math.pow(1 + inflationRatePerPeriod, years);
+        }
+
+        let requiredLumpsum = 0;
+        if (annualReturn === 0) {
+          requiredLumpsum = adjustedTargetAmount;
+        } else {
+          requiredLumpsum =
+            adjustedTargetAmount / Math.pow(1 + annualReturn / 100, years);
+        }
+
+        // Store values for display and sharing
+        lastCalculatedRequiredLumpsum = requiredLumpsum;
+        lastTargetAmount = targetAmount;
+        lastTimePeriod = years;
+
+        // Update display
+        document.getElementById("requiredLumpsum").textContent =
+          formatCurrency(requiredLumpsum);
+        document.getElementById("targetAmountDisplay").textContent =
+          formatCurrency(targetAmount);
+        document.getElementById("timePeriodDisplay").textContent =
+          years + " Years";
+        document.getElementById("totalValueCenter").textContent =
+          formatCurrency(targetAmount);
+
+        // Update chart data - show required investment vs expected growth to reach target
+        const expectedGrowth = targetAmount - requiredLumpsum;
+        chart.data.datasets[0].data = [requiredLumpsum, expectedGrowth];
+        chart.data.labels = ["Required Investment", "Expected Growth"];
+        chart.update("active");
+
+        // Store additional values for sharing
+        lastCalculatedInvestment = requiredLumpsum;
+        lastCalculatedReturns = expectedGrowth;
+        lastCalculatedTotal = targetAmount;
+        lastCalculatedGrowthPercentage =
+          requiredLumpsum > 0 ? (expectedGrowth / requiredLumpsum) * 100 : 0;
+      }
+
+      // Calculate Lumpsum (Lumpsum Investment Mode)
+      function calculateLumpsumInvestment() {
+        const lumpsumInvestment = parseIndianFormattedNumber(
+          document.getElementById("amountInput").value
+        );
+        const annualReturn = parseFloat(
+          document.getElementById("returnInput").value
+        );
+        const years = parseInt(document.getElementById("timeInput").value);
+
+        const futureValue =
+          lumpsumInvestment * Math.pow(1 + annualReturn / 100, years);
+        const totalInvestment = lumpsumInvestment;
+        const expectedReturns = futureValue - totalInvestment;
+        const growthPercentage =
+          totalInvestment > 0 ? (expectedReturns / totalInvestment) * 100 : 0;
+
+        // Update display
+        document.getElementById("totalInvestment").textContent =
+          formatCurrency(totalInvestment);
+        document.getElementById("expectedGrowth").textContent =
+          formatCurrency(expectedReturns);
+        document.getElementById("totalValue").textContent =
+          formatCurrency(futureValue);
+        document.getElementById("totalValueCenter").textContent =
+          formatCurrency(futureValue);
+        document.getElementById("growthPercentage").textContent =
+          growthPercentage.toFixed(1) + "%";
+
+        // Store raw values for sharing
+        lastCalculatedInvestment = totalInvestment;
+        lastCalculatedReturns = expectedReturns;
+        lastCalculatedTotal = futureValue;
+        lastCalculatedGrowthPercentage = growthPercentage;
+
+        // Update chart data and trigger animation
+        chart.data.datasets[0].data = [totalInvestment, expectedReturns];
+        chart.data.labels = ["Invested amount", "Est. returns"];
+        chart.update("active");
+      }
+
+      // Toggle between modes (Lumpsum vs Target)
+      function toggleMode(targetMode) {
+        isTargetMode = targetMode;
+        const lumpsumBtn = document.getElementById("lumpsumModeBtn");
+        const targetBtn = document.getElementById("targetModeBtn");
+        const targetModeResults = document.getElementById("targetModeResults");
+        const lumpsumModeResults =
+          document.getElementById("lumpsumModeResults");
+        const inflationToggleSection = document.getElementById(
+          "inflationToggleSection"
+        );
+        const inflationSection = document.getElementById("inflationSection");
+        const amountLabel = document.getElementById("amountLabel");
+        const amountInput = document.getElementById("amountInput");
+        const amountSlider = document.getElementById("amountSlider");
+        const amountMinSpan = amountSlider.nextElementSibling.children[0];
+        const amountMaxSpan = amountSlider.nextElementSibling.children[1];
+        const legendLabel1 = document.getElementById("legendLabel1");
+        const legendLabel2 = document.getElementById("legendLabel2");
+
+        if (targetMode) {
+          // Switch to Target Mode
+          targetBtn.classList.add("bg-white", "text-gray-800", "shadow-sm");
+          targetBtn.classList.remove("text-gray-600", "hover:bg-gray-200");
+          lumpsumBtn.classList.remove("bg-white", "text-gray-800", "shadow-sm");
+          lumpsumBtn.classList.add("text-gray-600", "hover:bg-gray-200");
+
+          // Show/Hide appropriate result sections
+          targetModeResults.classList.remove("hidden");
+          lumpsumModeResults.classList.add("hidden");
+
+          // Show inflation controls
+          inflationToggleSection.classList.remove("hidden");
+
+          // Update input controls
+          amountLabel.textContent = "Target Amount";
+          amountInput.value = formatNumberWithIndianCommas(1000000); // Default target 10L
+          amountInput.min = "100000"; // Min target 1 Lakh
+          amountInput.max = "10000000"; // Max target 1 Cr
+          amountSlider.value = "1000000";
+          amountSlider.min = "100000";
+          amountSlider.max = "10000000";
+          amountMinSpan.textContent = "₹1L";
+          amountMaxSpan.textContent = "₹1Cr";
+
+          // Update legend labels
+          legendLabel1.textContent = "Required Investment";
+          legendLabel2.textContent = "Expected Growth";
+
+          calculateRequiredLumpsumInvestment();
+        } else {
+          // Switch to Lumpsum Mode
+          lumpsumBtn.classList.add("bg-white", "text-gray-800", "shadow-sm");
+          lumpsumBtn.classList.remove("text-gray-600", "hover:bg-gray-200");
+          targetBtn.classList.remove("bg-white", "text-gray-800", "shadow-sm");
+          targetBtn.classList.add("text-gray-600", "hover:bg-gray-200");
+
+          // Show/Hide appropriate result sections
+          lumpsumModeResults.classList.remove("hidden");
+          targetModeResults.classList.add("hidden");
+
+          // Hide inflation controls
+          inflationToggleSection.classList.add("hidden");
+          inflationSection.classList.add("hidden");
+
+          // Update input controls
+          amountLabel.textContent = "Lumpsum Investment";
+          amountInput.value = formatNumberWithIndianCommas(1000000); // Default lumpsum 10L
+          amountInput.min = "10000";
+          amountInput.max = "100000000"; // Max lumpsum 10Cr
+          amountSlider.value = "1000000";
+          amountSlider.min = "10000";
+          amountSlider.max = "100000000";
+          amountMinSpan.textContent = "₹10K";
+          amountMaxSpan.textContent = "₹10Cr";
+
+          // Update legend labels
+          legendLabel1.textContent = "Invested amount";
+          legendLabel2.textContent = "Est. returns";
+
+          calculateLumpsumInvestment();
+        }
+      }
+
+      // Function to generate email content and open mail client
+      function sendEmailPlan() {
+        const subject = encodeURIComponent("My Lumpsum Calculator Plan");
+        let body = `Hello,\n\nHere is my Lumpsum calculation plan:\n\n`;
+
+        if (isTargetMode) {
+          body += `Mode: Target Amount\n`;
+          body += `Target Amount: ${formatCurrency(lastTargetAmount)}\n`;
+          body += `Time Period: ${lastTimePeriod} Years\n`;
+          body += `Required Lumpsum Investment: ${formatCurrency(
+            lastCalculatedRequiredLumpsum
+          )}\n\n`;
+        } else {
+          body += `Mode: Lumpsum Investment\n`;
+          body += `Lumpsum Investment: ${formatCurrency(
+            lastCalculatedInvestment
+          )}\n`;
+          body += `Total Value: ${formatCurrency(lastCalculatedTotal)}\n`;
+          body += `Expected Returns: ${formatCurrency(
+            lastCalculatedReturns
+          )}\n`;
+          body += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(
+            1
+          )}%\n\n`;
+        }
+
+        body += `Expected Return Rate: ${
+          document.getElementById("returnInput").value
+        }%\n`;
+        body += `Time Period: ${
+          document.getElementById("timeInput").value
+        } Years\n\n`;
+        body += `Calculated using Chimulkar Financial Services Calculators.\n\n`;
+
+        window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
+          body
+        )}`;
+      }
+
+      // Function to generate WhatsApp message and open WhatsApp
+      function sendWhatsAppPlan() {
+        let message = `My Lumpsum Calculation Plan:\n\n`;
+
+        if (isTargetMode) {
+          message += `Mode: Target Amount\n`;
+          message += `Target Amount: ${formatCurrency(lastTargetAmount)}\n`;
+          message += `Time Period: ${lastTimePeriod} Years\n`;
+          message += `Required Lumpsum Investment: ${formatCurrency(
+            lastCalculatedRequiredLumpsum
+          )}\n\n`;
+        } else {
+          message += `Mode: Lumpsum Investment\n`;
+          message += `Lumpsum Investment: ${formatCurrency(
+            lastCalculatedInvestment
+          )}\n`;
+          message += `Total Value: ${formatCurrency(lastCalculatedTotal)}\n`;
+          message += `Expected Returns: ${formatCurrency(
+            lastCalculatedReturns
+          )}\n`;
+          message += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(
+            1
+          )}%\n\n`;
+        }
+
+        message += `Expected Return Rate: ${
+          document.getElementById("returnInput").value
+        }%\n`;
+        message += `Time Period: ${
+          document.getElementById("timeInput").value
+        } Years\n\n`;
+        message += `Calculated using the Clean Lumpsum Calculator.\n\n`;
+
+        window.open(
+          `https://wa.me/?text=${encodeURIComponent(message)}`,
+          "_blank"
+        );
+      }
+
+      // Function to download a screenshot of the calculator
+      function downloadCalculatorImage() {
+        const calculatorElement = document.getElementById(
+          "calculatorContainer"
+        );
+        html2canvas(calculatorElement, {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+        })
+          .then((canvas) => {
+            const link = document.createElement("a");
+            link.download = "lumpsum_calculator_plan.png";
+            link.href = canvas.toDataURL("image/png");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          })
+          .catch((error) => {
+            console.error("Error capturing calculator image:", error);
+            alert("Failed to capture image. Please try again.");
+          });
+      }
+
+      // Setup event listeners
+      function setupEventListeners() {
+        // Mode toggle
+        document
+          .getElementById("lumpsumModeBtn")
+          .addEventListener("click", () => toggleMode(false));
+        document
+          .getElementById("targetModeBtn")
+          .addEventListener("click", () => toggleMode(true));
+
+        // Inflation toggle
+        document
+          .getElementById("inflationToggle")
+          .addEventListener("change", function () {
+            const inflationSection =
+              document.getElementById("inflationSection");
+            if (this.checked) {
+              inflationSection.classList.remove("hidden");
+            } else {
+              inflationSection.classList.add("hidden");
+            }
+            if (isTargetMode) {
+              calculateRequiredLumpsumInvestment();
+            }
+          });
+
+        // Action Buttons
+        document
+          .getElementById("emailPlanBtn")
+          .addEventListener("click", sendEmailPlan);
+        document
+          .getElementById("whatsappBtn")
+          .addEventListener("click", sendWhatsAppPlan);
+        document
+          .getElementById("downloadImageBtn")
+          .addEventListener("click", downloadCalculatorImage);
+
+        // Input and Slider sync
+        const inputs = [
+          { id: "amount", slider: "amountSlider", input: "amountInput" },
+          { id: "return", slider: "returnSlider", input: "returnInput" },
+          { id: "time", slider: "timeSlider", input: "timeInput" },
+          {
+            id: "inflation",
+            slider: "inflationSlider",
+            input: "inflationInput",
+          },
+        ];
+
+        inputs.forEach((item) => {
+          const slider = document.getElementById(item.slider);
+          const input = document.getElementById(item.input);
+
+          if (item.id === "amount") {
+            // Special handling for amount input with Indian commas
+            input.addEventListener("input", function () {
+              let parsedValue = parseIndianFormattedNumber(this.value);
+              slider.value = parsedValue;
+              this.value = formatNumberWithIndianCommas(parsedValue);
+              isTargetMode
+                ? calculateRequiredLumpsumInvestment()
+                : calculateLumpsumInvestment();
+            });
+
+            slider.addEventListener("input", function () {
+              input.value = formatNumberWithIndianCommas(
+                parseFloat(this.value)
+              );
+              isTargetMode
+                ? calculateRequiredLumpsumInvestment()
+                : calculateLumpsumInvestment();
+            });
+          } else {
+            // Standard handling for other number inputs
+            input.addEventListener("input", function () {
+              slider.value = this.value;
+              isTargetMode
+                ? calculateRequiredLumpsumInvestment()
+                : calculateLumpsumInvestment();
+            });
+
+            slider.addEventListener("input", function () {
+              input.value = this.value;
+              isTargetMode
+                ? calculateRequiredLumpsumInvestment()
+                : calculateLumpsumInvestment();
+            });
+          }
+        });
+      }
+
+      // Initialize everything on load
+      window.addEventListener("load", function () {
+        initChart();
+        setupEventListeners();
+        // Initial calculation (default to Target Amount Mode)
+        calculateRequiredLumpsumInvestment();
+      });
+    </script>
+  </body>
+</html>
