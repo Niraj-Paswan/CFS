@@ -19,7 +19,6 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
-
       /* Custom Slider Styles */
       .custom-slider {
         -webkit-appearance: none;
@@ -30,7 +29,6 @@
         outline: none;
         transition: all 0.3s ease;
       }
-
       .custom-slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
@@ -43,11 +41,9 @@
         box-shadow: 0 2px 6px rgba(252, 175, 27, 0.4); /* Shadow matching primary */
         transition: all 0.2s ease;
       }
-
       .custom-slider::-webkit-slider-thumb:active {
         cursor: grabbing;
       }
-
       .custom-slider::-moz-range-thumb {
         width: 20px;
         height: 20px;
@@ -58,7 +54,6 @@
         box-shadow: 0 2px 6px rgba(252, 175, 27, 0.4); /* Shadow matching primary */
         transition: all 0.2s ease;
       }
-
       /* Toggle Switch */
       .toggle-switch {
         position: relative;
@@ -66,13 +61,11 @@
         width: 48px;
         height: 28px;
       }
-
       .toggle-switch input {
         opacity: 0;
         width: 0;
         height: 0;
       }
-
       .toggle-slider {
         position: absolute;
         cursor: pointer;
@@ -84,7 +77,6 @@
         transition: all 0.3s ease;
         border-radius: 28px;
       }
-
       .toggle-slider:before {
         position: absolute;
         content: "";
@@ -97,15 +89,12 @@
         border-radius: 50%;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
       }
-
       input:checked + .toggle-slider {
         background-color: #161f48; /* Secondary color for active toggle */
       }
-
       input:checked + .toggle-slider:before {
         transform: translateX(20px);
       }
-
       /* Input field styling */
       .input-value-box {
         background-color: #f3f4f6; /* Light grey background */
@@ -118,11 +107,9 @@
         gap: 4px;
         transition: all 0.2s ease;
       }
-
       .input-value-box:focus-within {
         box-shadow: 0 0 0 2px rgba(22, 31, 72, 0.2); /* Shadow matching secondary */
       }
-
       .input-value-box input {
         background: none;
         border: none;
@@ -133,7 +120,6 @@
         text-align: right; /* Align text to right */
         padding: 0; /* Remove default padding */
       }
-
       /* Result item styling */
       .result-item {
         display: flex;
@@ -142,21 +128,17 @@
         padding: 12px 0;
         border-bottom: 1px solid #f3f4f6;
       }
-
       .result-item:last-child {
         border-bottom: none;
       }
-
       .result-item .label {
         font-weight: 500;
         color: #4b5563;
       }
-
       .result-item .value {
         font-weight: 600;
         color: #1f2937;
       }
-
       /* Chart legend dots */
       .chart-legend-dot {
         width: 10px;
@@ -203,7 +185,6 @@
             </button>
           </div>
         </div>
-
         <div class="grid lg:grid-cols-2 gap-8 p-8">
           <!-- Left Side - Input Controls -->
           <div class="space-y-8">
@@ -241,7 +222,6 @@
                 <span>₹10L</span>
               </div>
             </div>
-
             <!-- Expected Return Rate -->
             <div>
               <div class="flex items-center justify-between mb-3">
@@ -274,7 +254,6 @@
                 <span>30%</span>
               </div>
             </div>
-
             <!-- Time Period -->
             <div>
               <div class="flex items-center justify-between mb-3">
@@ -305,7 +284,6 @@
                 <span>50Y</span>
               </div>
             </div>
-
             <!-- Annual Step-up (Visible only in Investment Mode) -->
             <div id="stepUpSection">
               <div class="flex items-center justify-between mb-3">
@@ -321,7 +299,6 @@
                   <span class="text-sm text-gray-600">Yes</span>
                 </div>
               </div>
-
               <div
                 id="stepUpControls"
                 class="opacity-50 pointer-events-none transition-all duration-300"
@@ -354,41 +331,54 @@
                 </div>
               </div>
             </div>
-
             <!-- Expected Inflation (Visible only in Target Amount Mode) -->
             <div id="inflationSection" class="hidden">
               <div class="flex items-center justify-between mb-3">
                 <label class="text-lg font-medium text-gray-700"
-                  >Expected Inflation (%.pa)</label
+                  >Expected Inflation (p.a)</label
                 >
-                <div class="input-value-box w-32">
-                  <input
-                    type="number"
-                    id="inflationInput"
-                    value="5"
-                    min="0"
-                    max="15"
-                    step="0.1"
-                  />
-                  <span class="text-gray-500">%</span>
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm text-gray-600">No</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="inflationToggle" />
+                    <span class="toggle-slider"></span>
+                  </label>
+                  <span class="text-sm text-gray-600">Yes</span>
                 </div>
               </div>
-              <input
-                type="range"
-                id="inflationSlider"
-                min="0"
-                max="15"
-                value="5"
-                step="0.1"
-                class="custom-slider w-full mt-4"
-              />
-              <div class="flex justify-between text-xs text-gray-500 mt-2">
-                <span>0%</span>
-                <span>15%</span>
+              <div
+                id="inflationControls"
+                class="opacity-50 pointer-events-none transition-all duration-300"
+              >
+                <div class="flex items-center justify-between">
+                  <div class="input-value-box w-32">
+                    <input
+                      type="number"
+                      id="inflationInput"
+                      value="5"
+                      min="0"
+                      max="15"
+                      step="0.1"
+                    />
+                    <span class="text-gray-500">%</span>
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="inflationSlider"
+                  min="0"
+                  max="15"
+                  value="5"
+                  step="0.1"
+                  class="custom-slider w-full mt-4"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>0%</span>
+                  <span>15%</span>
+                </div>
               </div>
             </div>
           </div>
-
           <!-- Right Side - Results and Chart -->
           <div class="space-y-8">
             <!-- Chart -->
@@ -408,7 +398,6 @@
                 </div>
               </div>
             </div>
-
             <!-- Chart Legend -->
             <div class="flex justify-center space-x-6 text-sm text-gray-600">
               <div>
@@ -424,7 +413,6 @@
                 <span>Est. returns</span>
               </div>
             </div>
-
             <!-- Results -->
             <div class="space-y-2">
               <div class="result-item">
@@ -464,7 +452,6 @@
             </div>
           </div>
         </div>
-
         <!-- Action Buttons -->
         <div class="p-8 border-t border-gray-200">
           <div class="flex flex-wrap gap-4 justify-center">
@@ -503,7 +490,6 @@
               </svg>
               Email Plan
             </button>
-
             <button
               id="whatsappBtn"
               class="flex items-center gap-2 text-base px-6 py-3 rounded-full text-black border border-gray-300 hover:bg-gray-100 transition-colors cursor-pointer"
@@ -518,30 +504,29 @@
               >
                 <path
                   fill="#fff"
-                  d="M4.9,43.3l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24	c0,10.5-8.5,19-19,19c0,0,0,0,0,0h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3z"
+                  d="M4.9,43.3l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24 c0,10.5-8.5,19-19,19c0,0,0,0,0,0h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3z"
                 ></path>
                 <path
                   fill="#fff"
-                  d="M4.9,43.8c-0.1,0-0.3-0.1-0.4-0.1c-0.1-0.1-0.2-0.3-0.1-0.5L7,33.5c-1.6-2.9-2.5-6.2-2.5-9.6	C4.5,13.2,13.3,4.5,24,4.5c5.2,0,10.1,2,13.8,5.7c3.7,3.7,5.7,8.6,5.7,13.8c0,10.7-8.7,19.5-19.5,19.5c-3.2,0-6.3-0.8-9.1-2.3	L5,43.8C5,43.8,4.9,43.8,4.9,43.8z"
+                  d="M4.9,43.8c-0.1,0-0.3-0.1-0.4-0.1c-0.1-0.1-0.2-0.3-0.1-0.5L7,33.5c-1.6-2.9-2.5-6.2-2.5-9.6  C4.5,13.2,13.3,4.5,24,4.5c5.2,0,10.1,2,13.8,5.7c3.7,3.7,5.7,8.6,5.7,13.8c0,10.7-8.7,19.5-19.5,19.5c-3.2,0-6.3-0.8-9.1-2.3 L5,43.8C5,43.8,4.9,43.8,4.9,43.8z"
                 ></path>
                 <path
                   fill="#cfd8dc"
-                  d="M24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24c0,10.5-8.5,19-19,19h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3	l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5 M24,43L24,43L24,43 M24,43L24,43L24,43 M24,4L24,4C13,4,4,13,4,24	c0,3.4,0.8,6.7,2.5,9.6L3.9,43c-0.1,0.3,0,0.7,0.3,1c0.2,0.2,0.4,0.3,0.7,0.3c0.1,0,0.2,0,0.3,0l9.7-2.5c2.8,1.5,6,2.2,9.2,2.2	c11,0,20-9,20-20c0-5.3-2.1-10.4-5.8-14.1C34.4,6.1,29.4,4,24,4L24,4z"
+                  d="M24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24c0,10.5-8.5,19-19,19h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3 l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5 M24,43L24,43L24,43 M24,43L24,43L24,43 M24,4L24,4C13,4,4,13,4,24  c0,3.4,0.8,6.7,2.5,9.6L3.9,43c-0.1,0.3,0,0.7,0.3,1c0.2,0.2,0.4,0.3,0.7,0.3c0.1,0,0.2,0,0.3,0l9.7-2.5c2.8,1.5,6,2.2,9.2,2.2  c11,0,20-9,20-20c0-5.3-2.1-10.4-5.8-14.1C34.4,6.1,29.4,4,24,4L24,4z"
                 ></path>
                 <path
                   fill="#40c351"
-                  d="M35.2,12.8c-3-3-6.9-4.6-11.2-4.6C15.3,8.2,8.2,15.3,8.2,24c0,3,0.8,5.9,2.4,8.4L11,33l-1.6,5.8l6-1.6l0.6,0.3	c2.4,1.4,5.2,2.2,8,2.2h0c8.7,0,15.8-7.1,15.8-15.8C39.8,19.8,38.2,15.8,35.2,12.8z"
+                  d="M35.2,12.8c-3-3-6.9-4.6-11.2-4.6C15.3,8.2,8.2,15.3,8.2,24c0,3,0.8,5.9,2.4,8.4L11,33l-1.6,5.8l6-1.6l0.6,0.3 c2.4,1.4,5.2,2.2,8,2.2h0c8.7,0,15.8-7.1,15.8-15.8C39.8,19.8,38.2,15.8,35.2,12.8z"
                 ></path>
                 <path
                   fill="#fff"
                   fill-rule="evenodd"
-                  d="M19.3,16c-0.4-0.8-0.7-0.8-1.1-0.8c-0.3,0-0.6,0-0.9,0s-0.8,0.1-1.3,0.6c-0.4,0.5-1.7,1.6-1.7,4	s1.7,4.6,1.9,4.9s3.3,5.3,8.1,7.2c4,1.6,4.8,1.3,5.7,1.2c0.9-0.1,2.8-1.1,3.2-2.3c0.4-1.1,0.4-2.1,0.3-2.3c-0.1-0.2-0.4-0.3-0.9-0.6	s-2.8-1.4-3.2-1.5c-0.4-0.2-0.8-0.2-1.1,0.2c-0.3,0.5-1.2,1.5-1.5,1.9c-0.3,0.3-0.6,0.4-1,0.1c-0.5-0.2-2-0.7-3.8-2.4	c-1.4-1.3-2.4-2.8-2.6-3.3c-0.3-0.5,0-0.7,0.2-1c0.2-0.2,0.5-0.6,0.7-0.8c0.2-0.3,0.3-0.5,0.5-0.8c0.2-0.3,0.1-0.6,0-0.8	C20.6,19.3,19.7,17,19.3,16z"
+                  d="M19.3,16c-0.4-0.8-0.7-0.8-1.1-0.8c-0.3,0-0.6,0-0.9,0s-0.8,0.1-1.3,0.6c-0.4,0.5-1.7,1.6-1.7,4 s1.7,4.6,1.9,4.9s3.3,5.3,8.1,7.2c4,1.6,4.8,1.3,5.7,1.2c0.9-0.1,2.8-1.1,3.2-2.3c0.4-1.1,0.4-2.1,0.3-2.3c-0.1-0.2-0.4-0.3-0.9-0.6 s-2.8-1.4-3.2-1.5c-0.4-0.2-0.8-0.2-1.1,0.2c-0.3,0.5-1.2,1.5-1.5,1.9c-0.3,0.3-0.6,0.4-1,0.1c-0.5-0.2-2-0.7-3.8-2.4 c-1.4-1.3-2.4-2.8-2.6-3.3c-0.3-0.5,0-0.7,0.2-1c0.2-0.2,0.5-0.6,0.7-0.8c0.2-0.3,0.3-0.5,0.5-0.8c0.2-0.3,0.1-0.6,0-0.8  C20.6,19.3,19.7,17,19.3,16z"
                   clip-rule="evenodd"
                 ></path>
               </svg>
               WhatsApp
             </button>
-
             <button
               id="downloadImageBtn"
               class="flex items-center gap-2 text-base px-6 py-3 rounded-full text-black border border-gray-300 hover:bg-gray-100 transition-colors cursor-pointer"
@@ -549,7 +534,6 @@
               <i data-lucide="download" class="w-5 h-5"></i>
               Download Image
             </button>
-
             <a
               href="../index.html#consultation"
               class="inline-flex items-center bg-[#fcaf1b] text-white pl-5 pr-3 py-3 rounded-full text-base gap-3 group transition hover:bg-[#161f48] shadow-md"
@@ -566,7 +550,6 @@
       </div>
     </div>
     <!-- Main calculator container with an ID for html2canvas -->
-
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
       lucide.createIcons();
@@ -574,14 +557,12 @@
     <script>
       let chart;
       let isTargetMode = false; // Default to Investment Mode
-
       // Global variables to store latest calculated results
       let lastCalculatedInvestment = 0;
       let lastCalculatedReturns = 0;
       let lastCalculatedTotal = 0;
       let lastCalculatedGrowthPercentage = 0;
       let lastCalculatedRequiredSip = 0;
-
       // Initialize chart with specific colors and simplified legend
       function initChart() {
         const ctx = document.getElementById("sipChart").getContext("2d");
@@ -634,7 +615,6 @@
           },
         });
       }
-
       // Format number to Indian currency format (Lakhs, Crores)
       function formatCurrency(amount) {
         if (amount >= 10000000) {
@@ -645,7 +625,6 @@
           return "₹" + Math.round(amount).toLocaleString("en-IN");
         }
       }
-
       // Formats a number with Indian comma system for input fields
       function formatNumberWithIndianCommas(num) {
         if (isNaN(num) || num === null) return "";
@@ -655,14 +634,12 @@
           maximumFractionDigits: 0,
         });
       }
-
       // Parses an Indian-formatted string back to a number
       function parseIndianFormattedNumber(str) {
         if (!str) return 0;
         // Remove all non-digit characters except the decimal point
         return parseFloat(str.replace(/[^0-9.]/g, ""));
       }
-
       // Calculate SIP (Investment Mode)
       function calculateSIP() {
         const monthlyInvestment = parseIndianFormattedNumber(
@@ -676,24 +653,19 @@
         const stepUpRate = stepUpEnabled
           ? parseFloat(document.getElementById("stepUpInput").value)
           : 0;
-
         const monthlyReturn = annualReturn / 100 / 12;
         const months = years * 12;
-
         let futureValue = 0;
         let totalInvestment = 0;
         let currentMonthlyInvestment = monthlyInvestment;
-
         for (let month = 1; month <= months; month++) {
           futureValue =
             (futureValue + currentMonthlyInvestment) * (1 + monthlyReturn);
           totalInvestment += currentMonthlyInvestment;
-
           if (stepUpEnabled && month % 12 === 0) {
             currentMonthlyInvestment *= 1 + stepUpRate / 100;
           }
         }
-
         const expectedReturns = futureValue - totalInvestment;
         const growthPercentage =
           totalInvestment > 0 ? (expectedReturns / totalInvestment) * 100 : 0;
@@ -704,7 +676,6 @@
           growthPercentage
         );
       }
-
       // Calculate required SIP (Target Mode)
       function calculateRequiredSIP() {
         const targetAmount = parseIndianFormattedNumber(
@@ -714,17 +685,22 @@
           document.getElementById("returnInput").value
         );
         const years = parseInt(document.getElementById("timeInput").value);
-        const expectedInflation = parseFloat(
-          document.getElementById("inflationInput").value
-        );
+        const inflationEnabled =
+          document.getElementById("inflationToggle").checked;
+        const expectedInflation = inflationEnabled
+          ? parseFloat(document.getElementById("inflationInput").value)
+          : 0;
 
         const monthlyReturn = annualReturn / 100 / 12;
         const months = years * 12;
         const inflationRatePerPeriod = expectedInflation / 100;
 
-        // Adjust target amount for inflation
-        const inflationAdjustedTarget =
-          targetAmount / Math.pow(1 + inflationRatePerPeriod, years);
+        // Corrected: Adjust target amount for inflation to maintain purchasing power
+        // If inflation is enabled, the nominal target amount needs to be higher
+        // to achieve the same purchasing power as the initial target amount.
+        const inflationAdjustedTarget = inflationEnabled
+          ? targetAmount * Math.pow(1 + inflationRatePerPeriod, years)
+          : targetAmount;
 
         let requiredMonthly = 0;
         if (monthlyReturn === 0) {
@@ -735,16 +711,13 @@
             (inflationAdjustedTarget * monthlyReturn) /
             (Math.pow(1 + monthlyReturn, months) - 1);
         }
-
         document.getElementById("requiredSip").textContent =
           formatCurrency(requiredMonthly);
         lastCalculatedRequiredSip = requiredMonthly; // Store the raw value for sharing
-
         // For chart and other results, calculate what this required SIP would yield
         let futureValue = 0;
         let totalInvestment = 0;
         let currentMonthlyInvestment = requiredMonthly; // Use the calculated required monthly SIP
-
         for (let month = 1; month <= months; month++) {
           futureValue =
             (futureValue + currentMonthlyInvestment) * (1 + monthlyReturn);
@@ -760,7 +733,6 @@
           growthPercentage
         );
       }
-
       // Update results with smooth transitions
       function updateResults(investment, returns, total, growth) {
         document.getElementById("totalInvestment").textContent =
@@ -773,7 +745,6 @@
           formatCurrency(total);
         document.getElementById("growthPercentage").textContent =
           growth.toFixed(1) + "%";
-
         // Store raw values for sharing
         lastCalculatedInvestment = investment;
         lastCalculatedReturns = returns;
@@ -783,12 +754,10 @@
           // Reset required SIP if in investment mode
           lastCalculatedRequiredSip = 0;
         }
-
         // Update chart data and trigger animation
         chart.data.datasets[0].data = [investment, returns];
         chart.update("active");
       }
-
       // Toggle between modes (Investment vs Target)
       function toggleMode(targetMode) {
         isTargetMode = targetMode;
@@ -803,6 +772,12 @@
         const stepUpSection = document.getElementById("stepUpSection");
         const inflationSection = document.getElementById("inflationSection");
 
+        // Reset inflation toggle and controls when switching modes
+        const inflationToggle = document.getElementById("inflationToggle");
+        const inflationControls = document.getElementById("inflationControls");
+        inflationToggle.checked = false;
+        inflationControls.classList.add("opacity-50", "pointer-events-none");
+
         if (targetMode) {
           targetBtn.classList.add("bg-white", "text-gray-800", "shadow-sm");
           targetBtn.classList.remove("text-gray-600", "hover:bg-gray-200");
@@ -812,7 +787,6 @@
             "shadow-sm"
           );
           investmentBtn.classList.add("text-gray-600", "hover:bg-gray-200");
-
           sipRequired.classList.remove("hidden");
           amountLabel.textContent = "Target Amount";
           amountInput.value = formatNumberWithIndianCommas(10000000); // Default target 1 Cr
@@ -831,7 +805,6 @@
           investmentBtn.classList.remove("text-gray-600", "hover:bg-gray-200");
           targetBtn.classList.remove("bg-white", "text-gray-800", "shadow-sm");
           targetBtn.classList.add("text-gray-600", "hover:bg-gray-200");
-
           sipRequired.classList.add("hidden");
           amountLabel.textContent = "Monthly Investment";
           amountInput.value = formatNumberWithIndianCommas(25000); // Default monthly 25k
@@ -847,12 +820,10 @@
           calculateSIP();
         }
       }
-
       // Function to generate email content and open mail client
       function sendEmailPlan() {
         const subject = encodeURIComponent("My SIP Calculator Plan");
         let body = `Hello,\n\nHere is my SIP calculation plan:\n\n`;
-
         if (isTargetMode) {
           body += `Mode: Target Amount\n`;
           body += `Target Amount: ${formatCurrency(
@@ -860,9 +831,15 @@
               document.getElementById("amountInput").value
             )
           )}\n`;
-          body += `Expected Inflation: ${
-            document.getElementById("inflationInput").value
-          }%\n`;
+          const inflationEnabled =
+            document.getElementById("inflationToggle").checked;
+          if (inflationEnabled) {
+            body += `Expected Inflation: ${
+              document.getElementById("inflationInput").value
+            }%\n`;
+          } else {
+            body += `Expected Inflation: Not considered\n`;
+          }
           body += `Monthly SIP Required: ${formatCurrency(
             lastCalculatedRequiredSip
           )}\n\n`;
@@ -882,7 +859,6 @@
             body += `Annual Step-up: No\n`;
           }
         }
-
         body += `Expected Return Rate: ${
           document.getElementById("returnInput").value
         }%\n`;
@@ -899,16 +875,13 @@
           1
         )}%\n\n`;
         body += `Calculated using the Clean SIP Calculator.`;
-
         window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
           body
         )}`;
       }
-
       // Function to generate WhatsApp message and open WhatsApp
       function sendWhatsAppPlan() {
         let message = `My SIP Calculation Plan:\n\n`;
-
         if (isTargetMode) {
           message += `Mode: Target Amount\n`;
           message += `Target Amount: ${formatCurrency(
@@ -916,9 +889,15 @@
               document.getElementById("amountInput").value
             )
           )}\n`;
-          message += `Expected Inflation: ${
-            document.getElementById("inflationInput").value
-          }%\n`;
+          const inflationEnabled =
+            document.getElementById("inflationToggle").checked;
+          if (inflationEnabled) {
+            message += `Expected Inflation: ${
+              document.getElementById("inflationInput").value
+            }%\n`;
+          } else {
+            message += `Expected Inflation: Not considered\n`;
+          }
           message += `Monthly SIP Required: ${formatCurrency(
             lastCalculatedRequiredSip
           )}\n\n`;
@@ -938,7 +917,6 @@
             message += `Annual Step-up: No\n`;
           }
         }
-
         message += `Expected Return Rate: ${
           document.getElementById("returnInput").value
         }%\n`;
@@ -957,19 +935,16 @@
           1
         )}%\n\n`;
         message += `Calculated using the Clean SIP Calculator.`;
-
         window.open(
           `https://wa.me/?text=${encodeURIComponent(message)}`,
           "_blank"
         );
       }
-
       // Function to download the entire calculator as an image
       function downloadCalculatorImage() {
         const calculatorContainer = document.getElementById(
           "calculatorContainer"
         );
-
         // Use html2canvas to capture the content of the calculatorContainer
         html2canvas(calculatorContainer, {
           scale: 2, // Increase scale for better resolution
@@ -978,7 +953,6 @@
         })
           .then((canvas) => {
             const image = canvas.toDataURL("image/png"); // Get data URL of the canvas content as PNG
-
             const link = document.createElement("a");
             link.href = image;
             link.download = "sip_calculator_screenshot.png"; // Set the filename for download
@@ -991,7 +965,6 @@
             alert("Failed to capture image. Please try again.");
           });
       }
-
       // Setup event listeners
       function setupEventListeners() {
         // Mode toggle
@@ -1001,7 +974,6 @@
         document
           .getElementById("targetModeBtn")
           .addEventListener("click", () => toggleMode(true));
-
         // Action Buttons
         document
           .getElementById("emailPlanBtn")
@@ -1012,7 +984,6 @@
         document
           .getElementById("downloadImageBtn")
           .addEventListener("click", downloadCalculatorImage); // Updated event listener
-
         // Input and Slider sync
         const inputs = [
           { id: "amount", slider: "amountSlider", input: "amountInput" },
@@ -1025,11 +996,9 @@
             input: "inflationInput",
           },
         ];
-
         inputs.forEach((item) => {
           const slider = document.getElementById(item.slider);
           const input = document.getElementById(item.input);
-
           if (item.id === "amount") {
             // Special handling for amount input
             input.addEventListener("input", function () {
@@ -1056,11 +1025,9 @@
             });
           }
         });
-
         // Step-up toggle
         const stepUpToggle = document.getElementById("stepUpToggle");
         const stepUpControls = document.getElementById("stepUpControls");
-
         stepUpToggle.addEventListener("change", function () {
           if (this.checked) {
             stepUpControls.classList.remove(
@@ -1072,13 +1039,29 @@
           }
           if (!isTargetMode) calculateSIP(); // Only recalculate if in investment mode
         });
-      }
 
+        // Inflation toggle
+        const inflationToggle = document.getElementById("inflationToggle");
+        const inflationControls = document.getElementById("inflationControls");
+        inflationToggle.addEventListener("change", function () {
+          if (this.checked) {
+            inflationControls.classList.remove(
+              "opacity-50",
+              "pointer-events-none"
+            );
+          } else {
+            inflationControls.classList.add(
+              "opacity-50",
+              "pointer-events-none"
+            );
+          }
+          if (isTargetMode) calculateRequiredSIP(); // Only recalculate if in target mode
+        });
+      }
       // Initialize everything on load
       window.addEventListener("load", function () {
         initChart();
         setupEventListeners();
-
         // Initial calculation (default to Investment Mode)
         calculateSIP();
       });
