@@ -267,6 +267,7 @@
                     value="10"
                     min="1"
                     max="50"
+                    step="1"
                   />
                   <span class="text-gray-500">Y</span>
                 </div>
@@ -277,6 +278,7 @@
                 min="1"
                 max="50"
                 value="10"
+                step="1"
                 class="custom-slider w-full mt-4"
               />
               <div class="flex justify-between text-xs text-gray-500 mt-2">
@@ -301,7 +303,7 @@
               </div>
               <div
                 id="stepUpControls"
-                class="opacity-50 pointer-events-none transition-all duration-300"
+                class="hidden opacity-50 pointer-events-none transition-all duration-300"
               >
                 <div class="flex items-center justify-between">
                   <div class="input-value-box w-32">
@@ -348,7 +350,7 @@
               </div>
               <div
                 id="inflationControls"
-                class="opacity-50 pointer-events-none transition-all duration-300"
+                class="hidden opacity-50 pointer-events-none transition-all duration-300"
               >
                 <div class="flex items-center justify-between">
                   <div class="input-value-box w-32">
@@ -415,39 +417,79 @@
             </div>
             <!-- Results -->
             <div class="space-y-2">
-              <div class="result-item">
-                <span class="label">Invested amount</span>
-                <span id="totalInvestment" class="value">₹30.00 L</span>
-              </div>
-              <div class="result-item">
-                <span class="label">Est. returns</span>
-                <span id="expectedGrowth" class="value">₹28.08 L</span>
-              </div>
-              <div class="result-item">
-                <span class="label">Total value</span>
-                <span id="totalValue" class="value text-lg font-bold"
-                  >₹58.08 L</span
-                >
-              </div>
-              <div class="result-item">
-                <span class="label">Growth Percentage</span>
-                <span id="growthPercentage" class="value text-lg font-bold"
-                  >93.6%</span
-                >
-              </div>
               <!-- Monthly SIP Required (for target amount mode) -->
               <div id="sipRequired" class="hidden result-item">
                 <span class="label" style="color: #161f48"
-                  >Monthly SIP Required</span
+                  >Est. monthly SIP required</span
                 >
-                <!-- Secondary color for label -->
                 <span
                   id="requiredSip"
                   class="value"
                   style="color: #161f48; font-size: 1.25rem"
                   >₹10,000</span
                 >
-                <!-- Secondary color for value -->
+              </div>
+
+              <!-- Target amount (inflation adjusted) (for target amount mode) -->
+              <div id="inflationAdjustedTargetItem" class="hidden result-item">
+                <span class="label" style="color: #161f48"
+                  >Target amount (inflation adjusted)</span
+                >
+                <span
+                  id="inflationAdjustedTargetValue"
+                  class="value"
+                  style="color: #161f48; font-size: 1.25rem"
+                  >₹0.00 L</span
+                >
+              </div>
+
+              <!-- New: Est. Total amount invested in (X) years (for target mode) -->
+              <div
+                id="estimatedTotalInvestedYearsItem"
+                class="hidden result-item text-start"
+              >
+                <span class="label"
+                  >Est. Total amount invested in (<span id="timePeriodLabel"
+                    >10</span
+                  >) years</span
+                >
+                <span
+                  id="estimatedTotalInvestedYearsValue"
+                  class="value text-end"
+                  >₹0.00 L</span
+                >
+              </div>
+
+              <!-- Original Invested amount (label changes based on mode) -->
+              <div class="result-item" id="investedAmountItem">
+                <span class="label" id="totalInvestmentLabel"
+                  >Invested amount</span
+                >
+                <span id="totalInvestment" class="value">₹30.00 L</span>
+              </div>
+
+              <!-- Original Est. returns (label changes based on mode) -->
+              <div class="result-item">
+                <span class="label" id="expectedGrowthLabel">Est. returns</span>
+                <span id="expectedGrowth" class="value">₹28.08 L</span>
+              </div>
+
+              <!-- Original Total value -->
+              <div class="result-item">
+                <span class="label">Total value</span>
+                <span id="totalValue" class="value text-lg font-bold"
+                  >₹58.08 L</span
+                >
+              </div>
+
+              <!-- Growth Percentage (hidden in target mode) -->
+              <div id="growthPercentageItem" class="result-item">
+                <span class="label">Growth Percentage</span>
+                <span
+                  id="growthPercentage"
+                  class="value text-lg font-bold bg-[#161f48]/10 rounded-full px-4 py-1"
+                  >93.6%</span
+                >
               </div>
             </div>
           </div>
@@ -508,11 +550,11 @@
                 ></path>
                 <path
                   fill="#fff"
-                  d="M4.9,43.8c-0.1,0-0.3-0.1-0.4-0.1c-0.1-0.1-0.2-0.3-0.1-0.5L7,33.5c-1.6-2.9-2.5-6.2-2.5-9.6  C4.5,13.2,13.3,4.5,24,4.5c5.2,0,10.1,2,13.8,5.7c3.7,3.7,5.7,8.6,5.7,13.8c0,10.7-8.7,19.5-19.5,19.5c-3.2,0-6.3-0.8-9.1-2.3 L5,43.8C5,43.8,4.9,43.8,4.9,43.8z"
+                  d="M4.9,43.8c-0.1,0-0.3-0.1-0.4-0.1c-0.1-0.1-0.2-0.3-0.1-0.5L7,33.5c-1.6-2.9-2.5-6.2-2.5-9.6 C4.5,13.2,13.3,4.5,24,4.5c5.2,0,10.1,2,13.8,5.7c3.7,3.7,5.7,8.6,5.7,13.8c0,10.7-8.7,19.5-19.5,19.5c-3.2,0-6.3-0.8-9.1-2.3 L5,43.8C5,43.8,4.9,43.8,4.9,43.8z"
                 ></path>
                 <path
                   fill="#cfd8dc"
-                  d="M24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24c0,10.5-8.5,19-19,19h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3 l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5 M24,43L24,43L24,43 M24,43L24,43L24,43 M24,4L24,4C13,4,4,13,4,24  c0,3.4,0.8,6.7,2.5,9.6L3.9,43c-0.1,0.3,0,0.7,0.3,1c0.2,0.2,0.4,0.3,0.7,0.3c0.1,0,0.2,0,0.3,0l9.7-2.5c2.8,1.5,6,2.2,9.2,2.2  c11,0,20-9,20-20c0-5.3-2.1-10.4-5.8-14.1C34.4,6.1,29.4,4,24,4L24,4z"
+                  d="M24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24c0,10.5-8.5,19-19,19h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3 l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5 M24,43L24,43L24,43 M24,43L24,43L24,43 M24,4L24,4C13,4,4,13,4,24 c0,3.4,0.8,6.7,2.5,9.6L3.9,43c-0.1,0.3,0,0.7,0.3,1c0.2,0.2,0.4,0.3,0.7,0.3c0.1,0,0.2,0,0.3,0l9.7-2.5c2.8,1.5,6,2.2,9.2,2.2 c11,0,20-9,20-20c0-5.3-2.1-10.4-5.8-14.1C34.4,6.1,29.4,4,24,4L24,4z"
                 ></path>
                 <path
                   fill="#40c351"
@@ -521,11 +563,11 @@
                 <path
                   fill="#fff"
                   fill-rule="evenodd"
-                  d="M19.3,16c-0.4-0.8-0.7-0.8-1.1-0.8c-0.3,0-0.6,0-0.9,0s-0.8,0.1-1.3,0.6c-0.4,0.5-1.7,1.6-1.7,4 s1.7,4.6,1.9,4.9s3.3,5.3,8.1,7.2c4,1.6,4.8,1.3,5.7,1.2c0.9-0.1,2.8-1.1,3.2-2.3c0.4-1.1,0.4-2.1,0.3-2.3c-0.1-0.2-0.4-0.3-0.9-0.6 s-2.8-1.4-3.2-1.5c-0.4-0.2-0.8-0.2-1.1,0.2c-0.3,0.5-1.2,1.5-1.5,1.9c-0.3,0.3-0.6,0.4-1,0.1c-0.5-0.2-2-0.7-3.8-2.4 c-1.4-1.3-2.4-2.8-2.6-3.3c-0.3-0.5,0-0.7,0.2-1c0.2-0.2,0.5-0.6,0.7-0.8c0.2-0.3,0.3-0.5,0.5-0.8c0.2-0.3,0.1-0.6,0-0.8  C20.6,19.3,19.7,17,19.3,16z"
+                  d="M19.3,16c-0.4-0.8-0.7-0.8-1.1-0.8c-0.3,0-0.6,0-0.9,0s-0.8,0.1-1.3,0.6c-0.4,0.5-1.7,1.6-1.7,4 s1.7,4.6,1.9,4.9s3.3,5.3,8.1,7.2c4,1.6,4.8,1.3,5.7,1.2c0.9-0.1,2.8-1.1,3.2-2.3c0.4-1.1,0.4-2.1,0.3-2.3c-0.1-0.2-0.4-0.3-0.9-0.6 s-2.8-1.4-3.2-1.5c-0.4-0.2-0.8-0.2-1.1,0.2c-0.3,0.5-1.2,1.5-1.5,1.9c-0.3,0.3-0.6,0.4-1,0.1c-0.5-0.2-2-0.7-3.8-2.4 c-1.4-1.3-2.4-2.8-2.6-3.3c-0.3-0.5,0-0.7,0.2-1c0.2-0.2,0.5-0.6,0.7-0.8c0.2-0.3,0.3-0.5,0.5-0.8c0.2-0.3,0.1-0.6,0-0.8 C20.6,19.3,19.7,17,19.3,16z"
                   clip-rule="evenodd"
                 ></path>
               </svg>
-              WhatsApp
+              Email Plan
             </button>
             <button
               id="downloadImageBtn"
@@ -563,6 +605,8 @@
       let lastCalculatedTotal = 0;
       let lastCalculatedGrowthPercentage = 0;
       let lastCalculatedRequiredSip = 0;
+      let lastCalculatedInflationAdjustedTarget = 0; // New global variable
+
       // Initialize chart with specific colors and simplified legend
       function initChart() {
         const ctx = document.getElementById("sipChart").getContext("2d");
@@ -673,7 +717,8 @@
           totalInvestment,
           expectedReturns,
           futureValue,
-          growthPercentage
+          growthPercentage,
+          0 // No inflation adjusted target in investment mode
         );
       }
       // Calculate required SIP (Target Mode)
@@ -690,11 +735,9 @@
         const expectedInflation = inflationEnabled
           ? parseFloat(document.getElementById("inflationInput").value)
           : 0;
-
         const monthlyReturn = annualReturn / 100 / 12;
         const months = years * 12;
         const inflationRatePerPeriod = expectedInflation / 100;
-
         // Corrected: Adjust target amount for inflation to maintain purchasing power
         // If inflation is enabled, the nominal target amount needs to be higher
         // to achieve the same purchasing power as the initial target amount.
@@ -714,6 +757,7 @@
         document.getElementById("requiredSip").textContent =
           formatCurrency(requiredMonthly);
         lastCalculatedRequiredSip = requiredMonthly; // Store the raw value for sharing
+
         // For chart and other results, calculate what this required SIP would yield
         let futureValue = 0;
         let totalInvestment = 0;
@@ -730,21 +774,82 @@
           totalInvestment,
           expectedReturns,
           futureValue,
-          growthPercentage
+          growthPercentage,
+          inflationAdjustedTarget // Pass the inflation adjusted target
         );
       }
       // Update results with smooth transitions
-      function updateResults(investment, returns, total, growth) {
-        document.getElementById("totalInvestment").textContent =
-          formatCurrency(investment);
+      function updateResults(
+        investment,
+        returns,
+        total,
+        growth,
+        inflationAdjustedTarget = 0
+      ) {
+        // Update main values
         document.getElementById("expectedGrowth").textContent =
           formatCurrency(returns);
         document.getElementById("totalValue").textContent =
           formatCurrency(total);
         document.getElementById("totalValueCenter").textContent =
           formatCurrency(total);
-        document.getElementById("growthPercentage").textContent =
-          growth.toFixed(1) + "%";
+
+        // Get result item elements
+        const investedAmountItem =
+          document.getElementById("investedAmountItem");
+        const growthPercentageItem = document.getElementById(
+          "growthPercentageItem"
+        );
+        const inflationAdjustedTargetItem = document.getElementById(
+          "inflationAdjustedTargetItem"
+        );
+        const estimatedTotalInvestedYearsItem = document.getElementById(
+          "estimatedTotalInvestedYearsItem"
+        );
+
+        // Handle "Invested amount" visibility
+        if (!isTargetMode) {
+          document.getElementById("totalInvestment").textContent =
+            formatCurrency(investment);
+          investedAmountItem.classList.remove("hidden");
+        } else {
+          investedAmountItem.classList.add("hidden");
+        }
+
+        // Handle growth percentage visibility
+        if (!isTargetMode) {
+          document.getElementById("growthPercentage").textContent =
+            growth.toFixed(1) + "%";
+          growthPercentageItem.classList.remove("hidden");
+        } else {
+          growthPercentageItem.classList.add("hidden");
+        }
+
+        // Handle inflation adjusted target visibility
+        if (
+          isTargetMode &&
+          document.getElementById("inflationToggle").checked
+        ) {
+          document.getElementById("inflationAdjustedTargetValue").textContent =
+            formatCurrency(inflationAdjustedTarget);
+          inflationAdjustedTargetItem.classList.remove("hidden");
+        } else {
+          inflationAdjustedTargetItem.classList.add("hidden");
+        }
+
+        // Handle "Est. Total amount invested in (X) years" visibility and value
+        const timePeriod = document.getElementById("timeInput").value;
+        document.getElementById("timePeriodLabel").textContent = timePeriod; // Update (X) in label
+
+        if (isTargetMode) {
+          document.getElementById(
+            "estimatedTotalInvestedYearsValue"
+          ).textContent = formatCurrency(investment); // Use 'investment' from target mode calculation
+          estimatedTotalInvestedYearsItem.classList.remove("hidden");
+        } else {
+          estimatedTotalInvestedYearsItem.classList.add("hidden");
+        }
+
         // Store raw values for sharing
         lastCalculatedInvestment = investment;
         lastCalculatedReturns = returns;
@@ -754,6 +859,8 @@
           // Reset required SIP if in investment mode
           lastCalculatedRequiredSip = 0;
         }
+        lastCalculatedInflationAdjustedTarget = inflationAdjustedTarget; // Store for sharing
+
         // Update chart data and trigger animation
         chart.data.datasets[0].data = [investment, returns];
         chart.update("active");
@@ -772,11 +879,44 @@
         const stepUpSection = document.getElementById("stepUpSection");
         const inflationSection = document.getElementById("inflationSection");
 
-        // Reset inflation toggle and controls when switching modes
+        // Elements for results
+        const investedAmountItem =
+          document.getElementById("investedAmountItem");
+        const totalInvestmentLabel = document.getElementById(
+          "totalInvestmentLabel"
+        );
+        const expectedGrowthLabel = document.getElementById(
+          "expectedGrowthLabel"
+        );
+        const growthPercentageItem = document.getElementById(
+          "growthPercentageItem"
+        );
+        const inflationAdjustedTargetItem = document.getElementById(
+          "inflationAdjustedTargetItem"
+        );
+        const estimatedTotalInvestedYearsItem = document.getElementById(
+          "estimatedTotalInvestedYearsItem"
+        );
+
+        // Get toggle and control elements for step-up and inflation
+        const stepUpToggle = document.getElementById("stepUpToggle");
+        const stepUpControls = document.getElementById("stepUpControls");
         const inflationToggle = document.getElementById("inflationToggle");
         const inflationControls = document.getElementById("inflationControls");
+
+        // Reset toggles and hide controls when switching modes
+        stepUpToggle.checked = false;
+        stepUpControls.classList.add(
+          "hidden",
+          "opacity-50",
+          "pointer-events-none"
+        );
         inflationToggle.checked = false;
-        inflationControls.classList.add("opacity-50", "pointer-events-none");
+        inflationControls.classList.add(
+          "hidden",
+          "opacity-50",
+          "pointer-events-none"
+        );
 
         if (targetMode) {
           targetBtn.classList.add("bg-white", "text-gray-800", "shadow-sm");
@@ -787,7 +927,13 @@
             "shadow-sm"
           );
           investmentBtn.classList.add("text-gray-600", "hover:bg-gray-200");
+
           sipRequired.classList.remove("hidden");
+          inflationAdjustedTargetItem.classList.remove("hidden");
+          estimatedTotalInvestedYearsItem.classList.remove("hidden"); // Show new item
+          growthPercentageItem.classList.add("hidden"); // Hide growth percentage
+          investedAmountItem.classList.add("hidden"); // Hide invested amount in target mode
+
           amountLabel.textContent = "Target Amount";
           amountInput.value = formatNumberWithIndianCommas(10000000); // Default target 1 Cr
           amountInput.min = "100000"; // Min target 1 Lakh
@@ -797,15 +943,27 @@
           amountSlider.max = "1000000000";
           amountMinSpan.textContent = "₹1L";
           amountMaxSpan.textContent = "₹100Cr";
-          stepUpSection.classList.add("hidden"); // Hide step-up in target mode
-          inflationSection.classList.remove("hidden"); // Show inflation in target mode
+
+          stepUpSection.classList.add("hidden"); // Hide step-up section in target mode
+          inflationSection.classList.remove("hidden"); // Show inflation section in target mode
+
+          // Set fixed labels for investment mode
+          totalInvestmentLabel.textContent = "Invested amount"; // Revert to original label
+          expectedGrowthLabel.textContent = "Est. returns"; // Revert to original label
+
           calculateRequiredSIP();
         } else {
           investmentBtn.classList.add("bg-white", "text-gray-800", "shadow-sm");
           investmentBtn.classList.remove("text-gray-600", "hover:bg-gray-200");
           targetBtn.classList.remove("bg-white", "text-gray-800", "shadow-sm");
           targetBtn.classList.add("text-gray-600", "hover:bg-gray-200");
+
           sipRequired.classList.add("hidden");
+          inflationAdjustedTargetItem.classList.add("hidden");
+          estimatedTotalInvestedYearsItem.classList.add("hidden"); // Hide new item
+          growthPercentageItem.classList.remove("hidden"); // Show growth percentage
+          investedAmountItem.classList.remove("hidden"); // Show invested amount in investment mode
+
           amountLabel.textContent = "Monthly Investment";
           amountInput.value = formatNumberWithIndianCommas(25000); // Default monthly 25k
           amountInput.min = "500";
@@ -815,8 +973,14 @@
           amountSlider.max = "1000000";
           amountMinSpan.textContent = "₹500";
           amountMaxSpan.textContent = "₹10L";
-          stepUpSection.classList.remove("hidden"); // Show step-up in investment mode
-          inflationSection.classList.add("hidden"); // Hide inflation in investment mode
+
+          stepUpSection.classList.remove("hidden"); // Show step-up section in investment mode
+          inflationSection.classList.add("hidden"); // Hide inflation section in investment mode
+
+          // Set fixed labels for investment mode
+          totalInvestmentLabel.textContent = "Invested amount";
+          expectedGrowthLabel.textContent = "Est. returns";
+
           calculateSIP();
         }
       }
@@ -837,12 +1001,18 @@
             body += `Expected Inflation: ${
               document.getElementById("inflationInput").value
             }%\n`;
+            body += `Target amount (inflation adjusted): ${formatCurrency(
+              lastCalculatedInflationAdjustedTarget
+            )}\n`;
           } else {
             body += `Expected Inflation: Not considered\n`;
           }
-          body += `Monthly SIP Required: ${formatCurrency(
+          body += `Est. monthly SIP required: ${formatCurrency(
             lastCalculatedRequiredSip
-          )}\n\n`;
+          )}\n`;
+          body += `Est. Total amount invested in (${
+            document.getElementById("timeInput").value
+          }) years: ${formatCurrency(lastCalculatedInvestment)}\n\n`; // New item
         } else {
           body += `Mode: Monthly Investment\n`;
           body += `Monthly Investment: ${formatCurrency(
@@ -866,14 +1036,19 @@
           document.getElementById("timeInput").value
         } Years\n\n`;
         body += `--- Results ---\n`;
-        body += `Total Invested Amount: ${formatCurrency(
-          lastCalculatedInvestment
-        )}\n`;
-        body += `Estimated Returns: ${formatCurrency(lastCalculatedReturns)}\n`;
-        body += `Total Value: ${formatCurrency(lastCalculatedTotal)}\n`;
-        body += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(
-          1
-        )}%\n\n`;
+        if (!isTargetMode) {
+          // Only include invested amount if not in target mode
+          body += `Invested amount: ${formatCurrency(
+            lastCalculatedInvestment
+          )}\n`;
+        }
+        body += `Estimated returns: ${formatCurrency(lastCalculatedReturns)}\n`;
+        body += `Total value: ${formatCurrency(lastCalculatedTotal)}\n`;
+        if (!isTargetMode) {
+          body += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(
+            1
+          )}%\n\n`;
+        }
         body += `Calculated using Chimulkar Financial Services Calculator.`;
         window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
           body
@@ -895,12 +1070,18 @@
             message += `Expected Inflation: ${
               document.getElementById("inflationInput").value
             }%\n`;
+            message += `Target amount (inflation adjusted): ${formatCurrency(
+              lastCalculatedInflationAdjustedTarget
+            )}\n`;
           } else {
             message += `Expected Inflation: Not considered\n`;
           }
-          message += `Monthly SIP Required: ${formatCurrency(
+          message += `Est. monthly SIP required: ${formatCurrency(
             lastCalculatedRequiredSip
-          )}\n\n`;
+          )}\n`;
+          message += `Est. Total amount invested in (${
+            document.getElementById("timeInput").value
+          }) years: ${formatCurrency(lastCalculatedInvestment)}\n\n`; // New item
         } else {
           message += `Mode: Monthly Investment\n`;
           message += `Monthly Investment: ${formatCurrency(
@@ -924,16 +1105,21 @@
           document.getElementById("timeInput").value
         } Years\n\n`;
         message += `--- Results ---\n`;
-        message += `Total Invested Amount: ${formatCurrency(
-          lastCalculatedInvestment
-        )}\n`;
-        message += `Estimated Returns: ${formatCurrency(
+        if (!isTargetMode) {
+          // Only include invested amount if not in target mode
+          message += `Invested amount: ${formatCurrency(
+            lastCalculatedInvestment
+          )}\n`;
+        }
+        message += `Estimated returns: ${formatCurrency(
           lastCalculatedReturns
         )}\n`;
-        message += `Total Value: ${formatCurrency(lastCalculatedTotal)}\n`;
-        message += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(
-          1
-        )}%\n\n`;
+        message += `Total value: ${formatCurrency(lastCalculatedTotal)}\n`;
+        if (!isTargetMode) {
+          message += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(
+            1
+          )}%\n\n`;
+        }
         message += `Calculated using Chimulkar Financial Services Calculator.`;
         window.open(
           `https://wa.me/?text=${encodeURIComponent(message)}`,
@@ -1031,32 +1217,53 @@
         stepUpToggle.addEventListener("change", function () {
           if (this.checked) {
             stepUpControls.classList.remove(
+              "hidden",
               "opacity-50",
               "pointer-events-none"
             );
           } else {
-            stepUpControls.classList.add("opacity-50", "pointer-events-none");
+            stepUpControls.classList.add(
+              "hidden",
+              "opacity-50",
+              "pointer-events-none"
+            );
           }
           if (!isTargetMode) calculateSIP(); // Only recalculate if in investment mode
         });
-
         // Inflation toggle
         const inflationToggle = document.getElementById("inflationToggle");
         const inflationControls = document.getElementById("inflationControls");
         inflationToggle.addEventListener("change", function () {
           if (this.checked) {
             inflationControls.classList.remove(
+              "hidden",
               "opacity-50",
               "pointer-events-none"
             );
           } else {
             inflationControls.classList.add(
+              "hidden",
               "opacity-50",
               "pointer-events-none"
             );
           }
           if (isTargetMode) calculateRequiredSIP(); // Only recalculate if in target mode
         });
+
+        // Listen for changes on the time input/slider to update the label for "Est. Total amount invested in (X) years"
+        document
+          .getElementById("timeInput")
+          .addEventListener("input", function () {
+            document.getElementById("timePeriodLabel").textContent = this.value;
+            if (isTargetMode) calculateRequiredSIP(); // Recalculate if in target mode to update the value
+          });
+        document
+          .getElementById("timeSlider")
+          .addEventListener("input", function () {
+            document.getElementById("timeInput").value = this.value; // Sync input with slider
+            document.getElementById("timePeriodLabel").textContent = this.value;
+            if (isTargetMode) calculateRequiredSIP(); // Recalculate if in target mode to update the value
+          });
       }
       // Initialize everything on load
       window.addEventListener("load", function () {
