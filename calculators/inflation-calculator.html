@@ -151,7 +151,7 @@
     >
       <div class="text-center mb-8 mt-8">
         <h1 class="text-2xl lg:text-4xl font-semibold text-black mb-3">
-          Inflation Impact
+          Inflation Impact Cost
           <span class="text-[#fcaf1b]">Calculator</span>
         </h1>
         <p class="text-gray-500 text-base lg:text-lg">
@@ -266,11 +266,11 @@
             <!-- Inflation Impact Visualization -->
             <div class="bg-gray-50 rounded-xl p-4 sm:p-6">
               <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">
-                Inflation Impact
+                Inflation Impact Cost
               </h3>
               <div class="space-y-3">
                 <div class="flex justify-between text-sm">
-                  <span class="text-gray-600">Current Value</span>
+                  <span class="text-gray-600">Current Cost</span>
                   <span class="font-semibold" id="progressCurrentValue"
                     >₹1.00 L</span
                   >
@@ -285,7 +285,7 @@
                   </div>
                 </div>
                 <div class="flex justify-between text-sm">
-                  <span class="text-gray-600">Future Value</span>
+                  <span class="text-gray-600">Future Cost</span>
                   <span
                     class="font-semibold text-red-600"
                     id="progressFutureValue"
@@ -335,21 +335,21 @@
             >
               <div>
                 <span class="chart-legend-dot bg-gray-400"></span>
-                <span>Current Value</span>
+                <span>Current Cost</span>
               </div>
               <div>
                 <span
                   class="chart-legend-dot"
                   style="background-color: #161f48"
                 ></span>
-                <span>Future Value</span>
+                <span>Future Cost</span>
               </div>
               <div>
                 <span
                   class="chart-legend-dot"
                   style="background-color: #fcaf1b"
                 ></span>
-                <span>Inflation Impact</span>
+                <span>Inflation Impact Cost</span>
               </div>
             </div>
 
@@ -381,7 +381,7 @@
                   >
                 </div>
                 <div class="result-item">
-                  <span class="label">Total Inflation Impact</span>
+                  <span class="label">Total Inflation Impact Cost</span>
                   <span
                     id="inflationImpact"
                     class="value text-base sm:text-lg font-bold"
@@ -627,7 +627,7 @@
       // Get comparison chart data
       function getComparisonChartData() {
         return {
-          labels: ["Current Value", "Future Value", "Inflation Impact"],
+          labels: ["Current Cost", "Future Cost", "Inflation Impact Cost"],
           datasets: [
             {
               label: "Amount",
@@ -653,7 +653,7 @@
       // Get breakdown chart data (doughnut)
       function getBreakdownChartData() {
         return {
-          labels: ["Original Value", "Inflation Impact"],
+          labels: ["Original Value", "Inflation Impact Cost"],
           datasets: [
             {
               data: [lastCalculatedCurrentCost, lastCalculatedInflationImpact],
@@ -847,7 +847,7 @@
         return parseFloat(str.replace(/[^0-9.]/g, ""));
       }
 
-      // Calculate inflation impact and generate yearly data
+      // Calculate Inflation Impact Cost and generate yearly data
       function calculateInflation() {
         const currentCost = parseIndianFormattedNumber(
           document.getElementById("currentCostInput").value
@@ -988,7 +988,7 @@
 
         body += `--- Results ---\n`;
         body += `Future Cost: ${formatCurrency(lastCalculatedFutureCost)}\n`;
-        body += `Total Inflation Impact: ${formatCurrency(
+        body += `Total Inflation Impact Cost: ${formatCurrency(
           lastCalculatedInflationImpact
         )}\n\n`;
 
@@ -1020,7 +1020,7 @@
 
         message += `--- Results ---\n`;
         message += `Future Cost: ${formatCurrency(lastCalculatedFutureCost)}\n`;
-        message += `Total Inflation Impact: ${formatCurrency(
+        message += `Total Inflation Impact Cost: ${formatCurrency(
           lastCalculatedInflationImpact
         )}\n\n`;
 
