@@ -225,7 +225,7 @@
             <!-- Expected Return Rate -->
             <div>
               <div class="flex items-center justify-between mb-3">
-                <label class="text-lg font-medium text-gray-700"
+                <label class="text-lg font-medium text-gray-700 text-start"
                   >Expected return rate (p.a)</label
                 >
                 <div class="input-value-box w-32">
@@ -267,6 +267,7 @@
                     value="10"
                     min="1"
                     max="50"
+                    step="1"
                   />
                   <span class="text-gray-500">Y</span>
                 </div>
@@ -277,6 +278,7 @@
                 min="1"
                 max="50"
                 value="10"
+                step="1"
                 class="custom-slider w-full mt-4"
               />
               <div class="flex justify-between text-xs text-gray-500 mt-2">
@@ -367,54 +369,62 @@
             </div>
             <!-- Results -->
             <div class="space-y-2">
-              <!-- Target Mode Results -->
-              <div id="targetModeResults" class="hidden">
-                <div class="result-item">
-                  <span class="label">Target Amount</span>
-                  <span id="targetAmountDisplay" class="value">₹10.00 L</span>
-                </div>
-                <div class="result-item">
-                  <span class="label">Time period</span>
-                  <span id="timePeriodDisplay" class="value">10 Y</span>
-                </div>
-                <div class="result-item">
-                  <span class="label" style="color: #161f48"
-                    >Lumpsum investment</span
-                  >
-                  <span
-                    id="requiredLumpsum"
-                    class="value"
-                    style="
-                      color: #161f48;
-                      font-size: 1.25rem;
-                      font-weight: medium;
-                    "
-                    >₹3.22 L</span
-                  >
-                </div>
+              <!-- Target amount (inflation adjusted) (for target mode) - MOVED TO TOP -->
+              <div id="inflationAdjustedTargetItem" class="hidden result-item">
+                <span class="label" style="color: #161f48"
+                  >Target amount (inflation adjusted)</span
+                >
+                <span
+                  id="inflationAdjustedTargetValue"
+                  class="value"
+                  style="color: #161f48; font-size: 1.25rem"
+                  >₹0.00 L</span
+                >
               </div>
-              <!-- Lumpsum Mode Results -->
-              <div id="lumpsumModeResults">
-                <div class="result-item">
-                  <span class="label">Invested amount</span>
-                  <span id="totalInvestment" class="value">₹10.00 L</span>
-                </div>
-                <div class="result-item">
-                  <span class="label">Est. returns</span>
-                  <span id="expectedGrowth" class="value">₹21.04 L</span>
-                </div>
-                <div class="result-item">
-                  <span class="label">Total value</span>
-                  <span id="totalValue" class="value text-lg font-bold"
-                    >₹31.04 L</span
-                  >
-                </div>
-                <div class="result-item">
-                  <span class="label">Growth Percentage</span>
-                  <span id="growthPercentage" class="value text-lg font-bold"
-                    >210.4%</span
-                  >
-                </div>
+
+              <!-- Est. Lump sum amount invested (for target mode) -->
+              <div id="requiredLumpsumItem" class="hidden result-item">
+                <span class="label" style="color: #161f48"
+                  >Est. Lump sum amount invested</span
+                >
+                <span
+                  id="requiredLumpsum"
+                  class="value"
+                  style="color: #161f48; font-size: 1rem"
+                  >₹0.00 L</span
+                >
+              </div>
+
+              <!-- Original Invested amount (label changes based on mode) -->
+              <div class="result-item" id="investedAmountItem">
+                <span class="label" id="totalInvestmentLabel"
+                  >Invested amount</span
+                >
+                <span id="totalInvestment" class="value">₹10.00 L</span>
+              </div>
+
+              <!-- Original Est. returns (label changes based on mode) -->
+              <div class="result-item" id="expectedGrowthItem">
+                <span class="label" id="expectedGrowthLabel">Est. returns</span>
+                <span id="expectedGrowth" class="value">₹21.04 L</span>
+              </div>
+
+              <!-- Original Total value -->
+              <div class="result-item" id="totalValueItem">
+                <span class="label">Total value</span>
+                <span id="totalValue" class="value text-lg font-bold"
+                  >₹31.04 L</span
+                >
+              </div>
+
+              <!-- Growth Percentage (hidden in target mode) -->
+              <div id="growthPercentageItem" class="result-item">
+                <span class="label">Growth Percentage</span>
+                <span
+                  id="growthPercentage"
+                  class="value text-lg font-bold bg-[#161f48]/10 rounded-full px-4 py-1"
+                  >210.4%</span
+                >
               </div>
             </div>
           </div>
@@ -475,11 +485,11 @@
                 ></path>
                 <path
                   fill="#fff"
-                  d="M4.9,43.8c-0.1,0-0.3-0.1-0.4-0.1c-0.1-0.1-0.2-0.3-0.1-0.5L7,33.5c-1.6-2.9-2.5-6.2-2.5-9.6  C4.5,13.2,13.3,4.5,24,4.5c5.2,0,10.1,2,13.8,5.7c3.7,3.7,5.7,8.6,5.7,13.8c0,10.7-8.7,19.5-19.5,19.5c-3.2,0-6.3-0.8-9.1-2.3 L5,43.8C5,43.8,4.9,43.8,4.9,43.8z"
+                  d="M4.9,43.8c-0.1,0-0.3-0.1-0.4-0.1c-0.1-0.1-0.2-0.3-0.1-0.5L7,33.5c-1.6-2.9-2.5-6.2-2.5-9.6 C4.5,13.2,13.3,4.5,24,4.5c5.2,0,10.1,2,13.8,5.7c3.7,3.7,5.7,8.6,5.7,13.8c0,10.7-8.7,19.5-19.5,19.5c-3.2,0-6.3-0.8-9.1-2.3 L5,43.8C5,43.8,4.9,43.8,4.9,43.8z"
                 ></path>
                 <path
                   fill="#cfd8dc"
-                  d="M24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24c0,10.5-8.5,19-19,19h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3 l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5 M24,43L24,43L24,43 M24,43L24,43L24,43 M24,4L24,4C13,4,4,13,4,24  c0,3.4,0.8,6.7,2.5,9.6L3.9,43c-0.1,0.3,0,0.7,0.3,1c0.2,0.2,0.4,0.3,0.7,0.3c0.1,0,0.2,0,0.3,0l9.7-2.5c2.8,1.5,6,2.2,9.2,2.2  c11,0,20-9,20-20c0-5.3-2.1-10.4-5.8-14.1C34.4,6.1,29.4,4,24,4L24,4z"
+                  d="M24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24c0,10.5-8.5,19-19,19h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3 l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5 M24,43L24,43L24,43 M24,43L24,43L24,43 M24,4L24,4C13,4,4,13,4,24 c0,3.4,0.8,6.7,2.5,9.6L3.9,43c-0.1,0.3,0,0.7,0.3,1c0.2,0.2,0.4,0.3,0.7,0.3c0.1,0,0.2,0,0.3,0l9.7-2.5c2.8,1.5,6,2.2,9.2,2.2 c11,0,20-9,20-20c0-5.3-2.1-10.4-5.8-14.1C34.4,6.1,29.4,4,24,4L24,4z"
                 ></path>
                 <path
                   fill="#40c351"
@@ -488,7 +498,7 @@
                 <path
                   fill="#fff"
                   fill-rule="evenodd"
-                  d="M19.3,16c-0.4-0.8-0.7-0.8-1.1-0.8c-0.3,0-0.6,0-0.9,0s-0.8,0.1-1.3,0.6c-0.4,0.5-1.7,1.6-1.7,4 s1.7,4.6,1.9,4.9s3.3,5.3,8.1,7.2c4,1.6,4.8,1.3,5.7,1.2c0.9-0.1,2.8-1.1,3.2-2.3c0.4-1.1,0.4-2.1,0.3-2.3c-0.1-0.2-0.4-0.3-0.9-0.6 s-2.8-1.4-3.2-1.5c-0.4-0.2-0.8-0.2-1.1,0.2c-0.3,0.5-1.2,1.5-1.5,1.9c-0.3,0.3-0.6,0.4-1,0.1c-0.5-0.2-2-0.7-3.8-2.4 c-1.4-1.3-2.4-2.8-2.6-3.3c-0.3-0.5,0-0.7,0.2-1c0.2-0.2,0.5-0.6,0.7-0.8c0.2-0.3,0.3-0.5,0.5-0.8c0.2-0.3,0.1-0.6,0-0.8  C20.6,19.3,19.7,17,19.3,16z"
+                  d="M19.3,16c-0.4-0.8-0.7-0.8-1.1-0.8c-0.3,0-0.6,0-0.9,0s-0.8,0.1-1.3,0.6c-0.4,0.5-1.7,1.6-1.7,4 s1.7,4.6,1.9,4.9s3.3,5.3,8.1,7.2c4,1.6,4.8,1.3,5.7,1.2c0.9-0.1,2.8-1.1,3.2-2.3c0.4-1.1,0.4-2.1,0.3-2.3c-0.1-0.2-0.4-0.3-0.9-0.6 s-2.8-1.4-3.2-1.5c-0.4-0.2-0.8-0.2-1.1,0.2c-0.3,0.5-1.2,1.5-1.5,1.9c-0.3,0.3-0.6,0.4-1,0.1c-0.5-0.2-2-0.7-3.8-2.4 c-1.4-1.3-2.4-2.8-2.6-3.3c-0.3-0.5,0-0.7,0.2-1c0.2-0.2,0.5-0.6,0.7-0.8c0.2-0.3,0.3-0.5,0.5-0.8c0.2-0.3,0.1-0.6,0-0.8 C20.6,19.3,19.7,17,19.3,16z"
                   clip-rule="evenodd"
                 ></path>
               </svg>
@@ -529,8 +539,7 @@
       let lastCalculatedTotal = 0;
       let lastCalculatedGrowthPercentage = 0;
       let lastCalculatedRequiredLumpsum = 0;
-      let lastTargetAmount = 0;
-      let lastTimePeriod = 0;
+      let lastCalculatedInflationAdjustedTarget = 0; // New global variable for inflation adjusted target
       let lastExpectedInflation = 0; // Added for sharing
 
       // Initialize chart with specific colors and simplified legend
@@ -606,6 +615,97 @@
         if (!str) return 0;
         return parseFloat(str.replace(/[^0-9.]/g, ""));
       }
+
+      // New function to update all results and their visibility
+      function updateResults(
+        investment,
+        returns,
+        total,
+        growth,
+        inflationAdjustedTarget = 0,
+        requiredLumpsum = 0
+      ) {
+        // Update main values
+        document.getElementById("expectedGrowth").textContent =
+          formatCurrency(returns);
+        document.getElementById("totalValue").textContent =
+          formatCurrency(total);
+        document.getElementById("totalValueCenter").textContent =
+          formatCurrency(total);
+
+        // Get result item elements
+        const requiredLumpsumItem = document.getElementById(
+          "requiredLumpsumItem"
+        );
+        const inflationAdjustedTargetItem = document.getElementById(
+          "inflationAdjustedTargetItem"
+        );
+        const investedAmountItem =
+          document.getElementById("investedAmountItem");
+        const expectedGrowthItem =
+          document.getElementById("expectedGrowthItem");
+        const totalValueItem = document.getElementById("totalValueItem");
+        const growthPercentageItem = document.getElementById(
+          "growthPercentageItem"
+        );
+        const inflationToggle = document.getElementById("inflationToggle");
+
+        // Handle visibility based on mode
+        if (isTargetMode) {
+          // Target Mode: Show required lumpsum, inflation adjusted target (if enabled), and estimated returns (from target calculation)
+          requiredLumpsumItem.classList.remove("hidden");
+          document.getElementById("requiredLumpsum").textContent =
+            formatCurrency(requiredLumpsum);
+
+          if (inflationToggle.checked) {
+            inflationAdjustedTargetItem.classList.remove("hidden");
+            document.getElementById(
+              "inflationAdjustedTargetValue"
+            ).textContent = formatCurrency(inflationAdjustedTarget);
+            totalValueItem.classList.add("hidden"); // Hide total value if inflation adjusted target is shown
+          } else {
+            inflationAdjustedTargetItem.classList.add("hidden");
+            totalValueItem.classList.remove("hidden"); // Show total value if inflation adjusted target is not shown
+          }
+
+          // In target mode, "Invested amount" label becomes "Est. Lump sum amount invested" (handled by requiredLumpsumItem)
+          // "Est. returns" is still relevant, but its value comes from the target calculation
+          // "Total value" is the target amount itself
+          investedAmountItem.classList.add("hidden"); // Hide the original "Invested amount"
+          growthPercentageItem.classList.add("hidden"); // Hide growth percentage in target mode
+
+          // Update chart data: required investment vs expected growth to reach target
+          chart.data.datasets[0].data = [requiredLumpsum, returns]; // returns here is the 'expected growth' to reach target
+          chart.data.labels = ["Required Investment", "Expected Growth"];
+        } else {
+          // Lumpsum Mode: Show invested amount, estimated returns, total value, growth percentage
+          requiredLumpsumItem.classList.add("hidden");
+          inflationAdjustedTargetItem.classList.add("hidden");
+          investedAmountItem.classList.remove("hidden");
+          growthPercentageItem.classList.remove("hidden");
+          totalValueItem.classList.remove("hidden"); // Always show total value in lumpsum mode
+
+          document.getElementById("totalInvestment").textContent =
+            formatCurrency(investment);
+          document.getElementById("growthPercentage").textContent =
+            growth.toFixed(1) + "%";
+
+          // Update chart data: invested amount vs estimated returns
+          chart.data.datasets[0].data = [investment, returns];
+          chart.data.labels = ["Invested amount", "Est. returns"];
+        }
+
+        chart.update("active");
+
+        // Store raw values for sharing
+        lastCalculatedInvestment = investment;
+        lastCalculatedReturns = returns;
+        lastCalculatedTotal = total;
+        lastCalculatedGrowthPercentage = growth;
+        lastCalculatedRequiredLumpsum = requiredLumpsum;
+        lastCalculatedInflationAdjustedTarget = inflationAdjustedTarget;
+      }
+
       // Calculate required Lumpsum (Target Mode)
       function calculateRequiredLumpsumInvestment() {
         const targetAmount = parseIndianFormattedNumber(
@@ -620,50 +720,41 @@
         const expectedInflation = inflationEnabled
           ? parseFloat(document.getElementById("inflationInput").value)
           : 0;
-
         lastExpectedInflation = expectedInflation; // Store for sharing
 
-        let adjustedTargetAmount = targetAmount;
+        let inflationAdjustedTarget = targetAmount;
         // Adjust target amount for inflation if toggle is on
         if (inflationEnabled) {
           const inflationRatePerPeriod = expectedInflation / 100;
           // Corrected: Target amount needs to be higher to maintain purchasing power
-          adjustedTargetAmount =
+          inflationAdjustedTarget =
             targetAmount * Math.pow(1 + inflationRatePerPeriod, years);
         }
 
         let requiredLumpsum = 0;
         if (annualReturn === 0) {
-          requiredLumpsum = adjustedTargetAmount;
+          requiredLumpsum = inflationAdjustedTarget;
         } else {
           requiredLumpsum =
-            adjustedTargetAmount / Math.pow(1 + annualReturn / 100, years);
+            inflationAdjustedTarget / Math.pow(1 + annualReturn / 100, years);
         }
-        // Store values for display and sharing
-        lastCalculatedRequiredLumpsum = requiredLumpsum;
-        lastTargetAmount = targetAmount;
-        lastTimePeriod = years;
-        // Update display
-        document.getElementById("requiredLumpsum").textContent =
-          formatCurrency(requiredLumpsum);
-        document.getElementById("targetAmountDisplay").textContent =
-          formatCurrency(targetAmount);
-        document.getElementById("timePeriodDisplay").textContent =
-          years + " Years";
-        document.getElementById("totalValueCenter").textContent =
-          formatCurrency(targetAmount);
-        // Update chart data - show required investment vs expected growth to reach target
-        const expectedGrowth = targetAmount - requiredLumpsum;
-        chart.data.datasets[0].data = [requiredLumpsum, expectedGrowth];
-        chart.data.labels = ["Required Investment", "Expected Growth"];
-        chart.update("active");
-        // Store additional values for sharing
-        lastCalculatedInvestment = requiredLumpsum;
-        lastCalculatedReturns = expectedGrowth;
-        lastCalculatedTotal = targetAmount;
-        lastCalculatedGrowthPercentage =
-          requiredLumpsum > 0 ? (expectedGrowth / requiredLumpsum) * 100 : 0;
+
+        // For chart and other results, calculate what this required Lumpsum would yield
+        const futureValueFromRequiredLumpsum =
+          requiredLumpsum * Math.pow(1 + annualReturn / 100, years);
+        const expectedGrowth = futureValueFromRequiredLumpsum - requiredLumpsum;
+
+        // Update display using the new updateResults function
+        updateResults(
+          requiredLumpsum, // This is the 'investment' for chart purposes in target mode
+          expectedGrowth, // This is the 'returns' for chart purposes in target mode
+          inflationAdjustedTarget, // Total value is the inflation adjusted target
+          0, // Growth percentage is not shown in target mode
+          inflationAdjustedTarget, // Pass inflation adjusted target
+          requiredLumpsum // Pass required lumpsum
+        );
       }
+
       // Calculate Lumpsum (Lumpsum Investment Mode)
       function calculateLumpsumInvestment() {
         const lumpsumInvestment = parseIndianFormattedNumber(
@@ -673,55 +764,47 @@
           document.getElementById("returnInput").value
         );
         const years = parseInt(document.getElementById("timeInput").value);
+
         const futureValue =
           lumpsumInvestment * Math.pow(1 + annualReturn / 100, years);
         const totalInvestment = lumpsumInvestment;
         const expectedReturns = futureValue - totalInvestment;
         const growthPercentage =
           totalInvestment > 0 ? (expectedReturns / totalInvestment) * 100 : 0;
-        // Update display
-        document.getElementById("totalInvestment").textContent =
-          formatCurrency(totalInvestment);
-        document.getElementById("expectedGrowth").textContent =
-          formatCurrency(expectedReturns);
-        document.getElementById("totalValue").textContent =
-          formatCurrency(futureValue);
-        document.getElementById("totalValueCenter").textContent =
-          formatCurrency(futureValue);
-        document.getElementById("growthPercentage").textContent =
-          growthPercentage.toFixed(1) + "%";
-        // Store raw values for sharing
-        lastCalculatedInvestment = totalInvestment;
-        lastCalculatedReturns = expectedReturns;
-        lastCalculatedTotal = futureValue;
-        lastCalculatedGrowthPercentage = growthPercentage;
-        // Update chart data and trigger animation
-        chart.data.datasets[0].data = [totalInvestment, expectedReturns];
-        chart.data.labels = ["Invested amount", "Est. returns"];
-        chart.update("active");
+
+        // Update display using the new updateResults function
+        updateResults(
+          totalInvestment,
+          expectedReturns,
+          futureValue,
+          growthPercentage,
+          0, // No inflation adjusted target in lumpsum mode
+          0 // No required lumpsum in lumpsum mode
+        );
       }
+
       // Toggle between modes (Lumpsum vs Target)
       function toggleMode(targetMode) {
         isTargetMode = targetMode;
         const lumpsumBtn = document.getElementById("lumpsumModeBtn");
         const targetBtn = document.getElementById("targetModeBtn");
-        const targetModeResults = document.getElementById("targetModeResults");
-        const lumpsumModeResults =
-          document.getElementById("lumpsumModeResults");
+
         const inflationToggleSection = document.getElementById(
           "inflationToggleSection"
         );
         const inflationToggle = document.getElementById("inflationToggle");
         const inflationControls = document.getElementById("inflationControls");
+
         const amountLabel = document.getElementById("amountLabel");
         const amountInput = document.getElementById("amountInput");
         const amountSlider = document.getElementById("amountSlider");
         const amountMinSpan = amountSlider.nextElementSibling.children[0];
         const amountMaxSpan = amountSlider.nextElementSibling.children[1];
+
         const legendLabel1 = document.getElementById("legendLabel1");
         const legendLabel2 = document.getElementById("legendLabel2");
 
-        // Reset inflation toggle and controls when switching modes
+        // Reset inflation toggle and hide controls when switching modes
         inflationToggle.checked = false;
         inflationControls.classList.add(
           "hidden",
@@ -735,11 +818,10 @@
           targetBtn.classList.remove("text-gray-600", "hover:bg-gray-200");
           lumpsumBtn.classList.remove("bg-white", "text-gray-800", "shadow-sm");
           lumpsumBtn.classList.add("text-gray-600", "hover:bg-gray-200");
-          // Show/Hide appropriate result sections
-          targetModeResults.classList.remove("hidden");
-          lumpsumModeResults.classList.add("hidden");
+
           // Show inflation controls toggle
           inflationToggleSection.classList.remove("hidden");
+
           // Update input controls
           amountLabel.textContent = "Target Amount";
           amountInput.value = formatNumberWithIndianCommas(1000000); // Default target 10L
@@ -750,9 +832,11 @@
           amountSlider.max = "10000000";
           amountMinSpan.textContent = "₹1L";
           amountMaxSpan.textContent = "₹1Cr";
-          // Update legend labels
+
+          // Update legend labels for chart
           legendLabel1.textContent = "Required Investment";
           legendLabel2.textContent = "Expected Growth";
+
           calculateRequiredLumpsumInvestment();
         } else {
           // Switch to Lumpsum Mode
@@ -760,12 +844,11 @@
           lumpsumBtn.classList.remove("text-gray-600", "hover:bg-gray-200");
           targetBtn.classList.remove("bg-white", "text-gray-800", "shadow-sm");
           targetBtn.classList.add("text-gray-600", "hover:bg-gray-200");
-          // Show/Hide appropriate result sections
-          lumpsumModeResults.classList.remove("hidden");
-          targetModeResults.classList.add("hidden");
+
           // Hide inflation controls
           inflationToggleSection.classList.add("hidden");
           inflationControls.classList.add("hidden"); // Ensure inflation input is hidden
+
           // Update input controls
           amountLabel.textContent = "Lumpsum Investment";
           amountInput.value = formatNumberWithIndianCommas(1000000); // Default lumpsum 10L
@@ -776,9 +859,11 @@
           amountSlider.max = "100000000";
           amountMinSpan.textContent = "₹10K";
           amountMaxSpan.textContent = "₹10Cr";
-          // Update legend labels
+
+          // Update legend labels for chart
           legendLabel1.textContent = "Invested amount";
           legendLabel2.textContent = "Est. returns";
+
           calculateLumpsumInvestment();
         }
       }
@@ -786,41 +871,59 @@
       function sendEmailPlan() {
         const subject = encodeURIComponent("My Lumpsum Calculator Plan");
         let body = `Hello,\n\nHere is my Lumpsum calculation plan:\n\n`;
-        if (isTargetMode) {
-          body += `Mode: Target Amount\n`;
-          body += `Target Amount: ${formatCurrency(lastTargetAmount)}\n`;
-          body += `Time Period: ${lastTimePeriod} Years\n`;
-          const inflationEnabled =
-            document.getElementById("inflationToggle").checked;
-          if (inflationEnabled) {
-            body += `Expected Inflation: ${lastExpectedInflation.toFixed(
-              1
-            )}%\n`;
-          } else {
-            body += `Expected Inflation: Not considered\n`;
-          }
-          body += `Required Lumpsum Investment: ${formatCurrency(
-            lastCalculatedRequiredLumpsum
-          )}\n\n`;
-        } else {
-          body += `Mode: Lumpsum Investment\n`;
-          body += `Lumpsum Investment: ${formatCurrency(
-            lastCalculatedInvestment
-          )}\n`;
-          body += `Total Value: ${formatCurrency(lastCalculatedTotal)}\n`;
-          body += `Expected Returns: ${formatCurrency(
-            lastCalculatedReturns
-          )}\n`;
-          body += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(
-            1
-          )}%\n\n`;
-        }
+
         body += `Expected Return Rate: ${
           document.getElementById("returnInput").value
         }%\n`;
         body += `Time Period: ${
           document.getElementById("timeInput").value
         } Years\n\n`;
+
+        body += `--- Results ---\n`;
+
+        if (isTargetMode) {
+          body += `Mode: Target Amount\n`;
+          body += `Target Amount: ${formatCurrency(
+            parseIndianFormattedNumber(
+              document.getElementById("amountInput").value
+            )
+          )}\n`;
+          const inflationEnabled =
+            document.getElementById("inflationToggle").checked;
+          if (inflationEnabled) {
+            body += `Expected Inflation: ${lastExpectedInflation.toFixed(
+              1
+            )}%\n`;
+            body += `Target amount (inflation adjusted): ${formatCurrency(
+              lastCalculatedInflationAdjustedTarget
+            )}\n`;
+          } else {
+            body += `Expected Inflation: Not considered\n`;
+          }
+          body += `Est. Lump sum amount invested: ${formatCurrency(
+            lastCalculatedRequiredLumpsum
+          )}\n`;
+          body += `Estimated returns: ${formatCurrency(
+            lastCalculatedReturns
+          )}\n`; // This is the growth to reach target
+          if (!inflationEnabled) {
+            // Only include total value if inflation is NOT enabled
+            body += `Total value: ${formatCurrency(lastCalculatedTotal)}\n\n`; // This is the target amount
+          }
+        } else {
+          body += `Mode: Lumpsum Investment\n`;
+          body += `Lumpsum Investment: ${formatCurrency(
+            lastCalculatedInvestment
+          )}\n`;
+          body += `Estimated returns: ${formatCurrency(
+            lastCalculatedReturns
+          )}\n`;
+          body += `Total value: ${formatCurrency(lastCalculatedTotal)}\n`;
+          body += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(
+            1
+          )}%\n\n`;
+        }
+
         body += `Calculated using Chimulkar Financial Services Calculators.\n\n`;
         window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
           body
@@ -829,42 +932,62 @@
       // Function to generate WhatsApp message and open WhatsApp
       function sendWhatsAppPlan() {
         let message = `My Lumpsum Calculation Plan:\n\n`;
-        if (isTargetMode) {
-          message += `Mode: Target Amount\n`;
-          message += `Target Amount: ${formatCurrency(lastTargetAmount)}\n`;
-          message += `Time Period: ${lastTimePeriod} Years\n`;
-          const inflationEnabled =
-            document.getElementById("inflationToggle").checked;
-          if (inflationEnabled) {
-            message += `Expected Inflation: ${lastExpectedInflation.toFixed(
-              1
-            )}%\n`;
-          } else {
-            message += `Expected Inflation: Not considered\n`;
-          }
-          message += `Required Lumpsum Investment: ${formatCurrency(
-            lastCalculatedRequiredLumpsum
-          )}\n\n`;
-        } else {
-          message += `Mode: Lumpsum Investment\n`;
-          message += `Lumpsum Investment: ${formatCurrency(
-            lastCalculatedInvestment
-          )}\n`;
-          message += `Total Value: ${formatCurrency(lastCalculatedTotal)}\n`;
-          message += `Expected Returns: ${formatCurrency(
-            lastCalculatedReturns
-          )}\n`;
-          message += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(
-            1
-          )}%\n\n`;
-        }
+
         message += `Expected Return Rate: ${
           document.getElementById("returnInput").value
         }%\n`;
         message += `Time Period: ${
           document.getElementById("timeInput").value
         } Years\n\n`;
-        message += `Calculated using Chimulkar Financial Services Calculator.\n\n`;
+
+        message += `--- Results ---\n`;
+
+        if (isTargetMode) {
+          message += `Mode: Target Amount\n`;
+          message += `Target Amount: ${formatCurrency(
+            parseIndianFormattedNumber(
+              document.getElementById("amountInput").value
+            )
+          )}\n`;
+          const inflationEnabled =
+            document.getElementById("inflationToggle").checked;
+          if (inflationEnabled) {
+            message += `Expected Inflation: ${lastExpectedInflation.toFixed(
+              1
+            )}%\n`;
+            message += `Target amount (inflation adjusted): ${formatCurrency(
+              lastCalculatedInflationAdjustedTarget
+            )}\n`;
+          } else {
+            message += `Expected Inflation: Not considered\n`;
+          }
+          message += `Est. Lump sum amount invested: ${formatCurrency(
+            lastCalculatedRequiredLumpsum
+          )}\n`;
+          message += `Estimated returns: ${formatCurrency(
+            lastCalculatedReturns
+          )}\n`; // This is the growth to reach target
+          if (!inflationEnabled) {
+            // Only include total value if inflation is NOT enabled
+            message += `Total value: ${formatCurrency(
+              lastCalculatedTotal
+            )}\n\n`; // This is the target amount
+          }
+        } else {
+          message += `Mode: Lumpsum Investment\n`;
+          message += `Lumpsum Investment: ${formatCurrency(
+            lastCalculatedInvestment
+          )}\n`;
+          message += `Estimated returns: ${formatCurrency(
+            lastCalculatedReturns
+          )}\n`;
+          message += `Total value: ${formatCurrency(lastCalculatedTotal)}\n`;
+          message += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(
+            1
+          )}%\n\n`;
+        }
+
+        message += `Calculated using Chimulkar Financial Services Calculator.`;
         window.open(
           `https://wa.me/?text=${encodeURIComponent(message)}`,
           "_blank"
