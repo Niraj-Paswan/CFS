@@ -144,10 +144,10 @@
     </style>
   </head>
   <body
-    class="bg-[#fcaf1b]/10 flex flex-col items-center justify-center min-h-screen"
+    class="bg-gray-100 flex flex-col items-center justify-center min-h-screen"
   >
     <section
-      class="max-w-6xl w-full flex justify-center items-center text-center flex-col p-4 mt-16"
+      class="max-w-6xl w-full flex justify-center items-center text-center flex-col p-2 mt-16"
     >
       <div
         class="max-w-6xl w-full flex justify-center items-center text-center flex-col"
@@ -299,6 +299,92 @@
                   </div>
                 </div>
               </div>
+              <!-- Trigger Text -->
+              <h1
+                id="openDisclaimer"
+                class="text-sm text-blue-600 hover:underline hover:cursor-pointer text-start"
+              >
+                View Disclaimer
+              </h1>
+
+              <!-- Modal -->
+              <div
+                id="disclaimerModal"
+                class="fixed inset-0 p-4 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300"
+              >
+                <div
+                  class="bg-white rounded-2xl shadow-lg max-w-4xl w-full p-8 relative transform transition-transform duration-300 scale-95"
+                  id="modalContent"
+                >
+                  <!-- Close Button -->
+                  <button
+                    id="closeDisclaimer"
+                    class="absolute top-3 right-3 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200 group"
+                  >
+                    <i
+                      data-lucide="x"
+                      class="text-gray-600 w-4 h-4 group-hover:rotate-90 transition-transform duration-300"
+                    ></i>
+                  </button>
+
+                  <!-- Title -->
+                  <h2 class="text-lg font-semibold mb-4 text-blue-700">
+                    Disclaimer ⚠️
+                  </h2>
+
+                  <!-- Content -->
+                  <p class="text-sm text-gray-700 leading-relaxed text-start">
+                    These Calculators alone are not sufficient and shouldn't be
+                    used for development or implementation of an investment
+                    strategy. The examples do not purport to represent the
+                    performance of any security or investments. The recipient is
+                    advised to consult his or her advisor/tax consultant prior
+                    to arriving at any investment decision. Mutual Funds do not
+                    have a fixed rate of return and it is not possible to
+                    predict the rate of return. Past performance may or may not
+                    be sustained in future and is not a guarantee of any future
+                    returns. Mutual Fund Investments are subject to market
+                    risks, read all scheme related documents carefully.
+                  </p>
+                </div>
+              </div>
+
+              <script>
+                const openBtn = document.getElementById("openDisclaimer");
+                const closeBtn = document.getElementById("closeDisclaimer");
+                const modal = document.getElementById("disclaimerModal");
+                const modalContent = document.getElementById("modalContent");
+
+                openBtn.addEventListener("click", () => {
+                  modal.classList.remove("hidden");
+                  setTimeout(() => {
+                    modal.classList.add("opacity-100");
+                    modalContent.classList.remove("scale-95");
+                    modalContent.classList.add("scale-100");
+                  }, 10);
+                });
+
+                const closeModal = () => {
+                  modalContent.classList.remove("scale-100");
+                  modalContent.classList.add("scale-95");
+                  modal.classList.remove("opacity-100");
+                  setTimeout(() => {
+                    modal.classList.add("hidden");
+                  }, 300);
+                };
+
+                closeBtn.addEventListener("click", closeModal);
+
+                modal.addEventListener("click", (e) => {
+                  if (e.target === modal) closeModal();
+                });
+              </script>
+
+              <!-- Lucide Icons -->
+              <script src="https://unpkg.com/lucide@latest"></script>
+              <script>
+                lucide.createIcons();
+              </script>
             </div>
 
             <!-- Right Side - Charts and Results -->
@@ -629,9 +715,9 @@
               </a>
               <a
                 href="../calculators/swp-calculator.html"
-                class="flex items-center gap-3 px-4 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-b-lg cursor-pointer"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-[#fcaf1b] hover:text-white cursor-pointer"
               >
-                <i data-lucide="activity" class="w-4 h-4"></i> SPW Calculator
+                <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
               </a>
               <a
                 href="../calculators/inflation-calculator.html"
@@ -830,11 +916,11 @@
               href="../calculators/swp-calculator.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white cursor-pointer rounded-lg"
             >
-              <i data-lucide="activity" class="w-4 h-4"></i> SPW Calculator
+              <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
             </a>
             <a
               href="../calculators/inflation-calculator.html"
-              class="flex items-center gap-3 px-4 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-b-lg cursor-pointer"
+              class="flex items-center gap-3 px-4 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-lg cursor-pointer"
             >
               <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
               Calculator
@@ -906,6 +992,524 @@
       </div>
     </div>
 
+    <section
+      class="w-full mx-auto max-w-[1110px] mt-8 p-5 lg:p-0 text-sm lg:text-base"
+    >
+      <h2 class="text-lg font-semibold mb-2">
+        About the Future Value / Inflation Calculator
+      </h2>
+
+      <p class="mb-4">
+        This Future Value / Inflation Impact Calculator will help you in
+        understanding how inflation affects your money and how much you'll need
+        to save for tomorrow's goals. While your savings may grow, so do prices.
+        This calculator helps you see the future cost of your financial goals by
+        factoring in inflation, so you can set smarter, more realistic financial
+        targets.
+      </p>
+
+      <h3 class="text-lg font-semibold mb-2">How to Use This Calculator</h3>
+      <ul class="list-disc ml-6 mb-4 space-y-1 text-black">
+        <li>
+          <span class="font-semibold">Present Amount:</span> Enter the current
+          value of the financial goal or expense you want to calculate (e.g.,
+          the cost of a car or your child's education today).
+        </li>
+        <li>
+          <span class="font-semibold">Expected Inflation Rate:</span> Input the
+          average annual inflation rate you anticipate (e.g., 6%).
+        </li>
+        <li>
+          <span class="font-semibold">Time Period:</span> Specify the number of
+          years until you need to reach this goal.
+        </li>
+        <li>
+          The calculator will show you the estimated future cost of that goal,
+          giving you a clear target to aim for.
+        </li>
+      </ul>
+
+      <h3 class="text-lg font-semibold mb-2">Formula Used in the Calculator</h3>
+      <p class="mb-4">
+        Our calculator uses standard financial formulas to provide accurate
+        projections.
+      </p>
+
+      <p class="font-semibold mb-1">For Future Value with Inflation Mode:</p>
+      <p class="mb-4">
+        The future value (FV) is calculated using the compound interest formula:
+      </p>
+
+      <pre
+        class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4"
+      ><code>
+FV = P × (1 + i)<sup>t</sup>
+
+Where:
+FV = Future Value
+P = Present Amount
+i = Expected Inflation Rate
+t = Time Period in years
+  </code></pre>
+
+      <h3 class="text-lg font-semibold mb-2">
+        Case Study: Future Value with Inflation
+      </h3>
+      <div class="text-sm lg:text-base text-black leading-relaxed space-y-4">
+        <p>
+          Manish, 23, who’s just started his first job wants to buy a car that
+          costs <span class="font-semibold">₹10 lakhs</span> today. He plans to
+          buy it in 5 years, around the time he gets married and expects the
+          average inflation rate for cars to be
+          <span class="font-semibold">6% per year</span>.
+        </p>
+        <ul class="list-disc ml-6 space-y-1">
+          <li><span class="font-semibold">Present Amount:</span> ₹10,00,000</li>
+          <li>
+            <span class="font-semibold">Expected Inflation Rate:</span> 6%
+          </li>
+          <li><span class="font-semibold">Time Period:</span> 5 years</li>
+        </ul>
+        <p>
+          According to our calculator, the car that costs ₹10 lakhs today will
+          cost approximately <span class="font-semibold">₹13.38 lakhs</span> in
+          5 years i.e. an increase of approximately 34%. This calculation gives
+          him a realistic financial target to plan for.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="mb-2 bg-transparent p-5 max-w-[1150px] mx-auto">
+      <div class="text-start mb-8">
+        <h2 class="text-base font-semibold leading-tight text-black">
+          Top 10 Commonly Asked Questions
+        </h2>
+      </div>
+
+      <div
+        class="bg-white text-black border border-gray-300 rounded-2xl shadow-sm divide-y divide-gray-200"
+      >
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4"
+              >What is inflation?</span
+            >
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Inflation is the rate at which the general price of goods and
+              services is rising, and a currency's purchasing power is falling.
+              It means the same amount of money buys less in the future than it
+              does today.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Why is it important to consider inflation in financial planning?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Ignoring inflation can lead to a significant shortfall in your
+              savings. By factoring in inflation, you ensure that your financial
+              goals are realistic and that you're saving enough to have the same
+              purchasing power in the future.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How is inflation measured?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Inflation is typically measured using a price index, most commonly
+              the Consumer Price Index (CPI). The CPI tracks the average change
+              in prices over time for a "basket" of goods and services that a
+              typical household buys, such as food, housing, and transportation.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What are the effects of inflation?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              The main effect of inflation is the erosion of purchasing power,
+              meaning your money buys less over time. It also reduces the real
+              value of savings, but can be beneficial for borrowers as it
+              devalues the real cost of their debt.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How can I use an inflation calculator for financial planning?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              An inflation calculator helps you determine the future cost of a
+              goal, such as a car or a house. By factoring in inflation, you can
+              set a more realistic savings target today and ensure your
+              investments are growing fast enough to maintain their purchasing
+              power.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4"
+              >What are the types of inflation?</span
+            >
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              The main types are Demand-Pull (caused by high consumer demand)
+              and Cost-Push (caused by rising production costs). Other notable
+              types include Hyperinflation, which is an extremely rapid and
+              out-of-control price increase, and Stagflation, a rare combination
+              of high inflation and stagnant economic growth.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How can I find the actual rate of inflation in India?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              The official inflation rate for India is released monthly by the
+              National Statistical Office (NSO). This is the Consumer Price
+              Index (CPI) data, which is widely reported by financial news
+              sources and the Reserve Bank of India (RBI).
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 8 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What is a reasonable expected inflation rate to use?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              The inflation rate varies based on the economy and the specific
+              goods you're planning for. For general purposes, a rate of 5-7% is
+              often used in long-term financial planning. You can research
+              historical inflation data or get a personalized estimate from a
+              financial advisor.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 9 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4"
+              >What is zero inflation?</span
+            >
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Zero inflation is an economic situation where the inflation rate
+              is exactly 0%. This means that the general price level of goods
+              and services is stable and not changing over a period of time.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 10 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4"
+              >What is deflation?</span
+            >
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Deflation is the opposite of inflation—a sustained decrease in the
+              general price level of goods and services. This means that your
+              money's purchasing power increases over time. While falling prices
+              may sound good, widespread deflation can be harmful to an economy
+              as it can lead to reduced consumer spending, lower wages, and
+              increased unemployment.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        const btn = item.querySelector(".faq-question");
+        const answer = item.querySelector(".faq-answer");
+        const icon = item.querySelector(".faq-icon");
+
+        btn.addEventListener("click", () => {
+          const isOpen = btn.getAttribute("aria-expanded") === "true";
+
+          // Close all other answers (optional, for accordion style)
+          document.querySelectorAll(".faq-item").forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.querySelector(".faq-answer").style.maxHeight = null;
+              otherItem
+                .querySelector(".faq-question")
+                .setAttribute("aria-expanded", "false");
+              otherItem
+                .querySelector(".faq-icon")
+                .classList.remove("rotate-45");
+            }
+          });
+
+          if (isOpen) {
+            answer.style.maxHeight = null;
+            btn.setAttribute("aria-expanded", "false");
+            icon.classList.remove("rotate-45");
+          } else {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+            btn.setAttribute("aria-expanded", "true");
+            icon.classList.add("rotate-45");
+          }
+        });
+      });
+    </script>
+
+    <section class="py-10 px-5 max-w-8xl mx-auto text-center">
+      <h2 class="text-xl font-semibold mb-8 text-black">
+        Explore More Popular Calculators
+      </h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-6">
+        <a
+          href="./sip-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black pl-5 pr-3 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="calculator"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          SIP Calculator
+        </a>
+
+        <a
+          href="./swp-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black pl-5 pr-3 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="activity"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          SWP Calculator
+        </a>
+        <a
+          href="./lump-sump-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black pl-5 pr-4 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="percent"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          Lump Sump Calculator
+        </a>
+      </div>
+    </section>
     <!-- FOOTER SECTION - Company information and links -->
     <!-- =================================================================== -->
     <footer class="w-full bg-white border-t border-gray-200 mt-8">
