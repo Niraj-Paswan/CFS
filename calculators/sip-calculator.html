@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Include html2canvas library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
@@ -150,7 +151,7 @@
     </style>
   </head>
   <body
-    class="bg-[#fcaf1b]/10 flex items-center justify-center min-h-screen flex-col"
+    class="bg-gray-100 flex items-center justify-center min-h-screen flex-col"
   >
     <div
       class="max-w-6xl w-full flex justify-center items-center text-center flex-col mt-16 p-4"
@@ -380,6 +381,93 @@
                 </div>
               </div>
             </div>
+
+            <!-- Trigger Text -->
+            <h1
+              id="openDisclaimer"
+              class="text-sm text-blue-600 hover:underline hover:cursor-pointer text-start"
+            >
+              View Disclaimer
+            </h1>
+
+            <!-- Modal -->
+            <div
+              id="disclaimerModal"
+              class="fixed inset-0 p-4 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300"
+            >
+              <div
+                class="bg-white rounded-2xl shadow-lg max-w-4xl w-full p-8 relative transform transition-transform duration-300 scale-95"
+                id="modalContent"
+              >
+                <!-- Close Button -->
+                <button
+                  id="closeDisclaimer"
+                  class="absolute top-3 right-3 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200 group"
+                >
+                  <i
+                    data-lucide="x"
+                    class="text-gray-600 w-4 h-4 group-hover:rotate-90 transition-transform duration-300"
+                  ></i>
+                </button>
+
+                <!-- Title -->
+                <h2 class="text-lg font-semibold mb-4 text-blue-700">
+                  Disclaimer ⚠️
+                </h2>
+
+                <!-- Content -->
+                <p class="text-sm text-gray-700 leading-relaxed text-start">
+                  These Calculators alone are not sufficient and shouldn't be
+                  used for development or implementation of an investment
+                  strategy. The examples do not purport to represent the
+                  performance of any security or investments. The recipient is
+                  advised to consult his or her advisor/tax consultant prior to
+                  arriving at any investment decision. Mutual Funds do not have
+                  a fixed rate of return and it is not possible to predict the
+                  rate of return. Past performance may or may not be sustained
+                  in future and is not a guarantee of any future returns. Mutual
+                  Fund Investments are subject to market risks, read all scheme
+                  related documents carefully.
+                </p>
+              </div>
+            </div>
+
+            <script>
+              const openBtn = document.getElementById("openDisclaimer");
+              const closeBtn = document.getElementById("closeDisclaimer");
+              const modal = document.getElementById("disclaimerModal");
+              const modalContent = document.getElementById("modalContent");
+
+              openBtn.addEventListener("click", () => {
+                modal.classList.remove("hidden");
+                setTimeout(() => {
+                  modal.classList.add("opacity-100");
+                  modalContent.classList.remove("scale-95");
+                  modalContent.classList.add("scale-100");
+                }, 10);
+              });
+
+              const closeModal = () => {
+                modalContent.classList.remove("scale-100");
+                modalContent.classList.add("scale-95");
+                modal.classList.remove("opacity-100");
+                setTimeout(() => {
+                  modal.classList.add("hidden");
+                }, 300);
+              };
+
+              closeBtn.addEventListener("click", closeModal);
+
+              modal.addEventListener("click", (e) => {
+                if (e.target === modal) closeModal();
+              });
+            </script>
+
+            <!-- Lucide Icons -->
+            <script src="https://unpkg.com/lucide@latest"></script>
+            <script>
+              lucide.createIcons();
+            </script>
           </div>
           <!-- Right Side - Results and Chart -->
           <div class="space-y-8">
@@ -694,7 +782,7 @@
                 href="../calculators/swp-calculator.html"
                 class="flex items-center gap-3 px-4 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-b-lg cursor-pointer"
               >
-                <i data-lucide="activity" class="w-4 h-4"></i> SPW Calculator
+                <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
               </a>
               <a
                 href="../calculators/inflation-calculator.html"
@@ -893,7 +981,7 @@
               href="../calculators/swp-calculator.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white cursor-pointer rounded-lg"
             >
-              <i data-lucide="activity" class="w-4 h-4"></i> SPW Calculator
+              <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
             </a>
             <a
               href="../calculators/inflation-calculator.html"
@@ -968,6 +1056,600 @@
         </a>
       </div>
     </div>
+
+    <section
+      class="w-full mx-auto max-w-[1110px] mt-8 p-5 lg:p-0 text-sm lg:text-base"
+    >
+      <h2 class="text-lg font-semibold mb-2">About the SIP Calculator</h2>
+
+      <p class="mb-4">
+        This SIP calculator is your essential tool for smart and systematic
+        investing. Whether you're a seasoned investor or just starting out, this
+        calculator helps you visualize financial goals based on systematic
+        monthly investments. A Systematic Investment Plan (SIP) lets you invest
+        a fixed amount regularly, leveraging compounding to build wealth. Use
+        either mode to see how your monthly investments grow or to find the
+        exact monthly SIP to reach a goal.
+      </p>
+
+      <h3 class="text-lg font-semibold mb-2">How to Use This Calculator</h3>
+      <p class="mb-4">
+        The SIP Calculator by Chimulkar Financial Services is simple and
+        intuitive, with two modes to match your needs.
+      </p>
+
+      <p class="font-semibold mb-1">
+        Mode 1: Monthly Investment (to calculate your corpus)
+      </p>
+      <p class="mb-2">
+        This mode shows the future value of regular monthly investments.
+      </p>
+      <ul class="list-disc ml-6 mb-4 space-y-1">
+        <li>
+          <span class="font-semibold">Monthly Investment:</span> Enter the fixed
+          amount invested every month.
+        </li>
+        <li>
+          <span class="font-semibold">Expected Rate of Return:</span> Annual
+          return you expect (e.g., 12%).
+        </li>
+        <li>
+          <span class="font-semibold">Time Period:</span> Total years you plan
+          to invest.
+        </li>
+        <li>
+          <span class="font-semibold">Annual Step-up (optional):</span>
+          Percentage increase in SIP every year (e.g., 5%).
+        </li>
+      </ul>
+      <p class="mb-4">
+        After input, the calculator shows the estimated total corpus.
+      </p>
+
+      <p class="font-semibold mb-1">
+        Mode 2: Target Amount (to calculate your monthly SIP)
+      </p>
+      <p class="mb-2">
+        Use this if you have a specific goal (house down payment, education,
+        retirement).
+      </p>
+      <ul class="list-disc ml-6 mb-4 space-y-1">
+        <li>
+          <span class="font-semibold">Target Amount:</span> Total amount you
+          want to accumulate.
+        </li>
+        <li>
+          <span class="font-semibold">Expected Rate of Return:</span>
+          Anticipated annual return.
+        </li>
+        <li>
+          <span class="font-semibold">Time Period:</span> Years available to
+          reach the goal.
+        </li>
+        <li>
+          <span class="font-semibold">Impact of Inflation (optional):</span>
+          Enter expected annual inflation (e.g., 6%) to adjust the target.
+        </li>
+      </ul>
+      <p class="mb-4">
+        The calculator returns the monthly SIP required to hit your target.
+      </p>
+
+      <h3 class="text-lg font-semibold mb-2">Formulas Used</h3>
+      <p class="mb-4">
+        The calculator uses standard financial formulas. Below are the common,
+        widely used forms:
+      </p>
+
+      <p class="font-semibold mb-1">For Monthly Investment Mode:</p>
+      <p class="mb-4">
+        The final corpus (A) is calculated using the future value of an annuity
+        formula, modified to include the annual step-up.
+      </p>
+      <pre
+        class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4"
+      ><code>
+Without step-up: A=P×i((1+i)n−1)​×(1+i)
+With step-up: A=P×(1+g)×(1+i)−(1+g)(1+i)n−(1+g)n​
+
+Where:
+A = Final Corpus Amount
+P = Monthly Investment Amount
+i = Periodic Rate of Return (Annual Rate / 12)
+n = Total Number of Installments (Time Period in years * 12)
+g = Annual Step-up Percentage
+  </code></pre>
+
+      <p class="font-semibold mb-1">For Target Amount Mode:</p>
+      <p class="mb-4">
+        The required monthly SIP amount (P) is calculated by rearranging the
+        future value formula:
+      </p>
+
+      <pre
+        class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4"
+      ><code>
+P=A/i((1+i)n−1)​×(1+i)
+
+Where the target amount (A) is also adjusted for inflation, if that option is used:
+Inflation-adjusted Target Amount = Target Amount ×(1+inflation rate)time period
+  </code></pre>
+
+      <div class="text-sm lg:text-base text-black leading-relaxed space-y-6">
+        <p>
+          <span class="font-semibold">Case 1: Monthly Investment</span><br />
+          Rohan, aged 25, wants to start investing for his retirement. He wants
+          to calculate the corpus he can build if he invests
+          <span class="font-semibold">₹5,000 every month</span>. He expects an
+          <span class="font-semibold">annual return of 12%</span> and plans to
+          invest for <span class="font-semibold">30 years</span>. To account for
+          his rising income, he opts for a
+          <span class="font-semibold">10% annual step-up</span> on his SIP.
+          <br /><br />
+          <span class="font-semibold">Monthly Investment:</span> ₹5,000<br />
+          <span class="font-semibold">Expected Rate of Return:</span> 12%<br />
+          <span class="font-semibold">Time Period:</span> 30 years<br />
+          <span class="font-semibold">Annual Step-up:</span> 10%<br /><br />
+          According to our calculator, after 30 years, Rohan would have invested
+          a total of
+          <span class="font-semibold">₹98.70 lakhs</span>, which could grow to
+          an estimated <span class="font-semibold">₹4.42 Crores</span> by the
+          time Rohan turns 55. This example shows how a disciplined, stepped-up
+          investment can create significant wealth.
+        </p>
+
+        <p>
+          <span class="font-semibold">Case 2: Target Amount</span><br />
+          Priya and Sameer want to save for their newborn daughter's university
+          education, which is
+          <span class="font-semibold">18 years</span> away. They estimate the
+          total cost is <span class="font-semibold">₹50 lakhs today</span>. They
+          expect an <span class="font-semibold">annual return of 12%</span>.
+          They also account for a
+          <span class="font-semibold">6% annual inflation rate</span>.
+          <br /><br />
+          <span class="font-semibold">Target Amount:</span> ₹50,00,000<br />
+          <span class="font-semibold">Expected Rate of Return:</span> 12%<br />
+          <span class="font-semibold">Time Period:</span> 18 years<br />
+          <span class="font-semibold">Impact of Inflation:</span> 6%<br /><br />
+          The calculator adjusts the target amount for inflation. The future
+          value of ₹50 lakhs after 18 years at 6% inflation would be
+          approximately
+          <span class="font-semibold">₹1.43 Crores</span>.<br />
+          To reach this goal, Priya would need to start a monthly SIP of
+          <span class="font-semibold">₹18,832</span>. This helps them set a
+          realistic and achievable savings goal today.
+        </p>
+      </div>
+    </section>
+    <!-- FAQ Section -->
+    <section id="faq" class="mb-2 bg-transparent p-5 max-w-[1150px] mx-auto">
+      <div class="text-start mb-8">
+        <h2 class="text-base font-semibold leading-tight text-black">
+          Top 10 Commonly Asked Questions
+        </h2>
+      </div>
+
+      <div
+        class="bg-white text-black border border-gray-300 rounded-2xl shadow-sm divide-y divide-gray-200"
+      >
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What is an SIP?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              An SIP, or Systematic Investment Plan, is a method of investing in
+              mutual funds where you invest a fixed amount of money at regular
+              intervals (usually monthly). It is similar to a recurring deposit
+              but for mutual funds, offering the benefits of compounding and
+              rupee cost averaging.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Are SIPs similar to mutual funds?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              SIP is a method of investing, while a mutual fund is the
+              investment product itself. You use an SIP to invest in a mutual
+              fund. Think of it this way: an SIP is the discipline, and a mutual
+              fund is the vehicle.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How much can I invest in an SIP?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              You can start an SIP with as little as ₹500 per month with most
+              mutual funds. There is generally no upper limit, allowing you to
+              invest any amount that fits your financial capacity.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Can I modify my SIP amount?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes, you could increase or decrease your SIP amount anytime as per
+              your need or financial situation.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Can I pause my investments in an SIP?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes, you can pause your SIP for a specific period. This is useful
+              if you are facing a temporary cash crunch. After the pause period,
+              the SIP will automatically resume.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What happens if I miss an SIP?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              If an SIP installment fails (e.g., due to insufficient funds in
+              your bank account), the fund house will not charge you a penalty.
+              However, your bank may charge you a fee for a failed transaction.
+              The SIP installment for that month will simply be skipped, and the
+              plan will continue as scheduled for the subsequent months.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What is the difference between this SIP calculator and a lump sum
+              calculator?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              A lump sum calculator calculates the growth of a single, one-time
+              investment. This SIP calculator, on the other hand, calculates the
+              growth of a series of regular investments over time, which is more
+              practical for most investors building wealth gradually.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 8 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Why is the "annual step-up" feature important?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              The annual step-up feature helps you account for an increase in
+              your earning potential over time. By increasing your SIP amount
+              each year, you can significantly accelerate your wealth creation
+              and reach your financial goals much faster.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 9 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How does the "impact of inflation" feature work?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              This feature adjusts your target amount to its future value,
+              considering the eroding effect of inflation. For example, if you
+              need ₹10 Lakh in 10 years and inflation is 5%, you will actually
+              need a much larger amount to have the same purchasing power. This
+              feature helps you set a more realistic and effective investment
+              goal.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 10 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Is the calculated return guaranteed?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              No. The calculated values are estimates based on your provided
+              inputs for the expected rate of return. Mutual fund investments
+              are subject to market risks, and the actual returns may vary. This
+              calculator is a planning tool and should not be considered a
+              guarantee of returns.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        const btn = item.querySelector(".faq-question");
+        const answer = item.querySelector(".faq-answer");
+        const icon = item.querySelector(".faq-icon");
+
+        btn.addEventListener("click", () => {
+          const isOpen = btn.getAttribute("aria-expanded") === "true";
+
+          // Close all other answers (optional, for accordion style)
+          document.querySelectorAll(".faq-item").forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.querySelector(".faq-answer").style.maxHeight = null;
+              otherItem
+                .querySelector(".faq-question")
+                .setAttribute("aria-expanded", "false");
+              otherItem
+                .querySelector(".faq-icon")
+                .classList.remove("rotate-45");
+            }
+          });
+
+          if (isOpen) {
+            answer.style.maxHeight = null;
+            btn.setAttribute("aria-expanded", "false");
+            icon.classList.remove("rotate-45");
+          } else {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+            btn.setAttribute("aria-expanded", "true");
+            icon.classList.add("rotate-45");
+          }
+        });
+      });
+    </script>
+
+    <section class="py-10 px-5 max-w-8xl mx-auto text-center">
+      <h2 class="text-xl font-semibold mb-8 text-black">
+        Explore More Popular Calculators
+      </h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-6">
+        <a
+          href="./lump-sump-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black px-5 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="percent"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          Lump Sump Calculator
+        </a>
+        <a
+          href="./swp-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black pl-5 pr-3 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="activity"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          SWP Calculator
+        </a>
+        <a
+          href="./inflation-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black pl-5 pr-3 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="trending-up"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          Inflation Calculator
+        </a>
+      </div>
+    </section>
 
     <!-- FOOTER SECTION - Company information and links -->
     <!-- =================================================================== -->
