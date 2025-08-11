@@ -150,7 +150,7 @@
     </style>
   </head>
   <body
-    class="bg-[#fcaf1b]/10 flex flex-col items-center justify-center min-h-screen"
+    class="bg-gray-100 flex flex-col items-center justify-center min-h-screen"
   >
     <section
       class="max-w-6xl w-full flex justify-center items-center text-center flex-col p-4 mt-16"
@@ -337,6 +337,92 @@
                   <span>15%</span>
                 </div>
               </div>
+              <!-- Trigger Text -->
+              <h1
+                id="openDisclaimer"
+                class="text-sm text-blue-600 hover:underline hover:cursor-pointer text-start"
+              >
+                View Disclaimer
+              </h1>
+
+              <!-- Modal -->
+              <div
+                id="disclaimerModal"
+                class="fixed inset-0 p-4 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300"
+              >
+                <div
+                  class="bg-white rounded-2xl shadow-lg max-w-4xl w-full p-8 relative transform transition-transform duration-300 scale-95"
+                  id="modalContent"
+                >
+                  <!-- Close Button -->
+                  <button
+                    id="closeDisclaimer"
+                    class="absolute top-3 right-3 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200 group"
+                  >
+                    <i
+                      data-lucide="x"
+                      class="text-gray-600 w-4 h-4 group-hover:rotate-90 transition-transform duration-300"
+                    ></i>
+                  </button>
+
+                  <!-- Title -->
+                  <h2 class="text-lg font-semibold mb-4 text-blue-700">
+                    Disclaimer ⚠️
+                  </h2>
+
+                  <!-- Content -->
+                  <p class="text-sm text-gray-700 leading-relaxed text-start">
+                    These Calculators alone are not sufficient and shouldn't be
+                    used for development or implementation of an investment
+                    strategy. The examples do not purport to represent the
+                    performance of any security or investments. The recipient is
+                    advised to consult his or her advisor/tax consultant prior
+                    to arriving at any investment decision. Mutual Funds do not
+                    have a fixed rate of return and it is not possible to
+                    predict the rate of return. Past performance may or may not
+                    be sustained in future and is not a guarantee of any future
+                    returns. Mutual Fund Investments are subject to market
+                    risks, read all scheme related documents carefully.
+                  </p>
+                </div>
+              </div>
+
+              <script>
+                const openBtn = document.getElementById("openDisclaimer");
+                const closeBtn = document.getElementById("closeDisclaimer");
+                const modal = document.getElementById("disclaimerModal");
+                const modalContent = document.getElementById("modalContent");
+
+                openBtn.addEventListener("click", () => {
+                  modal.classList.remove("hidden");
+                  setTimeout(() => {
+                    modal.classList.add("opacity-100");
+                    modalContent.classList.remove("scale-95");
+                    modalContent.classList.add("scale-100");
+                  }, 10);
+                });
+
+                const closeModal = () => {
+                  modalContent.classList.remove("scale-100");
+                  modalContent.classList.add("scale-95");
+                  modal.classList.remove("opacity-100");
+                  setTimeout(() => {
+                    modal.classList.add("hidden");
+                  }, 300);
+                };
+
+                closeBtn.addEventListener("click", closeModal);
+
+                modal.addEventListener("click", (e) => {
+                  if (e.target === modal) closeModal();
+                });
+              </script>
+
+              <!-- Lucide Icons -->
+              <script src="https://unpkg.com/lucide@latest"></script>
+              <script>
+                lucide.createIcons();
+              </script>
             </div>
             <!-- Right Side - Results and Chart -->
             <div class="space-y-8">
@@ -641,7 +727,7 @@
                 href="../calculators/swp-calculator.html"
                 class="flex items-center gap-3 px-4 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-b-lg cursor-pointer"
               >
-                <i data-lucide="activity" class="w-4 h-4"></i> SPW Calculator
+                <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
               </a>
               <a
                 href="../calculators/inflation-calculator.html"
@@ -840,7 +926,7 @@
               href="../calculators/swp-calculator.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white cursor-pointer rounded-lg"
             >
-              <i data-lucide="activity" class="w-4 h-4"></i> SPW Calculator
+              <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
             </a>
             <a
               href="../calculators/inflation-calculator.html"
@@ -915,6 +1001,607 @@
         </a>
       </div>
     </div>
+
+    <section
+      class="w-full mx-auto max-w-[1110px] mt-8 p-5 lg:p-0 text-sm lg:text-base"
+    >
+      <h2 class="text-lg font-semibold mb-2">About the Lump Sump Calculator</h2>
+
+      <p class="mb-4">
+        This Lumpsum Calculator is the perfect tool for analyzing the growth of
+        your one-time investment. Unlike a Systematic Investment Plan (SIP), a
+        lumpsum investment involves putting a significant amount of money into a
+        mutual fund or other asset class all at once. Our calculator helps you
+        project the potential future value of this investment. With two powerful
+        modes, you can either see how a specific amount will grow over time or
+        determine the exact lump sum you need to invest today to reach a future
+        financial target.
+      </p>
+
+      <h3 class="text-lg font-semibold mb-2">How to Use This Calculator</h3>
+      <p class="mb-4">
+        Our Lumpsum Calculator is easy to use, with two modes to fit your
+        investment strategy.
+      </p>
+
+      <p class="font-semibold mb-1">
+        Mode 1: Lumpsum Investment (to calculate your corpus)
+      </p>
+      <p class="mb-2">
+        This mode is for when you know how much you want to invest and want to
+        find out its potential future value.
+      </p>
+      <ul class="list-disc ml-6 mb-4 space-y-1">
+        <li>
+          <span class="font-semibold">Investment Amount:</span> Enter the total
+          single amount you plan to invest today.
+        </li>
+        <li>
+          <span class="font-semibold">Expected Rate of Return: </span> Input the
+          average annual return you anticipate on your investment (e.g., 12% for
+          equity funds).
+        </li>
+        <li>
+          <span class="font-semibold">Time Period:</span> Specify the total
+          number of years you plan to keep the investment.
+        </li>
+      </ul>
+      <p class="mb-4">
+        After entering these details, the calculator will show you the estimated
+        final corpus you can build.
+      </p>
+
+      <p class="font-semibold mb-1">
+        Mode 2: Target Amount (to calculate your lumpsum investment)
+      </p>
+      <p class="mb-2">
+        This mode is for when you have a specific financial goal in mind and
+        want to calculate how much you need to invest today to reach it.
+      </p>
+      <ul class="list-disc ml-6 mb-4 space-y-1">
+        <li>
+          <span class="font-semibold">Target Amount:</span> T Enter the total
+          amount you need to accumulate in the future.
+        </li>
+        <li>
+          <span class="font-semibold">Expected Rate of Return:</span>
+          Input the average annual return you anticipate on your investment.
+        </li>
+        <li>
+          <span class="font-semibold">Time Period:</span> Specify the number of
+          years you have to reach your goal.
+        </li>
+        <li>
+          <span class="font-semibold">Impact of Inflation (optional):</span>
+          This feature helps you account for the erosion of purchasing power.
+          Enter the expected annual inflation rate (e.g., 6%) to adjust your
+          target amount to its future value.
+        </li>
+      </ul>
+      <p class="mb-4">
+        The calculator will then tell you the exact lump sum amount you need to
+        invest today to achieve your goal.
+      </p>
+
+      <h3 class="text-lg font-semibold mb-2">
+        Formulas Used in the Calculator
+      </h3>
+      <p class="mb-4">
+        Our calculator uses a standard compound interest formula to provide
+        accurate projections.
+      </p>
+
+      <p class="font-semibold mb-1">For Investment Amount Mode:</p>
+      <p class="mb-4">
+        The final corpus (A) is calculated using the compound interest formula:
+      </p>
+      <pre
+        class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4"
+      ><code>
+A=P×(1+r)t
+
+Where:
+A = Final Corpus Amount
+P = Principal Investment Amount
+r = Expected Annual Rate of Return
+t = Time Period in years
+  </code></pre>
+
+      <p class="font-semibold mb-1">For Target Amount Mode:</p>
+      <p class="mb-4">
+        The required lumpsum amount (P) is calculated by rearranging the
+        compound interest formula:
+      </p>
+
+      <pre
+        class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4"
+      ><code>
+P=A/(1+r)t 
+Where the target amount (A) is also adjusted for inflation if that option is used:
+Inflation-adjusted Target Amount = Target Amount ×(1+inflation rate)time period
+  </code></pre>
+
+      <div class="text-sm lg:text-base text-black leading-relaxed space-y-6">
+        <p>
+          <span class="font-semibold">Case 1: Investment Amount</span><br />
+          Preeti, a young professional, receives a
+          <span class="font-semibold">₹10 lakh bonus</span> and decides to
+          invest it for her retirement. She chooses to invest this
+          <span class="font-semibold">lumpsum for 20 years</span> and expects an
+          average annual return of
+          <span class="font-semibold">12%</span>.<br /><br />
+          <span class="font-semibold">Investment Amount:</span> ₹10,00,000<br />
+          <span class="font-semibold">Expected Rate of Return:</span> 12%<br />
+          <span class="font-semibold">Time Period:</span> 20 years<br /><br />
+          According to our calculator, her one-time investment of ₹10 lakhs
+          would grow to an estimated
+          <span class="font-semibold">₹96.46 Lakhs</span> after 20 years. This
+          case highlights the incredible power of compounding over the long
+          term.
+        </p>
+
+        <p>
+          <span class="font-semibold">Case 2: Target Amount</span><br />
+          Newly-wed couple Amit and Sonia plan to buy a house in 10 years and
+          want to save for the downpayment. They estimate the downpayment amount
+          on a house of their choice will be
+          <span class="font-semibold">₹50 lakhs today</span>. They anticipate an
+          average annual return of <span class="font-semibold">12%</span> and
+          account for an annual inflation rate of
+          <span class="font-semibold">5%</span>.<br /><br />
+          <span class="font-semibold">Target Amount:</span> ₹50,00,000<br />
+          <span class="font-semibold">Expected Rate of Return:</span> 12%<br />
+          <span class="font-semibold">Time Period:</span> 10 years<br />
+          <span class="font-semibold">Impact of Inflation:</span> 5%<br /><br />
+          First, the calculator adjusts the target amount for inflation. The
+          future value of ₹50 lakhs after 10 years at a 5% inflation rate would
+          be approximately
+          <span class="font-semibold">₹81.44 Lakhs</span>.<br />
+          To reach this inflation-adjusted goal, Amit would need to invest a
+          lumpsum of <span class="font-semibold">₹26.22 lakhs</span> today. This
+          calculation helps him set a precise and realistic investment target.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="mb-2 bg-transparent p-5 max-w-[1150px] mx-auto">
+      <div class="text-start mb-8">
+        <h2 class="text-base font-semibold leading-tight text-black">
+          Top 10 Commonly Asked Questions
+        </h2>
+      </div>
+
+      <div
+        class="bg-white text-black border border-gray-300 rounded-2xl shadow-sm divide-y divide-gray-200"
+      >
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What is a lumpsum investment?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              A lumpsum investment is a single, one-time investment of a
+              substantial amount of money. It is different from a Systematic
+              Investment Plan (SIP) which involves investing small, fixed
+              amounts at regular intervals.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Is there a minimum investment amount for lumpsum?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              The minimum lumpsum investment amount varies across different
+              mutual funds and other investment products. While there's no
+              general rule, it's typically higher than the minimum for a SIP,
+              often starting from ₹5,000.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              When is the best time to make a lumpsum investment?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Many investors believe the best time for a lumpsum investment is
+              during a market downturn, when asset prices are low. This strategy
+              is known as "buying the dip." However, since it's difficult to
+              time the market perfectly, investing a lumpsum with a long-term
+              perspective is often a sound strategy.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What is the difference between this lumpsum calculator and a SIP
+              calculator?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              A SIP calculator calculates the growth of a series of regular,
+              smaller investments over time. This lumpsum calculator, on the
+              other hand, calculates the growth of a single, one-time
+              investment. The SIP calculator is for disciplined, gradual wealth
+              building, while the lumpsum calculator is for investing a large
+              amount you have all at once.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Why is the "impact of inflation" feature important for a lumpsum?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              This feature adjusts your future financial target to account for
+              inflation, which erodes the purchasing power of money over time.
+              By factoring this in, you can determine a more realistic lumpsum
+              amount to invest today to achieve your goal, ensuring your money
+              will have the same value in the future.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Should I invest a lumpsum or start a SIP?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Both strategies have benefits. A lumpsum investment can lead to
+              higher returns if you invest when the market is low. A SIP helps
+              you benefit from rupee-cost averaging, mitigating risk in a
+              volatile market. The best strategy depends on your financial
+              situation and market view. If you have a large amount of money
+              available, a lumpsum is a suitable option. If you have a steady
+              income, a SIP is more practical.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Is the calculated return guaranteed?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              No. The calculated values are estimates based on your inputs for
+              the expected rate of return. Mutual fund and other market-linked
+              investments are subject to market risks, and actual returns may
+              vary. This calculator is a powerful planning tool and should not
+              be considered a guarantee of returns.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 8 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Can I withdraw my lumpsum investment at any time?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes, you can redeem your investment at any time. However, many
+              funds have an "exit load" if you withdraw within a certain period
+              (e.g., one year). It's always best to check the specific terms of
+              the fund before investing a lumpsum.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 9 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How many lumpsum investments can I make in a year?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              There is no limit to the number of lumpsum investments that you
+              can make in a year. You can even make a lumpsum investment every
+              month or multiple times in a month.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 10 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Will the return for lumpsum and SIP be the same?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              The returns for SIP and lumpsum investments cannot be the same.
+              While lumpsum investment generates higher returns in the bullish
+              phase due to immediate market exposure, SIPs mitigate risk through
+              the rupee-cost averaging feature and can perform better during
+              market volatility. The returns also depend on market performance
+              and timing.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        const btn = item.querySelector(".faq-question");
+        const answer = item.querySelector(".faq-answer");
+        const icon = item.querySelector(".faq-icon");
+
+        btn.addEventListener("click", () => {
+          const isOpen = btn.getAttribute("aria-expanded") === "true";
+
+          // Close all other answers (optional, for accordion style)
+          document.querySelectorAll(".faq-item").forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.querySelector(".faq-answer").style.maxHeight = null;
+              otherItem
+                .querySelector(".faq-question")
+                .setAttribute("aria-expanded", "false");
+              otherItem
+                .querySelector(".faq-icon")
+                .classList.remove("rotate-45");
+            }
+          });
+
+          if (isOpen) {
+            answer.style.maxHeight = null;
+            btn.setAttribute("aria-expanded", "false");
+            icon.classList.remove("rotate-45");
+          } else {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+            btn.setAttribute("aria-expanded", "true");
+            icon.classList.add("rotate-45");
+          }
+        });
+      });
+    </script>
+
+    <section class="py-10 px-5 max-w-8xl mx-auto text-center">
+      <h2 class="text-xl font-semibold mb-8 text-black">
+        Explore More Popular Calculators
+      </h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-6">
+        <a
+          href="./sip-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black pl-5 pr-3 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="calculator"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          SIP Calculator
+        </a>
+
+        <a
+          href="./swp-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black pl-5 pr-3 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="activity"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          SWP Calculator
+        </a>
+        <a
+          href="./inflation-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black pl-5 pr-4 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="trending-up"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          Inflation Calculator
+        </a>
+      </div>
+    </section>
+
     <!-- FOOTER SECTION - Company information and links -->
     <!-- =================================================================== -->
     <footer class="w-full bg-white border-t border-gray-200 mt-8">
