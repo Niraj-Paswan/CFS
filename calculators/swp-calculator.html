@@ -1094,18 +1094,25 @@
         annuity formula, in reverse:
       </p>
 
-      <pre
-        class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4"
-      ><code>
-FV = P × (1 + r)<sup>t</sup> − W × (r × ((1 + r)<sup>t</sup> − 1)) / r
+      <!-- MathJax script -->
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-Where:
-FV = Final Corpus Value
-P = Portfolio Value (Current)
-r = Periodic Rate of Return (Annual Rate ÷ 12)
-t = Total Number of Withdrawals (Time Period in years × 12)
-W = Periodic Withdrawal Amount
-  </code></pre>
+      <div
+        class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4"
+      >
+        <p><strong class="font-semibold">Main formula:</strong></p>
+        $$\mathbf{FV} = \mathbf{P} \times (1 + r)^{t} \;-\; \mathbf{W} \times
+        \frac{r \times \left( (1 + r)^{t} - 1 \right)}{r}$$
+
+        <p><strong class="font-semibold">Where:</strong></p>
+        <ul>
+          <li>\(\mathbf{FV}\) = Final Corpus Value</li>
+          <li>\(\mathbf{P}\) = Portfolio Value (Current)</li>
+          <li>\(r\) = Periodic Rate of Return (Annual Rate ÷ 12)</li>
+          <li>\(t\) = Total Number of Withdrawals (Years × 12)</li>
+          <li>\(\mathbf{W}\) = Periodic Withdrawal Amount</li>
+        </ul>
+      </div>
 
       <p class="mb-4">
         This formula accounts for both the growth of the remaining principal and
