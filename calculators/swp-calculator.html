@@ -150,7 +150,7 @@
     </style>
   </head>
   <body
-    class="bg-[#fcaf1b]/10 flex flex-col items-center justify-center min-h-screen"
+    class="bg-gray-100 flex flex-col items-center justify-center min-h-screen"
   >
     <section
       class="max-w-6xl w-full flex justify-center items-center text-center flex-col p-4 mt-16"
@@ -189,12 +189,12 @@
               </button>
             </div>
           </div>
-          <div class="grid lg:grid-cols-2 gap-8 p-8">
+          <div class="grid lg:grid-cols-2 gap-8 p-8 text-start">
             <!-- Left Side - Input Controls -->
             <div class="space-y-8">
               <!-- Initial Investment -->
               <div>
-                <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center justify-between mb-3 text-start">
                   <label class="text-lg font-medium text-gray-700"
                     >Portfolio Value</label
                   >
@@ -368,6 +368,93 @@
                   </div>
                 </div>
               </div>
+
+              <!-- Trigger Text -->
+              <h1
+                id="openDisclaimer"
+                class="text-sm text-blue-600 hover:underline hover:cursor-pointer text-start"
+              >
+                View Disclaimer
+              </h1>
+
+              <!-- Modal -->
+              <div
+                id="disclaimerModal"
+                class="fixed inset-0 p-4 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300"
+              >
+                <div
+                  class="bg-white rounded-2xl shadow-lg max-w-4xl w-full p-8 relative transform transition-transform duration-300 scale-95"
+                  id="modalContent"
+                >
+                  <!-- Close Button -->
+                  <button
+                    id="closeDisclaimer"
+                    class="absolute top-3 right-3 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200 group"
+                  >
+                    <i
+                      data-lucide="x"
+                      class="text-gray-600 w-4 h-4 group-hover:rotate-90 transition-transform duration-300"
+                    ></i>
+                  </button>
+
+                  <!-- Title -->
+                  <h2 class="text-lg font-semibold mb-4 text-blue-700">
+                    Disclaimer ⚠️
+                  </h2>
+
+                  <!-- Content -->
+                  <p class="text-sm text-gray-700 leading-relaxed text-start">
+                    These Calculators alone are not sufficient and shouldn't be
+                    used for development or implementation of an investment
+                    strategy. The examples do not purport to represent the
+                    performance of any security or investments. The recipient is
+                    advised to consult his or her advisor/tax consultant prior
+                    to arriving at any investment decision. Mutual Funds do not
+                    have a fixed rate of return and it is not possible to
+                    predict the rate of return. Past performance may or may not
+                    be sustained in future and is not a guarantee of any future
+                    returns. Mutual Fund Investments are subject to market
+                    risks, read all scheme related documents carefully.
+                  </p>
+                </div>
+              </div>
+
+              <script>
+                const openBtn = document.getElementById("openDisclaimer");
+                const closeBtn = document.getElementById("closeDisclaimer");
+                const modal = document.getElementById("disclaimerModal");
+                const modalContent = document.getElementById("modalContent");
+
+                openBtn.addEventListener("click", () => {
+                  modal.classList.remove("hidden");
+                  setTimeout(() => {
+                    modal.classList.add("opacity-100");
+                    modalContent.classList.remove("scale-95");
+                    modalContent.classList.add("scale-100");
+                  }, 10);
+                });
+
+                const closeModal = () => {
+                  modalContent.classList.remove("scale-100");
+                  modalContent.classList.add("scale-95");
+                  modal.classList.remove("opacity-100");
+                  setTimeout(() => {
+                    modal.classList.add("hidden");
+                  }, 300);
+                };
+
+                closeBtn.addEventListener("click", closeModal);
+
+                modal.addEventListener("click", (e) => {
+                  if (e.target === modal) closeModal();
+                });
+              </script>
+
+              <!-- Lucide Icons -->
+              <script src="https://unpkg.com/lucide@latest"></script>
+              <script>
+                lucide.createIcons();
+              </script>
             </div>
 
             <!-- Right Side - Results and Chart -->
@@ -673,9 +760,9 @@
               </a>
               <a
                 href="../calculators/swp-calculator.html"
-                class="flex items-center gap-3 px-4 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-b-lg cursor-pointer"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-[#fcaf1b] hover:text-white cursor-pointer"
               >
-                <i data-lucide="activity" class="w-4 h-4"></i> SPW Calculator
+                <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
               </a>
               <a
                 href="../calculators/inflation-calculator.html"
@@ -874,11 +961,11 @@
               href="../calculators/swp-calculator.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white cursor-pointer rounded-lg"
             >
-              <i data-lucide="activity" class="w-4 h-4"></i> SPW Calculator
+              <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
             </a>
             <a
               href="../calculators/inflation-calculator.html"
-              class="flex items-center gap-3 px-4 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-b-lg cursor-pointer"
+              class="flex items-center gap-3 px-4 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-lg cursor-pointer"
             >
               <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
               Calculator
@@ -949,6 +1036,669 @@
         </a>
       </div>
     </div>
+
+    <section
+      class="w-full mx-auto max-w-[1110px] mt-8 p-5 lg:p-0 text-sm lg:text-base text-gray-900"
+    >
+      <h2 class="text-lg font-semibold mb-2">
+        About the SWP (Systematic Withdrawal Plan) Calculator
+      </h2>
+
+      <p class="mb-4">
+        This SWP Calculator is the best tool for planning a steady income stream
+        from your investments. An SWP, or Systematic Withdrawal Plan, allows you
+        to withdraw a fixed amount of money from your mutual fund investments at
+        regular intervals. It's the perfect solution for retirees or anyone
+        seeking a consistent income from a one-time lumpsum investment or a
+        corpus built over a long time with SIP investments, all while allowing
+        the remaining portfolio to potentially grow. Use this calculator to see
+        how long your investments can last and how much of your principal will
+        remain.
+      </p>
+
+      <h3 class="text-lg font-semibold mb-2">How to Use This Calculator</h3>
+      <ul class="list-disc ml-6 mb-4 space-y-1 text-black">
+        <li>
+          <span class="font-semibold">Portfolio Value:</span> Enter the current
+          lumpsum amount or the total value of your existing investment
+          portfolio from which you wish to start your SWP.
+        </li>
+        <li>
+          <span class="font-semibold">Monthly Withdrawal:</span> Input the fixed
+          amount you wish to withdraw every month.
+        </li>
+        <li>
+          <span class="font-semibold">Expected Rate of Return:</span> Enter the
+          average annual return you anticipate on your investment (e.g., 8-10%
+          for balanced funds).
+        </li>
+        <li>
+          <span class="font-semibold">Time Period:</span> Specify the total
+          number of years you plan to make withdrawals.
+        </li>
+        <li>
+          After entering these details, the calculator will provide a detailed
+          breakdown, showing you the total amount withdrawn and the estimated
+          value of your remaining investment corpus.
+        </li>
+      </ul>
+
+      <h3 class="text-lg font-semibold mb-2">Formula Used in the Calculator</h3>
+      <p class="mb-4">
+        Our calculator uses a standard financial formula to determine the value
+        of your remaining corpus after a series of periodic withdrawals.
+      </p>
+
+      <p class="font-semibold mb-1">
+        The remaining corpus (FV) is calculated using the future value of an
+        annuity formula, in reverse:
+      </p>
+
+      <pre
+        class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4"
+      ><code>
+FV = P × (1 + r)<sup>t</sup> − W × (r × ((1 + r)<sup>t</sup> − 1)) / r
+
+Where:
+FV = Final Corpus Value
+P = Portfolio Value (Current)
+r = Periodic Rate of Return (Annual Rate ÷ 12)
+t = Total Number of Withdrawals (Time Period in years × 12)
+W = Periodic Withdrawal Amount
+  </code></pre>
+
+      <p class="mb-4">
+        This formula accounts for both the growth of the remaining principal and
+        the reduction of the corpus due to your withdrawals.
+      </p>
+
+      <h3 class="text-lg font-semibold mb-2">
+        Case Study: A Practical Example of SWP in Action
+      </h3>
+
+      <p class="mb-4">
+        Mr. Kamat, a 60-year-old retiree, has a portfolio value of ₹1 Crore. He
+        wants to generate a steady monthly income of ₹60,000 to cover his living
+        expenses in retirement. He keeps his portfolio invested in moderately
+        conservative/balanced funds while expecting an average annual return of
+        9%. He plans to continue this withdrawal for the next 10 years.
+      </p>
+
+      <ul class="list-disc list-inside mb-6 font-medium">
+        <li>
+          <span class="font-semibold">Portfolio Value (Current):</span>
+          ₹1,00,00,000
+        </li>
+        <li>
+          <span class="font-semibold">Withdrawal Amount:</span> ₹60,000 per
+          month
+        </li>
+        <li>
+          <span class="font-semibold">Expected Rate of Return:</span> 9% per
+          annum
+        </li>
+        <li><span class="font-semibold">Time Period:</span> 10 years</li>
+      </ul>
+
+      <p class="mb-6">
+        Below is an illustration of the year-on-year withdrawals and estimated
+        balance corpus value:
+      </p>
+
+      <table class="w-full border border-gray-300 text-left mb-6 bg-white">
+        <thead>
+          <tr class="bg-white font-semibold">
+            <th
+              class="border border-gray-300 px-4 py-2 font-semibold rounded-tl-lg"
+            >
+              Year
+            </th>
+            <th class="border border-gray-300 px-4 py-2 font-semibold">
+              Amount Withdrawn (₹)
+            </th>
+            <th
+              class="border border-gray-300 px-4 py-2 font-semibold rounded-tr-lg"
+            >
+              Value of Balance Corpus (₹)
+            </th>
+          </tr>
+        </thead>
+
+        <tbody class="bg-white">
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">1</td>
+            <td class="border border-gray-300 px-4 py-2">7,20,000</td>
+            <td class="border border-gray-300 px-4 py-2">97,08,000</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">2</td>
+            <td class="border border-gray-300 px-4 py-2">7,20,000</td>
+            <td class="border border-gray-300 px-4 py-2">94,38,720</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">3</td>
+            <td class="border border-gray-300 px-4 py-2">7,20,000</td>
+            <td class="border border-gray-300 px-4 py-2">91,90,205</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">4</td>
+            <td class="border border-gray-300 px-4 py-2">7,20,000</td>
+            <td class="border border-gray-300 px-4 py-2">89,60,324</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">5</td>
+            <td class="border border-gray-300 px-4 py-2">7,20,000</td>
+            <td class="border border-gray-300 px-4 py-2">87,47,661</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">6</td>
+            <td class="border border-gray-300 px-4 py-2">7,20,000</td>
+            <td class="border border-gray-300 px-4 py-2">85,50,712</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">7</td>
+            <td class="border border-gray-300 px-4 py-2">7,20,000</td>
+            <td class="border border-gray-300 px-4 py-2">83,68,914</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">8</td>
+            <td class="border border-gray-300 px-4 py-2">7,20,000</td>
+            <td class="border border-gray-300 px-4 py-2">81,99,741</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">9</td>
+            <td class="border border-gray-300 px-4 py-2">7,20,000</td>
+            <td class="border border-gray-300 px-4 py-2">80,42,692</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">10</td>
+            <td class="border border-gray-300 px-4 py-2">7,20,000</td>
+            <td class="border border-gray-300 px-4 py-2">78,96,276</td>
+          </tr>
+
+          <tr class="font-semibold">
+            <td class="border border-gray-300 px-4 py-2">Total</td>
+            <td class="border border-gray-300 px-4 py-2">₹72,00,000</td>
+            <td class="border border-gray-300 px-4 py-2">₹78,96,276</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        This case demonstrates how an SWP can provide a regular income while
+        also preserving a significant portion of the principal.
+      </p>
+    </section>
+
+    <!-- SWP FAQ Section -->
+    <section
+      id="faq-swp"
+      class="mb-2 bg-transparent p-5 max-w-[1150px] mx-auto"
+    >
+      <div class="text-start mb-8">
+        <h2 class="text-base font-semibold leading-tight text-black">
+          Top 10 Commonly Asked Questions about SWP
+        </h2>
+      </div>
+
+      <div
+        class="bg-white text-black border border-gray-300 rounded-2xl shadow-sm divide-y divide-gray-200"
+      >
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What is an SWP?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              An SWP, or Systematic Withdrawal Plan, is a facility offered by
+              mutual funds that allows investors to withdraw a fixed amount of
+              money from their investment at a predetermined frequency, such as
+              monthly, quarterly, or annually.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Who should consider an SWP?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              SWPs are ideal for individuals who have an existing lumpsum
+              investment and require a regular income stream. It is particularly
+              popular among retirees, who use it to supplement or create a
+              pension-like income from their retirement corpus.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Which is better, SIP or SWP?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Both are different products and have different purposes. A SIP is
+              a method of investing money regularly to build wealth. An SWP is a
+              method of withdrawing money regularly from an already-built
+              corpus. Think of a SIP as a savings tool and an SWP as an
+              income-generating tool.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What are the key advantages of SWP?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div
+              class="px-8 pb-6 text-gray-700 leading-relaxed text-sm space-y-2"
+            >
+              <p>
+                Here are some key benefits of the systematic withdrawal plan
+                (SWP):
+              </p>
+              <ul class="list-disc ml-6 space-y-1">
+                <li>
+                  Provides regular income like a steady salary, helping cover
+                  routine expenses.
+                </li>
+                <li>
+                  Flexible withdrawal amounts and periodicity that can be
+                  changed as per needs.
+                </li>
+                <li>
+                  More tax efficient since only the return component is taxed;
+                  principal is not.
+                </li>
+                <li>No lock-in period to worry about.</li>
+                <li>
+                  The remaining corpus continues to earn returns, prolonging
+                  your SWP tenure.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Is the SWP withdrawal amount taxed?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes, the withdrawals are subject to capital gains tax. Equity fund
+              withdrawals after one year are considered long-term capital gains
+              (tax-efficient). For debt funds, tax is based on your slab after
+              three years.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What are the Tax implications of systematic withdrawal plans?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div
+              class="px-8 pb-6 text-gray-700 leading-relaxed text-sm space-y-2"
+            >
+              <p><strong>Equity funds:</strong></p>
+              <ul class="list-disc ml-6">
+                <li>
+                  Units held for more than 1 year: Taxed as long-term capital
+                  gains (LTCG). LTCG up to ₹1.25 lakh is tax-exempt; beyond
+                  that, 12.5% tax applies.
+                </li>
+                <li>
+                  Units held for less than 1 year: Taxed as short-term capital
+                  gains at 20% with no exemptions.
+                </li>
+              </ul>
+              <p class="mt-2"><strong>Debt funds:</strong></p>
+              <p>
+                Taxed as short-term capital gains as per the investor's income
+                tax slab, regardless of holding period.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Can I stop or modify my SWP?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes, you have full control over your SWP. You can stop or modify
+              the withdrawal amount and frequency at any time by simply
+              submitting a request to the mutual fund house.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 8 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Is the calculated corpus guaranteed?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              No, the calculated values are estimates based on your provided
+              inputs for the expected rate of return. Mutual fund investments
+              are subject to market risks, and actual returns may vary. This
+              calculator is a planning tool and should not be considered a
+              guarantee of returns.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 9 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What happens if the market falls?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              If the market falls, your withdrawals will still happen, but at a
+              reduced Net Asset Value (NAV). This means you will have to sell
+              more units of your fund to get the same withdrawal amount, which
+              could deplete your corpus faster. For this reason, many investors
+              prefer to have a buffer or a slightly lower withdrawal rate.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 10 -->
+        <div class="faq-item">
+          <button
+            class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Is SWP a good retirement strategy?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes, SWP is a good retirement strategy as it allows you to draw
+              regular income from your investments. Additionally, unlike
+              dividends or interests, an SWP withdraws both returns and
+              principal, making it more tax efficient as only the return portion
+              is taxable and not the principal.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        const btn = item.querySelector(".faq-question");
+        const answer = item.querySelector(".faq-answer");
+        const icon = item.querySelector(".faq-icon");
+
+        btn.addEventListener("click", () => {
+          const isOpen = btn.getAttribute("aria-expanded") === "true";
+
+          // Close all other answers (optional, for accordion style)
+          document.querySelectorAll(".faq-item").forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.querySelector(".faq-answer").style.maxHeight = null;
+              otherItem
+                .querySelector(".faq-question")
+                .setAttribute("aria-expanded", "false");
+              otherItem
+                .querySelector(".faq-icon")
+                .classList.remove("rotate-45");
+            }
+          });
+
+          if (isOpen) {
+            answer.style.maxHeight = null;
+            btn.setAttribute("aria-expanded", "false");
+            icon.classList.remove("rotate-45");
+          } else {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+            btn.setAttribute("aria-expanded", "true");
+            icon.classList.add("rotate-45");
+          }
+        });
+      });
+    </script>
+
+    <section class="py-10 px-5 max-w-8xl mx-auto text-center">
+      <h2 class="text-xl font-semibold mb-8 text-black">
+        Explore More Popular Calculators
+      </h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-6">
+        <a
+          href="./sip-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black pl-5 pr-3 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="calculator"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          SIP Calculator
+        </a>
+
+        <a
+          href="./inflation-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black px-5 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="trending-up"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          Inflation Calculator
+        </a>
+        <a
+          href="./lump-sump-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black pl-5 pr-4 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="percent"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          Lump Sump Calculator
+        </a>
+      </div>
+    </section>
 
     <!-- FOOTER SECTION - Company information and links -->
     <!-- =================================================================== -->
