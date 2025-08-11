@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Include html2canvas library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
@@ -1146,19 +1147,25 @@
         The final corpus (A) is calculated using the future value of an annuity
         formula, modified to include the annual step-up.
       </p>
-      <pre
+      <div
         class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4"
-      ><code>
-Without step-up: A=P×i((1+i)n−1)​×(1+i)
-With step-up: A=P×(1+g)×(1+i)−(1+g)(1+i)n−(1+g)n​
+      >
+        <p><strong class="font-semibold">Without step-up:</strong></p>
+        $$A = P \times \frac{( (1+i)^n - 1 )}{i} \times (1+i)$$
 
-Where:
-A = Final Corpus Amount
-P = Monthly Investment Amount
-i = Periodic Rate of Return (Annual Rate / 12)
-n = Total Number of Installments (Time Period in years * 12)
-g = Annual Step-up Percentage
-  </code></pre>
+        <p><strong class="font-semibold">With step-up:</strong></p>
+        $$A = P \times (1+g) \times \frac{ (1+i)^n - (1+g)^n }{ (1+i) - (1+g)
+        }$$
+
+        <p><strong class="font-semibold">Where:</strong></p>
+        <ul>
+          <li>\(A\) = Final Corpus Amount</li>
+          <li>\(P\) = Monthly Investment Amount</li>
+          <li>\(i\) = Periodic Rate of Return (Annual Rate / 12)</li>
+          <li>\(n\) = Total Number of Installments (Years × 12)</li>
+          <li>\(g\) = Annual Step-up Percentage</li>
+        </ul>
+      </div>
 
       <p class="font-semibold mb-1">For Target Amount Mode:</p>
       <p class="mb-4">
@@ -1166,14 +1173,22 @@ g = Annual Step-up Percentage
         future value formula:
       </p>
 
-      <pre
+      <div
         class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4"
-      ><code>
-P=A/i((1+i)n−1)​×(1+i)
+      >
+        <p><strong class="font-semibold">Main formula:</strong></p>
+        $$\mathbf{P} = \frac{\mathbf{A}}{i} \times \left( (1+i)^n - 1 \right)
+        \times (1+i)$$
 
-Where the target amount (A) is also adjusted for inflation, if that option is used:
-Inflation-adjusted Target Amount = Target Amount ×(1+inflation rate)time period
-  </code></pre>
+        <p>
+          <strong class="font-medium"
+            >Where the target amount (\(\mathbf{A}\)) is also adjusted for
+            inflation, if that option is used:</strong
+          >
+        </p>
+        $$\text{Inflation-adjusted Target Amount} = \text{Target Amount} \times
+        (1 + \text{inflation rate})^{\text{time period}}$$
+      </div>
 
       <div class="text-sm lg:text-base text-black leading-relaxed space-y-6">
         <p>
