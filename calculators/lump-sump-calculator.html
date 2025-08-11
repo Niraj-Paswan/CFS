@@ -1095,31 +1095,44 @@
       <p class="mb-4">
         The final corpus (A) is calculated using the compound interest formula:
       </p>
-      <pre
-        class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4"
-      ><code>
-A=P×(1+r)t
+      <!-- MathJax script -->
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-Where:
-A = Final Corpus Amount
-P = Principal Investment Amount
-r = Expected Annual Rate of Return
-t = Time Period in years
-  </code></pre>
+      <div
+        class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4"
+      >
+        <p><strong class="font-semibold">Main formula:</strong></p>
+        $$\mathbf{A} = \mathbf{P} \times (1 + r)^{t}$$
+
+        <p><strong class="font-semibold">Where:</strong></p>
+        <ul>
+          <li>\(\mathbf{A}\) = Final Corpus Amount</li>
+          <li>\(\mathbf{P}\) = Principal Investment Amount</li>
+          <li>\(r\) = Expected Annual Rate of Return</li>
+          <li>\(t\) = Time Period in years</li>
+        </ul>
+      </div>
 
       <p class="font-semibold mb-1">For Target Amount Mode:</p>
       <p class="mb-4">
-        The required lumpsum amount (P) is calculated by rearranging the
-        compound interest formula:
+        The required lumpsum amount (\(\mathbf{P}\)) is calculated by
+        rearranging the compound interest formula:
       </p>
 
-      <pre
+      <div
         class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4"
-      ><code>
-P=A/(1+r)t 
-Where the target amount (A) is also adjusted for inflation if that option is used:
-Inflation-adjusted Target Amount = Target Amount ×(1+inflation rate)time period
-  </code></pre>
+      >
+        $$\mathbf{P} = \frac{\mathbf{A}}{(1 + r)^{t}}$$
+
+        <p>
+          <strong class="font-medium"
+            >Where the target amount (\(\mathbf{A}\)) is also adjusted for
+            inflation, if that option is used:</strong
+          >
+        </p>
+        $$\text{Inflation-adjusted Target Amount} = \text{Target Amount} \times
+        (1 + \text{inflation rate})^{\text{time period}}$$
+      </div>
 
       <div class="text-sm lg:text-base text-black leading-relaxed space-y-6">
         <p>
