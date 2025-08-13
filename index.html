@@ -94,33 +94,30 @@
     <!-- =================================================================== -->
     <!-- NAVIGATION HEADER - Fixed position with dropdown menus -->
     <!-- =================================================================== -->
-    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+    <header class="bg-secondary shadow-sm fixed w-full top-0 z-50">
       <div
         class="mx-6 lg:mx-12 px-2 py-3 flex items-center justify-between relative"
       >
         <!-- Company Logo and Trust Badge -->
         <div class="flex items-center gap-2">
           <img
-            src="./assets/Logo.svg"
+            src="./assets/CFS TRANSPARENT.png"
             class="h-12 w-auto"
             alt="Chimulkar Financial Services Logo"
-          />
-          <img
-            src="./assets/Trust-batch.png"
-            class="h-12 w-auto"
-            alt="Trust Certification Badge"
           />
         </div>
 
         <!-- Desktop Navigation Menu - Hidden on mobile -->
-        <nav class="hidden md:flex gap-8 text-[16px] font-medium items-center">
+        <nav class="hidden md:flex gap-12 text-[16px] font-medium items-center">
           <!-- Simple navigation link -->
-          <a href="#about-us" class="hover:text-primary transition">About Us</a>
+          <a href="#about-us" class="hover:text-primary transition text-white"
+            >About Us</a
+          >
 
           <!-- Services Dropdown Menu -->
           <div class="relative group z-50">
             <button
-              class="flex items-center gap-1 hover:text-primary transition cursor-pointer"
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
             >
               Services <i data-lucide="chevron-down" class="w-4 h-4"></i>
             </button>
@@ -166,7 +163,7 @@
           <!-- Calculator Tools Dropdown -->
           <div class="relative group z-50">
             <button
-              class="flex items-center gap-1 hover:text-primary transition cursor-pointer"
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
             >
               Calculator <i data-lucide="chevron-down" class="w-4 h-4"></i>
             </button>
@@ -204,7 +201,7 @@
           <!-- Financial Literacy Dropdown -->
           <div class="relative group z-50">
             <button
-              class="flex items-center gap-1 hover:text-primary transition cursor-pointer"
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
             >
               Financial Literacy
               <i data-lucide="chevron-down" class="w-4 h-4"></i>
@@ -234,18 +231,21 @@
           </div>
 
           <!-- Additional navigation links -->
-          <a href="#nri-corner" class="hover:text-primary transition"
+          <a href="#nri-corner" class="text-white hover:text-primary transition"
             >NRI Corner</a
           >
-          <a href="#contact-us" class="hover:text-primary transition"
+          <a href="#contact-us" class="text-white hover:text-primary transition"
             >Contact Us</a
+          >
+          <a href="#refer-us" class="text-white hover:text-primary transition"
+            >Refer Us</a
           >
         </nav>
 
         <!-- Call-to-Action Button - Desktop only -->
         <a
           href="#"
-          class="hidden md:inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:bg-secondary ]"
+          class="hidden md:inline-flex items-center border border-transparent bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
         >
           Get Free Assessment
           <span
@@ -267,14 +267,19 @@
 
     <!-- Announcement Bar - Positioned below navbar -->
     <div
-      class="fixed top-[72px] w-full h-12 bg-secondary z-40 flex items-center justify-center px-4 text-sm"
+      class="fixed top-[72px] w-full h-12 bg-strokes z-40 flex items-center justify-center px-4 text-sm"
     >
-      <a href="#" class="flex items-center text-primary hover:underline">
+      <a
+        href="#"
+        class="flex items-center font-semibold text-black hover:underline"
+      >
         Get a no cost, no commitment assessment
-        <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
       </a>
-      <a href="#" class="hidden lg:inline-flex items-center text-white mr-2">
-        <span class="text-primary mx-2">|</span> Celebrating 40 Years of Trust
+      <a
+        href="#"
+        class="hidden lg:inline-flex font-semibold items-center text-white mr-2"
+      >
+        <span class="text-black mx-2">|</span> Celebrating 40 Years of Trust
       </a>
     </div>
 
@@ -538,14 +543,14 @@
             <!-- Main Hero Text Content -->
             <div class="absolute left-2 bottom-40 lg:left-4 lg:bottom-45 z-20">
               <h2
-                class="text-primary text-6xl lg:text-8xl font-semibold leading-[0.9] tracking-tight"
+                class="text-primary text-5xl lg:text-8xl font-semibold leading-[0.9] tracking-tight"
               >
                 Trust Is<br />Everything
               </h2>
               <p
                 class="text-white font-medium text-xl lg:text-2xl mt-2 lg:mt-3"
               >
-                Serving 1,000+ families since 1985
+                Serving 2500+ investors since 1985
               </p>
             </div>
 
@@ -554,16 +559,13 @@
               class="absolute bottom-32 w-full lg:flex justify-around px-8 z-20 text-xs hidden"
             >
               <p class="text-white text-sm font-medium">
-                <span class="font-semibold">Rupali</span>, Chimulkar Financial
-                Service Client
+                <span class="font-semibold">Rupali</span>, Chimulkar's Client
               </p>
               <p class="text-white text-sm font-medium">
-                <span class="font-semibold">Anil</span>, Chimulkar Financial
-                Service Client
+                <span class="font-semibold">Anil</span>, Chimulkar's Client
               </p>
               <p class="text-white text-sm font-medium">
-                <span class="font-semibold">Vikram</span>, Chimulkar Financial
-                Service Client
+                <span class="font-semibold">Vikram</span>, Chimulkar's Client
               </p>
             </div>
           </div>
@@ -606,79 +608,91 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <!-- Left Side - Company Description -->
-          <div data-aos="fade-right" data-aos-duration="800">
-            <h4
-              class="text-primary font-medium text-lg border-b-2 border-primary inline-block mb-4"
-            >
+          <div
+            data-aos="fade-right"
+            data-aos-duration="800"
+            class="text-center lg:text-left"
+          >
+            <h4 class="text-bluee font-bold text-2xl lg:text-4xl mb-4">
               Chimulkar Financial Services
             </h4>
             <h2
-              class="text-4xl sm:text-5xl font-semibold text-black mb-6 leading-tight"
+              class="text-lg lg:text-2xl font-medium text-black mb-6 leading-tight"
             >
               Simple investment solutions for your<br />financial goals.
             </h2>
-            <p class="text-gray-600 text-lg leading-relaxed">
-              For 40+ years, we've helped over 1,000 families build, preserve,
-              and grow their wealth. We provide wide access to trusted products
-              and services to help you turn your dreams into reality.
+            <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+              For 40+ years, we've helped over 2500 investors and their families
+              build, preserve, and grow their wealth. We provide wide access to
+              trusted products and services to help you turn your dreams into
+              reality.
             </p>
           </div>
 
-          <!-- Right Side - Statistics Grid -->
+          <!-- Right Side - 40+ Years of Trust Box -->
           <div
-            class="grid grid-cols-2 gap-16 text-center"
+            class="flex justify-center lg:justify-end"
             data-aos="fade-left"
             data-aos-duration="800"
           >
-            <!-- Stat 1: Families Served -->
-            <div>
-              <h3
-                class="text-5xl font-bold text-gray-900 counter"
-                data-target="1000"
-                data-suffix="+"
-              >
-                0
-              </h3>
-              <p class="mt-2 text-primary text-base font-medium">
-                Families Served
-              </p>
-            </div>
+            <img src="./assets/40-Years- Batch.png" class="h-72" alt="" />
+          </div>
+        </div>
 
-            <!-- Stat 2: Process Transparency -->
-            <div>
-              <h3
-                class="text-5xl font-bold text-gray-900 counter"
-                data-target="100"
-                data-suffix="%"
-              >
-                0
-              </h3>
-              <p class="mt-2 text-primary text-base font-medium">
-                Transparent Process
-              </p>
-            </div>
+        <!-- Right Side - Statistics Grid -->
+        <div
+          class="grid grid-cols-2 lg:grid-cols-4 mt-24 gap-16 text-center"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <!-- Stat 1: Families Served -->
+          <div>
+            <h3
+              class="text-5xl font-bold text-bluee counter"
+              data-target="2500"
+              data-suffix="+"
+            >
+              0
+            </h3>
+            <p class="mt-2 text-black text-base font-medium">
+              Investors Served
+            </p>
+          </div>
 
-            <!-- Stat 3: Years of Experience -->
-            <div>
-              <h3
-                class="text-5xl font-bold text-gray-900 counter"
-                data-target="40"
-                data-suffix="+"
-              >
-                0
-              </h3>
-              <p class="mt-2 text-primary text-base font-medium">
-                Years of Experience
-              </p>
-            </div>
+          <!-- Stat 2: Process Transparency -->
+          <div>
+            <h3
+              class="text-5xl font-bold text-bluee counter"
+              data-target="100"
+              data-suffix="%"
+            >
+              0
+            </h3>
+            <p class="mt-2 text-black text-base font-medium">
+              Transparent Process
+            </p>
+          </div>
 
-            <!-- Stat 4: Portfolio Monitoring -->
-            <div>
-              <h3 class="text-5xl font-bold text-gray-900">24/7</h3>
-              <p class="mt-2 text-primary text-base font-medium">
-                Online Portfolio Monitoring
-              </p>
-            </div>
+          <!-- Stat 3: Years of Experience -->
+          <div>
+            <h3
+              class="text-5xl font-bold text-bluee counter"
+              data-target="40"
+              data-suffix="+"
+            >
+              0
+            </h3>
+            <p class="mt-2 text-black text-base font-medium">
+              Years of Experience
+            </p>
+          </div>
+
+          <!-- Stat 4: Portfolio Monitoring -->
+          <div>
+            <h3 class="text-5xl font-bold text-bluee">24/7</h3>
+            <p class="mt-2 text-black text-base font-medium">
+              Online Portfolio Monitoring
+            </p>
           </div>
         </div>
       </div>
@@ -741,7 +755,7 @@
         >
           <!-- Client Video 1 - Ritika -->
           <div
-            class="relative rounded-lg overflow-hidden border-2 border-primary min-h-[220px] lg:min-h-[280px]"
+            class="relative rounded-lg overflow-hidden border-2 border-strokes min-h-[220px] lg:min-h-[280px]"
             data-aos="fade-up"
             data-aos-duration="800"
           >
@@ -766,7 +780,7 @@
 
           <!-- Client Video 2 - Aman -->
           <div
-            class="relative rounded-lg overflow-hidden border-2 border-primary min-h-[220px] lg:min-h-[280px]"
+            class="relative rounded-lg overflow-hidden border-2 border-strokes min-h-[220px] lg:min-h-[280px]"
             data-aos="fade-up"
             data-aos-duration="800"
           >
@@ -791,7 +805,7 @@
 
           <!-- Client Video 3 - Faizan -->
           <div
-            class="relative rounded-lg overflow-hidden border-2 border-primary min-h-[220px] lg:min-h-[280px]"
+            class="relative rounded-lg overflow-hidden border-2 border-strokes min-h-[220px] lg:min-h-[280px]"
             data-aos="fade-up"
             data-aos-duration="800"
           >
@@ -816,7 +830,7 @@
 
           <!-- Client Video 4 - Shruti -->
           <div
-            class="relative rounded-lg overflow-hidden border-2 border-primary min-h-[220px] lg:min-h-[280px]"
+            class="relative rounded-lg overflow-hidden border-2 border-strokes min-h-[220px] lg:min-h-[280px]"
             data-aos="fade-up"
             data-aos-duration="800"
           >
@@ -844,16 +858,16 @@
         <div class="flex flex-col justify-center space-y-10">
           <!-- Heading -->
           <h3
-            class="text-white text-4xl lg:text-5xl font-semibold mb-8"
+            class="text-white text-3xl lg:text-5xl font-semibold mb-8"
             data-aos="fade-up"
             data-aos-duration="800"
           >
-            Why Put Your <span class="text-primary">Trust</span>
+            Why Put Your <span class="text-strokes">Trust</span>
           </h3>
 
           <!-- Service Highlight 1 -->
           <div data-aos="fade-up" data-aos-duration="800" class="space-y-2">
-            <h4 class="text-primary text-xl font-semibold">
+            <h4 class="text-strokes text-xl font-semibold">
               Zero Upfront Fees
             </h4>
             <p class="text-gray-300 text-base leading-relaxed">
@@ -865,7 +879,7 @@
 
           <!-- Service Highlight 2 -->
           <div data-aos="fade-up" data-aos-duration="800" class="space-y-2">
-            <h4 class="text-primary text-xl font-semibold">
+            <h4 class="text-strokes text-xl font-semibold">
               Goal-Centric Approach
             </h4>
             <p class="text-gray-300 text-base leading-relaxed">
@@ -876,7 +890,7 @@
 
           <!-- Service Highlight 3 -->
           <div data-aos="fade-up" data-aos-duration="800" class="space-y-2">
-            <h4 class="text-primary text-xl font-semibold">
+            <h4 class="text-strokes text-xl font-semibold">
               Transparency & Fairness
             </h4>
             <p class="text-gray-300 text-base leading-relaxed">
@@ -887,7 +901,7 @@
 
           <!-- Service Highlight 4 -->
           <div data-aos="fade-up" data-aos-duration="800" class="space-y-2">
-            <h4 class="text-primary text-xl font-semibold">
+            <h4 class="text-strokes text-xl font-semibold">
               Ongoing Client Support
             </h4>
             <p class="text-gray-300 text-base leading-relaxed">
@@ -905,7 +919,12 @@
     <section class="w-full flex flex-col lg:flex-row min-h-screen">
       <!-- Left Side - Founder Video -->
       <div class="w-full lg:w-2/5 relative min-h-[300px] lg:min-h-full">
-        <video
+        <img
+          src="./assets/POINTING FINGER.png"
+          class="absolute inset-0 w-full h-full object-cover -left-12 lg:left-0 rotate-[65deg] lg:rotate-0 lg:object-contain"
+          alt=""
+        />
+        <!-- <video
           class="absolute inset-0 w-full h-full object-cover"
           autoplay
           loop
@@ -913,7 +932,7 @@
           playsinline
         >
           <source src="./assets/Founder.mp4" type="video/mp4" />
-        </video>
+        </video> -->
       </div>
 
       <!-- Right Side - Financial Guidelines -->
@@ -921,75 +940,113 @@
         class="w-full lg:w-3/5 bg-white flex items-center px-6 sm:px-8 lg:px-16 py-12 lg:py-0"
       >
         <div class="max-w-2xl w-full">
-          <h2 class="text-3xl font-semibold mb-8 text-gray-900">
-            Read our <span class="text-primary">Dos</span> &
+          <h2
+            class="text-3xl lg:text-5xl font-semibold mb-8 text-center lg:text-start text-gray-900"
+            data-aos="fade-up"
+          >
+            Read our <span class="text-bluee">Do’s</span> and
             <span class="text-primary">Don’ts</span>
           </h2>
 
           <div class="space-y-6">
             <!-- Financial Do's -->
-            <div class="flex items-start gap-4">
+            <div
+              class="flex items-center gap-4"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
               <i
                 data-lucide="circle-check"
-                class="w-6 h-6 text-green-600 mt-1"
+                class="w-12 h-12 lg:w-9 lg:h-9 text-bluee fill-bluee stroke-white"
               ></i>
-              <p class="text-gray-700 text-lg">
+              <p class="text-gray-700 text-base lg:text-lg">
                 Define your financial goals and timelines clearly.
               </p>
             </div>
+
             <hr class="border-t border-gray-300 my-4" />
 
-            <div class="flex items-start gap-4">
+            <div
+              class="flex items-center gap-4"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
               <i
                 data-lucide="circle-check"
-                class="w-6 h-6 text-green-600 mt-1"
+                class="w-12 h-12 lg:w-9 lg:h-9 text-bluee fill-bluee stroke-white"
               ></i>
-              <p class="text-gray-700 text-lg">
+              <p class="text-gray-700 text-base lg:text-lg">
                 Understand and communicate your comfort with risk.
               </p>
             </div>
             <hr class="border-t border-gray-300 my-4" />
 
-            <div class="flex items-start gap-4">
+            <div
+              class="flex items-center gap-4"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
               <i
                 data-lucide="circle-check"
-                class="w-6 h-6 text-green-600 mt-1"
+                class="w-12 h-12 lg:w-9 lg:h-9 text-bluee fill-bluee stroke-white"
               ></i>
-              <p class="text-gray-700 text-lg">
+              <p class="text-gray-700 text-base lg:text-lg">
                 Have a long-term perspective and invest regularly.
               </p>
             </div>
             <hr class="border-t border-gray-300 my-4" />
 
-            <div class="flex items-start gap-4">
+            <div
+              class="flex items-center gap-4"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
               <i
                 data-lucide="circle-check"
-                class="w-6 h-6 text-green-600 mt-1"
+                class="w-12 h-12 lg:w-9 lg:h-9 text-bluee fill-bluee stroke-white"
               ></i>
-              <p class="text-gray-700 text-lg">
+              <p class="text-gray-700 text-base lg:text-lg">
                 Inform us if your goals or risk profile changes.
               </p>
             </div>
             <hr class="border-t border-gray-300 my-4" />
 
             <!-- Financial Don'ts -->
-            <div class="flex items-start gap-4">
-              <i data-lucide="x-circle" class="w-6 h-6 text-red-600 mt-1"></i>
-              <p class="text-gray-700 text-lg">
+            <div
+              class="flex items-center gap-4"
+              data-aos="fade-up"
+              data-aos-delay="500"
+            >
+              <i
+                data-lucide="x-circle"
+                class="w-12 h-12 lg:w-9 lg:h-9 fill-primary stroke-white"
+              ></i>
+              <p class="text-gray-700 text-base lg:text-lg">
                 Don’t chase market trends or try to time the market.
               </p>
             </div>
             <hr class="border-t border-gray-300 my-4" />
 
-            <div class="flex items-start gap-4 text-lg">
-              <i data-lucide="x-circle" class="w-6 h-6 text-red-600 mt-1"></i>
+            <div
+              class="flex items-center gap-4 text-base lg:text-lg"
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              <i
+                data-lucide="x-circle"
+                class="w-12 h-12 lg:w-9 lg:h-9 fill-primary stroke-white"
+              ></i>
               <p class="text-gray-700">
                 Don’t fall prey to promises of fixed or assured returns.
               </p>
             </div>
 
             <!-- CTA Button -->
-            <div class="flex justify-center pt-6">
+            <div
+              class="flex justify-center pt-6"
+              data-aos="fade-up"
+              data-aos-delay="700"
+            >
               <a
                 href="#"
                 class="inline-flex justify-center items-center bg-primary text-white pl-5 pr-3 py-2.5 rounded-full text-sm gap-3 group transition hover:bg-secondary"
@@ -1010,37 +1067,39 @@
     <!-- =================================================================== -->
     <!-- FINANCIAL PERFORMANCE SECTION - Key metrics and contact info -->
     <!-- =================================================================== -->
-    <section class="bg-secondary text-white py-20">
-      <div class="max-w-7xl mx-auto px-4 lg:px-8 space-y-16">
+    <section class="bg-[#f1f6ff] text-white py-20">
+      <div class="max-w-7xl mx-auto px-4 lg:px-8 space-y-8">
         <!-- Performance Statistics Row -->
         <div
-          class="flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left gap-8 md:gap-6"
+          class="flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left gap-8 lg:gap-24"
           data-aos="fade-up"
         >
           <!-- Stat 1: Portfolios Optimized -->
-          <div class="flex-1 flex flex-col items-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-primary">100%</h2>
-            <p class="mt-2 text-white text-base md:text-sm">
+          <div
+            class="flex-1 flex flex-col items-center bg-white p-6 lg:p-2 py-8 lg:py-8 rounded-2xl"
+          >
+            <h2 class="text-4xl md:text-5xl font-bold text-bluee">100%</h2>
+            <p class="mt-2 text-black lg:text-lg text-base">
               Transparent Process.
             </p>
           </div>
 
-          <!-- Visual divider -->
-          <div class="hidden md:block w-px bg-primary h-24"></div>
-
           <!-- Stat 2: Client Satisfaction -->
-          <div class="flex-1 flex flex-col items-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-primary">1000+</h2>
-            <p class="mt-2 text-white text-base md:text-sm">Families Served.</p>
+          <div
+            class="flex-1 flex flex-col items-center bg-white p-10 lg:p-2 py-8 lg:py-8 rounded-2xl"
+          >
+            <h2 class="text-4xl md:text-5xl font-bold text-bluee">2500+</h2>
+            <p class="mt-2 text-black lg:text-lg text-base">
+              Investors Served.
+            </p>
           </div>
 
-          <!-- Visual divider -->
-          <div class="hidden md:block w-px bg-primary h-24"></div>
-
           <!-- Stat 3: Years of Experience -->
-          <div class="flex-1 flex flex-col items-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-primary">40+</h2>
-            <p class="mt-2 text-white text-base md:text-sm">
+          <div
+            class="flex-1 flex flex-col items-center bg-white p-10 lg:p-2 py-8 lg:py-8 rounded-2xl"
+          >
+            <h2 class="text-4xl md:text-5xl font-bold text-bluee">40+</h2>
+            <p class="mt-2 text-black lg:text-lg text-base">
               Yaers in Service.
             </p>
           </div>
@@ -1048,61 +1107,81 @@
 
         <!-- Contact and Response Time Section -->
         <div
-          class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+          class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center"
           data-aos="fade-up"
           data-aos-delay="200"
         >
           <!-- Left Side - Contact Information -->
-          <div>
-            <h2
-              class="text-2xl md:text-4xl font-semibold mb-4 text-center lg:text-start"
-            >
-              Can't Wait?<br />Talk To Us Right Now
-            </h2>
-            <div class="flex flex-col sm:flex-row sm:items-center gap-4 mt-6">
-              <a
-                href="#"
-                class="underline font-medium text-white text-center lg:text-start"
-                >Schedule Now</a
-              >
-              <a
-                href="tel:+917896541230"
-                class="flex sm:inline-flex items-center justify-center sm:justify-start bg-primary text-white px-5 py-2 rounded-full mx-auto sm:mx-0 w-auto"
-              >
-                <i data-lucide="phone" class="w-5 h-5 mr-2"></i>
-                +91 7896541230
-              </a>
-            </div>
-          </div>
 
           <!-- Right Side - Response Time Metrics -->
-          <div class="flex flex-col sm:flex-row gap-8 text-center sm:text-left">
-            <!-- Response Time 1 -->
-            <div class="flex-1" data-aos="fade-up" data-aos-delay="300">
-              <div
-                class="flex items-center justify-center sm:justify-start gap-2"
-              >
-                <i data-lucide="phone-call" class="w-6 h-6 text-primary"></i>
-                <p class="text-lg font-semibold">15 minutes</p>
-              </div>
-              <hr class="w-24 border-primary my-2 mx-auto sm:mx-0" />
-              <p class="text-white text-sm">
-                Average duration of a<br />Clarity Call with us.
-              </p>
+        </div>
+        <div
+          class="flex flex-col sm:flex-row gap-12 lg:gap-8 text-center sm:text-left"
+        >
+          <!-- Response Time 1 -->
+          <div
+            class="flex-1 space-y-2 ml:0 lg:ml-6"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="flex items-center justify-center gap-2">
+              <i data-lucide="phone-call" class="w-6 h-6 text-black"></i>
+              <p class="text-lg text-black font-bold">15 minutes</p>
             </div>
+            <p class="text-black text-sm text-center">
+              Average duration of a<br />Clarity Call with us.
+            </p>
+          </div>
 
-            <!-- Response Time 2 -->
-            <div class="flex-1" data-aos="fade-up" data-aos-delay="400">
-              <div
-                class="flex items-center justify-center sm:justify-start gap-2"
-              >
-                <i data-lucide="clock" class="w-6 h-6 text-primary"></i>
-                <p class="text-lg font-semibold">30 minutes</p>
-              </div>
-              <hr class="w-36 border-primary my-2 mx-auto sm:mx-0" />
-              <p class="text-white text-sm">
-                Average time for completing<br />onboarding formalities.
+          <!-- Response Time 2 -->
+          <div
+            class="flex-1 space-y-2 ml:0 lg:ml-16"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div class="flex items-center justify-center gap-2">
+              <i data-lucide="clock" class="w-6 h-6 text-black"></i>
+              <p class="text-lg text-black font-bold">30 minutes</p>
+            </div>
+            <p class="text-black text-sm text-center">
+              Average time for completing<br />onboarding formalities.
+            </p>
+          </div>
+
+          <!-- Response Time 3 -->
+          <div
+            class="flex-1 space-y-3 ml-0 lg:ml-24"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <div class="flex flex-col lg:items-center gap-3">
+              <p class="text-xl text-black font-bold text-center lg:text-left">
+                Get in Touch
               </p>
+
+              <a
+                href="#"
+                class="flex items-center justify-center bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition-all duration-300 hover:bg-primary/10 w-fit mx-auto lg:mx-0"
+              >
+                WhatsApp Us
+                <span
+                  class="text-black rounded-full p-1.5 flex items-center justify-center transition-all duration-300 group-hover:translate-x-1 group-hover:text-white"
+                >
+                  <!-- Your original WhatsApp SVG icon -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    x="0px"
+                    y="0px"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M 12.011719 2 C 6.5057187 2 2.0234844 6.478375 2.0214844 11.984375 C 2.0204844 13.744375 2.4814687 15.462563 3.3554688 16.976562 L 2 22 L 7.2324219 20.763672 C 8.6914219 21.559672 10.333859 21.977516 12.005859 21.978516 L 12.009766 21.978516 C 17.514766 21.978516 21.995047 17.499141 21.998047 11.994141 C 22.000047 9.3251406 20.962172 6.8157344 19.076172 4.9277344 C 17.190172 3.0407344 14.683719 2.001 12.011719 2 z M 12.009766 4 C 14.145766 4.001 16.153109 4.8337969 17.662109 6.3417969 C 19.171109 7.8517969 20.000047 9.8581875 19.998047 11.992188 C 19.996047 16.396187 16.413812 19.978516 12.007812 19.978516 C 10.674812 19.977516 9.3544062 19.642812 8.1914062 19.007812 L 7.5175781 18.640625 L 6.7734375 18.816406 L 4.8046875 19.28125 L 5.2851562 17.496094 L 5.5019531 16.695312 L 5.0878906 15.976562 C 4.3898906 14.768562 4.0204844 13.387375 4.0214844 11.984375 C 4.0234844 7.582375 7.6067656 4 12.009766 4 z M 8.4765625 7.375 C 8.3095625 7.375 8.0395469 7.4375 7.8105469 7.6875 C 7.5815469 7.9365 6.9355469 8.5395781 6.9355469 9.7675781 C 6.9355469 10.995578 7.8300781 12.182609 7.9550781 12.349609 C 8.0790781 12.515609 9.68175 15.115234 12.21875 16.115234 C 14.32675 16.946234 14.754891 16.782234 15.212891 16.740234 C 15.670891 16.699234 16.690438 16.137687 16.898438 15.554688 C 17.106437 14.971687 17.106922 14.470187 17.044922 14.367188 C 16.982922 14.263188 16.816406 14.201172 16.566406 14.076172 C 16.317406 13.951172 15.090328 13.348625 14.861328 13.265625 C 14.632328 13.182625 14.464828 13.140625 14.298828 13.390625 C 14.132828 13.640625 13.655766 14.201187 13.509766 14.367188 C 13.363766 14.534188 13.21875 14.556641 12.96875 14.431641 C 12.71875 14.305641 11.914938 14.041406 10.960938 13.191406 C 10.218937 12.530406 9.7182656 11.714844 9.5722656 11.464844 C 9.4272656 11.215844 9.5585938 11.079078 9.6835938 10.955078 C 9.7955938 10.843078 9.9316406 10.663578 10.056641 10.517578 C 10.180641 10.371578 10.223641 10.267562 10.306641 10.101562 C 10.389641 9.9355625 10.347156 9.7890625 10.285156 9.6640625 C 10.223156 9.5390625 9.737625 8.3065 9.515625 7.8125 C 9.328625 7.3975 9.131125 7.3878594 8.953125 7.3808594 C 8.808125 7.3748594 8.6425625 7.375 8.4765625 7.375 z"
+                    ></path>
+                  </svg>
+                </span>
+              </a>
             </div>
           </div>
         </div>
@@ -1122,16 +1201,18 @@
           <h2
             class="text-4xl md:text-5xl font-semibold leading-tight mb-4 text-center lg:text-start"
           >
-            Who You <span class="text-primary">Trust</span> Matters
+            Who You <span class="text-bluee">Trust</span> Matters
           </h2>
-          <a href="#" class="text-center lg:text-lg font-medium lg:text-start">
+          <p href="#" class="text-center lg:text-start lg:text-lg font-medium">
             See Why Clients Trusts Chimulkar Financial Services.
-          </a>
+          </p>
         </div>
 
         <!-- Right Side - Company Description and Reviews -->
         <div>
-          <p class="text-gray-800 mb-6 leading-relaxed text-lg">
+          <p
+            class="text-gray-800 mb-6 leading-relaxed text-center lg:text-start text-base lg:text-lg"
+          >
             Chimulkar Financial Services has served more than 1000 families over
             the past 40 years. Every case is different. Every story is unique.
             Hear from these actual clients what they experienced and why they
@@ -1162,7 +1243,7 @@
           <!-- Client Video Card 1 - Rupa -->
           <div
             onclick="openVideoModal('https://www.youtube.com/embed/m0CanPDEL4g')"
-            class="group relative min-w-[320px] h-[500px] rounded-xl overflow-hidden border-2 border-primary cursor-pointer"
+            class="group relative min-w-[320px] h-[500px] rounded-xl overflow-hidden border-2 border-strokes cursor-pointer"
           >
             <video
               class="w-full h-full object-cover group-hover:brightness-75 transition"
@@ -1195,7 +1276,7 @@
           <!-- Client Video Card 2 - Aman -->
           <div
             onclick="openVideoModal('https://www.youtube.com/embed/m0CanPDEL4g')"
-            class="group relative min-w-[320px] h-[500px] rounded-xl overflow-hidden border-2 border-primary cursor-pointer"
+            class="group relative min-w-[320px] h-[500px] rounded-xl overflow-hidden border-2 border-strokes cursor-pointer"
           >
             <video
               class="w-full h-full object-cover group-hover:brightness-75 transition"
@@ -1226,7 +1307,7 @@
           <!-- Client Video Card 3 - Neha -->
           <div
             onclick="openVideoModal('https://www.youtube.com/embed/m0CanPDEL4g')"
-            class="group relative min-w-[320px] h-[500px] rounded-xl overflow-hidden border-2 border-primary cursor-pointer"
+            class="group relative min-w-[320px] h-[500px] rounded-xl overflow-hidden border-2 border-strokes cursor-pointer"
           >
             <video
               class="w-full h-full object-cover group-hover:brightness-75 transition"
@@ -1257,7 +1338,7 @@
           <!-- Client Video Card 4 - Sara -->
           <div
             onclick="openVideoModal('https://www.youtube.com/embed/m0CanPDEL4g')"
-            class="group relative min-w-[320px] h-[500px] rounded-xl overflow-hidden border-2 border-primary cursor-pointer"
+            class="group relative min-w-[320px] h-[500px] rounded-xl overflow-hidden border-2 border-strokes cursor-pointer"
           >
             <video
               class="w-full h-full object-cover group-hover:brightness-75 transition"
@@ -1322,498 +1403,281 @@
     <!-- =================================================================== -->
     <!-- SERVICES SECTION - Grid of financial services offered -->
     <!-- =================================================================== -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4">
-        <!-- Section Header -->
 
-        <h2 class="text-4xl md:text-4xl font-semibold mb-2">
-          Pick from our <span class="text-primary">Services</span>
+    <style>
+      /* Custom scrollbar styling */
+      .custom-scrollbar::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 10px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+        border-radius: 10px;
+        transition: background 0.3s ease;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(90deg, #2563eb, #1e40af);
+      }
+
+      /* Firefox scrollbar */
+      .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: #3b82f6 #f1f5f9;
+      }
+
+      /* Smooth scroll behavior */
+      .custom-scrollbar {
+        scroll-behavior: smooth;
+      }
+
+      /* Card hover animations */
+      .service-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .service-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      /* Icon animations */
+      .service-icon {
+        transition: transform 0.3s ease;
+      }
+
+      .service-card:hover .service-icon {
+        transform: scale(1.1);
+      }
+    </style>
+
+    <section class="py-16 px-8 max-w-7xl mx-auto">
+      <!-- Header -->
+      <div class="text-start mb-12" data-aos="fade-up" data-aos-duration="800">
+        <h2 class="text-3xl lg:text-5xl font-semibold text-gray-900 mb-4">
+          Pick from our <span class="text-bluee">Services</span>
         </h2>
-        <p class="text-sm lg:text-base text-black mb-12">
-          A bouquet of financial services aimed at helping you <br />
-          improve your financial well-being and
-          <span class="text-primary">achieve your money goals</span>
+        <p class="text-base lg:text-lg text-gray-900 text-start">
+          to improve your financial well-being <br />
+          and achieve your money goals.
         </p>
+      </div>
 
-        <!-- Services Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Card 1: Mutual Funds -->
+      <!-- Scrollable Services Container -->
+      <div class="custom-scrollbar overflow-x-auto pb-4">
+        <div class="flex gap-6 min-w-max px-4">
+          <!-- Mutual Funds -->
           <a
             href="#"
-            class="group relative block bg-gradient-to-bl from-primary/40 via-white to-transparent border border-gray-300 rounded-2xl p-6 transition-all hover:shadow-lg"
+            class="group relative flex-shrink-0 flex flex-col items-center justify-center bg-white border border-gray-300 hover:border-2 hover:border-strokes w-80 h-96 rounded-2xl p-8 transition-all hover:shadow-lg snap-center"
+            data-aos="zoom-in"
+            data-aos-delay="100"
           >
-            <div class="flex flex-col items-start gap-4">
-              <div class="bg-primary rounded-full p-4">
-                <i data-lucide="indian-rupee" class="w-6 h-6 text-white"></i>
-              </div>
-              <h4 class="font-semibold text-lg">Mutual Funds</h4>
-              <p class="text-gray-600 text-sm">
-                Simplify your investment journey by building a diversified
-                portfolio tailored to your goals.
-              </p>
-              <div
-                class="hidden sm:inline-flex opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
-              >
-                <span
-                  class="inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group/button hover:bg-secondary"
-                >
-                  Learn More About It
-                  <span
-                    class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover/button:translate-x-1"
-                  >
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                  </span>
-                </span>
-              </div>
+            <img
+              src="./assets/MUTUAL FUNDS.png"
+              class="w-full h-[70%] object-contain mb-8"
+              alt=""
+            />
+            <div class="flex flex-col items-center gap-4">
+              <h4 class="font-semibold text-xl">Mutual Funds</h4>
             </div>
             <span class="sm:hidden absolute inset-0"></span>
           </a>
 
-          <!-- Card 2: Retirement Planning -->
+          <!-- Retirement Planning -->
           <a
             href="#"
-            class="group relative block bg-gradient-to-bl from-primary/40 via-white to-transparent border border-gray-300 rounded-2xl p-6 transition-all hover:shadow-lg"
+            class="group relative flex-shrink-0 flex flex-col items-center justify-center bg-white border border-gray-300 hover:border-2 hover:border-strokes w-80 h-96 rounded-2xl p-8 transition-all hover:shadow-lg snap-center"
+            data-aos="zoom-in"
+            data-aos-delay="200"
           >
-            <div class="flex flex-col items-start gap-4">
-              <div class="bg-primary rounded-full p-4">
-                <i data-lucide="briefcase" class="w-6 h-6 text-white"></i>
-              </div>
-              <h4 class="font-semibold text-lg">Retirement Planning</h4>
-              <p class="text-gray-600 text-sm">
-                Craft a robust strategy today to ensure a financially secure and
-                dignified future tomorrow.
-              </p>
-              <div
-                class="hidden sm:inline-flex opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
-              >
-                <span
-                  class="inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group/button hover:bg-secondary"
-                >
-                  Learn More About It
-                  <span
-                    class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover/button:translate-x-1"
-                  >
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                  </span>
-                </span>
-              </div>
+            <img
+              src="./assets/RETIREMENT PLANNING.png"
+              class="w-full h-[70%] object-contain mb-8"
+              alt=""
+            />
+            <div class="flex flex-col items-center gap-4">
+              <h4 class="font-semibold text-xl">Retirement Planning</h4>
             </div>
             <span class="sm:hidden absolute inset-0"></span>
           </a>
 
-          <!-- Card 3: Tax Planning -->
+          <!-- Tax Planning -->
           <a
             href="#"
-            class="group relative block bg-gradient-to-bl from-primary/40 via-white to-transparent border border-gray-300 rounded-2xl p-6 transition-all hover:shadow-lg"
+            class="group relative flex-shrink-0 flex flex-col items-center justify-center bg-white border border-gray-300 hover:border-2 hover:border-strokes w-80 h-96 rounded-2xl p-8 transition-all hover:shadow-lg snap-center"
+            data-aos="zoom-in"
+            data-aos-delay="300"
           >
-            <div class="flex flex-col items-start gap-4">
-              <div class="bg-primary rounded-full p-4">
-                <i data-lucide="file-text" class="w-6 h-6 text-white"></i>
-              </div>
-              <h4 class="font-semibold text-lg">Tax Planning</h4>
-              <p class="text-gray-600 text-sm">
-                Optimize your investments and financial decisions to minimize
-                tax liabilities & maximize savings.
-              </p>
-              <div
-                class="hidden sm:inline-flex opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
-              >
-                <span
-                  class="inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group/button hover:bg-secondary"
-                >
-                  Learn More About It
-                  <span
-                    class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover/button:translate-x-1"
-                  >
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                  </span>
-                </span>
-              </div>
+            <img
+              src="./assets/TAX PLANNING.png"
+              class="w-full h-[70%] object-contain mb-8"
+              alt=""
+            />
+            <div class="flex flex-col items-center gap-4">
+              <h4 class="font-semibold text-xl">Tax Planning</h4>
             </div>
             <span class="sm:hidden absolute inset-0"></span>
           </a>
 
-          <!-- Card 4: Child's Education Planning -->
+          <!-- Legacy Planning -->
           <a
             href="#"
-            class="group relative block bg-gradient-to-bl from-primary/40 via-white to-transparent border border-gray-300 rounded-2xl p-6 transition-all hover:shadow-lg"
+            class="group relative flex-shrink-0 flex flex-col items-center justify-center bg-white border border-gray-300 hover:border-2 hover:border-strokes w-80 h-96 rounded-2xl p-8 transition-all hover:shadow-lg snap-center"
+            data-aos="zoom-in"
+            data-aos-delay="300"
           >
-            <div class="flex flex-col items-start gap-4">
-              <div class="bg-primary rounded-full p-4">
-                <i data-lucide="baby" class="w-6 h-6 text-white"></i>
-              </div>
-              <h4 class="font-semibold text-lg">Child's Education Planning</h4>
-              <p class="text-gray-600 text-sm">
-                Secure your child's academic dreams with dedicated investments
-                aligned to their future milestones.
-              </p>
-              <div
-                class="hidden sm:inline-flex opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
-              >
-                <span
-                  class="inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group/button hover:bg-secondary"
-                >
-                  Learn More About It
-                  <span
-                    class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover/button:translate-x-1"
-                  >
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                  </span>
-                </span>
-              </div>
+            <img
+              src="./assets/LEGACY PLANNING.png"
+              class="w-full h-[70%] object-contain mb-8"
+              alt=""
+            />
+            <div class="flex flex-col items-center gap-4">
+              <h4 class="font-semibold text-xl">Legacy Planning</h4>
             </div>
             <span class="sm:hidden absolute inset-0"></span>
           </a>
 
-          <!-- Card 5: Insurance Planning (Hidden on mobile) -->
+          <!-- Insurance Planning -->
           <a
             href="#"
-            class="hidden sm:block group relative bg-gradient-to-bl from-primary/40 via-white to-transparent border border-gray-300 rounded-2xl p-6 transition-all hover:shadow-lg"
+            class="group relative flex-shrink-0 flex flex-col items-center justify-center bg-white border border-gray-300 hover:border-2 hover:border-strokes w-80 h-96 rounded-2xl p-8 transition-all hover:shadow-lg snap-center"
+            data-aos="zoom-in"
+            data-aos-delay="400"
           >
-            <div class="flex flex-col items-start gap-4">
-              <div class="bg-primary rounded-full p-4">
-                <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
-              </div>
-              <h4 class="font-semibold text-lg">Insurance Planning</h4>
-              <p class="text-gray-600 text-sm">
-                Protect your loved ones and your financial stability against
-                life's uncertainties with comprehensive coverage.
-              </p>
-              <div
-                class="inline-flex opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
-              >
-                <span
-                  class="inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group/button hover:bg-secondary"
-                >
-                  Learn More About It
-                  <span
-                    class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover/button:translate-x-1"
-                  >
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                  </span>
-                </span>
-              </div>
+            <img
+              src="./assets/INSURANCE PLANNING.png"
+              class="w-full h-[70%] object-contain mb-8"
+              alt=""
+            />
+            <div class="flex flex-col items-center gap-4">
+              <h4 class="font-semibold text-xl">Insurance Planning</h4>
             </div>
+            <span class="sm:hidden absolute inset-0"></span>
           </a>
 
-          <!-- Card 6: Legacy Planning (Hidden on mobile) -->
+          <!-- Education Savings -->
           <a
             href="#"
-            class="hidden sm:block group relative bg-gradient-to-bl from-primary/40 via-white to-transparent border border-gray-300 rounded-2xl p-6 transition-all hover:shadow-lg"
+            class="group relative flex-shrink-0 flex flex-col items-center justify-center bg-white border border-gray-300 hover:border-2 hover:border-strokes w-80 h-96 rounded-2xl p-8 transition-all hover:shadow-lg snap-center"
+            data-aos="zoom-in"
+            data-aos-delay="500"
           >
-            <div class="flex flex-col items-start gap-4">
-              <div class="bg-primary rounded-full p-4">
-                <i data-lucide="gift" class="w-6 h-6 text-white"></i>
-              </div>
-              <h4 class="font-semibold text-lg">Legacy Planning</h4>
-              <p class="text-gray-600 text-sm">
-                Ensure your wealth and values are passed on seamlessly, leaving
-                a lasting impact for generations.
-              </p>
-              <div
-                class="inline-flex opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
-              >
-                <span
-                  class="inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group/button hover:bg-secondary"
-                >
-                  Learn More About It
-                  <span
-                    class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover/button:translate-x-1"
-                  >
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                  </span>
-                </span>
-              </div>
+            <img
+              src="./assets/EDUCATION SAVINGS.png"
+              class="w-full h-[70%] object-contain mb-8"
+              alt=""
+            />
+            <div class="flex flex-col items-center gap-4">
+              <h4 class="font-semibold text-xl">Education Savings</h4>
             </div>
-          </a>
-        </div>
-
-        <!-- View All Services Button -->
-        <div class="flex justify-center mt-10">
-          <a
-            href="#"
-            class="inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 rounded-full text-base gap-3 group transition hover:bg-secondary shadow-md"
-          >
-            Go to Services
-            <span
-              class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
-            >
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </span>
+            <span class="sm:hidden absolute inset-0"></span>
           </a>
         </div>
       </div>
     </section>
 
-    <section class="py-20 bg-white px-6">
-      <div
-        class="max-w-7xl mx-auto px-6 py-10 lg:px-12 lg:py-12 rounded-3xl bg-secondary text-white"
-      >
-        <!-- Section Header -->
+    <script>
+      // Add smooth scrolling behavior for touch devices
+      const scrollContainer = document.querySelector(".custom-scrollbar");
 
-        <h2 class="text-4xl md:text-4xl font-semibold mb-2">
-          Pick from our <span class="text-primary">Services</span>
-        </h2>
-        <p class="text-sm lg:text-base text-white mb-12">
-          A bouquet of financial services aimed at helping you <br />
-          improve your financial well-being and
-          <span class="text-primary">achieve your money goals</span>
-        </p>
+      // Optional: Add keyboard navigation
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") {
+          scrollContainer.scrollBy({ left: -320, behavior: "smooth" });
+        } else if (e.key === "ArrowRight") {
+          scrollContainer.scrollBy({ left: 320, behavior: "smooth" });
+        }
+      });
 
-        <!-- Services Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Card 1: Mutual Funds -->
-          <a
-            href="#"
-            class="group relative block bg-white border border-gray-300 rounded-3xl p-6 overflow-hidden transition-all hover:shadow-lg"
-          >
-            <!-- Bottom-to-top gradient background layer -->
-            <div class="absolute inset-0 bg-white z-0"></div>
+      // Add click handlers for service cards
+      document.querySelectorAll(".service-card").forEach((card) => {
+        card.addEventListener("click", function () {
+          const serviceName = this.querySelector("h3").textContent;
+          console.log(`Clicked on: ${serviceName}`);
+          // Add your navigation logic here
+        });
+      });
+    </script>
 
-            <!-- Content -->
-            <div
-              class="relative z-10 flex flex-col items-center gap-4 text-start"
-            >
-              <h4 class="font-semibold text-3xl text-black text-start">
-                Mutual Funds
-              </h4>
-              <span
-                class="w-full h-1 rounded-full bg-gradient-to-r from-primary via-secondary to-white"
-              ></span>
-              <p class="text-gray-600 text-sm text-start">
-                Simplify your investment journey by building a diversified
-                portfolio tailored to your goals.
-              </p>
-
-              <!-- Centered GIF with ring effect -->
-              <div class="rounded-full flex items-center justify-center">
-                <img
-                  src="./assets/Money-bag-2.png"
-                  alt="Rupee GIF"
-                  class="w-60 h-60 object-contain"
-                />
-              </div>
-
-              <!-- Button on hover -->
-              <div
-                class="hidden lg:inline-flex opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
-              >
-                <span
-                  class="inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group/button hover:bg-secondary"
-                >
-                  Learn More About It
-                  <span
-                    class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover/button:translate-x-1"
-                  >
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                  </span>
-                </span>
-              </div>
-            </div>
-
-            <!-- Mobile tap area -->
-            <span class="sm:hidden absolute inset-0"></span>
-          </a>
-          <!-- Card 2: Mutual Funds -->
-          <a
-            href="#"
-            class="group relative block bg-white border border-gray-300 rounded-3xl p-6 overflow-hidden transition-all hover:shadow-lg"
-          >
-            <!-- Bottom-to-top gradient background layer -->
-            <div class="absolute inset-0 bg-white z-0"></div>
-
-            <!-- Content -->
-            <div
-              class="relative z-10 flex flex-col items-center gap-4 text-start"
-            >
-              <h4 class="font-semibold text-3xl text-black text-start">
-                Retirement Planning
-              </h4>
-              <span
-                class="w-full h-1 rounded-full bg-gradient-to-r from-primary via-secondary to-white"
-              ></span>
-              <p class="text-gray-600 text-sm text-start">
-                Craft a robust strategy today to ensure a financially secure and
-                dignified future tomorrow.
-              </p>
-
-              <!-- Centered GIF with ring effect -->
-              <div class="rounded-full flex items-center justify-center">
-                <img
-                  src="./assets/Money-bag.jpg"
-                  alt="Rupee GIF"
-                  class="w-52 h-52 object-contain"
-                />
-              </div>
-
-              <!-- Button on hover -->
-              <div
-                class="hidden lg:inline-flex opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
-              >
-                <span
-                  class="inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group/button hover:bg-secondary"
-                >
-                  Learn More About It
-                  <span
-                    class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover/button:translate-x-1"
-                  >
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                  </span>
-                </span>
-              </div>
-            </div>
-
-            <!-- Mobile tap area -->
-            <span class="sm:hidden absolute inset-0"></span>
-          </a>
-          <!-- Card 3: Mutual Funds -->
-          <a
-            href="#"
-            class="group relative block bg-white border border-gray-300 rounded-3xl p-6 overflow-hidden transition-all hover:shadow-lg"
-          >
-            <!-- Bottom-to-top gradient background layer -->
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent z-0"
-            ></div>
-
-            <!-- Content -->
-            <div
-              class="relative z-10 flex flex-col items-center gap-4 text-start"
-            >
-              <h4 class="font-semibold text-3xl text-black text-start">
-                Tax Planning
-              </h4>
-              <span
-                class="w-full h-1 rounded-full bg-gradient-to-r from-primary via-secondary to-white"
-              ></span>
-              <p class="text-gray-600 text-sm text-start">
-                Optimize your investments and financial decisions to minimize
-                tax liabilities & maximize savings.
-              </p>
-
-              <!-- Centered GIF with ring effect -->
-              <div class="rounded-full flex items-center justify-center">
-                <img
-                  src="./assets/tax-planning.gif"
-                  alt="Rupee GIF"
-                  class="w-40 h-40 object-contain"
-                />
-              </div>
-
-              <!-- Button on hover -->
-              <div
-                class="hidden lg:inline-flex opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
-              >
-                <span
-                  class="inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group/button hover:bg-secondary"
-                >
-                  Learn More About It
-                  <span
-                    class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover/button:translate-x-1"
-                  >
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                  </span>
-                </span>
-              </div>
-            </div>
-
-            <!-- Mobile tap area -->
-            <span class="sm:hidden absolute inset-0"></span>
-          </a>
-        </div>
-
-        <!-- View All Services Button -->
-        <div class="flex justify-center mt-10">
-          <a
-            href="#"
-            class="inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 rounded-full text-base gap-3 group transition hover:bg-secondary hover:border-1 hover:border-primary shadow-md"
-          >
-            Go to Services
-            <span
-              class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
-            >
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </span>
-          </a>
-        </div>
-      </div>
-    </section>
     <!-- =================================================================== -->
     <!-- TEAM SECTION - Meet the financial consultants -->
     <!-- =================================================================== -->
-    <section class="py-20 bg-white text-black">
-      <div class="max-w-7xl mx-auto px-4 text-start">
+    <section class="py-20 bg-secondary text-white">
+      <div class="max-w-7xl mx-auto px-8 text-start">
         <!-- Section Header -->
         <h2
           class="text-3xl sm:text-4xl md:text-5xl font-semibold mb-2 text-center md:text-start"
         >
-          Meet Your <span class="text-primary">A-Team</span>
+          Meet Your <span class="text-strokes">Team</span>
         </h2>
         <h4
-          class="text-sm md:text-lg text-black mt-2 font-medium mb-10 text-center md:text-start leading-relaxed"
+          class="text-sm lg:text-lg text-white mt-2 font-medium mb-10 text-center md:text-start leading-relaxed"
         >
           Your trusted and dedicated partners in your wealth creation journey<br
-            class="hidden sm:block"
+            class="hidden lg:block"
           />
-          who strive to ensure one thing:
-          <span class="text-primary">Client Happiness.</span>
+          who strive to ensure one thing: Client Happiness.
         </h4>
 
         <!-- Team Members Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
           <!-- Founder Card -->
-          <div class="relative group overflow-hidden rounded-2xl">
-            <img
-              src="./assets/Owner.png"
-              alt="Company Founder"
-              class="w-full h-full object-cover"
-            />
-            <!-- Gradient overlay for text readability -->
-            <div
-              class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/70 to-transparent text-white"
-            >
-              <h4 class="text-lg font-semibold">Prashant Chimulkar</h4>
-              <p class="text-sm mb-4">Founder</p>
-              <div class="w-36 h-0.5 bg-primary mb-4"></div>
-              <a
-                href="#"
-                class="inline-flex items-center text-primary pl-5 pr-4 py-2.5 rounded-full text-base gap-2 group transition"
-              >
-                Read More About Stewart
-                <span
-                  class="bg-white text-black rounded-full p-1 flex items-center justify-center group-hover:translate-x-1 transition group-hover:bg-primary group-hover:text-white"
-                >
-                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </span>
-              </a>
+          <div class="text-center">
+            <div class="relative group overflow-hidden rounded-2xl">
+              <img
+                src="./assets/Prashant Chimulkar.jpeg"
+                alt="Company Founder"
+                class="w-full h-auto object-cover rounded-2xl border-4 border-strokes"
+              />
             </div>
+            <h4
+              class="mt-3 text-lg font-semibold text-white flex items-center justify-center gap-2"
+            >
+              Prashant Chimulkar
+              <a
+                href="https://example.com"
+                target="_blank"
+                class="hover:opacity-80"
+              >
+                <i
+                  data-lucide="message-circle-warning"
+                  class="w-5 h-5 text-primary cursor-pointer"
+                ></i>
+              </a>
+            </h4>
           </div>
 
           <!-- Co-Founder Card -->
-          <div class="relative group overflow-hidden rounded-2xl">
-            <img
-              src="./assets/Owner.png"
-              alt="Company Co-Founder"
-              class="w-full h-full object-cover"
-            />
-            <div
-              class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/70 to-transparent text-white"
-            >
-              <h4 class="text-lg font-semibold">Pranav Chimulkar</h4>
-              <p class="text-sm mb-4">Co-Founder</p>
-              <div class="w-36 h-0.5 bg-primary mb-4"></div>
-              <a
-                href="#"
-                class="inline-flex items-center text-primary pl-5 pr-4 py-2.5 rounded-full text-base gap-2 group transition"
-              >
-                Read More About Stewart
-                <span
-                  class="bg-white text-black rounded-full p-1 flex items-center justify-center group-hover:translate-x-1 transition group-hover:bg-primary group-hover:text-white"
-                >
-                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </span>
-              </a>
+          <div class="text-center">
+            <div class="relative group overflow-hidden rounded-2xl">
+              <img
+                src="./assets/Pranav Chimulkar.jpg"
+                alt="Company Co-Founder"
+                class="w-full h-auto object-cover rounded-2xl border-4 border-strokes"
+              />
             </div>
+            <h4
+              class="mt-3 text-lg font-semibold text-white flex items-center justify-center gap-2"
+            >
+              Pranav Chimulkar
+              <a
+                href="https://example.com"
+                target="_blank"
+                class="hover:opacity-80"
+              >
+                <i
+                  data-lucide="message-circle-warning"
+                  class="w-5 h-5 text-primary cursor-pointer"
+                ></i>
+              </a>
+            </h4>
           </div>
         </div>
       </div>
@@ -1821,32 +1685,31 @@
     <!-- =================================================================== -->
     <!-- GET SATRTED SECTION - Ready to Start financial Services -->
     <!-- =================================================================== -->
-    <section
-      class="flex flex-col lg:flex-row items-center bg-[#0A1F44] text-white"
-    >
+    <section class="flex flex-col lg:flex-row items-center bg-white text-black">
       <!-- Left: Image + Heading -->
-      <div class="w-full lg:w-1/2 relative">
+      <div
+        class="w-full lg:w-1/2 relative flex justify-start"
+        data-aos="fade-up"
+      >
         <img
-          src="./assets/intake-team.png"
+          src="./assets/RECEIVER.png"
           alt="Smiling advisor"
-          class="w-full h-1/2 object-cover"
+          class="w-auto h-1/2 object-contain mt-12 -ml-24"
         />
-        <div class="absolute bottom-30 left-8">
-          <h2 class="text-3xl sm:text-4xl font-semibold">
-            Here's how to <br />
-            <span class="text-primary font-bold">Get Started</span>
-          </h2>
-        </div>
       </div>
 
       <!-- Right: Steps List -->
       <div class="w-full lg:w-1/2 px-6 py-12 lg:py-0 lg:px-16 space-y-8">
+        <h2 class="text-3xl lg:text-5xl font-semibold mb-6 lg:mb-12">
+          How to
+          <span class="text-bluee">Get Started</span>
+        </h2>
         <!-- Step 1 -->
         <div data-aos="fade-up" data-aos-delay="100">
-          <h3 class="text-primary font-semibold mb-1 text-lg">
+          <h3 class="text-secondary font-semibold mb-1 text-lg">
             1. Schedule Your Clarity Call
           </h3>
-          <p class="text-white">
+          <p class="text-black text-base lg:text-lg">
             Book an appointment to visit us in our
             <a href="#" class="underline text-blue-400">Head Office</a> in
             Ponda, Goa <br />
@@ -1858,10 +1721,10 @@
 
         <!-- Step 2 -->
         <div data-aos="fade-up" data-aos-delay="200">
-          <h3 class="text-primary font-semibold mb-1 text-lg">
+          <h3 class="text-secondary font-semibold mb-1 text-lg">
             2. Complete your goal and risk evaluation
           </h3>
-          <p class="text-white">
+          <p class="text-black">
             We'll help you quickly identify your financial goals and unique risk
             <br />
             tolerance, building the foundation for your plan.
@@ -1870,10 +1733,10 @@
 
         <!-- Step 3 -->
         <div data-aos="fade-up" data-aos-delay="300">
-          <h3 class="text-primary font-semibold mb-1 text-lg">
+          <h3 class="text-secondary font-semibold mb-1 text-lg">
             3. Explore your investment options
           </h3>
-          <p class="text-white">
+          <p class="text-black">
             Based on your profile, we'll help you explore and understand <br />
             suitable investment choices that align with your objectives.
           </p>
@@ -1881,37 +1744,47 @@
 
         <!-- Step 4 -->
         <div data-aos="fade-up" data-aos-delay="400">
-          <h3 class="text-primary font-semibold mb-1 text-lg">
+          <h3 class="text-secondary font-semibold mb-1 text-lg">
             4. Easy Digital Onboarding
           </h3>
-          <p class="text-white">
+          <p class="text-black">
             Complete all formalities swiftly and securely with our streamlined
             <br />
             online process, from KYC to account setup.
           </p>
         </div>
-
-        <!-- Step 5 -->
-        <div data-aos="fade-up" data-aos-delay="500">
-          <h3 class="text-primary font-semibold mb-1 text-lg">
-            5. Start Investing & Track Progress
-          </h3>
-          <p class="text-white">
-            Start investing and effortlessly monitor your portfolio's progress
-            <br />
-            with our intuitive tracking tools and support.
-          </p>
-        </div>
       </div>
     </section>
     <!-- Contact Question Banner -->
-    <div class="w-full bg-primary text-white text-center px-5 py-6 sm:py-8">
-      <p
-        class="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold leading-snug"
-      >
-        Have a Question? <br class="sm:hidden" />
-        Contact the Chimulkar Financial Services Team
+    <div
+      class="w-full flex flex-col justify-center items-center bg-secondary text-white text-center px-5 py-6 sm:py-8"
+    >
+      <p class="text-lg lg:text-4xl font-semibold leading-snug mb-3">
+        Have a Question?
       </p>
+      <a
+        href="#"
+        class="flex items-center justify-center bg-primary text-white pl-5 pr-3 py-1 lg:py-2 rounded-full text-sm gap-3 group transition-all duration-300 hover:bg-primary/10 w-fit mx-auto lg:mx-0"
+      >
+        WhatsApp Us
+        <span
+          class="text-black rounded-full p-1.5 flex items-center justify-center transition-all duration-300 group-hover:translate-x-1 group-hover:text-white"
+        >
+          <!-- Your original WhatsApp SVG icon -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M 12.011719 2 C 6.5057187 2 2.0234844 6.478375 2.0214844 11.984375 C 2.0204844 13.744375 2.4814687 15.462563 3.3554688 16.976562 L 2 22 L 7.2324219 20.763672 C 8.6914219 21.559672 10.333859 21.977516 12.005859 21.978516 L 12.009766 21.978516 C 17.514766 21.978516 21.995047 17.499141 21.998047 11.994141 C 22.000047 9.3251406 20.962172 6.8157344 19.076172 4.9277344 C 17.190172 3.0407344 14.683719 2.001 12.011719 2 z M 12.009766 4 C 14.145766 4.001 16.153109 4.8337969 17.662109 6.3417969 C 19.171109 7.8517969 20.000047 9.8581875 19.998047 11.992188 C 19.996047 16.396187 16.413812 19.978516 12.007812 19.978516 C 10.674812 19.977516 9.3544062 19.642812 8.1914062 19.007812 L 7.5175781 18.640625 L 6.7734375 18.816406 L 4.8046875 19.28125 L 5.2851562 17.496094 L 5.5019531 16.695312 L 5.0878906 15.976562 C 4.3898906 14.768562 4.0204844 13.387375 4.0214844 11.984375 C 4.0234844 7.582375 7.6067656 4 12.009766 4 z M 8.4765625 7.375 C 8.3095625 7.375 8.0395469 7.4375 7.8105469 7.6875 C 7.5815469 7.9365 6.9355469 8.5395781 6.9355469 9.7675781 C 6.9355469 10.995578 7.8300781 12.182609 7.9550781 12.349609 C 8.0790781 12.515609 9.68175 15.115234 12.21875 16.115234 C 14.32675 16.946234 14.754891 16.782234 15.212891 16.740234 C 15.670891 16.699234 16.690438 16.137687 16.898438 15.554688 C 17.106437 14.971687 17.106922 14.470187 17.044922 14.367188 C 16.982922 14.263188 16.816406 14.201172 16.566406 14.076172 C 16.317406 13.951172 15.090328 13.348625 14.861328 13.265625 C 14.632328 13.182625 14.464828 13.140625 14.298828 13.390625 C 14.132828 13.640625 13.655766 14.201187 13.509766 14.367188 C 13.363766 14.534188 13.21875 14.556641 12.96875 14.431641 C 12.71875 14.305641 11.914938 14.041406 10.960938 13.191406 C 10.218937 12.530406 9.7182656 11.714844 9.5722656 11.464844 C 9.4272656 11.215844 9.5585938 11.079078 9.6835938 10.955078 C 9.7955938 10.843078 9.9316406 10.663578 10.056641 10.517578 C 10.180641 10.371578 10.223641 10.267562 10.306641 10.101562 C 10.389641 9.9355625 10.347156 9.7890625 10.285156 9.6640625 C 10.223156 9.5390625 9.737625 8.3065 9.515625 7.8125 C 9.328625 7.3975 9.131125 7.3878594 8.953125 7.3808594 C 8.808125 7.3748594 8.6425625 7.375 8.4765625 7.375 z"
+            ></path>
+          </svg>
+        </span>
+      </a>
     </div>
     <!-- =================================================================== -->
     <!-- TESTIMONIALS SECTION - Client feedback slider -->
@@ -1920,8 +1793,8 @@
       class="bg-white w-full mx-auto px-6 py-24 flex flex-col items-center text-center gap-6"
     >
       <!-- Section Heading -->
-      <h2 class="text-2xl md:text-3xl font-semibold text-black">
-        Testimonials
+      <h2 class="text-2xl lg:text-4xl font-semibold text-secondary mb-4">
+        Things our clients says
       </h2>
 
       <!-- Testimonial Slider Container -->
@@ -1933,21 +1806,20 @@
           <!-- Testimonial 1 -->
           <div class="flex-none w-full px-4">
             <div class="flex flex-col items-center">
-              <i data-lucide="quote" class="w-6 h-6 text-primary mb-2"></i>
+              <!-- 5-star rating -->
+              <div class="flex space-x-1 text-primary mb-4">
+                <i data-lucide="star" class="w-5 h-5 fill-primary"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-primary"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-primary"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-primary"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-primary"></i>
+              </div>
               <p class="text-sm md:text-lg font-medium text-gray-800 mb-4">
                 "Chimulkar Financial Services gave me clear guidance on my
                 investments and tax planning. Highly recommended!"
               </p>
               <div class="flex items-center space-x-2">
                 <span class="text-gray-700 font-semibold">— Ravi Sharma</span>
-                <!-- 5-star rating -->
-                <div class="flex space-x-1 text-primary">
-                  <i data-lucide="star" class="w-4 h-4"></i>
-                  <i data-lucide="star" class="w-4 h-4"></i>
-                  <i data-lucide="star" class="w-4 h-4"></i>
-                  <i data-lucide="star" class="w-4 h-4"></i>
-                  <i data-lucide="star" class="w-4 h-4"></i>
-                </div>
               </div>
             </div>
           </div>
@@ -1955,7 +1827,13 @@
           <!-- Testimonial 2 -->
           <div class="flex-none w-full px-4">
             <div class="flex flex-col items-center">
-              <i data-lucide="quote" class="w-6 h-6 text-primary mb-2"></i>
+              <div class="flex space-x-1 text-primary mb-4">
+                <i data-lucide="star" class="w-5 h-5 fill-primary"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-primary"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-primary"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-primary"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-primary"></i>
+              </div>
               <p class="text-sm md:text-lg font-medium text-gray-800 mb-4">
                 "The team was extremely professional and helped me get the best
                 retirement plan suited for my family."
@@ -1964,13 +1842,6 @@
                 <span class="text-gray-700 font-semibold"
                   >— Sneha Kulkarni</span
                 >
-                <div class="flex space-x-1 text-primary">
-                  <i data-lucide="star" class="w-4 h-4"></i>
-                  <i data-lucide="star" class="w-4 h-4"></i>
-                  <i data-lucide="star" class="w-4 h-4"></i>
-                  <i data-lucide="star" class="w-4 h-4"></i>
-                  <i data-lucide="star" class="w-4 h-4"></i>
-                </div>
               </div>
             </div>
           </div>
@@ -1978,20 +1849,19 @@
           <!-- Testimonial 3 -->
           <div class="flex-none w-full px-4">
             <div class="flex flex-col items-center">
-              <i data-lucide="quote" class="w-6 h-6 text-primary mb-2"></i>
+              <div class="flex space-x-1 text-primary mb-4">
+                <i data-lucide="star" class="w-5 h-5 fill-primary"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-primary"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-primary"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-primary"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-primary"></i>
+              </div>
               <p class="text-sm md:text-lg font-medium text-gray-800 mb-4">
                 "I was able to secure my child's education fund with the right
                 advice from Chimulkar Financial Services."
               </p>
               <div class="flex items-center space-x-2">
                 <span class="text-gray-700 font-semibold">— Ajay Patil</span>
-                <div class="flex space-x-1 text-primary">
-                  <i data-lucide="star" class="w-4 h-4"></i>
-                  <i data-lucide="star" class="w-4 h-4"></i>
-                  <i data-lucide="star" class="w-4 h-4"></i>
-                  <i data-lucide="star" class="w-4 h-4"></i>
-                  <i data-lucide="star" class="w-4 h-4"></i>
-                </div>
               </div>
             </div>
           </div>
@@ -1999,17 +1869,20 @@
       </div>
 
       <!-- Navigation Dots -->
-      <div id="dots" class="flex space-x-3 mt-6">
+      <div
+        id="dots"
+        class="flex space-x-3 mt-6 bg-gray-200 p-3 px-6 rounded-full"
+      >
         <button
-          class="w-2 h-2 lg:w-3 lg:h-3 rounded-full bg-gray-400 hover:bg-primary transition cursor-pointer"
+          class="w-2 h-2 rounded-full bg-gray-400 hover:bg-primary transition cursor-pointer"
           onclick="showTestimonial(0)"
         ></button>
         <button
-          class="w-2 h-2 lg:w-3 lg:h-3 rounded-full bg-gray-400 hover:bg-primary transition cursor-pointer"
+          class="w-2 h-2 rounded-full bg-gray-400 hover:bg-primary transition cursor-pointer"
           onclick="showTestimonial(1)"
         ></button>
         <button
-          class="w-2 h-2 lg:w-3 lg:h-3 rounded-full bg-gray-400 hover:bg-primary transition cursor-pointer"
+          class="w-2 h-2 rounded-full bg-gray-400 hover:bg-primary transition cursor-pointer"
           onclick="showTestimonial(2)"
         ></button>
       </div>
@@ -2019,12 +1892,12 @@
     <!-- FOUNDER PROFILE SECTION - Meet the founding consultant -->
     <!-- =================================================================== -->
     <section
-      class="w-full bg-white py-16 px-6 flex flex-col md:flex-row items-center md:items-center gap-8 mx-auto"
+      class="w-full bg-secondary py-16 px-8 flex flex-col md:flex-row items-center md:items-center gap-8 mx-auto"
     >
       <!-- Left Side - Founder Image -->
       <div class="w-full md:w-1/2">
         <img
-          src="./assets/Owner.png"
+          src="./assets/Pranav Chimulkar.jpg"
           alt="Pranav Chimulkar - Financial Consultant"
           class="w-full rounded-lg shadow-md object-cover"
         />
@@ -2034,13 +1907,11 @@
       <div
         class="w-full md:w-1/2 flex flex-col justify-center items-center lg:items-start text-center lg:text-left"
       >
-        <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
-          40 Years of <span class="text-primary">Trust</span>
+        <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4 lg:mb-12">
+          40 Years of <span class="text-strokes">Trust</span>
         </h2>
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">
-          The legacy of our business
-        </h3>
-        <p class="text-gray-600 mb-6">
+
+        <p class="text-white mb-6">
           Our journey began over four decades ago, built on the solid foundation
           and visionary efforts laid by the late Mr. Vasudeo Chimulkar, father
           of Prashant Chimulkar and grandfather of Pranav Chimulkar.
@@ -2051,21 +1922,124 @@
           business not just for growth, but to uphold his unwavering commitment
           to client trust and lasting financial well-being.
         </p>
-        <!-- CTA Button -->
+        <!-- CTA Link -->
         <a
           href="#"
-          class="inline-flex items-center text-primary pl-5 pr-4 py-2.5 rounded-full text-base gap-2 group transition"
+          class="text-strokes text-base font-medium hover:underline underline-offset-2 transition"
         >
-          Read More About Stewart
-          <span
-            class="bg-white text-black rounded-full p-1 flex items-center justify-center group-hover:translate-x-1 transition group-hover:bg-primary group-hover:text-white"
-          >
-            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </span>
+          Read More
         </a>
       </div>
     </section>
+    <!-- Our Mobile App -->
+    <section
+      class="w-full flex flex-col lg:flex-row min-h-screen overflow-hidden"
+    >
+      <!-- Left Side - Financial Guidelines -->
+      <div
+        class="w-full lg:w-3/5 bg-white flex items-center px-6 sm:px-8 lg:px-16 py-12 lg:py-0"
+      >
+        <div class="max-w-2xl w-full">
+          <h2
+            class="text-3xl lg:text-5xl font-semibold mb-2 text-center lg:text-start text-gray-900"
+            data-aos="fade-up"
+          >
+            Your portfolio at your <span class="text-bluee">fingertips</span>
+          </h2>
+          <p class="text-gray-900 text-base lg:text-lg mb-8">
+            Define your financial goals and timelines clearly.
+          </p>
 
+          <div class="space-y-6">
+            <!-- Financial Do's -->
+            <div
+              class="flex items-center gap-4"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <i
+                data-lucide="circle-check"
+                class="w-10 h-10 lg:w-9 lg:h-9 text-bluee fill-bluee stroke-white"
+              ></i>
+              <p class="text-gray-700 text-base lg:text-lg">
+                Your and your family’s portfolio
+              </p>
+            </div>
+
+            <hr class="border-t border-gray-300 my-4" />
+
+            <div
+              class="flex items-center gap-4"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <i
+                data-lucide="circle-check"
+                class="w-10 h-10 lg:w-9 lg:h-9 text-bluee fill-bluee stroke-white"
+              ></i>
+              <p class="text-gray-700 text-base lg:text-lg">
+                Profit - Loss statement
+              </p>
+            </div>
+            <hr class="border-t border-gray-300 my-4" />
+
+            <div
+              class="flex items-center gap-4"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <i
+                data-lucide="circle-check"
+                class="w-10 h-10 lg:w-9 lg:h-9 text-bluee fill-bluee stroke-white"
+              ></i>
+              <p class="text-gray-700 text-base lg:text-lg">Live SIP report</p>
+            </div>
+            <hr class="border-t border-gray-300 my-4" />
+
+            <div
+              class="flex items-center gap-4"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <i
+                data-lucide="circle-check"
+                class="w-10 h-10 lg:w-9 lg:h-9 text-bluee fill-bluee stroke-white"
+              ></i>
+              <p class="text-gray-700 text-base lg:text-lg">
+                Capital Gains - Loss report
+              </p>
+            </div>
+            <hr class="border-t border-gray-300 my-4" />
+
+            <!-- Financial Don'ts -->
+            <div
+              class="flex items-center gap-4"
+              data-aos="fade-up"
+              data-aos-delay="500"
+            >
+              <i
+                data-lucide="circle-check"
+                class="w-10 h-10 lg:w-9 lg:h-9 text-bluee fill-bluee stroke-white"
+              ></i>
+              <p class="text-gray-700 text-base lg:text-lg">Service Requests</p>
+            </div>
+            <hr class="border-t border-gray-300 my-4" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side - Founder Video -->
+      <div
+        class="w-full lg:w-2/5 relative min-h-[300px] lg:min-h-full"
+        data-aos="fade-up"
+      >
+        <img
+          src="./assets/PORTFOLIO HOLD.png"
+          class="mt-0 lg:mt-27 scale-125 overflow-hidden"
+          alt=""
+        />
+      </div>
+    </section>
     <!-- =================================================================== -->
     <!-- FAQ SECTION - Frequently asked questions with interactive answers -->
     <!-- =================================================================== -->
@@ -2075,7 +2049,7 @@
         <h2
           class="text-3xl md:text-4xl font-semibold text-white text-center mb-12"
         >
-          Frequently Asked <span class="text-primary">Questions</span>
+          Frequently Asked <span class="text-strokes">Questions</span>
         </h2>
 
         <div class="space-y-8">
@@ -2086,7 +2060,7 @@
             <div class="flex flex-col items-end space-y-2">
               <button
                 onclick="toggleFAQ(0)"
-                class="block bg-transparent border border-primary text-white hover:bg-primary hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
+                class="block bg-transparent border border-strokes text-white hover:bg-strokes hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
               >
                 What exactly do you do?
               </button>
@@ -2110,7 +2084,7 @@
             <div class="flex flex-col items-end space-y-2">
               <button
                 onclick="toggleFAQ(1)"
-                class="block bg-transparent border border-primary text-white hover:bg-primary hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
+                class="block bg-transparent border border-strokes text-white hover:bg-strokes hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
               >
                 How can I get started with investing through you?
               </button>
@@ -2134,7 +2108,7 @@
             <div class="flex flex-col items-end space-y-2">
               <button
                 onclick="toggleFAQ(2)"
-                class="block bg-transparent border border-primary text-white hover:bg-primary hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
+                class="block bg-transparent border border-strokes text-white hover:bg-strokes hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
               >
                 What are your charges for investing in mutual funds?
               </button>
@@ -2158,7 +2132,7 @@
             <div class="flex flex-col items-end space-y-2">
               <button
                 onclick="toggleFAQ(3)"
-                class="block bg-transparent border border-primary text-white hover:bg-primary hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
+                class="block bg-transparent border border-strokes text-white hover:bg-strokes hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
               >
                 Is my money safe when I invest through your platform?
               </button>
@@ -2182,7 +2156,7 @@
             <div class="flex flex-col items-end space-y-2">
               <button
                 onclick="toggleFAQ(4)"
-                class="block bg-transparent border border-primary text-white hover:bg-primary hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
+                class="block bg-transparent border border-strokes text-white hover:bg-strokes hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
               >
                 Do you guarantee returns on my investments?
               </button>
@@ -2207,7 +2181,7 @@
             <div class="flex flex-col items-end space-y-2">
               <button
                 onclick="toggleFAQ(5)"
-                class="block bg-transparent border border-primary text-white hover:bg-primary hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
+                class="block bg-transparent border border-strokes text-white hover:bg-strokes hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
               >
                 How will you help me choose the right mutual funds? 
               </button>
@@ -2229,7 +2203,7 @@
             <div class="flex flex-col items-end space-y-2">
               <button
                 onclick="toggleFAQ(6)"
-                class="block bg-transparent border border-primary text-white hover:bg-primary hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
+                class="block bg-transparent border border-strokes text-white hover:bg-strokes hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
               >
                 What if I need assistance after I've invested?
               </button>
@@ -2251,7 +2225,7 @@
             <div class="flex flex-col items-end space-y-2">
               <button
                 onclick="toggleFAQ(7)"
-                class="block bg-transparent border border-primary text-white hover:bg-primary hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
+                class="block bg-transparent border border-strokes text-white hover:bg-strokes hover:text-white transition-colors duration-300 px-6 py-3 rounded-full cursor-pointer shadow-md max-w-max"
               >
                 Do I need a large sum to begin investing?
               </button>
@@ -2272,42 +2246,186 @@
     </section>
 
     <!-- =================================================================== -->
-    <!-- LOCATION SECTION - Office location with map and contact details -->
+    <!-- LOCATION & VIRTUAL OFFICE SECTION - Office location with map and contact details -->
     <!-- =================================================================== -->
     <section class="w-full py-16 px-6">
       <!-- Section Heading -->
       <div class="w-full text-center mb-8">
-        <h2 class="text-2xl md:text-3xl font-semibold text-gray-900">
-          Serving the Services in <span class="text-primary">Goa</span>
+        <h2 class="text-3xl lg:text-5xl font-semibold text-gray-900">
+          Where to <span class="text-bluee">Meet Us</span>
         </h2>
       </div>
 
       <!-- Map and Office Info Grid -->
       <div
-        class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+        class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-36 items-center"
       >
-        <!-- Left Side - Interactive Map -->
-        <div
-          class="relative w-full h-[400px] overflow-hidden group rounded-xl shadow-lg"
-        >
-          <iframe
-            class="w-full h-full rounded-xl"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.7773772279864!2d74.0086659!3d15.4038977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDI0JzE0LjAiTiA3NMKwMDAnMzEuMiJF!5e0!3m2!1sen!2sin!4v1689178547580!5m2!1sen!2sin&maptype=satellite"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-          <!-- Dark overlay that disappears on click -->
+        <!-- Map with Centered Text -->
+        <div class="text-center">
+          <!-- Map Container -->
           <div
-            class="absolute inset-0 bg-black/30 transition-opacity duration-500 group-hover:bg-transparent cursor-pointer"
-            onclick="this.classList.add('hidden')"
-          ></div>
+            class="relative w-full h-[380px] overflow-hidden group rounded-xl shadow-lg mt-6 lg:mt-0"
+          >
+            <iframe
+              class="w-full h-full rounded-xl"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.7773772279864!2d74.0086659!3d15.4038977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDI0JzE0LjAiTiA3NMKwMDAnMzEuMiJF!5e0!3m2!1sen!2sin!4v1689178547580!5m2!1sen!2sin&maptype=satellite"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+
+            <!-- Dark overlay that disappears on click -->
+            <div
+              class="absolute inset-0 bg-black/30 transition-opacity duration-500 group-hover:bg-transparent cursor-pointer"
+              onclick="this.classList.add('hidden')"
+            ></div>
+          </div>
+
+          <!-- Centered Address -->
+          <h3 class="text-2xl font-semibold mt-6 mb-4 text-gray-900">
+            Main Office
+          </h3>
+          <p class="text-gray-700 mt-3 text-medium">
+            G-12, Angaraki Building, opposite Fire Station,<br
+              class="hidden lg:block"
+            />
+            near Bank of Baroda, Khadpabandh, Ponda, Goa 403401
+          </p>
+          <!-- Directions Button -->
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=15.4038977,74.0086659"
+            class="inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 mt-4 rounded-full text-sm gap-3 group transition-colors duration-300 hover:bg-secondary"
+          >
+            Navigate in Maps
+            <span
+              class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:text-black group-hover:translate-x-1"
+            >
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </a>
+        </div>
+
+        <!-- Virtual Office Centered Text -->
+        <div class="text-center">
+          <!-- Virtual Office Container -->
+
+          <section class="relative w-full max-w-7xl mx-auto">
+            <!-- Laptop Image as the frame -->
+            <img
+              src="./assets/Laptop.png"
+              class="w-full h-full scale-100"
+              alt="Laptop Mockup"
+            />
+
+            <!-- Video & Controls Positioned Absolutely Over the Screen Area -->
+            <div
+              class="absolute top-[5%] left-[10.5%] lg:left-[10%] w-[79.5%] lg:w-[80%] h-[90%] overflow-hidden"
+            >
+              <!-- Video Area -->
+
+              <div class="relative w-full h-[80%] overflow-hidden">
+                <video
+                  class="relative w-full h-full object-cover"
+                  style="background: #111"
+                  src="./assets/call.mp4"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                ></video>
+
+                <!-- Overlays -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10 flex flex-col justify-between p-4 md:p-6 pointer-events-none"
+                >
+                  <!-- Top Info -->
+                  <div class="text-white pointer-events-auto">
+                    <h1 class="text-xs text-start lg:text-sm font-medium">
+                      Onboarding Meeting
+                    </h1>
+                    <p
+                      class="text-xs lg:text-sm text-gray-200 flex items-center mt-1"
+                    >
+                      <i
+                        data-lucide="users"
+                        class="w-4 h-4 sm:w-5 sm:h-5 mr-1"
+                      ></i>
+                      2 participants
+                    </p>
+                  </div>
+
+                  <!-- Bottom Control Bar -->
+                  <div
+                    class="flex justify-center flex-wrap gap-3 md:gap-4 pointer-events-auto"
+                  >
+                    <!-- Buttons -->
+                    <button
+                      aria-label="Share Screen"
+                      class="w-8 h-8 bg-gray-800/70 rounded-full flex items-center justify-center border border-gray-700 shadow-lg transition"
+                    >
+                      <i data-lucide="monitor" class="w-4 h-4 text-white"></i>
+                    </button>
+
+                    <button
+                      aria-label="Mute Microphone"
+                      class="w-8 h-8 bg-gray-800/70 rounded-full flex items-center justify-center border border-gray-700 shadow-lg transition"
+                    >
+                      <i data-lucide="mic" class="w-4 h-4 text-white"></i>
+                    </button>
+
+                    <button
+                      aria-label="End Call"
+                      class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center border border-red-400 shadow-lg transition"
+                    >
+                      <i data-lucide="x" class="w-4 h-4 text-white"></i>
+                    </button>
+
+                    <button
+                      aria-label="Mute Camera"
+                      class="w-8 h-8 bg-gray-800/70 rounded-full flex items-center justify-center border border-gray-700 shadow-lg transition"
+                    >
+                      <i data-lucide="video-off" class="w-4 h-4 text-white"></i>
+                    </button>
+
+                    <button
+                      aria-label="Fullscreen"
+                      class="w-8 h-8 bg-gray-800/70 rounded-full flex items-center justify-center border border-gray-700 shadow-lg transition"
+                    >
+                      <i data-lucide="maximize" class="w-4 h-4 text-white"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Centered Address -->
+          <h3 class="text-2xl font-semibold text-gray-900 mt-4">
+            Virtual Office
+          </h3>
+          <p class="text-gray-700 mt-3 text-medium">
+            Pick a convenient time slot from one of the available
+            <br class="hidden lg:block" />
+            ones to join a meeting via Google Meet from anywhere
+          </p>
+          <!-- Directions Button -->
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=15.4038977,74.0086659"
+            class="inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 mt-4 rounded-full text-sm gap-3 group transition-colors duration-300 hover:bg-secondary"
+          >
+            Reserve a Slot
+            <span
+              class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:text-black group-hover:translate-x-1"
+            >
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </a>
         </div>
 
         <!-- Right Side - Office Information Card -->
         <div
-          class="bg-white border border-gray-300 rounded-2xl shadow-xl p-4 max-w-md mx-auto flex flex-col items-center text-center"
+          class="hidden bg-white border border-gray-300 rounded-2xl shadow-xl p-4 max-w-md mx-auto flex flex-col items-center text-center"
         >
           <img
             src="./assets/office.png"
@@ -2355,7 +2473,7 @@
     </section>
 
     <!-- Vitual Office Section Heading -->
-    <div class="w-full text-center mb-4">
+    <div class="hidden w-full text-center mb-4">
       <h2 class="text-2xl md:text-3xl font-semibold text-gray-900">
         Over Through <span class="text-primary">Virtual Office</span>
       </h2>
@@ -2363,7 +2481,7 @@
     <!-- =================================================================== -->
     <!-- VIRTUAL OFFICE SECTION - Free Consulation Over Video Call -->
     <!-- =================================================================== -->
-    <section class="relative w-full max-w-5xl mx-auto mb-4">
+    <section class="hidden relative w-full max-w-5xl mx-auto">
       <!-- Laptop Image as the frame -->
       <img
         src="./assets/Laptop-Mockup.png"
@@ -2471,7 +2589,7 @@
             <h2
               class="text-3xl md:text-6xl font-semibold text-white text-center lg:text-start"
             >
-              Get a Free <span class="text-primary">Consultation</span>
+              Book a <br /><span class="text-strokes">Clarity Call</span>
             </h2>
 
             <!-- Contact Details List -->
@@ -2479,28 +2597,46 @@
               <div
                 class="flex items-center gap-4 justify-center lg:justify-start"
               >
-                <i data-lucide="users" class="w-6 h-6 text-primary"></i>
-                <span class="text-white font-medium">Dedicated CFS Team</span>
-              </div>
-              <div
-                class="flex items-center gap-4 justify-center lg:justify-start"
-              >
-                <i data-lucide="clock" class="w-6 h-6 text-primary"></i>
-                <span class="text-white font-medium"
-                  >Available 24/7 Online</span
+                <i
+                  data-lucide="circle-check"
+                  class="w-8 h-8 lg:w-10 lg:h-10 text-bluee fill-strokes stroke-secondary"
+                ></i>
+                <span class="text-white text-base lg:text-lg font-medium"
+                  >Get your questions answered</span
                 >
               </div>
               <div
                 class="flex items-center gap-4 justify-center lg:justify-start"
               >
-                <i data-lucide="phone" class="w-6 h-6 text-primary"></i>
-                <span class="text-white font-medium">+91 7894563210</span>
+                <i
+                  data-lucide="circle-check"
+                  class="w-8 h-8 lg:w-10 lg:h-10 text-bluee fill-strokes stroke-secondary"
+                ></i>
+                <span class="text-white text-base lg:text-lg font-medium"
+                  >Discuss your financial goals
+                </span>
               </div>
               <div
                 class="flex items-center gap-4 justify-center lg:justify-start"
               >
-                <i data-lucide="mail" class="w-6 h-6 text-primary"></i>
-                <span class="text-white font-medium">info@cfs.com</span>
+                <i
+                  data-lucide="circle-check"
+                  class="w-8 h-8 lg:w-10 lg:h-10 text-bluee fill-strokes stroke-secondary"
+                ></i>
+                <span class="text-white text-base lg:text-lg font-medium"
+                  >Review previous investments</span
+                >
+              </div>
+              <div
+                class="flex items-center gap-4 justify-center lg:justify-start"
+              >
+                <i
+                  data-lucide="circle-check"
+                  class="w-8 h-8 lg:w-10 lg:h-10 text-bluee fill-strokes stroke-secondary"
+                ></i>
+                <span class="text-white text-base lg:text-lg font-medium"
+                  >Set up next steps</span
+                >
               </div>
             </div>
           </div>
@@ -2540,7 +2676,7 @@
           .input-focus:focus {
             transform: translateY(-1px);
             box-shadow: 0 10px 25px -5px rgba(252, 175, 27, 0.3);
-            border-color: #fcaf1b;
+            border-color: #a3b3ff;
           }
 
           .modal-backdrop {
@@ -2618,7 +2754,7 @@
 
           .input-group:focus-within .floating-label {
             transform: translateY(-8px) scale(0.85);
-            color: #fcaf1b;
+            color: #a3b3ff;
           }
 
           .input-group.has-value .floating-label {
@@ -2656,7 +2792,7 @@
 
           .loading-spinner {
             border: 2px solid #f3f3f3;
-            border-top: 2px solid #fcaf1b;
+            border-top: 2px solid #a3b3ff;
             border-radius: 50%;
             width: 20px;
             height: 20px;
@@ -2682,7 +2818,7 @@
         <!-- Multi-Step Form Container -->
         <div
           id="consultationForm"
-          class="multi-step-form w-full max-w-lg gradient-bg p-8 rounded-3xl shadow-2xl border-[1px] border-primary/50 backdrop-blur-sm"
+          class="multi-step-form w-full max-w-lg gradient-bg p-8 rounded-3xl shadow-2xl border-[1px] border-strokes/50 backdrop-blur-sm"
         >
           <!-- Progress Section -->
           <div class="form-progress flex items-center justify-between mb-8">
@@ -2692,7 +2828,7 @@
               style="visibility: hidden"
             >
               <svg
-                class="w-5 h-5 text-gray-300 group-hover:text-[#fcaf1b] group-hover:-translate-x-1 transition-all duration-300"
+                class="w-5 h-5 text-gray-300 group-hover:text-[#a3b3ff] group-hover:-translate-x-1 transition-all duration-300"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -2713,7 +2849,7 @@
                 >
                 <span
                   id="stepCounter"
-                  class="step-counter text-xs font-medium text-[#fcaf1b]"
+                  class="step-counter text-xs font-medium text-[#a3b3ff]"
                   >1 of 4</span
                 >
               </div>
@@ -2722,7 +2858,7 @@
               >
                 <div
                   id="progressIndicator"
-                  class="progress-bar bg-gradient-to-r from-[#fcaf1b] to-[#e09915] h-full progress-animation rounded-full relative"
+                  class="progress-bar bg-gradient-to-r from-[#a3b3ff] to-[#a3b3ff] h-full progress-animation rounded-full relative"
                   style="width: 25%"
                 >
                   <div
@@ -2733,9 +2869,9 @@
             </div>
 
             <div
-              class="step-icon w-12 h-12 rounded-full bg-[#161f48] border border-[#fcaf1b]/30 flex items-center justify-center"
+              class="step-icon w-12 h-12 rounded-full bg-[#161f48] border border-[#a3b3ff]/30 flex items-center justify-center"
             >
-              <span id="currentStepIcon" class="text-[#fcaf1b] font-bold"
+              <span id="currentStepIcon" class="text-[#a3b3ff] font-bold"
                 >1</span
               >
             </div>
@@ -2751,7 +2887,7 @@
             >
               <div class="step-header text-center mb-8">
                 <div
-                  class="step-icon-large w-16 h-16 bg-gradient-to-br from-[#fcaf1b] to-[#e09915] rounded-full flex items-center justify-center mx-auto mb-4"
+                  class="step-icon-large w-16 h-16 bg-gradient-to-br from-[#a3b3ff] to-[#a3b3ff] rounded-full flex items-center justify-center mx-auto mb-4"
                 >
                   <svg
                     class="w-8 h-8 text-[#161f48]"
@@ -2805,10 +2941,10 @@
                   class="flex text-xs lg:text-sm items-center gap-3 text-gray-300 group-hover:text-white"
                 >
                   <div
-                    class="w-8 h-8 bg-[#fcaf1b]/20 rounded-full flex items-center justify-center"
+                    class="w-8 h-8 bg-[#a3b3ff]/20 rounded-full flex items-center justify-center"
                   >
                     <svg
-                      class="w-4 h-4 text-[#fcaf1b]"
+                      class="w-4 h-4 text-[#a3b3ff]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -2824,7 +2960,7 @@
                   What you get on the call
                 </span>
                 <svg
-                  class="w-5 h-5 text-gray-400 group-hover:text-[#fcaf1b] group-hover:translate-x-1 transition-all duration-300"
+                  class="w-5 h-5 text-gray-400 group-hover:text-[#a3b3ff] group-hover:translate-x-1 transition-all duration-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -2843,7 +2979,7 @@
             <div class="form-step" id="contactInfoStep" data-step="2">
               <div class="step-header text-center mb-8">
                 <div
-                  class="step-icon-large w-16 h-16 bg-gradient-to-br from-[#fcaf1b] to-[#e09915] rounded-full flex items-center justify-center mx-auto mb-4"
+                  class="step-icon-large w-16 h-16 bg-gradient-to-br from-[#a3b3ff] to-[#a3b3ff] rounded-full flex items-center justify-center mx-auto mb-4"
                 >
                   <svg
                     class="w-8 h-8 text-[#161f48]"
@@ -2893,7 +3029,7 @@
             <div class="form-step" id="emailInfoStep" data-step="3">
               <div class="step-header text-center mb-8">
                 <div
-                  class="step-icon-large w-16 h-16 bg-gradient-to-br from-[#fcaf1b] to-[#e09915] rounded-full flex items-center justify-center mx-auto mb-4"
+                  class="step-icon-large w-16 h-16 bg-gradient-to-br from-[#a3b3ff] to-[#a3b3ff] rounded-full flex items-center justify-center mx-auto mb-4"
                 >
                   <svg
                     class="w-8 h-8 text-[#161f48]"
@@ -2943,7 +3079,7 @@
             <div class="form-step" id="interestSelectionStep" data-step="4">
               <div class="step-header text-center mb-8">
                 <div
-                  class="step-icon-large w-16 h-16 bg-gradient-to-br from-[#fcaf1b] to-[#e09915] rounded-full flex items-center justify-center mx-auto mb-4"
+                  class="step-icon-large w-16 h-16 bg-gradient-to-br from-[#a3b3ff] to-[#a3b3ff] rounded-full flex items-center justify-center mx-auto mb-4"
                 >
                   <svg
                     class="w-8 h-8 text-[#161f48]"
@@ -2976,15 +3112,15 @@
 
                 <!-- New Service: Mutual Fund (First) -->
                 <div
-                  class="interest-option p-4 rounded-xl border border-[#161f48]/50 bg-[#161f48]/20 hover:bg-[#161f48]/40 hover:border-[#fcaf1b]/50 cursor-pointer transition-all duration-300 group"
+                  class="interest-option p-4 rounded-xl border border-[#161f48]/50 bg-[#161f48]/20 hover:bg-[#161f48]/40 hover:border-[#a3b3ff]/50 cursor-pointer transition-all duration-300 group"
                   data-value="mutual-fund"
                 >
                   <div class="flex items-center gap-3">
                     <div
-                      class="option-icon w-10 h-10 bg-[#fcaf1b]/20 rounded-full flex items-center justify-center"
+                      class="option-icon w-10 h-10 bg-[#a3b3ff]/20 rounded-full flex items-center justify-center"
                     >
                       <svg
-                        class="w-5 h-5 text-[#fcaf1b]"
+                        class="w-5 h-5 text-[#a3b3ff]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -2999,7 +3135,7 @@
                     </div>
                     <div class="option-content">
                       <h3
-                        class="option-title font-semibold text-white group-hover:text-[#fcaf1b] transition-colors duration-300"
+                        class="option-title font-semibold text-white group-hover:text-[#a3b3ff] transition-colors duration-300"
                       >
                         Mutual Fund
                       </h3>
@@ -3013,15 +3149,15 @@
                 <!-- Existing Services (unchanged) -->
 
                 <div
-                  class="interest-option p-4 rounded-xl border border-[#161f48]/50 bg-[#161f48]/20 hover:bg-[#161f48]/40 hover:border-[#fcaf1b]/50 cursor-pointer transition-all duration-300 group"
+                  class="interest-option p-4 rounded-xl border border-[#161f48]/50 bg-[#161f48]/20 hover:bg-[#161f48]/40 hover:border-[#a3b3ff]/50 cursor-pointer transition-all duration-300 group"
                   data-value="retirement-planning"
                 >
                   <div class="flex items-center gap-3">
                     <div
-                      class="option-icon w-10 h-10 bg-[#fcaf1b]/20 rounded-full flex items-center justify-center"
+                      class="option-icon w-10 h-10 bg-[#a3b3ff]/20 rounded-full flex items-center justify-center"
                     >
                       <svg
-                        class="w-5 h-5 text-[#fcaf1b]"
+                        class="w-5 h-5 text-[#a3b3ff]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -3036,7 +3172,7 @@
                     </div>
                     <div class="option-content">
                       <h3
-                        class="option-title font-semibold text-white group-hover:text-[#fcaf1b] transition-colors duration-300"
+                        class="option-title font-semibold text-white group-hover:text-[#a3b3ff] transition-colors duration-300"
                       >
                         Retirement Planning
                       </h3>
@@ -3048,15 +3184,15 @@
                 </div>
 
                 <div
-                  class="interest-option p-4 rounded-xl border border-[#161f48]/50 bg-[#161f48]/20 hover:bg-[#161f48]/40 hover:border-[#fcaf1b]/50 cursor-pointer transition-all duration-300 group"
+                  class="interest-option p-4 rounded-xl border border-[#161f48]/50 bg-[#161f48]/20 hover:bg-[#161f48]/40 hover:border-[#a3b3ff]/50 cursor-pointer transition-all duration-300 group"
                   data-value="tax-saving"
                 >
                   <div class="flex items-center gap-3">
                     <div
-                      class="option-icon w-10 h-10 bg-[#fcaf1b]/20 rounded-full flex items-center justify-center"
+                      class="option-icon w-10 h-10 bg-[#a3b3ff]/20 rounded-full flex items-center justify-center"
                     >
                       <svg
-                        class="w-5 h-5 text-[#fcaf1b]"
+                        class="w-5 h-5 text-[#a3b3ff]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -3071,7 +3207,7 @@
                     </div>
                     <div class="option-content">
                       <h3
-                        class="option-title font-semibold text-white group-hover:text-[#fcaf1b] transition-colors duration-300"
+                        class="option-title font-semibold text-white group-hover:text-[#a3b3ff] transition-colors duration-300"
                       >
                         Tax Saving
                       </h3>
@@ -3083,15 +3219,15 @@
                 </div>
 
                 <div
-                  class="interest-option p-4 rounded-xl border border-[#161f48]/50 bg-[#161f48]/20 hover:bg-[#161f48]/40 hover:border-[#fcaf1b]/50 cursor-pointer transition-all duration-300 group"
+                  class="interest-option p-4 rounded-xl border border-[#161f48]/50 bg-[#161f48]/20 hover:bg-[#161f48]/40 hover:border-[#a3b3ff]/50 cursor-pointer transition-all duration-300 group"
                   data-value="child-education"
                 >
                   <div class="flex items-center gap-3">
                     <div
-                      class="option-icon w-10 h-10 bg-[#fcaf1b]/20 rounded-full flex items-center justify-center"
+                      class="option-icon w-10 h-10 bg-[#a3b3ff]/20 rounded-full flex items-center justify-center"
                     >
                       <svg
-                        class="w-5 h-5 text-[#fcaf1b]"
+                        class="w-5 h-5 text-[#a3b3ff]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -3112,7 +3248,7 @@
                     </div>
                     <div class="option-content">
                       <h3
-                        class="option-title font-semibold text-white group-hover:text-[#fcaf1b] transition-colors duration-300"
+                        class="option-title font-semibold text-white group-hover:text-[#a3b3ff] transition-colors duration-300"
                       >
                         Child Education
                       </h3>
@@ -3124,15 +3260,15 @@
                 </div>
 
                 <div
-                  class="interest-option p-4 rounded-xl border border-[#161f48]/50 bg-[#161f48]/20 hover:bg-[#161f48]/40 hover:border-[#fcaf1b]/50 cursor-pointer transition-all duration-300 group"
+                  class="interest-option p-4 rounded-xl border border-[#161f48]/50 bg-[#161f48]/20 hover:bg-[#161f48]/40 hover:border-[#a3b3ff]/50 cursor-pointer transition-all duration-300 group"
                   data-value="insurance-options"
                 >
                   <div class="flex items-center gap-3">
                     <div
-                      class="option-icon w-10 h-10 bg-[#fcaf1b]/20 rounded-full flex items-center justify-center"
+                      class="option-icon w-10 h-10 bg-[#a3b3ff]/20 rounded-full flex items-center justify-center"
                     >
                       <svg
-                        class="w-5 h-5 text-[#fcaf1b]"
+                        class="w-5 h-5 text-[#a3b3ff]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -3147,7 +3283,7 @@
                     </div>
                     <div class="option-content">
                       <h3
-                        class="option-title font-semibold text-white group-hover:text-[#fcaf1b] transition-colors duration-300"
+                        class="option-title font-semibold text-white group-hover:text-[#a3b3ff] transition-colors duration-300"
                       >
                         Insurance Options
                       </h3>
@@ -3160,15 +3296,15 @@
 
                 <!-- New Service: Legacy Planning (Last) -->
                 <div
-                  class="interest-option p-4 rounded-xl border border-[#161f48]/50 bg-[#161f48]/20 hover:bg-[#161f48]/40 hover:border-[#fcaf1b]/50 cursor-pointer transition-all duration-300 group"
+                  class="interest-option p-4 rounded-xl border border-[#161f48]/50 bg-[#161f48]/20 hover:bg-[#161f48]/40 hover:border-[#a3b3ff]/50 cursor-pointer transition-all duration-300 group"
                   data-value="legacy-planning"
                 >
                   <div class="flex items-center gap-3">
                     <div
-                      class="option-icon w-10 h-10 bg-[#fcaf1b]/20 rounded-full flex items-center justify-center"
+                      class="option-icon w-10 h-10 bg-[#a3b3ff]/20 rounded-full flex items-center justify-center"
                     >
                       <svg
-                        class="w-5 h-5 text-[#fcaf1b]"
+                        class="w-5 h-5 text-[#a3b3ff]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -3183,7 +3319,7 @@
                     </div>
                     <div class="option-content">
                       <h3
-                        class="option-title font-semibold text-white group-hover:text-[#fcaf1b] transition-colors duration-300"
+                        class="option-title font-semibold text-white group-hover:text-[#a3b3ff] transition-colors duration-300"
                       >
                         Legacy Planning
                       </h3>
@@ -3281,10 +3417,10 @@
                 class="benefit-item flex gap-4 items-start p-4 rounded-xl bg-[#161f48]/30 border border-[#161f48]/50"
               >
                 <div
-                  class="benefit-icon w-10 h-10 cursor-pointer bg-[#fcaf1b]/20 rounded-full flex items-center justify-center flex-shrink-0"
+                  class="benefit-icon w-10 h-10 cursor-pointer bg-[#a3b3ff]/20 rounded-full flex items-center justify-center flex-shrink-0"
                 >
                   <svg
-                    class="w-5 h-5 text-[#fcaf1b]"
+                    class="w-5 h-5 text-[#a3b3ff]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -3312,10 +3448,10 @@
                 class="benefit-item flex gap-4 items-start p-4 rounded-xl bg-[#161f48]/30 border border-[#161f48]/50"
               >
                 <div
-                  class="benefit-icon w-10 h-10 bg-[#fcaf1b]/20 rounded-full flex items-center justify-center flex-shrink-0"
+                  class="benefit-icon w-10 h-10 bg-[#a3b3ff]/20 rounded-full flex items-center justify-center flex-shrink-0"
                 >
                   <svg
-                    class="w-5 h-5 text-[#fcaf1b]"
+                    class="w-5 h-5 text-[#a3b3ff]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -3343,10 +3479,10 @@
                 class="benefit-item flex gap-4 items-start p-4 rounded-xl bg-[#161f48]/30 border border-[#161f48]/50"
               >
                 <div
-                  class="benefit-icon w-10 h-10 bg-[#fcaf1b]/20 rounded-full flex items-center justify-center flex-shrink-0"
+                  class="benefit-icon w-10 h-10 bg-[#a3b3ff]/20 rounded-full flex items-center justify-center flex-shrink-0"
                 >
                   <svg
-                    class="w-5 h-5 text-[#fcaf1b]"
+                    class="w-5 h-5 text-[#a3b3ff]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
