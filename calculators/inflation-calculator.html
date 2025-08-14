@@ -618,37 +618,30 @@
     <!-- =================================================================== -->
     <!-- NAVIGATION HEADER - Fixed position with dropdown menus -->
     <!-- =================================================================== -->
-    <header
-      class="bg-white border-b border-gray-300 shadow-sm fixed w-full top-0 z-50"
-    >
+    <header class="bg-[#161f48] shadow-sm fixed w-full top-0 z-50">
       <div
         class="mx-6 lg:mx-12 px-2 py-3 flex items-center justify-between relative"
       >
         <!-- Company Logo and Trust Badge -->
         <div class="flex items-center gap-2">
           <img
-            src="../assets/Logo.svg"
+            src="../assets/CFS TRANSPARENT.png"
             class="h-12 w-auto"
             alt="Chimulkar Financial Services Logo"
-          />
-          <img
-            src="../assets/Trust-batch.png"
-            class="h-12 w-auto"
-            alt="Trust Certification Badge"
           />
         </div>
 
         <!-- Desktop Navigation Menu - Hidden on mobile -->
-        <nav class="hidden md:flex gap-8 text-[16px] font-medium items-center">
+        <nav class="hidden md:flex gap-12 text-[16px] font-medium items-center">
           <!-- Simple navigation link -->
-          <a href="#about-us" class="hover:text-[#fcaf1b] transition"
+          <a href="#about-us" class="hover:text-[#fcaf1b] transition text-white"
             >About Us</a
           >
 
           <!-- Services Dropdown Menu -->
           <div class="relative group z-50">
             <button
-              class="flex items-center gap-1 hover:text-[#fcaf1b] transition cursor-pointer"
+              class="flex items-center gap-1 text-white hover:text-[#fcaf1b] transition cursor-pointer"
             >
               Services <i data-lucide="chevron-down" class="w-4 h-4"></i>
             </button>
@@ -694,7 +687,7 @@
           <!-- Calculator Tools Dropdown -->
           <div class="relative group z-50">
             <button
-              class="flex items-center gap-1 hover:text-[#fcaf1b] transition cursor-pointer"
+              class="flex items-center gap-1 text-white hover:text-[#fcaf1b] transition cursor-pointer"
             >
               Calculator <i data-lucide="chevron-down" class="w-4 h-4"></i>
             </button>
@@ -702,25 +695,25 @@
               class="absolute top-full left-0 mt-2 bg-white rounded-lg min-w-[14rem] text-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-auto border border-gray-300 shadow-md"
             >
               <a
-                href="../calculators/sip-calculator.html"
+                href="./calculators/sip-calculator.html"
                 class="flex items-center gap-3 px-4 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-t-lg cursor-pointer"
               >
                 <i data-lucide="calculator" class="w-4 h-4"></i> SIP Calculator
               </a>
               <a
-                href="../calculators/lump-sump-calculator.html"
+                href="./calculators/lump-sump-calculator.html"
                 class="flex items-center gap-3 px-4 py-2 hover:bg-[#fcaf1b] hover:text-white cursor-pointer"
               >
                 <i data-lucide="percent" class="w-4 h-4"></i> Lump Sum
               </a>
               <a
-                href="../calculators/swp-calculator.html"
+                href="./calculators/swp-calculator.html"
                 class="flex items-center gap-3 px-4 py-2 hover:bg-[#fcaf1b] hover:text-white cursor-pointer"
               >
                 <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
               </a>
               <a
-                href="../calculators/inflation-calculator.html"
+                href="./calculators/inflation-calculator.html"
                 class="flex items-center gap-3 px-4 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-b-lg cursor-pointer"
               >
                 <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
@@ -732,7 +725,7 @@
           <!-- Financial Literacy Dropdown -->
           <div class="relative group z-50">
             <button
-              class="flex items-center gap-1 hover:text-[#fcaf1b] transition cursor-pointer"
+              class="flex items-center gap-1 text-white hover:text-[#fcaf1b] transition cursor-pointer"
             >
               Financial Literacy
               <i data-lucide="chevron-down" class="w-4 h-4"></i>
@@ -762,18 +755,25 @@
           </div>
 
           <!-- Additional navigation links -->
-          <a href="#nri-corner" class="hover:text-[#fcaf1b] transition"
+          <a
+            href="#nri-corner"
+            class="text-white hover:text-[#fcaf1b] transition"
             >NRI Corner</a
           >
-          <a href="#contact-us" class="hover:text-[#fcaf1b] transition"
+          <a
+            href="#contact-us"
+            class="text-white hover:text-[#fcaf1b] transition"
             >Contact Us</a
+          >
+          <a href="#refer-us" class="text-white hover:text-[#fcaf1b] transition"
+            >Refer Us</a
           >
         </nav>
 
         <!-- Call-to-Action Button - Desktop only -->
         <a
           href="#"
-          class="hidden md:inline-flex items-center bg-[#fcaf1b] text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] ]"
+          class="hidden md:inline-flex items-center border border-transparent bg-[#fcaf1b] text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
         >
           Get Free Assessment
           <span
