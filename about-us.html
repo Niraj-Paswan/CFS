@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Page Title and Favicon -->
+    <title>Contact Us - Chimulkar Financial Services</title>
+    <link rel="shortcut icon" href="../assets/Logo.svg" type="image/x-icon" />
+
+    <!-- External Stylesheets and Fonts -->
+    <link rel="stylesheet" href="../src/output.css" />
+    <!-- Tailwind CSS -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Lucide Icons -->
+
+    <!-- Google Fonts - Poppins for consistent typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Hide scrollbars for carousel elements while maintaining functionality */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="bg-secondary shadow-sm fixed w-full top-0 z-50">
+      <div
+        class="mx-6 lg:mx-12 px-2 py-3 flex items-center justify-between relative"
+      >
+        <!-- Company Logo and Trust Badge -->
+        <div class="flex items-center gap-2">
+          <img
+            src="../assets/CFS TRANSPARENT.png"
+            class="h-12 w-auto"
+            alt="Chimulkar Financial Services Logo"
+          />
+        </div>
+
+        <!-- Desktop Navigation Menu - Hidden on mobile -->
+        <nav class="hidden md:flex gap-12 text-[16px] font-medium items-center">
+          <!-- Simple navigation link -->
+          <a href="#about-us" class="hover:text-primary transition text-white"
+            >About Us</a
+          >
+
+          <!-- Services Dropdown Menu -->
+          <div class="relative group z-50">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              Services <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <!-- Dropdown content - appears on hover -->
+            <div
+              class="absolute top-full left-0 mt-2 bg-white rounded-lg min-w-[14rem] text-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-auto border border-gray-300 shadow-md"
+            >
+              <a
+                href="#service-1"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-t-lg cursor-pointer"
+              >
+                <i data-lucide="layers" class="w-4 h-4"></i> Mutual Funds
+              </a>
+              <a
+                href="#service-2"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
+              >
+                <i data-lucide="calendar-check" class="w-4 h-4"></i> Retirement
+                Planning
+              </a>
+              <a
+                href="#service-3"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
+              >
+                <i data-lucide="file-text" class="w-4 h-4"></i> Tax Planning
+              </a>
+              <a
+                href="#service-4"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
+              >
+                <i data-lucide="shield-check" class="w-4 h-4"></i> Insurance
+                Planning
+              </a>
+              <a
+                href="#service-5"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-b-lg cursor-pointer"
+              >
+                <i data-lucide="archive" class="w-4 h-4"></i> Legacy Planning
+              </a>
+            </div>
+          </div>
+
+          <!-- Calculator Tools Dropdown -->
+          <div class="relative group z-50">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              Calculator <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute top-full left-0 mt-2 bg-white rounded-lg min-w-[14rem] text-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-auto border border-gray-300 shadow-md"
+            >
+              <a
+                href="../calculators/sip-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-t-lg cursor-pointer"
+              >
+                <i data-lucide="calculator" class="w-4 h-4"></i> SIP Calculator
+              </a>
+              <a
+                href="../calculators/lump-sump-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
+              >
+                <i data-lucide="percent" class="w-4 h-4"></i> Lump Sum
+              </a>
+              <a
+                href="../calculators/swp-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
+              >
+                <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
+              </a>
+              <a
+                href="../calculators/inflation-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-b-lg cursor-pointer"
+              >
+                <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
+                Calculator
+              </a>
+            </div>
+          </div>
+
+          <!-- Financial Literacy Dropdown -->
+          <div class="relative group z-50">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              Financial Literacy
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute top-full left-0 mt-2 bg-white rounded-lg min-w-[14rem] text-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-auto border border-gray-300 shadow-md"
+            >
+              <a
+                href="#lit-1"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-t-lg cursor-pointer"
+              >
+                <i data-lucide="book-open" class="w-4 h-4"></i> Basics
+              </a>
+              <a
+                href="#lit-2"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
+              >
+                <i data-lucide="lightbulb" class="w-4 h-4"></i> Tips & Guides
+              </a>
+              <a
+                href="#lit-3"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-b-lg cursor-pointer"
+              >
+                <i data-lucide="play-circle" class="w-4 h-4"></i> Video Lessons
+              </a>
+            </div>
+          </div>
+
+          <!-- Additional navigation links -->
+          <a href="#nri-corner" class="text-white hover:text-primary transition"
+            >NRI Corner</a
+          >
+          <a
+            href="../contact-us.html"
+            class="text-white hover:text-primary transition"
+            >Contact Us</a
+          >
+          <a href="#refer-us" class="text-white hover:text-primary transition"
+            >Refer Us</a
+          >
+        </nav>
+
+        <!-- Call-to-Action Button - Desktop only -->
+        <a
+          href="#"
+          class="hidden md:inline-flex items-center border border-transparent bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+        >
+          Get Free Assessment
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button
+          id="menuToggle"
+          class="md:hidden p-2 bg-gray-50 border border-gray-300 rounded-full hover:bg-gray-100 hover:cursor-pointer"
+        >
+          <i data-lucide="align-right" class="w-6 h-6 text-secondary"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Announcement Bar - Positioned below navbar -->
+    <!-- <div
+      class="fixed top-[72px] w-full h-12 bg-strokes z-40 flex items-center justify-center px-4 text-sm"
+    >
+      <a
+        href="#"
+        class="flex items-center font-semibold text-black hover:underline"
+      >
+        Get a no cost, no commitment assessment
+      </a>
+      <a
+        href="#"
+        class="hidden lg:inline-flex font-semibold items-center text-white mr-2"
+      >
+        <span class="text-black mx-2">|</span> Celebrating 40 Years of Trust
+      </a>
+    </div> -->
+
+    <!-- Mobile Menu Backdrop - Dark overlay when mobile menu is open -->
+    <div
+      id="backdrop"
+      class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 hidden opacity-0 transition"
+    ></div>
+
+    <!-- =================================================================== -->
+    <!-- MOBILE NAVIGATION MENU - Slide-in from right -->
+    <!-- =================================================================== -->
+    <div
+      id="mobileMenu"
+      class="md:hidden fixed top-0 right-0 h-full max-w-xs bg-white shadow-xl transform translate-x-full transition duration-300 z-50 flex flex-col justify-between overflow-y-auto"
+    >
+      <!-- Mobile menu content -->
+      <div class="p-6 flex flex-col gap-4">
+        <!-- Mobile menu header with logo and close button -->
+        <div class="flex justify-between items-center mb-4">
+          <img src="./assets/Logo.svg" class="h-10" alt="Logo" />
+          <button
+            id="closeMenu"
+            class="p-2 bg-gray-50 text-secondary border border-gray-300 rounded-full hover:bg-gray-100 hover:cursor-pointer"
+          >
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <!-- Mobile navigation links -->
+        <a
+          href="#about-us"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="info" class="w-4 h-4"></i> About Us
+        </a>
+
+        <!-- Mobile Services Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            Services
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+          <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
+            <a
+              href="#service-1"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="layers" class="w-4 h-4"></i> Mutual Funds
+            </a>
+            <a
+              href="#service-2"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="calendar-check" class="w-4 h-4"></i> Retirement
+              Planning
+            </a>
+            <a
+              href="#service-3"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="file-text" class="w-4 h-4"></i> Tax Planning
+            </a>
+            <a
+              href="#service-4"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="shield-check" class="w-4 h-4"></i> Insurance
+              Planning
+            </a>
+            <a
+              href="#service-5"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="archive" class="w-4 h-4"></i> Legacy Planning
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Calculator Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            Calculator
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+          <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
+            <a
+              href="../calculators/sip-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="calculator" class="w-4 h-4"></i> SIP Calculator
+            </a>
+            <a
+              href="../calculators/lump-sump-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="percent" class="w-4 h-4"></i> Lump Sum
+            </a>
+
+            <a
+              href="../calculators/swp-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
+            </a>
+            <a
+              href="../calculators/inflation-calculator.html"
+              class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-b-lg cursor-pointer"
+            >
+              <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
+              Calculator
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Financial Literacy Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            Financial Literacy
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+          <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
+            <a
+              href="#lit-1"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="book-open" class="w-4 h-4"></i> Basics
+            </a>
+            <a
+              href="#lit-2"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="lightbulb" class="w-4 h-4"></i> Tips & Guides
+            </a>
+            <a
+              href="#lit-3"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="play-circle" class="w-4 h-4"></i> Video Lessons
+            </a>
+          </div>
+        </details>
+
+        <!-- Additional mobile navigation links -->
+        <a
+          href="#nri-corner"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="globe" class="w-4 h-4"></i> NRI Corner
+        </a>
+        <a
+          href="../contact-us.html"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="phone-call" class="w-4 h-4"></i> Contact Us
+        </a>
+      </div>
+
+      <!-- Mobile CTA button at bottom -->
+      <div class="p-6">
+        <a
+          href="#"
+          class="inline-flex items-center bg-primary text-secondary pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:bg-secondary hover:text-white"
+        >
+          Get Free Assessment
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <section class="relative bg-white">
+      <!-- Image -->
+      <img
+        src="../assets/Trust-Hand-Holding.png"
+        alt="Pranav Chimulkar"
+        class="w-full h-full object-cover mt-16 lg:mt-0"
+      />
+
+      <!-- Text Overlay -->
+      <div class="absolute inset-0 flex items-center">
+        <div class="max-w-xl pl-4 lg:pl-20 mt-28 lg:mt-96">
+          <h1
+            class="text-3xl lg:text-6xl font-semibold text-gray-900 leading-tight"
+          >
+            Trust is not <br />
+            built in a day
+          </h1>
+          <p class="mt-4 text-xl text-black hidden lg:block">
+            The <span class="text-bluee font-semibold">Chimulkar</span> brand is
+            built on the trust of <span class="">2500+ investors</span> and
+            their families,
+            <span class="text-bluee font-semibold">since 1985</span>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div
+      class="block lg:hidden py-12 px-4 bg-gradient-to-br from-blue-50 via-blue-100 to-white"
+    >
+      <p class="text-lg text-black block lg:hidden">
+        The <span class="text-bluee font-semibold">Chimulkar</span> brand is
+        built on the trust of <span class="">2500+ investors</span> and their
+        families, <span class="text-bluee font-semibold">since 1985</span>.
+      </p>
+    </div>
+
+    <section class="bg-gray-100">
+      <div class="max-w-7xl mx-auto px-6 py-12">
+        <h2
+          class="text-3xl lg:text-5xl text-center font-semibold text-gray-900 mb-6"
+        >
+          Legacy of <span class="text-bluee">3 Generations</span>
+        </h2>
+
+        <!-- 3 Images Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mt-8">
+          <!-- Generation 1 -->
+          <div class="flex flex-col items-center">
+            <img
+              src="./assets/Vasudeo Chimulkar.png"
+              alt="Generation 1"
+              class="w-full max-w-sm rounded-2xl object-cover"
+            />
+            <div
+              class="mt-4 bg-white text-black px-6 py-3 rounded-full text-base lg:text-lg font-semibold"
+            >
+              Late Mr. Vasudeo V. P. Chimulkar
+            </div>
+          </div>
+
+          <!-- Generation 2 -->
+          <div class="flex flex-col items-center">
+            <img
+              src="./assets/Prashant Chimulkar 2.jpg"
+              alt="Generation 2"
+              class="w-full h-full max-w-sm rounded-2xl object-cover"
+            />
+            <div
+              class="mt-4 bg-white text-black px-6 py-3 rounded-full text-base lg:text-lg font-semibold"
+            >
+              Mr. Prashant V. P. Chimulkar
+            </div>
+          </div>
+
+          <!-- Generation 3 -->
+          <div class="flex flex-col items-center">
+            <img
+              src="./assets/Pranav Chimulkar.jpg"
+              alt="Generation 3"
+              class="w-full h-full max-w-sm rounded-2xl object-cover"
+            />
+            <div
+              class="mt-4 bg-white text-black px-6 py-3 rounded-full text-base lg:text-lg font-semibold"
+            >
+              Mr. Pranav P. P. Chimulkar
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="w-full flex flex-col lg:flex-row min-h-screen overflow-hidden"
+    >
+      <!-- Left Side - Text + Image -->
+      <div
+        class="w-full lg:w-3/5 bg-white flex flex-col items-center lg:items-start px-6 sm:px-8 lg:px-24 py-12"
+      >
+        <div class="max-w-2xl w-full">
+          <h2
+            class="text-3xl lg:text-5xl font-semibold mb-2 text-center lg:text-start text-gray-900"
+            data-aos=""
+          >
+            Our core <span class="text-bluee">values</span>
+          </h2>
+          <p
+            class="text-gray-900 text-base lg:text-lg mb-8 text-center lg:text-start"
+          >
+            The 10 principles that shape who we are and
+            <br class="hidden lg:block" />
+            the experiences we create for everyone.
+          </p>
+
+          <img
+            src="./assets/Finger pointing straightward.jpg"
+            class="mt-16 lg:mt-24 lg:-ml-8 -ml-28 rotate-30 lg:rotate-0 scale-125 lg:scale-150"
+            alt="Pointing hand"
+          />
+        </div>
+      </div>
+
+      <!-- Right Side - FAQ Section -->
+      <div
+        class="w-full bg-transparent flex items-start justify-center px-6 sm:px-8 lg:px-12 py-12"
+      >
+        <section id="faq" class="w-full max-w-xl mx-auto">
+          <div
+            class="bg-white text-black border border-gray-300 rounded-2xl divide-y divide-gray-200"
+          >
+            <!-- FAQ 1 -->
+            <div class="faq-item">
+              <button
+                class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 cursor-pointer focus:outline-none"
+                aria-expanded="false"
+              >
+                <span class="text-lg font-semibold text-black pr-4">
+                  Money is a means, not the end.
+                </span>
+                <svg
+                  class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="M12 5v14" />
+                </svg>
+              </button>
+              <div
+                class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+              >
+                <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+                  We believe finances exist to enable a fuller, more meaningful
+                  life - not to be hoarded, feared, or overcomplicated. Our role
+                  is to keep this bigger picture in focus.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-item">
+              <button
+                class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 cursor-pointer focus:outline-none"
+                aria-expanded="false"
+              >
+                <span class="text-lg font-semibold text-black pr-4">
+                  If it isn’t simple, it isn’t right.
+                </span>
+                <svg
+                  class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="M12 5v14" />
+                </svg>
+              </button>
+              <div
+                class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+              >
+                <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+                  Financial products must be easy to understand. If it feels
+                  like jargon, fine print, or complexity for its own sake, it
+                  doesn’t belong here.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-item">
+              <button
+                class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 cursor-pointer focus:outline-none"
+                aria-expanded="false"
+              >
+                <span class="text-lg font-semibold text-black pr-4">
+                  Trust is earned daily.
+                </span>
+                <svg
+                  class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="M12 5v14" />
+                </svg>
+              </button>
+              <div
+                class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+              >
+                <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+                  Our true wealth is the confidence clients place in us. Every
+                  conversation, every recommendation, every promise is a chance
+                  to grow it.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item">
+              <button
+                class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 cursor-pointer focus:outline-none"
+                aria-expanded="false"
+              >
+                <span class="text-lg font-semibold text-black pr-4">
+                  Clarity is a right, not a privilege.
+                </span>
+                <svg
+                  class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="M12 5v14" />
+                </svg>
+              </button>
+              <div
+                class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+              >
+                <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+                  Every individual deserves to fully understand where their
+                  money goes and what it does. We remove barriers and shine
+                  light where others keep shadows.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="faq-item">
+              <button
+                class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 cursor-pointer focus:outline-none"
+                aria-expanded="false"
+              >
+                <span class="text-lg font-semibold text-black pr-4">
+                  Your goals, your path.
+                </span>
+                <svg
+                  class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="M12 5v14" />
+                </svg>
+              </button>
+              <div
+                class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+              >
+                <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+                  We don’t believe in one-size-fits-all solutions. Every
+                  person’s financial journey is unique, and our role is to
+                  guide, not dictate, the steps you take.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="faq-item">
+              <button
+                class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 cursor-pointer focus:outline-none"
+                aria-expanded="false"
+              >
+                <span class="text-lg font-semibold text-black pr-4">
+                  Every small step matters.
+                </span>
+                <svg
+                  class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="M12 5v14" />
+                </svg>
+              </button>
+              <div
+                class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+              >
+                <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+                  Money journeys will never be flawless, but they can always
+                  move forward. Small steps matter and consistency shapes the
+                  outcome.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="faq-item">
+              <button
+                class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 cursor-pointer focus:outline-none"
+                aria-expanded="false"
+              >
+                <span class="text-lg font-semibold text-black pr-4">
+                  Teaching is greater than telling.
+                </span>
+                <svg
+                  class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="M12 5v14" />
+                </svg>
+              </button>
+              <div
+                class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+              >
+                <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+                  We don’t just hand you answers, we empower you with knowledge
+                  so decisions are yours, not ours. Education ensures
+                  independence, not dependence.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 8 -->
+            <div class="faq-item">
+              <button
+                class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 cursor-pointer focus:outline-none"
+                aria-expanded="false"
+              >
+                <span class="text-lg font-semibold text-black pr-4">
+                  Ethics over easy wins.
+                </span>
+                <svg
+                  class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="M12 5v14" />
+                </svg>
+              </button>
+              <div
+                class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+              >
+                <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+                  Quick wins fade, ethical choices build trust that lasts
+                  generations. We choose the long road, every time.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 9 -->
+            <div class="faq-item">
+              <button
+                class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 cursor-pointer focus:outline-none"
+                aria-expanded="false"
+              >
+                <span class="text-lg font-semibold text-black pr-4">
+                  Live well today, plan well for tomorrow.
+                </span>
+                <svg
+                  class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="M12 5v14" />
+                </svg>
+              </button>
+              <div
+                class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+              >
+                <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+                  Financial planning isn’t about choosing between enjoying the
+                  present and preparing for the future, it’s about designing a
+                  life where both coexist.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 10 -->
+            <div class="faq-item">
+              <button
+                class="faq-question w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 cursor-pointer focus:outline-none"
+                aria-expanded="false"
+              >
+                <span class="text-lg font-semibold text-black pr-4">
+                  Behind every number is a human story.
+                </span>
+                <svg
+                  class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="M12 5v14" />
+                </svg>
+              </button>
+              <div
+                class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+              >
+                <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+                  We never lose sight of the person, the family, the dream
+                  behind every decision. Finance is never just math, it’s
+                  meaning.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <script>
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        const btn = item.querySelector(".faq-question");
+        const answer = item.querySelector(".faq-answer");
+        const icon = item.querySelector(".faq-icon");
+
+        btn.addEventListener("click", () => {
+          const isOpen = btn.getAttribute("aria-expanded") === "true";
+
+          // Close others
+          document.querySelectorAll(".faq-item").forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.querySelector(".faq-answer").style.maxHeight = null;
+              otherItem
+                .querySelector(".faq-question")
+                .setAttribute("aria-expanded", "false");
+              otherItem
+                .querySelector(".faq-icon")
+                .classList.remove("rotate-45");
+            }
+          });
+
+          if (isOpen) {
+            answer.style.maxHeight = null;
+            btn.setAttribute("aria-expanded", "false");
+            icon.classList.remove("rotate-45");
+          } else {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+            btn.setAttribute("aria-expanded", "true");
+            icon.classList.add("rotate-45");
+          }
+        });
+      });
+    </script>
+
+    <section class="bg-[#0d1a2d] py-20 text-white relative">
+      <h1
+        class="text-4xl ml-0 lg:ml-44 md:text-5xl font-semibold leading-tight mb-10 text-center lg:text-start"
+      >
+        Hear from those <br class="" />
+        who <span class="text-bluee">Matters</span>
+      </h1>
+      <div class="max-w-7xl mx-auto px-4 relative">
+        <!-- Left Navigation Arrow -->
+        <button
+          onclick="scrollCarousel(-1)"
+          class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-200 p-2 rounded-full"
+        >
+          <i data-lucide="chevron-left" class="text-black w-6 h-6"></i>
+        </button>
+
+        <!-- Video Carousel Container -->
+        <div
+          id="videoCarousel"
+          class="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar px-10"
+        >
+          <!-- Client Video Card 1 - Rupa -->
+          <div
+            onclick="openVideoModal('https://www.youtube.com/embed/m0CanPDEL4g')"
+            class="group relative min-w-[320px] h-[500px] rounded-xl overflow-hidden border-2 border-strokes cursor-pointer"
+          >
+            <video
+              class="w-full h-full object-cover group-hover:brightness-75 transition"
+              autoplay
+              loop
+              muted
+              playsinline
+            >
+              <source
+                src="https://res.cloudinary.com/dwr14ya0c/video/upload/v1750954651/high_1_nnqxys.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <!-- Play overlay on hover -->
+            <div
+              class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
+            >
+              <div class="bg-black/60 p-4 rounded-full">
+                <i data-lucide="play" class="text-white w-8 h-8"></i>
+              </div>
+            </div>
+            <!-- Client name overlay -->
+            <p
+              class="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm bg-black/70 px-4 py-1 rounded-full opacity-0 group-hover:opacity-100 transition"
+            >
+              Rupa, Real Client
+            </p>
+          </div>
+
+          <!-- Client Video Card 2 - Aman -->
+          <div
+            onclick="openVideoModal('https://www.youtube.com/embed/m0CanPDEL4g')"
+            class="group relative min-w-[320px] h-[500px] rounded-xl overflow-hidden border-2 border-strokes cursor-pointer"
+          >
+            <video
+              class="w-full h-full object-cover group-hover:brightness-75 transition"
+              autoplay
+              loop
+              muted
+              playsinline
+            >
+              <source
+                src="https://res.cloudinary.com/dwr14ya0c/video/upload/v1750954743/high_2_gtjyhv.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div
+              class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
+            >
+              <div class="bg-black/60 p-4 rounded-full">
+                <i data-lucide="play" class="text-white w-8 h-8"></i>
+              </div>
+            </div>
+            <p
+              class="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm bg-black/70 px-4 py-1 rounded-full opacity-0 group-hover:opacity-100 transition"
+            >
+              Aman, Real Client
+            </p>
+          </div>
+
+          <!-- Client Video Card 3 - Neha -->
+          <div
+            onclick="openVideoModal('https://www.youtube.com/embed/m0CanPDEL4g')"
+            class="group relative min-w-[320px] h-[500px] rounded-xl overflow-hidden border-2 border-strokes cursor-pointer"
+          >
+            <video
+              class="w-full h-full object-cover group-hover:brightness-75 transition"
+              autoplay
+              loop
+              muted
+              playsinline
+            >
+              <source
+                src="https://res.cloudinary.com/dwr14ya0c/video/upload/v1750954795/high_3_fptvdi.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div
+              class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
+            >
+              <div class="bg-black/60 p-4 rounded-full">
+                <i data-lucide="play" class="text-white w-8 h-8"></i>
+              </div>
+            </div>
+            <p
+              class="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm bg-black/70 px-4 py-1 rounded-full opacity-0 group-hover:opacity-100 transition"
+            >
+              Neha, Real Client
+            </p>
+          </div>
+
+          <!-- Client Video Card 4 - Sara -->
+          <div
+            onclick="openVideoModal('https://www.youtube.com/embed/m0CanPDEL4g')"
+            class="group relative min-w-[320px] h-[500px] rounded-xl overflow-hidden border-2 border-strokes cursor-pointer"
+          >
+            <video
+              class="w-full h-full object-cover group-hover:brightness-75 transition"
+              autoplay
+              loop
+              muted
+              playsinline
+            >
+              <source
+                src="https://res.cloudinary.com/dwr14ya0c/video/upload/v1750954848/high_4_vfua72.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div
+              class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
+            >
+              <div class="bg-black/60 p-4 rounded-full">
+                <i data-lucide="play" class="text-white w-8 h-8"></i>
+              </div>
+            </div>
+            <p
+              class="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm bg-black/70 px-4 py-1 rounded-full opacity-0 group-hover:opacity-100 transition"
+            >
+              Sara, Real Client
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Navigation Arrow -->
+        <button
+          onclick="scrollCarousel(1)"
+          class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-200 p-2 rounded-full"
+        >
+          <i data-lucide="chevron-right" class="text-black w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Video Modal for Full-Screen Playback -->
+      <div
+        id="videoModal"
+        class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4"
+      >
+        <div class="relative w-full max-w-5xl aspect-video">
+          <iframe
+            id="videoFrame"
+            class="w-full h-full rounded-lg"
+            src=""
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+          ></iframe>
+          <button
+            onclick="closeVideoModal()"
+            class="absolute top-2 right-2 bg-black text-white rounded-full p-2 cursor-pointer shadow-lg hover:scale-110 transition-transform"
+          >
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-0 overflow-hidden">
+      <div
+        class="max-w-7xl mx-auto px-6 lg:px-0 grid grid-cols-1 lg:grid-cols-2 items-center gap-24"
+      >
+        <!-- Left Content -->
+        <div class="space-y-6 text-center lg:text-left mt-12 lg:mt-0">
+          <h2 class="text-3xl md:text-4xl font-semibold leading-tight">
+            The legacy <span class="text-blue-600">forward</span>
+          </h2>
+          <p class="text-gray-700 text-base lg:text-lg leading-relaxed">
+            For four decades, we’ve walked alongside families and individuals—
+            helping them secure their futures, achieve their goals, and live
+            with confidence. Now, as we mark 40 years, we turn our gaze forward
+            with a commitment that goes beyond wealth:
+            <span class="font-semibold text-black">Chimulkar Foundation</span>
+          </p>
+          <div>
+            <a
+              href="#"
+              class="inline-flex items-center border border-transparent bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+            >
+              Learn More
+              <span
+                class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+              >
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Image -->
+        <div class="flex justify-center lg:justify-end">
+          <img
+            src="./assets/Heart-hand.jpg"
+            alt="Heart Hands"
+            class="w-full h-full mt-2 lg:mt-36"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- FOOTER SECTION - Company information and links -->
+    <!-- =================================================================== -->
+    <footer class="w-full bg-white border-t border-gray-200">
+      <!-- Top Nav Links -->
+      <div
+        class="max-w-7xl mx-auto px-6 py-6 flex flex-wrap justify-center md:justify-between gap-6 text-sm text-gray-700"
+      >
+        <a href="/about" class="hover:text-primary transition">About Us</a>
+        <a href="/services" class="hover:text-primary transition">Services</a>
+        <a href="/calculators" class="hover:text-primary transition"
+          >Calculators</a
+        >
+        <a href="/financial-literacy" class="hover:text-primary transition"
+          >Financial Literacy</a
+        >
+        <a href="/nri-corner" class="hover:text-primary transition"
+          >NRI Corner</a
+        >
+        <a href="/contact" class="hover:text-primary transition">Contact Us</a>
+      </div>
+
+      <!-- Middle Section -->
+      <div
+        class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+      >
+        <!-- Left: Info -->
+        <div class="space-y-4">
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=15.4038977,74.0086659"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+          >
+            <i data-lucide="map-pin" class="w-5 h-5 text-primary"></i> Our
+            Office
+          </a>
+          <a
+            href="mailto:invest@chimulkar.com"
+            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+          >
+            <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
+            invest@chimulkar.com
+          </a>
+          <a
+            href="tel:+918208031927"
+            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+          >
+            <i data-lucide="phone" class="w-5 h-5 text-primary"></i>
+            +91 82080 31927
+          </a>
+        </div>
+
+        <!-- Center: Logo -->
+        <div class="flex flex-col items-center">
+          <img
+            src="../assets/Logo.svg"
+            alt="Chimulkar Financial Services"
+            class="w-40 h-auto mb-4"
+          />
+          <p class="text-gray-800 text-sm">Chimulkar Financial Services</p>
+        </div>
+
+        <!-- Right: Reviews & Social -->
+        <div class="flex flex-col items-center md:items-end space-y-4">
+          <p class="text-gray-800">10+ Five-Star Google Reviews</p>
+          <div class="flex gap-1">
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+          </div>
+          <div class="flex gap-4">
+            <a
+              href="https://www.instagram.com/chimulkarfinancialservices?utm_source=ig_web_button_share_sheet&igsh=MWZxMnFsZTY4OHNmeg=="
+              target="_blank"
+              aria-label="Instagram"
+              class="bg-yellow-100 rounded-full p-2 hover:bg-yellow-200 transition"
+            >
+              <i data-lucide="instagram" class="w-5 h-5 text-gray-800"></i>
+            </a>
+            <a
+              href="https://www.youtube.com/@ChimulkarFinancialServices"
+              target="_blank"
+              aria-label="YouTube"
+              rel="noopener noreferrer"
+              class="bg-yellow-100 rounded-full p-2 hover:bg-yellow-200 transition"
+            >
+              <i data-lucide="youtube" class="w-5 h-5 text-gray-800"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="bg-[#161f48] text-gray-100 text-xs text-center py-4">
+        <div
+          class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2"
+        >
+          <p>© 2025 Chimulkar Financial Services | Financial Consultant</p>
+          <div class="flex gap-4">
+            <a href="/terms" class="hover:underline">Terms & Conditions</a>
+            <a href="/privacy-policy" class="hover:underline">Privacy Policy</a>
+            <a href="/sitemap" class="hover:underline">Sitemap</a>
+          </div>
+          <p class="text-gray-400">
+            Designed & Developed by
+            <a
+              href="https://github.com/Niraj-Paswan"
+              target="_blank"
+              class="text-white hover:underline"
+              >~Niraj Paswan</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =================================================================== -->
+    <!-- EXTERNAL LIBRARIES AND SCRIPTS -->
+    <!-- =================================================================== -->
+
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      // Initialize AOS animations
+      AOS.init();
+    </script>
+
+    <!-- =================================================================== -->
+    <!-- CUSTOM JAVASCRIPT - All interactive functionality -->
+    <!-- =================================================================== -->
+    <script>
+      // Initialize Lucide icons after page load
+      lucide.createIcons();
+
+      // ===================================================================
+      // MOBILE MENU FUNCTIONALITY
+      // ===================================================================
+
+      // Get mobile menu elements
+      const mobileMenuToggle = document.getElementById("menuToggle");
+      const mobileMenuClose = document.getElementById("closeMenu");
+      const mobileMenuPanel = document.getElementById("mobileMenu");
+      const mobileMenuBackdrop = document.getElementById("backdrop");
+
+      // Open mobile menu function
+      function openMobileMenu() {
+        mobileMenuPanel.classList.remove("translate-x-full");
+        mobileMenuBackdrop.classList.remove("hidden");
+        setTimeout(() => mobileMenuBackdrop.classList.remove("opacity-0"), 10);
+      }
+
+      // Close mobile menu function
+      function closeMobileMenu() {
+        mobileMenuPanel.classList.add("translate-x-full");
+        mobileMenuBackdrop.classList.add("opacity-0");
+        setTimeout(() => mobileMenuBackdrop.classList.add("hidden"), 300);
+      }
+
+      // Event listeners for mobile menu
+      mobileMenuToggle.addEventListener("click", openMobileMenu);
+      mobileMenuClose.addEventListener("click", closeMobileMenu);
+      mobileMenuBackdrop.addEventListener("click", closeMobileMenu);
+    </script>
+    <script>
+      // ===================================================================
+      // VIDEO CAROUSEL FUNCTIONALITY
+      // ===================================================================
+
+      // Scroll carousel left or right
+      function scrollCarousel(direction) {
+        const carousel = document.getElementById("videoCarousel");
+        const scrollAmount = 350; // Adjust based on card width
+        carousel.scrollBy({
+          left: direction * scrollAmount,
+          behavior: "smooth",
+        });
+      }
+
+      // Open video modal for carousel videos
+      function openVideoModal(youtubeUrl) {
+        const modal = document.getElementById("videoModal");
+        const iframe = document.getElementById("videoFrame");
+        iframe.src = youtubeUrl + "?autoplay=1&rel=0";
+        modal.classList.remove("hidden");
+        document.body.classList.add("overflow-hidden");
+      }
+
+      // Close video modal
+      function closeVideoModal() {
+        const modal = document.getElementById("videoModal");
+        const iframe = document.getElementById("videoFrame");
+        iframe.src = ""; // Stop video playback
+        modal.classList.add("hidden");
+        document.body.classList.remove("overflow-hidden");
+      }
+    </script>
+  </body>
+</html>
