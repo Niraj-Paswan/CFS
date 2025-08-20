@@ -34,7 +34,7 @@
       <div
         class="mx-6 lg:mx-12 px-2 py-3 flex items-center justify-between relative"
       >
-        <!-- Company Logo and Trust Badge -->
+        <!-- Logo -->
         <div class="flex items-center gap-2">
           <img
             src="./assets/CFS TRANSPARENT.png"
@@ -43,101 +43,147 @@
           />
         </div>
 
-        <!-- Desktop Navigation Menu - Hidden on mobile -->
-        <nav class="hidden md:flex gap-12 text-[16px] font-medium items-center">
-          <!-- Simple navigation link -->
-          <a
-            href="about-us.html"
-            class="hover:text-primary transition text-white"
-            >About Us</a
-          >
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex gap-10 text-[16px] font-medium items-center">
+          <!-- About Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              About <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute top-full left-0 mt-3 text-sm bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="./about-us.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="building-2" class="w-5 h-5"></i> About Us
+              </a>
 
-          <!-- Services Dropdown Menu -->
-          <div class="relative group z-50">
+              <!-- Nested Team Dropdown -->
+              <div class="relative group/team">
+                <button
+                  class="flex items-center justify-between w-full gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                >
+                  <span class="flex items-center gap-3">
+                    <i data-lucide="users" class="w-5 h-5"></i> Our Team
+                  </span>
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+                <div
+                  class="absolute top-0 left-full ml-2 bg-white rounded-2xl p-2 min-w-[12rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover/team:opacity-100 group-hover/team:visible transition-all duration-200"
+                >
+                  <a
+                    href="./teams/Prashant-Chimulkar.html"
+                    class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                  >
+                    <i data-lucide="user" class="w-5 h-5"></i> Prashant
+                  </a>
+                  <a
+                    href="./teams/Pranav-Chimulkar.html"
+                    class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                  >
+                    <i data-lucide="user" class="w-5 h-5"></i> Pranav
+                  </a>
+                </div>
+              </div>
+
+              <a
+                href="foundation.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="heart-handshake" class="w-5 h-5"></i> Foundation
+              </a>
+            </div>
+          </div>
+
+          <!-- Services Dropdown -->
+          <div class="relative group">
             <button
               class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
             >
               Services <i data-lucide="chevron-down" class="w-4 h-4"></i>
             </button>
-            <!-- Dropdown content - appears on hover -->
             <div
-              class="absolute top-full left-0 mt-2 bg-white rounded-lg min-w-[14rem] text-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-auto border border-gray-300 shadow-md"
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
             >
               <a
                 href="#service-1"
-                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-t-lg cursor-pointer"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="layers" class="w-4 h-4"></i> Mutual Funds
+                <i data-lucide="layers" class="w-5 h-5"></i> Mutual Funds
               </a>
               <a
                 href="#service-2"
-                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="calendar-check" class="w-4 h-4"></i> Retirement
+                <i data-lucide="calendar-check" class="w-5 h-5"></i> Retirement
                 Planning
               </a>
               <a
                 href="#service-3"
-                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="file-text" class="w-4 h-4"></i> Tax Planning
+                <i data-lucide="file-text" class="w-5 h-5"></i> Tax Planning
               </a>
               <a
                 href="#service-4"
-                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="shield-check" class="w-4 h-4"></i> Insurance
+                <i data-lucide="shield-check" class="w-5 h-5"></i> Insurance
                 Planning
               </a>
               <a
                 href="#service-5"
-                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-b-lg cursor-pointer"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="archive" class="w-4 h-4"></i> Legacy Planning
+                <i data-lucide="archive" class="w-5 h-5"></i> Legacy Planning
               </a>
             </div>
           </div>
 
-          <!-- Calculator Tools Dropdown -->
-          <div class="relative group z-50">
+          <!-- Calculator Dropdown -->
+          <div class="relative group">
             <button
               class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
             >
               Calculator <i data-lucide="chevron-down" class="w-4 h-4"></i>
             </button>
             <div
-              class="absolute top-full left-0 mt-2 bg-white rounded-lg min-w-[14rem] text-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-auto border border-gray-300 shadow-md"
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
             >
               <a
-                href="../calculators/sip-calculator.html"
-                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-t-lg cursor-pointer"
+                href="./calculators/sip-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="calculator" class="w-4 h-4"></i> SIP Calculator
+                <i data-lucide="calculator" class="w-5 h-5"></i> SIP Calculator
               </a>
               <a
-                href="../calculators/lump-sump-calculator.html"
-                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
+                href="./calculators/lump-sump-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="percent" class="w-4 h-4"></i> Lump Sum
+                <i data-lucide="percent" class="w-5 h-5"></i> Lump Sum
               </a>
               <a
-                href="../calculators/swp-calculator.html"
-                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
+                href="./calculators/swp-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
+                <i data-lucide="activity" class="w-5 h-5"></i> SWP Calculator
               </a>
               <a
-                href="../calculators/inflation-calculator.html"
-                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-b-lg cursor-pointer"
+                href="./calculators/inflation-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
+                <i data-lucide="trending-up" class="w-5 h-5"></i> Inflation
                 Calculator
               </a>
             </div>
           </div>
 
           <!-- Financial Literacy Dropdown -->
-          <div class="relative group z-50">
+          <div class="relative group">
             <button
               class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
             >
@@ -145,30 +191,30 @@
               <i data-lucide="chevron-down" class="w-4 h-4"></i>
             </button>
             <div
-              class="absolute top-full left-0 mt-2 bg-white rounded-lg min-w-[14rem] text-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-auto border border-gray-300 shadow-md"
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
             >
               <a
                 href="#lit-1"
-                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-t-lg cursor-pointer"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="book-open" class="w-4 h-4"></i> Basics
+                <i data-lucide="book-open" class="w-5 h-5"></i> Basics
               </a>
               <a
                 href="#lit-2"
-                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="lightbulb" class="w-4 h-4"></i> Tips & Guides
+                <i data-lucide="lightbulb" class="w-5 h-5"></i> Tips & Guides
               </a>
               <a
                 href="#lit-3"
-                class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-b-lg cursor-pointer"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="play-circle" class="w-4 h-4"></i> Video Lessons
+                <i data-lucide="play-circle" class="w-5 h-5"></i> Video Lessons
               </a>
             </div>
           </div>
 
-          <!-- Additional navigation links -->
+          <!-- Simple links -->
           <a href="#nri-corner" class="text-white hover:text-primary transition"
             >NRI Corner</a
           >
@@ -182,7 +228,7 @@
           >
         </nav>
 
-        <!-- Call-to-Action Button - Desktop only -->
+        <!-- CTA Button -->
         <a
           href="#"
           class="hidden md:inline-flex items-center border border-transparent bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
@@ -195,10 +241,10 @@
           </span>
         </a>
 
-        <!-- Mobile Menu Toggle Button -->
+        <!-- Mobile Menu Button -->
         <button
           id="menuToggle"
-          class="md:hidden p-2 bg-gray-50 border border-gray-300 rounded-full hover:bg-gray-100 hover:cursor-pointer"
+          class="md:hidden p-2 bg-gray-50 border border-gray-300 rounded-full hover:bg-gray-100"
         >
           <i data-lucide="align-right" class="w-6 h-6 text-secondary"></i>
         </button>
@@ -250,56 +296,82 @@
         </div>
 
         <!-- Mobile navigation links -->
-        <a
-          href="#about-us"
-          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
-        >
-          <i data-lucide="info" class="w-4 h-4"></i> About Us
-        </a>
 
-        <!-- Mobile Services Accordion -->
-        <details class="group">
+        <!-- Mobile About Us Accordion -->
+        <!-- About Us (mobile accordion) -->
+
+        <style>
+          /* hide default marker */
+          summary {
+            list-style: none;
+          }
+          summary::-webkit-details-marker {
+            display: none;
+          }
+
+          /* rotate only the chevron inside the SAME details > summary */
+          details > summary .chev {
+            transition: transform 0.2s ease;
+            display: inline-flex;
+          }
+          details[open] > summary .chev {
+            transform: rotate(180deg);
+          }
+        </style>
+
+        <details>
           <summary
             class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
           >
-            Services
-            <i
-              data-lucide="chevron-down"
-              class="w-4 h-4 transition-transform group-open:rotate-180"
-            ></i>
+            <span class="flex items-center gap-2">
+              <i data-lucide="info" class="w-4 h-4"></i> About
+            </span>
+            <span class="chev"
+              ><i data-lucide="chevron-down" class="w-4 h-4"></i
+            ></span>
           </summary>
-          <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
+
+          <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
             <a
-              href="#service-1"
-              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+              href="about-us.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
             >
-              <i data-lucide="layers" class="w-4 h-4"></i> Mutual Funds
+              <i data-lucide="building-2" class="w-4 h-4"></i> About Us
             </a>
+
+            <!-- Nested team -->
+            <details>
+              <summary
+                class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-primary hover:text-white cursor-pointer"
+              >
+                <span class="flex items-center gap-2">
+                  <i data-lucide="users" class="w-4 h-4"></i> Our Team
+                </span>
+                <span class="chev"
+                  ><i data-lucide="chevron-down" class="w-4 h-4"></i
+                ></span>
+              </summary>
+
+              <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+                <a
+                  href="./teams/Prashant-Chimulkar.html"
+                  class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+                >
+                  <i data-lucide="user" class="w-4 h-4"></i> Prashant
+                </a>
+                <a
+                  href="./teams/Pranav-Chimulkar.html"
+                  class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+                >
+                  <i data-lucide="user" class="w-4 h-4"></i> Pranav
+                </a>
+              </div>
+            </details>
             <a
-              href="#service-2"
-              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+              href="foundation.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
             >
-              <i data-lucide="calendar-check" class="w-4 h-4"></i> Retirement
-              Planning
-            </a>
-            <a
-              href="#service-3"
-              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
-            >
-              <i data-lucide="file-text" class="w-4 h-4"></i> Tax Planning
-            </a>
-            <a
-              href="#service-4"
-              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
-            >
-              <i data-lucide="shield-check" class="w-4 h-4"></i> Insurance
-              Planning
-            </a>
-            <a
-              href="#service-5"
-              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
-            >
-              <i data-lucide="archive" class="w-4 h-4"></i> Legacy Planning
+              <i data-lucide="heart-handshake" class="w-4 h-4"></i> Foundation
             </a>
           </div>
         </details>
@@ -317,26 +389,26 @@
           </summary>
           <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
             <a
-              href="../calculators/sip-calculator.html"
+              href="./calculators/sip-calculator.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
             >
               <i data-lucide="calculator" class="w-4 h-4"></i> SIP Calculator
             </a>
             <a
-              href="../calculators/lump-sump-calculator.html"
+              href="./calculators/lump-sump-calculator.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
             >
               <i data-lucide="percent" class="w-4 h-4"></i> Lump Sum
             </a>
 
             <a
-              href="../calculators/swp-calculator.html"
+              href="./calculators/swp-calculator.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
             >
               <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
             </a>
             <a
-              href="../calculators/inflation-calculator.html"
+              href="./calculators/inflation-calculator.html"
               class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-b-lg cursor-pointer"
             >
               <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
@@ -386,7 +458,7 @@
           <i data-lucide="globe" class="w-4 h-4"></i> NRI Corner
         </a>
         <a
-          href="../contact-us.html"
+          href="./contact-us.html"
           class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
         >
           <i data-lucide="phone-call" class="w-4 h-4"></i> Contact Us
