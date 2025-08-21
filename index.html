@@ -350,7 +350,7 @@
       <div class="p-6 flex flex-col gap-4">
         <!-- Mobile menu header with logo and close button -->
         <div class="flex justify-between items-center mb-4">
-          <img src="./assets/Logo.svg" class="h-10" alt="Logo" />
+          <img src="../assets/Logo.svg" class="h-10" alt="Logo" />
           <button
             id="closeMenu"
             class="p-2 bg-gray-50 text-secondary border border-gray-300 rounded-full hover:bg-gray-100 hover:cursor-pointer"
@@ -397,7 +397,7 @@
 
           <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
             <a
-              href="about-us.html"
+              href="../about-us.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
             >
               <i data-lucide="building-2" class="w-4 h-4"></i> About Us
@@ -432,10 +432,61 @@
               </div>
             </details>
             <a
-              href="foundation.html"
+              href="./foundation.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
             >
               <i data-lucide="heart-handshake" class="w-4 h-4"></i> Foundation
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Services Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="briefcase" class="w-4 h-4"></i> Services
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+
+          <!-- Sub-links -->
+          <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+            <a
+              href="#service-1"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="layers" class="w-4 h-4"></i> Mutual Funds
+            </a>
+            <a
+              href="./services/retirement-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="calendar-check" class="w-4 h-4"></i> Retirement
+              Planning
+            </a>
+            <a
+              href="./services/tax-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="file-text" class="w-4 h-4"></i> Tax Planning
+            </a>
+            <a
+              href="#service-4"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="shield-check" class="w-4 h-4"></i> Insurance
+              Planning
+            </a>
+            <a
+              href="#service-4"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="archive" class="w-4 h-4"></i> Legacy Planning
             </a>
           </div>
         </details>
@@ -445,7 +496,9 @@
           <summary
             class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
           >
-            Calculator
+            <span class="flex items-center gap-2">
+              <i data-lucide="circle-divide" class="w-4 h-4"></i> Calculators
+            </span>
             <i
               data-lucide="chevron-down"
               class="w-4 h-4 transition-transform group-open:rotate-180"
@@ -453,27 +506,27 @@
           </summary>
           <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
             <a
-              href="./calculators/sip-calculator.html"
+              href="../calculators/sip-calculator.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
             >
               <i data-lucide="calculator" class="w-4 h-4"></i> SIP Calculator
             </a>
             <a
-              href="./calculators/lump-sump-calculator.html"
+              href="../calculators/lump-sump-calculator.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
             >
               <i data-lucide="percent" class="w-4 h-4"></i> Lump Sum
             </a>
 
             <a
-              href="./calculators/swp-calculator.html"
+              href="../calculators/swp-calculator.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
             >
               <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
             </a>
             <a
-              href="./calculators/inflation-calculator.html"
-              class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-b-lg cursor-pointer"
+              href="../calculators/inflation-calculator.html"
+              class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-lg cursor-pointer"
             >
               <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
               Calculator
@@ -486,7 +539,10 @@
           <summary
             class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
           >
-            Financial Literacy
+            <span class="flex items-center gap-2">
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i> Financial
+              Literacy
+            </span>
             <i
               data-lucide="chevron-down"
               class="w-4 h-4 transition-transform group-open:rotate-180"
@@ -522,7 +578,7 @@
           <i data-lucide="globe" class="w-4 h-4"></i> NRI Corner
         </a>
         <a
-          href="./contact-us.html"
+          href="../contact-us.html"
           class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
         >
           <i data-lucide="phone-call" class="w-4 h-4"></i> Contact Us
