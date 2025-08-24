@@ -669,6 +669,9 @@
   .h-20 {
     height: calc(var(--spacing) * 20);
   }
+  .h-24 {
+    height: calc(var(--spacing) * 24);
+  }
   .h-32 {
     height: calc(var(--spacing) * 32);
   }
@@ -692,6 +695,12 @@
   }
   .h-\[10rem\] {
     height: 10rem;
+  }
+  .h-\[50\%\] {
+    height: 50%;
+  }
+  .h-\[60\%\] {
+    height: 60%;
   }
   .h-\[70\%\] {
     height: 70%;
@@ -825,6 +834,12 @@
   .w-80 {
     width: calc(var(--spacing) * 80);
   }
+  .w-\[50\%\] {
+    width: 50%;
+  }
+  .w-\[60\%\] {
+    width: 60%;
+  }
   .w-\[70\%\] {
     width: 70%;
   }
@@ -833,6 +848,9 @@
   }
   .w-\[79\.5\%\] {
     width: 79.5%;
+  }
+  .w-\[80\%\] {
+    width: 80%;
   }
   .w-\[85\%\] {
     width: 85%;
@@ -991,6 +1009,18 @@
     --tw-translate-y: 100%;
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+  .scale-50 {
+    --tw-scale-x: 50%;
+    --tw-scale-y: 50%;
+    --tw-scale-z: 50%;
+    scale: var(--tw-scale-x) var(--tw-scale-y);
+  }
+  .scale-75 {
+    --tw-scale-x: 75%;
+    --tw-scale-y: 75%;
+    --tw-scale-z: 75%;
+    scale: var(--tw-scale-x) var(--tw-scale-y);
+  }
   .scale-95 {
     --tw-scale-x: 95%;
     --tw-scale-y: 95%;
@@ -1015,11 +1045,17 @@
     --tw-scale-z: 175%;
     scale: var(--tw-scale-x) var(--tw-scale-y);
   }
+  .-rotate-45 {
+    rotate: calc(45deg * -1);
+  }
   .rotate-30 {
     rotate: 30deg;
   }
   .rotate-45 {
     rotate: 45deg;
+  }
+  .rotate-180 {
+    rotate: 180deg;
   }
   .rotate-\[65deg\] {
     rotate: 65deg;
@@ -3484,6 +3520,14 @@
   .lg\:max-w-5xl {
     @media (width >= 64rem) {
       max-width: var(--container-5xl);
+    }
+  }
+  .lg\:scale-75 {
+    @media (width >= 64rem) {
+      --tw-scale-x: 75%;
+      --tw-scale-y: 75%;
+      --tw-scale-z: 75%;
+      scale: var(--tw-scale-x) var(--tw-scale-y);
     }
   }
   .lg\:scale-150 {
