@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,8 +18,14 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      html,
+      body {
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+    </style>
   </head>
-  <body class="">
+  <body class="overflow-x-hidden">
     <header class="bg-secondary shadow-sm fixed w-full top-0 z-50">
       <div
         class="mx-6 lg:mx-12 px-2 py-3 flex items-center justify-between relative"
@@ -598,7 +604,7 @@
     </section>
 
     <!-- Body Section -->
-    <section class="max-w-8xl mx-auto px-8 lg:px-24 py-24">
+    <section class="max-w-8xl mx-auto px-8 lg:px-24 py-24 overflow-hidden">
       <h1
         class="text-3xl lg:text-5xl font-semibold text-black text-center mb-12 lg:mb-24"
         data-aos="fade-up"
@@ -757,12 +763,17 @@
         >
           <!-- Vision -->
           <div
-            class="p-8 border-b border-bluee flex flex-col gap-3"
+            class="p-10 lg:p-12 border-b border-bluee flex flex-col gap-3"
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            <i data-lucide="eye" class="w-8 h-8 text-strokes"></i>
-            <h3 class="text-xl font-semibold">Your Vision</h3>
+            <!-- Icon + Heading in one row -->
+            <div class="flex items-center gap-3">
+              <i data-lucide="eye" class="w-8 h-8 text-strokes"></i>
+              <h3 class="text-xl font-semibold">Your Vision</h3>
+            </div>
+
+            <!-- Paragraph -->
             <p class="text-gray-300 text-sm leading-relaxed">
               We start by listening. Tell us about your ideal retirement, what
               does it look like, and when do you want it to begin? Your dreams
@@ -772,12 +783,17 @@
 
           <!-- Plan -->
           <div
-            class="p-8 border-b border-bluee flex flex-col gap-3"
+            class="p-10 lg:p-12 border-b border-bluee flex flex-col gap-3"
             data-aos="fade-up"
             data-aos-delay="400"
           >
-            <i data-lucide="target" class="w-8 h-8 text-strokes"></i>
-            <h3 class="text-xl font-semibold">Your Plan</h3>
+            <!-- Icon + Heading Row -->
+            <div class="flex items-center gap-3">
+              <i data-lucide="target" class="w-8 h-8 text-strokes"></i>
+              <h3 class="text-xl font-semibold">Your Plan</h3>
+            </div>
+
+            <!-- Paragraph -->
             <p class="text-gray-300 text-sm leading-relaxed">
               We guide you to craft a comprehensive strategy tailored to your
               unique goals. From investments to tax efficiency, you’ll have a
@@ -787,12 +803,17 @@
 
           <!-- Journey -->
           <div
-            class="p-8 flex flex-col gap-3"
+            class="p-10 lg:p-12 flex flex-col gap-3"
             data-aos="fade-up"
             data-aos-delay="600"
           >
-            <i data-lucide="gauge" class="w-8 h-8 text-strokes"></i>
-            <h3 class="text-xl font-semibold">Your Journey</h3>
+            <!-- Icon + Heading Row -->
+            <div class="flex items-center gap-3">
+              <i data-lucide="gauge" class="w-8 h-8 text-strokes"></i>
+              <h3 class="text-xl font-semibold">Your Journey</h3>
+            </div>
+
+            <!-- Paragraph -->
             <p class="text-gray-300 text-sm leading-relaxed">
               Life changes. Your plan should too. We’ll be with you every step
               of the way, monitoring your progress and adapting your strategy as
@@ -1177,7 +1198,7 @@
     </section>
 
     <!-- Your Goals -->
-    <section class="py-16 px-8">
+    <section class="py-16 px-6">
       <div
         class="max-w-6xl mx-auto text-start"
         data-aos="fade-up"
@@ -1196,7 +1217,7 @@
           data-aos="fade-up"
           data-aos-delay="200"
         >
-          We’ll guide and support you though all <br />
+          We’ll guide and support you though all <br class="hidden lg:block" />
           money moments and milestones.
         </p>
 
@@ -1204,11 +1225,11 @@
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-12">
           <!-- Card 1 -->
           <div
-            class="bg-blue-50 rounded-2xl p-4 lg:p-6 flex flex-col items-center text-center"
+            class="bg-blue-50 rounded-2xl p-6 lg:p-6 flex flex-col items-center text-center"
             data-aos="fade-up"
             data-aos-delay="100"
           >
-            <img src="../assets/Manage Money.png" alt="" />
+            <img src="../assets/Manage Money.png" class="scale-75" alt="" />
             <p class="font-semibold mt-4 text-sm lg:text-base">
               Manage money better
             </p>
@@ -1220,7 +1241,7 @@
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            <img src="../assets/Vacation.png" alt="" />
+            <img src="../assets/Vacation.png" class="scale-75" alt="" />
             <p class="font-semibold mt-4 text-sm lg:text-base">
               Go on a Dream Vacation
             </p>
@@ -1232,7 +1253,7 @@
             data-aos="fade-up"
             data-aos-delay="300"
           >
-            <img src="../assets/Money Stress.png" alt="" />
+            <img src="../assets/Money Stress.png" class="scale-75" alt="" />
             <p class="font-semibold mt-4 text-sm lg:text-base">
               Eliminate money stress
             </p>
@@ -1244,7 +1265,7 @@
             data-aos="fade-up"
             data-aos-delay="400"
           >
-            <img src="../assets/Educate.png" alt="" />
+            <img src="../assets/Educate.png" class="scale-75" alt="" />
             <p class="font-semibold mt-4 text-sm lg:text-base">
               Educate your children
             </p>
@@ -1256,7 +1277,7 @@
             data-aos="fade-up"
             data-aos-delay="500"
           >
-            <img src="../assets/Career.png" alt="" />
+            <img src="../assets/Career.png" class="scale-75" alt="" />
             <p class="font-semibold mt-4 text-sm lg:text-base">
               Change career or job
             </p>
@@ -1268,7 +1289,7 @@
             data-aos="fade-up"
             data-aos-delay="600"
           >
-            <img src="../assets/debt.png" alt="" />
+            <img src="../assets/debt.png" class="scale-75" alt="" />
             <p class="font-semibold mt-4 text-sm lg:text-base">
               Trim and wipe out debt
             </p>
@@ -1280,7 +1301,7 @@
             data-aos="fade-up"
             data-aos-delay="700"
           >
-            <img src="../assets/save.png" alt="" />
+            <img src="../assets/save.png" class="scale-75" alt="" />
             <p class="font-semibold mt-4 text-sm lg:text-base">
               Save and invest smarter
             </p>
@@ -1292,7 +1313,7 @@
             data-aos="fade-up"
             data-aos-delay="800"
           >
-            <img src="../assets/Dream-house.png" alt="" />
+            <img src="../assets/Dream-house.png" class="scale-75" alt="" />
             <p class="font-semibold mt-4 text-sm lg:text-base">
               Buy your dream home
             </p>
@@ -1321,14 +1342,13 @@
         <!-- FAQ 1 -->
         <div class="faq-item">
           <button
-            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left transition-colors duration-200 focus:outline-none"
-            aria-expanded="false"
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between transition-colors duration-200 items-center text-left"
           >
-            <span class="text-base font-medium text-black pr-4">
+            <span class="text-sm lg:text-base font-medium text-black pr-4">
               What is the best age to start retirement planning in India?
             </span>
             <svg
-              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              class="faq-icon w-12 h-12 lg:w-6 lg:h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="currentColor"
@@ -1354,13 +1374,13 @@
         <!-- FAQ 2 -->
         <div class="faq-item">
           <button
-            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left"
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between transition-colors duration-200 items-center text-left"
           >
-            <span class="text-base font-medium text-black pr-4">
+            <span class="text-sm lg:text-base font-medium text-black pr-4">
               How much money do I need to retire comfortably?
             </span>
             <svg
-              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              class="faq-icon w-12 h-12 lg:w-6 lg:h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="currentColor"
@@ -1389,11 +1409,11 @@
           <button
             class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left"
           >
-            <span class="text-base font-medium text-black pr-4">
+            <span class="text-sm lg:text-base font-medium text-black pr-4">
               Which are the best retirement plans or pension schemes in India?
             </span>
             <svg
-              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              class="faq-icon w-12 h-12 lg:w-6 lg:h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="currentColor"
@@ -1423,11 +1443,11 @@
           <button
             class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left"
           >
-            <span class="text-base font-medium text-black pr-4">
-              How do I calculate my retirement corpus?
+            <span class="text-sm lg:text-base font-medium text-black pr-4">
+              How do even I calculate my retirement corpus?
             </span>
             <svg
-              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              class="faq-icon w-12 h-12 lg:w-6 lg:h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="currentColor"
@@ -1457,11 +1477,11 @@
           <button
             class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left"
           >
-            <span class="text-base font-medium text-black pr-4">
+            <span class="text-sm lg:text-base font-medium text-black pr-4">
               What are the tax benefits available on retirement investments?
             </span>
             <svg
-              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              class="faq-icon w-12 h-12 lg:w-6 lg:h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="currentColor"
@@ -1491,11 +1511,11 @@
           <button
             class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left"
           >
-            <span class="text-base font-medium text-black pr-4">
+            <span class="text-sm lg:text-base font-medium text-black pr-4">
               Should I invest in NPS, PPF, EPF, or other pension plans?
             </span>
             <svg
-              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              class="faq-icon w-12 h-12 lg:w-6 lg:h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="currentColor"
@@ -1524,11 +1544,11 @@
           <button
             class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left"
           >
-            <span class="text-base font-medium text-black pr-4">
+            <span class="text-sm lg:text-base font-medium text-black pr-4">
               How can I protect my retirement savings from inflation?
             </span>
             <svg
-              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              class="faq-icon w-12 h-12 lg:w-6 lg:h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="currentColor"
@@ -1557,12 +1577,12 @@
           <button
             class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left"
           >
-            <span class="text-base font-medium text-black pr-4">
+            <span class="text-sm lg:text-base font-medium text-black pr-4">
               What should be my investment strategy to maximize retirement
               savings?
             </span>
             <svg
-              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              class="faq-icon w-12 h-12 lg:w-6 lg:h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="currentColor"
@@ -1592,11 +1612,11 @@
           <button
             class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left"
           >
-            <span class="text-base font-medium text-black pr-4">
+            <span class="text-sm lg:text-base font-medium text-black pr-4">
               What is the retirement age in India and can I retire early?
             </span>
             <svg
-              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              class="faq-icon w-12 h-12 lg:w-6 lg:h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="currentColor"
@@ -1625,12 +1645,12 @@
           <button
             class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left"
           >
-            <span class="text-base font-medium text-black pr-4">
+            <span class="text-sm lg:text-base font-medium text-black pr-4">
               How do I manage healthcare and unexpected expenses after
               retirement?
             </span>
             <svg
-              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300"
+              class="faq-icon w-12 h-12 lg:w-6 lg:h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="currentColor"
