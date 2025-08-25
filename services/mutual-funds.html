@@ -18,6 +18,12 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      html,
+      body {
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+    </style>
   </head>
   <body class="">
     <header class="bg-secondary shadow-sm fixed w-full top-0 z-50">
@@ -542,12 +548,14 @@
       </div>
     </div>
 
+    <!-- Hero Section -->
     <section class="relative w-full h-full flex items-left lg:items-center">
       <!-- Desktop Background Image -->
       <img
         src="../assets/MutualFunds_D.png"
         class="hidden lg:block w-full h-full object-cover"
         alt="Mutual Funds Background"
+        loading="lazy"
       />
 
       <!-- Mobile Background Image -->
@@ -555,6 +563,7 @@
         src="../assets/MutualFunds_M.png"
         class="block lg:hidden w-full h-full object-cover mt-16"
         alt="Mutual Funds Mobile Background"
+        loading="lazy"
       />
 
       <!-- Gradient Overlay -->
@@ -593,15 +602,1258 @@
       </div>
     </section>
 
-    <section class="py-20 bg-white"></section>
+    <!-- Body Section -->
+    <section class="max-w-8xl mx-auto px-8 lg:px-24 py-24 overflow-hidden">
+      <h1
+        class="text-3xl lg:text-5xl font-semibold text-black text-center mb-12 lg:mb-24"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        Mutual funds sahi hai, <br class="hidden lg:block" />
+        but only if you do them<span class="text-bluee">correctly</span> !
+      </h1>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Left Image Grid -->
+        <div
+          class="grid grid-cols-2 grid-rows-2 gap-3"
+          data-aos="zoom-in"
+          data-aos-delay="300"
+        >
+          <!-- Big image -->
+          <img
+            src="../assets/girl-using-phone.png"
+            alt="Image 1"
+            class="col-span-1 row-span-2 rounded-2xl object-cover w-full h-full"
+            loading="lazy"
+          />
+          <!-- Top right small -->
+          <img
+            src="../assets/discussing.png"
+            alt="Image 2"
+            class="rounded-2xl object-cover w-full h-full"
+            loading="lazy"
+          />
+          <!-- Bottom right tall -->
+          <img
+            src="../assets/women-with-laptop.png"
+            alt="Image 4"
+            class="col-span-1 row-span-2 rounded-2xl object-cover w-full h-full"
+            loading="lazy"
+          />
+          <!-- Bottom full width -->
+          <img
+            src="../assets/stock-tracking.png"
+            alt="Image 3"
+            class="rounded-2xl object-cover w-full h-full"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Right Text -->
+        <div
+          class="flex flex-col gap-12"
+          data-aos="fade-left"
+          data-aos-delay="400"
+        >
+          <div>
+            <h2
+              class="text-2xl md:text-3xl font-semibold mb-4"
+              data-aos="fade-up"
+              data-aos-delay="500"
+            >
+              The Unclear
+            </h2>
+            <p
+              class="text-gray-700 leading-relaxed text-base"
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              With so many ads, reels and apps around, the world of investing
+              can seem complex and intimidating. You might wonder which funds to
+              choose, how much to invest, or how to navigate a volatile market.
+              The fear of making a wrong decision can prevent you from taking
+              the first step.
+            </p>
+          </div>
+
+          <div>
+            <h2
+              class="text-2xl md:text-3xl font-semibold mb-4"
+              data-aos="fade-up"
+              data-aos-delay="700"
+            >
+              Your <span class="text-blue-600">Blueprint</span>
+            </h2>
+            <p
+              class="text-gray-700 leading-relaxed text-base"
+              data-aos="fade-up"
+              data-aos-delay="800"
+            >
+              You need a clear, easy-to-follow blueprint for your investment
+              journey. We empower you to make informed decisions and execute
+              your investments with confidence. So you can make your money work
+              for you in the background, while you continue to go about your
+              business.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Did You Know Section -->
+    <section class="bg-strokes/15 py-16 px-8">
+      <div class="max-w-6xl mx-auto">
+        <!-- Small heading -->
+        <p
+          class="text-lg lg:text-xl font-semibold mb-4 text-center lg:text-left"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          Did you <span class="text-blue-600">Know?</span>
+        </p>
+
+        <!-- Big Stat -->
+        <h2
+          class="text-2xl md:text-4xl font-semibold mb-6 text-center lg:text-left text-gray-900 leading-snug"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          Indian mutual fund industry ranks 2nd globally by AUM
+        </h2>
+
+        <!-- Description -->
+        <p
+          class="text-gray-700 text-base md:text-lg leading-relaxed text-center lg:text-left max-w-3xl"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
+          According to a report by Jupiter Money, India is second to only US,
+          with over $400 billion in assets under management and is one of the
+          fastest-growing markets in the world, with a CAGR growth of 17.5% over
+          the past five years.
+        </p>
+      </div>
+    </section>
+
+    <!-- About Mutual Funds Section With Video (Hidden) -->
+    <section class="w-full px-6 md:px-12 py-16 bg-white">
+      <div
+        class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+      >
+        <!-- Left Content -->
+        <div
+          class="flex flex-col items-start justify-center text-left"
+          data-aos="fade-right"
+          data-aos-duration="1000"
+          data-aos-delay="100"
+        >
+          <h2
+            class="text-3xl md:text-5xl font-semibold text-gray-900 leading-snug"
+          >
+            About <span class="text-blue-600">Mutual Funds</span>
+          </h2>
+          <p class="text-base mb-4 lg:mb-12 lg:text-lg text-black">
+            A quick overview of mutual funds and how to invest in them.
+          </p>
+          <p class="mt-6 text-gray-600 leading-relaxed">
+            Investing in Mutual funds shouldn't feel overwhelming. It should be
+            straightforward and accessible, even if you're new to investing. We
+            offer access to a wide variety of funds, a simplified investment
+            process, and the ongoing support you need to navigate your financial
+            journey with confidence.
+          </p>
+          <a
+            href="#"
+            class="w-fit inline-flex mt-8 items-center justify-center border border-transparent bg-primary hover:bg-secondary hover:border-secondary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition-transform hover:opacity-90 mx-auto lg:mx-0"
+            data-aos="zoom-in"
+            data-aos-duration="800"
+            data-aos-delay="300"
+          >
+            Watch more Videos
+            <span
+              class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+            >
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </a>
+        </div>
+
+        <!-- Right Video (9:16 reel style) -->
+        <div
+          class="mx-auto w-full max-w-xs lg:max-w-xs aspect-[9/16] rounded-2xl overflow-hidden bg-blue-400 shadow-md"
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        >
+          <video
+            src="../assets/call.mp4"
+            class="w-full h-full object-cover"
+            autoplay
+            loading="lazy"
+            loop
+            playsinline
+            controls
+          ></video>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Approach -->
+    <section class="bg-secondary text-white px-6 overflow-hidden">
+      <div
+        class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 py-12 lg:py-0"
+      >
+        <!-- Left Column -->
+        <div
+          class="p-6 flex flex-col justify-center text-center lg:text-start"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          <h2 class="text-3xl md:text-5xl font-semibold mb-4">
+            Our <span class="text-strokes">Approach</span>
+          </h2>
+          <p
+            class="text-gray-300 text-base lg:text-lg leading-relaxed mb-6 lg:mb-0"
+          >
+            We believe investing should be accessible to everyone. Our approach
+            is designed to be clear and transparent from start to finish.
+          </p>
+        </div>
+
+        <!-- Right Column -->
+        <div
+          class="lg:w-3xl rounded-2xl lg:rounded-none border border-bluee lg:border-l"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+        >
+          <!-- Vision -->
+          <div
+            class="p-10 lg:p-12 border-b border-bluee flex flex-col gap-3"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <!-- Icon + Heading in one row -->
+            <div class="flex items-center gap-3">
+              <i data-lucide="gauge" class="w-8 h-8 text-strokes"></i>
+              <h3 class="text-xl font-semibold">Understand Your Risk</h3>
+            </div>
+
+            <!-- Paragraph -->
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Before you begin, it’s important to understand your own financial
+              comfort zone. Assess your risk tolerance and understand how it
+              aligns with your investment goals
+            </p>
+          </div>
+
+          <!-- Plan -->
+          <div
+            class="p-10 lg:p-12 border-b border-bluee flex flex-col gap-3"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <!-- Icon + Heading Row -->
+            <div class="flex items-center gap-3">
+              <i data-lucide="chart-pie" class="w-8 h-8 text-strokes"></i>
+              <h3 class="text-xl font-semibold">
+                Build a Diversified Portfolio
+              </h3>
+            </div>
+
+            <!-- Paragraph -->
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Begin to build a portfolio that reflects your risk profile and
+              goals. Explore and choose from a wide range of funds, helping you
+              create a diversified portfolio that spreads risk across different
+              assets and market segments.
+            </p>
+          </div>
+
+          <!-- Journey -->
+          <div
+            class="p-10 lg:p-12 flex flex-col gap-3"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <!-- Icon + Heading Row -->
+            <div class="flex items-center gap-3">
+              <i data-lucide="binoculars" class="w-8 h-8 text-strokes"></i>
+              <h3 class="text-xl font-semibold">
+                Track and Monitor Your Growth
+              </h3>
+            </div>
+
+            <!-- Paragraph -->
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Your investment journey is a continuous process. Our reports and
+              app provide a clear view of your portfolio's performance, allowing
+              you to track your growth in real time and stay in control, always.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Your Advantage -->
+    <section class="bg-white py-16 overflow-hidden">
+      <div
+        class="p-6 px-6 lg:px-38 flex flex-col justify-center text-center lg:text-start"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <h2 class="text-3xl md:text-5xl font-semibold mb-4">
+          Your <span class="text-bluee"> Advantage </span>
+        </h2>
+        <p
+          class="text-black text-base text-start lg:text-lg leading-relaxed mb-6 lg:mb-0"
+        >
+          When you partner with us, rest assured <br class="hidden lg:block" />
+          you are in highly capable hands.
+        </p>
+      </div>
+
+      <div
+        class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+      >
+        <!-- Left Image -->
+        <div data-aos="zoom-in" data-aos-duration="1200">
+          <img
+            src="../assets/young-it-professionals.png"
+            alt="Couple checking phone"
+            class="rounded-2xl shadow-lg w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Right Content -->
+        <div class="space-y-8">
+          <!-- Features -->
+          <div data-aos="fade-left" data-aos-delay="200">
+            <h3 class="text-xl font-semibold mb-2 text-start">
+              Regulated & Reliable
+            </h3>
+            <p class="text-900 text-base leading-relaxed text-start">
+              Our team is registered and regulated by authorities like AMFI and
+              SEBI, ensuring we operate with the highest standards of integrity.
+            </p>
+          </div>
+
+          <div data-aos="fade-left" data-aos-delay="400">
+            <h3 class="text-xl font-semibold mb-2 text-start">
+              Experienced & Knowledgeable
+            </h3>
+            <p class="text-900 text-base leading-relaxed text-start">
+              Our team is well-qualified and experienced across all aspects of
+              personal finance, from wealth creation to risk management.
+            </p>
+          </div>
+
+          <div data-aos="fade-left" data-aos-delay="600">
+            <h3 class="text-xl font-semibold mb-2 text-start">
+              Goal-Oriented Partnership
+            </h3>
+            <p class="text-900 text-base leading-relaxed text-start">
+              We are fully aligned with your goals and interests, not with
+              pushing random products. Because, our success is tied to yours.
+            </p>
+          </div>
+
+          <div data-aos="fade-left" data-aos-delay="800">
+            <h3 class="text-xl font-semibold mb-2 text-start">Kind & Human</h3>
+            <p class="text-900 text-base leading-relaxed text-start">
+              We offer a non-judgmental space for your financial questions and
+              concerns, because everyone deserves a partner who is both an
+              expert and a guide.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Did You Know Section 2 -->
+    <section class="bg-strokes/15 py-12 px-8 overflow-hidden">
+      <div
+        class="max-w-6xl mx-auto text-center lg:text-start"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <!-- Small heading -->
+        <p class="text-lg lg:text-xl font-semibold mb-4">
+          Did you <span class="text-blue-600">Know?</span>
+        </p>
+
+        <!-- Big Stat -->
+        <h2
+          class="text-2xl md:text-4xl font-semibold mb-6 text-start"
+          data-aos="fade-right"
+          data-aos-delay="200"
+        >
+          Indians invest close to ₹30,000 Cr via SIP every month
+        </h2>
+
+        <!-- Description -->
+        <p
+          class="text-gray-700 text-base md:text-lg leading-relaxed text-start"
+          data-aos="fade-left"
+          data-aos-delay="400"
+        >
+          According to a report by AMFI, Systematic Investment Plans collected
+          ₹28,464 crore in July 2025 alone and surpassed ₹1.62 lakh crore in the
+          first half of 2025, illustrating the steady, disciplined investment
+          approach of Indians.
+        </p>
+      </div>
+    </section>
+
+    <!-- Peace of Mind Section -->
+    <section class="bg-white py-16">
+      <div class="max-w-6xl mx-auto px-6 lg:px-8">
+        <!-- Heading -->
+        <div class="mb-10" data-aos="fade-up" data-aos-duration="1000">
+          <h2
+            class="text-3xl md:text-5xl font-semibold mb-4 text-center lg:text-start"
+          >
+            The Peace of Mind You <span class="text-blue-600">Deserve</span>
+          </h2>
+          <p
+            class="text-gray-600 text-base lg:text-lg leading-relaxed text-center lg:text-start"
+          >
+            Investing in mutual funds can feel intimidating, but it doesn't have
+            to be. We help you find peace of mind by providing clarity on the
+            core benefits that come with this investment vehicle.
+          </p>
+        </div>
+
+        <!-- Image -->
+        <div class="mb-12" data-aos="zoom-in" data-aos-duration="1000">
+          <img
+            src="../assets/meditation-on-sea.png"
+            alt="Meditating woman"
+            class="rounded-2xl w-full object-cover shadow-lg"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Bottom Text Blocks -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20">
+          <!-- Block 1 -->
+          <div data-aos="fade-right" data-aos-delay="200">
+            <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+              Professional Management
+            </h3>
+            <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+              Your money is managed by experienced fund managers who research
+              and select securities for your portfolio. This expertise helps you
+              navigate market complexities without needing to be an expert
+              yourself.
+            </p>
+          </div>
+
+          <!-- Block 2 -->
+          <div data-aos="fade-left" data-aos-delay="400">
+            <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+              Diversification
+            </h3>
+            <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+              A mutual fund invests in a basket of securities, automatically
+              spreading your risk across different assets and sectors. This
+              strategy helps to reduce the impact of a poor performance by any
+              single investment.
+            </p>
+          </div>
+
+          <!-- Block3 -->
+          <div data-aos="fade-right" data-aos-delay="400">
+            <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+              Low-Cost Investing
+            </h3>
+            <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+              Mutual funds offer a cost-effective way to access professional
+              management. The expense ratio i.e. management costs are typically
+              much lower than many other investment options such as portfolio
+              management services (PMS).
+            </p>
+          </div>
+
+          <!-- Block 4 -->
+          <div data-aos="fade-left" data-aos-delay="400">
+            <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+              Simplicity of SIP
+            </h3>
+            <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+              A Systematic Investment Plan allows you to invest a fixed amount
+              regularly, helping you build discipline and benefit from rupee
+              cost averaging. It turns small, consistent contributions into a
+              powerful long-term wealth-building habit.
+            </p>
+          </div>
+
+          <!-- Block 5 -->
+          <div data-aos="fade-right" data-aos-delay="400">
+            <h3 class="text-xl lg:text-3xl font-semibold mb-3">Liquidity</h3>
+            <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+              You can easily redeem (liquidate) units of open ended mutual fund
+              schemes to meet your financial needs on any business day (when the
+              stock markets and/or banks are open), so you have easy access to
+              your money.
+            </p>
+          </div>
+
+          <!-- Block 6 -->
+          <div data-aos="fade-left" data-aos-delay="400">
+            <h3 class="text-xl lg:text-3xl font-semibold mb-3">Tax benefits</h3>
+            <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+              Investment in ELSS mutual funds upto ₹1,50,000 annually qualifies
+              for tax benefit under section 80C of the Income Tax Act, 1961.
+              Mutual Fund investments when held for a longer term are tax
+              efficient compared to others like FDs,
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calculators Sections -->
+    <style>
+      /* Custom scrollbar styling */
+      .custom-scrollbar::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 10px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+        border-radius: 10px;
+        transition: background 0.3s ease;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(90deg, #2563eb, #1e40af);
+      }
+
+      /* Firefox scrollbar */
+      .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: #3b82f6 #f1f5f9;
+      }
+
+      /* Smooth scroll behavior */
+      .custom-scrollbar {
+        scroll-behavior: smooth;
+      }
+
+      /* Card hover animations */
+      .service-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .service-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      /* Icon animations */
+      .service-icon {
+        transition: transform 0.3s ease;
+      }
+
+      .service-card:hover .service-icon {
+        transform: scale(1.1);
+      }
+    </style>
+    <section class="py-4 lg:py-16 px-8 max-w-7xl mx-auto">
+      <!-- Header -->
+      <div class="text-start mb-12" data-aos="fade-up" data-aos-duration="800">
+        <h2 class="text-3xl lg:text-5xl font-semibold text-gray-900 mb-4">
+          Use our <span class="text-bluee">Calculators</span>
+        </h2>
+      </div>
+
+      <!-- Scrollable Services Container -->
+      <div class="custom-scrollbar overflow-x-auto pb-4">
+        <div class="flex gap-6 min-w-max px-4">
+          <!-- SIP Calculator -->
+          <a
+            href="../calculators/sip-calculator.html"
+            class="group relative flex-shrink-0 flex flex-col items-center justify-center bg-bluee/10 border border-gray-300 hover:border-2 hover:border-bluee w-80 h-80 p-4 rounded-2xl transition-all hover:shadow-lg snap-center"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            <img
+              src="../assets/sip.png"
+              class="w-1/2 h-1/2 object-contain mb-8"
+              alt=""
+            />
+            <div class="flex flex-col items-center">
+              <h4 class="font-semibold text-xl">SIP Calculator</h4>
+              <p class="text-sm lg:text-base">For small, regular investments</p>
+            </div>
+            <span class="sm:hidden absolute inset-0"></span>
+          </a>
+          <!-- Lumpsum Calculator -->
+          <a
+            href="../calculators/lump-sump-calculator.html"
+            class="group relative flex-shrink-0 flex flex-col items-center justify-center bg-bluee/10 border border-gray-300 hover:border-2 hover:border-bluee w-80 h-80 p-4 rounded-2xl transition-all hover:shadow-lg snap-center"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            <img
+              src="../assets/lumpsum.png"
+              class="w-1/2 h-1/2 object-contain mb-8"
+              alt=""
+            />
+            <div class="flex flex-col items-center">
+              <h4 class="font-semibold text-xl">Lumpsum Calculator</h4>
+              <p class="text-sm lg:text-base">For one-time investments</p>
+            </div>
+            <span class="sm:hidden absolute inset-0"></span>
+          </a>
+          <!-- Inflation Calculator -->
+          <a
+            href="../calculators/inflation-calculator.html"
+            class="group relative flex-shrink-0 flex flex-col items-center justify-center bg-bluee/10 border border-gray-300 hover:border-2 hover:border-bluee w-80 h-80 p-4 rounded-2xl transition-all hover:shadow-lg snap-center"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            <img
+              src="../assets/inflation.png"
+              class="w-1/2 h-1/2 object-contain mb-8"
+              alt=""
+            />
+            <div class="flex flex-col items-center">
+              <h4 class="font-semibold text-xl">Inflation Calculator</h4>
+              <p class="text-sm lg:text-base">For future value or costs</p>
+            </div>
+            <span class="sm:hidden absolute inset-0"></span>
+          </a>
+          <!-- SWP Calculator -->
+          <a
+            href="../calculators/swp-calculator.html"
+            class="group relative flex-shrink-0 flex flex-col items-center justify-center bg-bluee/10 border border-gray-300 hover:border-2 hover:border-bluee w-80 h-80 p-4 rounded-2xl transition-all hover:shadow-lg snap-center"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            <img
+              src="../assets/SWP.png"
+              class="w-1/2 h-1/2 object-contain mb-8"
+              alt=""
+            />
+            <div class="flex flex-col items-center">
+              <h4 class="font-semibold text-xl">SWP Calculator</h4>
+              <p class="text-sm lg:text-base">For regular withdrawals</p>
+            </div>
+            <span class="sm:hidden absolute inset-0"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Add smooth scrolling behavior for touch devices
+      const scrollContainer = document.querySelector(".custom-scrollbar");
+
+      // Optional: Add keyboard navigation
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") {
+          scrollContainer.scrollBy({ left: -320, behavior: "smooth" });
+        } else if (e.key === "ArrowRight") {
+          scrollContainer.scrollBy({ left: 320, behavior: "smooth" });
+        }
+      });
+
+      // Add click handlers for service cards
+      document.querySelectorAll(".service-card").forEach((card) => {
+        card.addEventListener("click", function () {
+          const serviceName = this.querySelector("h3").textContent;
+          console.log(`Clicked on: ${serviceName}`);
+          // Add your navigation logic here
+        });
+      });
+    </script>
+
+    <!-- Did You Know Section 2 -->
+    <section class="bg-secondary text-white py-20 px-8">
+      <div
+        class="max-w-4xl mx-auto flex flex-col items-center text-center"
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-once="true"
+      >
+        <!-- Small Heading -->
+        <p
+          class="text-3xl lg:text-5xl font-semibold mb-6"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          It’s time to take <span class="text-strokes">Control</span>
+        </p>
+
+        <!-- Description -->
+        <p
+          class="text-white text-base md:text-lg font-medium leading-relaxed mb-10 text-center lg:text-start"
+          data-aos="fade-up"
+          data-aos-delay="250"
+        >
+          Let's have a conversation about your investment goals. Our free
+          clarity call is the perfect opportunity to discuss your vision and
+          explore how we can help you build a personalized plan to achieve it.
+        </p>
+
+        <!-- Button -->
+        <a
+          href="../index.html#consultation"
+          class="flex w-fit items-center font-semibold border border-transparent bg-primary text-black pl-5 pr-3 py-2 lg:py-2.5 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+          data-aos="zoom-in"
+          data-aos-delay="400"
+        >
+          Schedule my FREE Clarity Call
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Your Goals -->
+    <section class="py-16 px-6">
+      <div
+        class="max-w-6xl mx-auto text-start"
+        data-aos="fade-up"
+        data-aos-duration="800"
+      >
+        <!-- Heading -->
+        <h2
+          class="text-3xl md:text-5xl font-semibold mb-3"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          Partners for all your <span class="text-blue-600">goals</span>
+        </h2>
+        <p
+          class="text-black text-base lg:text-lg mb-12"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          We’ll guide and support you though all <br class="hidden lg:block" />
+          money moments and milestones.
+        </p>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-12">
+          <!-- Card 1 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-6 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <img src="../assets/Manage Money.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Manage money better
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-4 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <img src="../assets/Vacation.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Go on a Dream Vacation
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-4 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <img src="../assets/Money Stress.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Eliminate money stress
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-4 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <img src="../assets/Educate.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Educate your children
+            </p>
+          </div>
+
+          <!-- Card 5 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-4 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <img src="../assets/Career.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Change career or job
+            </p>
+          </div>
+
+          <!-- Card 6 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-4 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <img src="../assets/debt.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Trim and wipe out debt
+            </p>
+          </div>
+
+          <!-- Card 7 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-4 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="700"
+          >
+            <img src="../assets/save.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Save and invest smarter
+            </p>
+          </div>
+
+          <!-- Card 8 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-4 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="800"
+          >
+            <img src="../assets/Dream-house.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Buy your dream home
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section
+      id="faq"
+      class="mb-2 bg-transparent p-5 max-w-[1150px] mx-auto py-10 lg:py-24"
+    >
+      <div class="text-start mb-8">
+        <h2 class="text-3xl md:text-5xl font-semibold mb-3">
+          Frequently Asked <span class="text-blue-600">Questions</span>
+        </h2>
+        <p class="text-black text-base lg:text-lg mb-12">
+          Everything You Need to Know
+        </p>
+      </div>
+
+      <div
+        class="bg-white text-black border border-gray-300 rounded-2xl divide-y divide-gray-200"
+      >
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What are mutual funds and how do they work?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              A mutual fund is an investment vehicle that pools money from a
+              large number of investors to invest in a diversified portfolio of
+              stocks, bonds, or other securities. This allows investors to
+              access a variety of assets under the management of a professional
+              fund manager, who makes investment decisions on behalf of all the
+              investors.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What are the different types of mutual funds?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Mutual funds are primarily categorized based on the assets they
+              invest in. Equity funds invest mainly in stocks, aiming for
+              long-term growth. Debt funds invest in fixed-income securities
+              like bonds, focusing on stability. Hybrid funds invest in a mix of
+              both, balancing growth and stability. There are many
+              sub-categories within these main types.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What is a SIP and how is it different from a lump-sum investment?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              A Systematic Investment Plan (SIP) is a method of investing a
+              fixed amount of money at regular intervals, such as every month. A
+              lump-sum investment is a one-time, single investment of a large
+              sum. A SIP helps build investment discipline and benefits from
+              rupee-cost averaging, while a lump-sum is suitable when you have a
+              significant amount of money to invest at once
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Is it safe to invest in mutual funds?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Mutual funds are subject to market risk, meaning their value can
+              fluctuate based on market performance. However, they are highly
+              regulated by SEBI in India, ensuring transparency and investor
+              protection. Your investments are held in your name, and funds are
+              managed by professional fund managers.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How much interest do mutual funds pay?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Mutual funds do not pay interest. Instead, they generate returns
+              based on the performance of the underlying assets. These returns
+              are not fixed or guaranteed and can fluctuate (go up and down) in
+              value. They come in the form of an increase in the fund’s Net
+              Asset Value (NAV) and, in some cases, dividends.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Are mutual funds better than FD?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Mutual funds and Fixed Deposits (FDs) serve different financial
+              purposes. FDs offer fixed, guaranteed returns and capital
+              protection but also incur income tax. Mutual funds offer the
+              potential for higher but variable returns, are subject to market
+              risk and taxed as capital gains. The "better" option depends
+              entirely on your specific financial goals and risk tolerance.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How are mutual fund returns taxed?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Mutual fund returns are taxed as capital gains. The tax treatment
+              depends on the type of fund (equity or debt) and the holding
+              period of your investment. It is essential to understand the tax
+              implications of your investments, and for personal advice, it is
+              always recommended to consult a professional for guidance.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 8 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How to decide which mutual fund to invest in?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Choosing a mutual fund should be aligned with your personal
+              financial goals and risk tolerance. It is important to first
+              define your objective (e.g., long-term growth, stability, tax
+              saving). You should also consider the fund’s objective, historical
+              performance, and the fund manager's track record before making a
+              decision.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 9 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Can I withdraw money from a mutual fund anytime?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Most mutual funds are open-ended, which means you can withdraw
+              your money at any time. However, some funds may have a lock in
+              period (like ELSS funds for tax saving) or an exit load if you
+              redeem your investment before a specific period, which should be
+              checked beforehand.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 10 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What should I do if my mutual funds are going down in value?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              It is crucial to stay calm and avoid making impulsive decisions.
+              Review your original investment goals and the timeline you set. If
+              the fund's fundamentals are strong and your goal is long-term,
+              staying invested through market volatility is often the best
+              strategy.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        faqItems.forEach((item) => {
+          const question = item.querySelector(".faq-question");
+          const answer = item.querySelector(".faq-answer");
+          const icon = item.querySelector(".faq-icon");
+
+          question.addEventListener("click", function () {
+            const isOpen =
+              answer.style.maxHeight && answer.style.maxHeight !== "0px";
+
+            // Close all other FAQ items
+            faqItems.forEach((otherItem) => {
+              if (otherItem !== item) {
+                const otherAnswer = otherItem.querySelector(".faq-answer");
+                const otherIcon = otherItem.querySelector(".faq-icon");
+                otherAnswer.style.maxHeight = "0px";
+                otherIcon.style.transform = "rotate(0deg)";
+              }
+            });
+
+            // Toggle current item
+            if (isOpen) {
+              answer.style.maxHeight = "0px";
+              icon.style.transform = "rotate(0deg)";
+            } else {
+              answer.style.maxHeight = answer.scrollHeight + "px";
+              icon.style.transform = "rotate(45deg)";
+            }
+          });
+        });
+      });
+    </script>
 
     <!-- =================================================================== -->
     <!-- FOOTER SECTION - Company information and links -->
     <!-- =================================================================== -->
-    <footer class="w-full bg-white border-t border-gray-200">
+    <footer class="w-full bg-white border-t border-gray-200 mb-12 lg:mb-0">
       <!-- Top Nav Links -->
       <div
-        class="max-w-7xl mx-auto px-6 py-6 flex flex-wrap justify-center md:justify-between gap-6 text-sm text-gray-700"
+        class="max-w-7xl mx-auto px-6 py-6 flex flex-wrap justify-center md:justify-between gap-6 text-sm text-blueeborder-bluee"
       >
         <a href="/about" class="hover:text-primary transition">About Us</a>
         <a href="/services" class="hover:text-primary transition">Services</a>
@@ -728,6 +1980,23 @@
         </div>
       </div>
     </footer>
+
+    <!-- Schedule Free Clarity Call Banner -->
+    <div
+      class="block lg:hidden fixed bottom-0 w-full h-12 bg-secondary z-40 flex items-center justify-center px-4 text-sm"
+    >
+      <a
+        href="../index.html#consultation"
+        class="inline-flex font-semibold items-center border border-transparent text-white rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+      >
+        Schedule Free clarity call
+        <span
+          class="bg-white text-black rounded-full p-1 flex items-center justify-center transition-transform group-hover:translate-x-1"
+        >
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </span>
+      </a>
+    </div>
 
     <!-- =================================================================== -->
     <!-- EXTERNAL LIBRARIES AND SCRIPTS -->
