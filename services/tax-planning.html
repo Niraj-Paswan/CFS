@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Page Title and Favicon -->
-    <title>Retirement Planning - Chimulkar Financial Services</title>
+    <title>Tax Planning - Chimulkar Financial Services</title>
     <link rel="shortcut icon" href="../assets/Logo.svg" type="image/x-icon" />
 
     <!-- External Stylesheets and Fonts -->
@@ -18,6 +18,12 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      html,
+      body {
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+    </style>
   </head>
   <body class="">
     <header class="bg-secondary shadow-sm fixed w-full top-0 z-50">
@@ -542,12 +548,14 @@
       </div>
     </div>
 
+    <!-- Hero Section -->
     <section class="relative w-full h-full flex items-left lg:items-center">
       <!-- Desktop Background Image -->
       <img
         src="../assets/Tax_D.png"
         class="hidden lg:block w-full h-full object-cover"
         alt="Tax Planning Background"
+        loading="lazy"
       />
 
       <!-- Mobile Background Image -->
@@ -555,6 +563,7 @@
         src="../assets/Tax_M.png"
         class="block lg:hidden w-full h-full object-cover mt-16"
         alt="Tax Planning Mobile Background"
+        loading="lazy"
       />
 
       <!-- Gradient Overlay -->
@@ -576,8 +585,9 @@
         <p class="text-sm lg:text-lg mb-6 text-white text-start">
           Tax planning is the art of strategic financial decisions.
           <br class="hidden lg:block" />
-          It's about optimizing your investments and expenses to minimize tax
-          liability and maximize savings.
+          It's about optimizing your investments and expenses to
+          <br class="hidden lg:block" />
+          minimize tax liability and maximize savings.
         </p>
 
         <a
@@ -594,15 +604,1225 @@
       </div>
     </section>
 
-    <section class="py-20 bg-white"></section>
+    <!-- Body Section -->
+    <section class="max-w-8xl mx-auto px-8 lg:px-24 py-24 overflow-hidden">
+      <h1
+        class="text-3xl lg:text-5xl font-semibold text-black text-center mb-12 lg:mb-24"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        It’snot what you earn, <br class="hidden lg:block" />
+        but what you <span class="text-bluee">Keep</span>!
+      </h1>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Left Image Grid -->
+        <div
+          class="grid grid-cols-2 grid-rows-2 gap-3"
+          data-aos="zoom-in"
+          data-aos-delay="300"
+        >
+          <!-- Big image -->
+          <img
+            src="../assets/woamn-using-calculator.png"
+            alt="Image 1"
+            class="col-span-1 row-span-2 rounded-2xl object-cover w-full h-full"
+            loading="lazy"
+          />
+          <!-- Top right small -->
+          <img
+            src="../assets/documentation.png"
+            alt="Image 2"
+            class="rounded-2xl object-cover w-full h-full"
+            loading="lazy"
+          />
+          <!-- Bottom right tall -->
+          <img
+            src="../assets/digital-calculator.png"
+            alt="Image 4"
+            class="col-span-1 row-span-2 rounded-2xl object-cover w-full h-full"
+            loading="lazy"
+          />
+          <!-- Bottom full width -->
+          <img
+            src="../assets/tension.png"
+            alt="Image 3"
+            class="rounded-2xl object-cover w-full h-full"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Right Text -->
+        <div
+          class="flex flex-col gap-12"
+          data-aos="fade-left"
+          data-aos-delay="400"
+        >
+          <div>
+            <h2
+              class="text-2xl md:text-3xl font-semibold mb-4"
+              data-aos="fade-up"
+              data-aos-delay="500"
+            >
+              The Scramble
+            </h2>
+            <p
+              class="text-gray-700 leading-relaxed text-base"
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              The end of the financial year often brings stress and last-minute
+              decisions. You might be focused on hurriedly making investments
+              just to save on taxes, without considering your long-term goals.
+              What you need is a smarter, more strategic way to approach your
+              finances.
+            </p>
+          </div>
+
+          <div>
+            <h2
+              class="text-2xl md:text-3xl font-semibold mb-4"
+              data-aos="fade-up"
+              data-aos-delay="700"
+            >
+              Your <span class="text-blue-600">Blueprint</span>
+            </h2>
+            <p
+              class="text-gray-700 leading-relaxed text-base"
+              data-aos="fade-up"
+              data-aos-delay="800"
+            >
+              Move from a last-minute scramble to a year-round strategy.Build a
+              proactive blueprint that uses smart, tax-efficient investment
+              products to legally and effectively reduce your tax implications
+              while building a strong financial future.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Did You Know Section -->
+    <section class="bg-strokes/15 py-16 px-8">
+      <div class="max-w-6xl mx-auto">
+        <!-- Small heading -->
+        <p
+          class="text-lg lg:text-xl font-semibold mb-4 text-center lg:text-left"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          Did you <span class="text-blue-600">Know?</span>
+        </p>
+
+        <!-- Big Stat -->
+        <h2
+          class="text-2xl md:text-4xl font-semibold mb-6 text-center lg:text-left text-gray-900 leading-snug"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          Only 28% Indians proactively plan tax-saving investments
+        </h2>
+
+        <!-- Description -->
+        <p
+          class="text-gray-700 text-base md:text-lg leading-relaxed text-center lg:text-left max-w-6xl"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
+          According to a research paper on IJRAR.org, most Indian tax-payers
+          wait until the last quarter, often making rushed and sub-optimal
+          investment decisions. 57% are uncertain or lack sufficient knowledge
+          of the tax deductions available.
+        </p>
+      </div>
+    </section>
+
+    <!-- About Mutual Funds Section With Video (Hidden) -->
+    <section class="w-full px-6 md:px-12 py-16 bg-white">
+      <div
+        class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+      >
+        <!-- Left Content -->
+        <div
+          class="flex flex-col items-start justify-center text-left"
+          data-aos="fade-right"
+          data-aos-duration="1000"
+          data-aos-delay="100"
+        >
+          <h2
+            class="text-3xl md:text-5xl font-semibold text-gray-900 leading-snug"
+          >
+            About <span class="text-blue-600">Mutual Funds</span>
+          </h2>
+          <p class="text-base mb-4 lg:mb-12 lg:text-lg text-black">
+            A quick overview of mutual funds and how to invest in them.
+          </p>
+          <p class="mt-6 text-gray-600 leading-relaxed">
+            Investing in Mutual funds shouldn't feel overwhelming. It should be
+            straightforward and accessible, even if you're new to investing. We
+            offer access to a wide variety of funds, a simplified investment
+            process, and the ongoing support you need to navigate your financial
+            journey with confidence.
+          </p>
+          <a
+            href="#"
+            class="w-fit inline-flex mt-8 items-center justify-center border border-transparent bg-primary hover:bg-secondary hover:border-secondary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition-transform hover:opacity-90 mx-auto lg:mx-0"
+            data-aos="zoom-in"
+            data-aos-duration="800"
+            data-aos-delay="300"
+          >
+            Watch more Videos
+            <span
+              class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+            >
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </a>
+        </div>
+
+        <!-- Right Video (9:16 reel style) -->
+        <div
+          class="mx-auto w-full max-w-xs lg:max-w-xs aspect-[9/16] rounded-2xl overflow-hidden bg-blue-400 shadow-md"
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        >
+          <video
+            src="../assets/call.mp4"
+            class="w-full h-full object-cover"
+            autoplay
+            loading="lazy"
+            loop
+            playsinline
+            controls
+          ></video>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Approach -->
+    <section class="bg-secondary text-white px-6 overflow-hidden">
+      <div
+        class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 py-12 lg:py-0"
+      >
+        <!-- Left Column -->
+        <div
+          class="p-6 flex flex-col justify-center text-center lg:text-start"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          <h2 class="text-3xl md:text-5xl font-semibold mb-4">
+            Our <span class="text-strokes">Approach</span>
+          </h2>
+          <p
+            class="text-gray-300 text-base lg:text-lg leading-relaxed mb-6 lg:mb-0"
+          >
+            We believe tax planning should be a seamless part of your financial
+            journey. Our process is designed to be clear and focused on your
+            investment goals.
+          </p>
+        </div>
+
+        <!-- Right Column -->
+        <div
+          class="lg:w-3xl rounded-2xl lg:rounded-none border border-bluee lg:border-l"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+        >
+          <!-- Vision -->
+          <div
+            class="p-10 lg:p-12 border-b border-bluee flex flex-col gap-3"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <!-- Icon + Heading in one row -->
+            <div class="flex items-center gap-3">
+              <i data-lucide="camera" class="w-8 h-8 text-strokes"></i>
+              <h3 class="text-xl font-semibold">Your financial Snapshot</h3>
+            </div>
+
+            <!-- Paragraph -->
+            <p class="text-gray-300 text-sm leading-relaxed">
+              We start by understanding your current financial picture and
+              longterm objectives. Our goal is to help you see your tax
+              situation as part of your overall wealth-building journey, not
+              just an annual task.
+            </p>
+          </div>
+
+          <!-- Plan -->
+          <div
+            class="p-10 lg:p-12 border-b border-bluee flex flex-col gap-3"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <!-- Icon + Heading Row -->
+            <div class="flex items-center gap-3">
+              <i data-lucide="eye" class="w-8 h-8 text-strokes"></i>
+              <h3 class="text-xl font-semibold">A Strategic Review</h3>
+            </div>
+
+            <!-- Paragraph -->
+            <p class="text-gray-300 text-sm leading-relaxed">
+              We help you strategically review your investment options. We 'll
+              guide you through understanding how different tax-saving
+              instruments fit into a comprehensive plan for asset allocation and
+              capital gains
+            </p>
+          </div>
+
+          <!-- Journey -->
+          <div
+            class="p-10 lg:p-12 flex flex-col gap-3"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <!-- Icon + Heading Row -->
+            <div class="flex items-center gap-3">
+              <i data-lucide="settings" class="w-8 h-8 text-strokes"></i>
+              <h3 class="text-xl font-semibold">Seamless Execution</h3>
+            </div>
+
+            <!-- Paragraph -->
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Once you have enough clarity, we help you invest in your chosen
+              tax-saving products. It’s about putting your plan into action with
+              confidence, so you can focus on what matters.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Your Advantage -->
+    <section class="bg-white py-16 overflow-hidden">
+      <div
+        class="p-6 px-6 lg:px-38 flex flex-col justify-center text-center lg:text-start"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <h2 class="text-3xl md:text-5xl font-semibold mb-4">
+          Your <span class="text-bluee"> Advantage </span>
+        </h2>
+        <p
+          class="text-black text-base text-start lg:text-lg leading-relaxed mb-6 lg:mb-0"
+        >
+          When you partner with us, rest assured <br class="hidden lg:block" />
+          you are in highly capable hands.
+        </p>
+      </div>
+
+      <div
+        class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+      >
+        <!-- Left Image -->
+        <div data-aos="zoom-in" data-aos-duration="1200">
+          <img
+            src="../assets/tablet-couple.png"
+            alt="Couple using Laptop"
+            class="rounded-2xl shadow-lg w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Right Content -->
+        <div class="space-y-8">
+          <!-- Features -->
+          <div data-aos="fade-left" data-aos-delay="200">
+            <h3 class="text-xl font-semibold mb-2 text-start">
+              Regulated & Reliable
+            </h3>
+            <p class="text-900 text-base leading-relaxed text-start">
+              Our team is registered and regulated by authorities like IRDAI,
+              ensuring we operate with the highest standards of integrity.
+            </p>
+          </div>
+
+          <div data-aos="fade-left" data-aos-delay="400">
+            <h3 class="text-xl font-semibold mb-2 text-start">
+              Experienced & Knowledgeable
+            </h3>
+            <p class="text-900 text-base leading-relaxed text-start">
+              Our team is well-qualified and experienced across all aspects of
+              personal finance, from wealth creation to risk management.
+            </p>
+          </div>
+
+          <div data-aos="fade-left" data-aos-delay="600">
+            <h3 class="text-xl font-semibold mb-2 text-start">
+              Goal-Oriented Partnership
+            </h3>
+            <p class="text-900 text-base leading-relaxed text-start">
+              We are fully aligned with your goals and interests, not with
+              pushing random products. Because, our success is tied to yours.
+            </p>
+          </div>
+
+          <div data-aos="fade-left" data-aos-delay="800">
+            <h3 class="text-xl font-semibold mb-2 text-start">Kind & Human</h3>
+            <p class="text-900 text-base leading-relaxed text-start">
+              We offer a non-judgmental space for your financial questions and
+              concerns, because everyone deserves a partner who is both an
+              expert and a guide.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Did You Know Section 2 -->
+    <section class="bg-strokes/15 py-12 px-8 overflow-hidden">
+      <div
+        class="max-w-6xl mx-auto text-center lg:text-start"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <!-- Small heading -->
+        <p class="text-lg lg:text-xl font-semibold mb-4">
+          Did you <span class="text-blue-600">Know?</span>
+        </p>
+
+        <!-- Big Stat -->
+        <h2
+          class="text-2xl md:text-4xl font-semibold mb-6 text-start"
+          data-aos="fade-right"
+          data-aos-delay="200"
+        >
+          Frequent changes in tax law confuse 55% of taxpayers
+        </h2>
+
+        <!-- Description -->
+        <p
+          class="text-gray-700 text-base md:text-lg leading-relaxed text-start"
+          data-aos="fade-left"
+          data-aos-delay="400"
+        >
+          According to a research paper on IJRAR.org, 80%+ of Indian taxpayers
+          never consult a professional. Complexity and shifting rules lead to
+          missed deductions, mistaken filings, and under-utilisation of
+          incentives.
+        </p>
+      </div>
+    </section>
+
+    <!-- Peace of Mind Section -->
+    <section class="bg-white py-16">
+      <div class="max-w-6xl mx-auto px-6 lg:px-8">
+        <!-- Heading -->
+        <div class="mb-10" data-aos="fade-up" data-aos-duration="1000">
+          <h2
+            class="text-3xl md:text-5xl font-semibold mb-4 text-center lg:text-start"
+          >
+            The Peace of Mind You <span class="text-blue-600">Deserve</span>
+          </h2>
+          <p
+            class="text-gray-600 text-base lg:text-lg leading-relaxed text-center lg:text-start"
+          >
+            Tax season doesn't have to be a source of stress. We help you find
+            peace of mind by providing clarity on how you can reduce your tax
+            burden strategically.
+          </p>
+        </div>
+
+        <!-- Image -->
+        <div class="mb-12" data-aos="zoom-in" data-aos-duration="1000">
+          <img
+            src="../assets/women-relaxing.jpeg"
+            alt="Meditating woman"
+            class="rounded-2xl w-full object-cover shadow-lg"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Bottom Text Blocks -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <!-- Block 1 -->
+          <div data-aos="fade-right" data-aos-delay="200">
+            <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+              Financial Discipline
+            </h3>
+            <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+              Move beyond the year-end scramble. Turn taxsaving from a chore
+              into a disciplined, yearround habit, freeing you from
+              end-of-financialyear panic.
+            </p>
+          </div>
+
+          <!-- Block 2 -->
+          <div data-aos="fade-left" data-aos-delay="400">
+            <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+              Strategic Savings
+            </h3>
+            <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+              Tax planning is not about avoiding taxes, it's about making smart
+              decisions that not only reduce your tax liability but also build a
+              powerful, long-term portfolio for your future
+            </p>
+          </div>
+          <!-- Block 3 -->
+          <div data-aos="fade-left" data-aos-delay="400">
+            <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+              Money works harder
+            </h3>
+            <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+              Every rupee saved because of efficient tax planning could go back
+              into your investible corpus and in turn has the potential to
+              compound into a significant amount over time.
+            </p>
+          </div>
+          <!-- Block 4 -->
+          <div data-aos="fade-right" data-aos-delay="400">
+            <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+              Clarity and confidence
+            </h3>
+            <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+              Knowing the "what" and "why" behind your financial decisions gives
+              you power. You’ll be empowered with a clear understanding of your
+              plan, leaving no room for guesswork
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calculators Sections -->
+    <style>
+      /* Custom scrollbar styling */
+      .custom-scrollbar::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 10px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+        border-radius: 10px;
+        transition: background 0.3s ease;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(90deg, #2563eb, #1e40af);
+      }
+
+      /* Firefox scrollbar */
+      .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: #3b82f6 #f1f5f9;
+      }
+
+      /* Smooth scroll behavior */
+      .custom-scrollbar {
+        scroll-behavior: smooth;
+      }
+
+      /* Card hover animations */
+      .service-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .service-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      /* Icon animations */
+      .service-icon {
+        transition: transform 0.3s ease;
+      }
+
+      .service-card:hover .service-icon {
+        transform: scale(1.1);
+      }
+    </style>
+    <section class="py-4 lg:py-16 px-8 max-w-7xl mx-auto">
+      <!-- Header -->
+      <div class="text-start mb-12" data-aos="fade-up" data-aos-duration="800">
+        <h2 class="text-3xl lg:text-5xl font-semibold text-gray-900 mb-4">
+          Use our <span class="text-bluee">Calculators</span>
+        </h2>
+      </div>
+
+      <!-- Scrollable Services Container -->
+      <div class="custom-scrollbar overflow-x-auto pb-4">
+        <div class="flex gap-6 min-w-max px-4">
+          <!-- SIP Calculator -->
+          <a
+            href="../calculators/sip-calculator.html"
+            class="group relative flex-shrink-0 flex flex-col items-center justify-center bg-bluee/10 border border-gray-300 hover:border-2 hover:border-bluee w-80 h-80 p-4 rounded-2xl transition-all hover:shadow-lg snap-center"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            <img
+              src="../assets/sip.png"
+              class="w-1/2 h-1/2 object-contain mb-8"
+              alt=""
+            />
+            <div class="flex flex-col items-center">
+              <h4 class="font-semibold text-xl">SIP Calculator</h4>
+              <p class="text-sm lg:text-base">For small, regular investments</p>
+            </div>
+            <span class="sm:hidden absolute inset-0"></span>
+          </a>
+          <!-- Lumpsum Calculator -->
+          <a
+            href="../calculators/lump-sump-calculator.html"
+            class="group relative flex-shrink-0 flex flex-col items-center justify-center bg-bluee/10 border border-gray-300 hover:border-2 hover:border-bluee w-80 h-80 p-4 rounded-2xl transition-all hover:shadow-lg snap-center"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            <img
+              src="../assets/lumpsum.png"
+              class="w-1/2 h-1/2 object-contain mb-8"
+              alt=""
+            />
+            <div class="flex flex-col items-center">
+              <h4 class="font-semibold text-xl">Lumpsum Calculator</h4>
+              <p class="text-sm lg:text-base">For one-time investments</p>
+            </div>
+            <span class="sm:hidden absolute inset-0"></span>
+          </a>
+          <!-- Inflation Calculator -->
+          <a
+            href="../calculators/inflation-calculator.html"
+            class="group relative flex-shrink-0 flex flex-col items-center justify-center bg-bluee/10 border border-gray-300 hover:border-2 hover:border-bluee w-80 h-80 p-4 rounded-2xl transition-all hover:shadow-lg snap-center"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            <img
+              src="../assets/inflation.png"
+              class="w-1/2 h-1/2 object-contain mb-8"
+              alt=""
+            />
+            <div class="flex flex-col items-center">
+              <h4 class="font-semibold text-xl">Inflation Calculator</h4>
+              <p class="text-sm lg:text-base">For future value or costs</p>
+            </div>
+            <span class="sm:hidden absolute inset-0"></span>
+          </a>
+          <!-- SWP Calculator -->
+          <a
+            href="../calculators/swp-calculator.html"
+            class="group relative flex-shrink-0 flex flex-col items-center justify-center bg-bluee/10 border border-gray-300 hover:border-2 hover:border-bluee w-80 h-80 p-4 rounded-2xl transition-all hover:shadow-lg snap-center"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            <img
+              src="../assets/SWP.png"
+              class="w-1/2 h-1/2 object-contain mb-8"
+              alt=""
+            />
+            <div class="flex flex-col items-center">
+              <h4 class="font-semibold text-xl">SWP Calculator</h4>
+              <p class="text-sm lg:text-base">For regular withdrawals</p>
+            </div>
+            <span class="sm:hidden absolute inset-0"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Add smooth scrolling behavior for touch devices
+      const scrollContainer = document.querySelector(".custom-scrollbar");
+
+      // Optional: Add keyboard navigation
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") {
+          scrollContainer.scrollBy({ left: -320, behavior: "smooth" });
+        } else if (e.key === "ArrowRight") {
+          scrollContainer.scrollBy({ left: 320, behavior: "smooth" });
+        }
+      });
+
+      // Add click handlers for service cards
+      document.querySelectorAll(".service-card").forEach((card) => {
+        card.addEventListener("click", function () {
+          const serviceName = this.querySelector("h3").textContent;
+          console.log(`Clicked on: ${serviceName}`);
+          // Add your navigation logic here
+        });
+      });
+    </script>
+
+    <!-- Did You Know Section 2 -->
+    <section class="bg-secondary text-white py-20 px-8">
+      <div
+        class="max-w-4xl mx-auto flex flex-col items-center text-center"
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-once="true"
+      >
+        <!-- Small Heading -->
+        <p
+          class="text-3xl lg:text-5xl font-semibold mb-6"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          It’s time to take <span class="text-strokes">Control</span>
+        </p>
+
+        <!-- Description -->
+        <p
+          class="text-white text-base md:text-lg font-medium leading-relaxed mb-10 text-center lg:text-start"
+          data-aos="fade-up"
+          data-aos-delay="250"
+        >
+          Let's have a conversation about your tax and financial goals. Our free
+          clarity call is the perfect opportunity to discuss how you can make
+          your money work harder for you.
+        </p>
+
+        <!-- Button -->
+        <a
+          href="#"
+          class="flex w-fit items-center font-semibold border border-transparent bg-primary text-black pl-5 pr-3 py-2 lg:py-2.5 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+          data-aos="zoom-in"
+          data-aos-delay="400"
+        >
+          Schedule my FREE Clarity Call
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Your Goals -->
+    <section class="py-16 px-6">
+      <div
+        class="max-w-6xl mx-auto text-start"
+        data-aos="fade-up"
+        data-aos-duration="800"
+      >
+        <!-- Heading -->
+        <h2
+          class="text-3xl md:text-5xl font-semibold mb-3"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          Partners for all your <span class="text-blue-600">goals</span>
+        </h2>
+        <p
+          class="text-black text-base lg:text-lg mb-12"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          We’ll guide and support you though all <br class="hidden lg:block" />
+          money moments and milestones.
+        </p>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-12">
+          <!-- Card 1 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-6 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <img src="../assets/Manage Money.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Manage money better
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-4 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <img src="../assets/Vacation.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Go on a Dream Vacation
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-4 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <img src="../assets/Money Stress.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Eliminate money stress
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-4 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <img src="../assets/Educate.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Educate your children
+            </p>
+          </div>
+
+          <!-- Card 5 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-4 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <img src="../assets/Career.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Change career or job
+            </p>
+          </div>
+
+          <!-- Card 6 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-4 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <img src="../assets/debt.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Trim and wipe out debt
+            </p>
+          </div>
+
+          <!-- Card 7 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-4 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="700"
+          >
+            <img src="../assets/save.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Save and invest smarter
+            </p>
+          </div>
+
+          <!-- Card 8 -->
+          <div
+            class="bg-blue-50 rounded-2xl p-4 lg:p-2 flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay="800"
+          >
+            <img src="../assets/Dream-house.png" class="scale-60" alt="" />
+            <p class="font-semibold mb-2 lg:mb-8 text-sm lg:text-base">
+              Buy your dream home
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section
+      id="faq"
+      class="mb-2 bg-transparent p-5 max-w-[1150px] mx-auto py-10 lg:py-24"
+    >
+      <div class="text-start mb-8">
+        <h2 class="text-3xl md:text-5xl font-semibold mb-3">
+          Frequently Asked <span class="text-blue-600">Questions</span>
+        </h2>
+        <p class="text-black text-base lg:text-lg mb-12">
+          Everything You Need to Know
+        </p>
+      </div>
+
+      <div
+        class="bg-white text-black border border-gray-300 rounded-2xl divide-y divide-gray-200"
+      >
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What is tax planning and why is it important?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Tax planning is the process of arranging your financial affairs in
+              a legal and strategic way to reduce your tax liability. It's
+              important because it helps you keep more of your hard-earned money
+              and ensures you make thoughtful, long-term investments rather than
+              rushed, end-of-year decisions.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Is tax planning the same as tax evasion? Is it legal?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              No, tax planning is completely legal and is a key part of
+              financial management. Tax evasion is illegally avoiding taxes. Tax
+              planning, on the other hand, involves using the deductions and
+              exemptions provided by tax laws to optimize your financial
+              position.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How can I use asset allocation for tax-efficient investing?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Asset allocation is the process of diversifying your investments
+              across different asset classes like equities and debt. A
+              well-designed allocation can help you manage risk and
+              strategically use various investment products to optimize your tax
+              liabilities over time, as different assets have different tax
+              treatments.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What are capital gains?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              A capital gain is the profit you make when you sell an asset (like
+              a stock or a mutual fund unit) for a price higher than your
+              purchase price. This gain is subject to capital gains tax.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Are capital gains considered income?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes, for tax purposes, capital gains are considered a type of
+              income. However, they are taxed separately from your regular
+              income (like salary) and have their own set of rules and tax
+              rates.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How are long-term and short-term capital gains taxed?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Capital gains are classified based on the holding period of the
+              investment. A long-term capital gain is from an investment held
+              for a specific duration (e.g., more than one year for equity
+              mutual funds), which is often taxed at a lower rate or is exempt
+              up to a certain limit. A short-term capital gain is from an
+              investment held for a shorter period, and it is taxed at a
+              different rate. The specific duration and tax rate vary by asset
+              class.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Are there any exemptions or deductions for capital gains?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes, the Income Tax Act provides various exemptions and deductions
+              on capital gains, depending on the asset and the holding period.
+              For instance, gains from the sale of long-term equity mutual fund
+              units may be exempt up to a certain amount in a financial year.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 8 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What is the best tax-saving investment option?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              There is no single "best" option. The ideal choice depends on your
+              specific financial goals, risk tolerance, and time horizon. Some
+              options like ELSS mutual funds offer market-linked returns with a
+              shorter lock-in period, while others like PPF or NPS provide
+              stability with a longer-term horizon. It is important to choose an
+              option that aligns with your personal financial strategy.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 9 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What is the difference between the Old and New Tax Regimes?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              The Old Tax Regime allows you to claim various exemptions and
+              deductions (like HRA, LTA, and investments under Section 80C) to
+              reduce your taxable income. The New Tax Regime offers lower tax
+              slabs and rates but removes most of these exemptions and
+              deductions. As a taxpayer, you have the option to choose between
+              the two regimes each financial year.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 10 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Which tax regime is better for me?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              The choice between the Old and New Tax Regimes is highly personal
+              and depends on your specific financial situation. The "better"
+              regime for you is the one that results in a lower tax liability.
+              To make the best decision, you should calculate your taxes under
+              both regimes, taking into account all the deductions you are
+              eligible to claim.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        faqItems.forEach((item) => {
+          const question = item.querySelector(".faq-question");
+          const answer = item.querySelector(".faq-answer");
+          const icon = item.querySelector(".faq-icon");
+
+          question.addEventListener("click", function () {
+            const isOpen =
+              answer.style.maxHeight && answer.style.maxHeight !== "0px";
+
+            // Close all other FAQ items
+            faqItems.forEach((otherItem) => {
+              if (otherItem !== item) {
+                const otherAnswer = otherItem.querySelector(".faq-answer");
+                const otherIcon = otherItem.querySelector(".faq-icon");
+                otherAnswer.style.maxHeight = "0px";
+                otherIcon.style.transform = "rotate(0deg)";
+              }
+            });
+
+            // Toggle current item
+            if (isOpen) {
+              answer.style.maxHeight = "0px";
+              icon.style.transform = "rotate(0deg)";
+            } else {
+              answer.style.maxHeight = answer.scrollHeight + "px";
+              icon.style.transform = "rotate(45deg)";
+            }
+          });
+        });
+      });
+    </script>
 
     <!-- =================================================================== -->
     <!-- FOOTER SECTION - Company information and links -->
     <!-- =================================================================== -->
-    <footer class="w-full bg-white border-t border-gray-200">
+    <footer class="w-full bg-white border-t border-gray-200 mb-12 lg:mb-0">
       <!-- Top Nav Links -->
       <div
-        class="max-w-7xl mx-auto px-6 py-6 flex flex-wrap justify-center md:justify-between gap-6 text-sm text-gray-700"
+        class="max-w-7xl mx-auto px-6 py-6 flex flex-wrap justify-center md:justify-between gap-6 text-sm text-blueeborder-bluee"
       >
         <a href="/about" class="hover:text-primary transition">About Us</a>
         <a href="/services" class="hover:text-primary transition">Services</a>
@@ -729,6 +1949,23 @@
         </div>
       </div>
     </footer>
+
+    <!-- Schedule Free Clarity Call Banner -->
+    <div
+      class="block lg:hidden fixed bottom-0 w-full h-12 bg-secondary z-40 flex items-center justify-center px-4 text-sm"
+    >
+      <a
+        href="../index.html#consultation"
+        class="inline-flex font-semibold items-center border border-transparent text-white rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+      >
+        Schedule Free clarity call
+        <span
+          class="bg-white text-black rounded-full p-1 flex items-center justify-center transition-transform group-hover:translate-x-1"
+        >
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </span>
+      </a>
+    </div>
 
     <!-- =================================================================== -->
     <!-- EXTERNAL LIBRARIES AND SCRIPTS -->
