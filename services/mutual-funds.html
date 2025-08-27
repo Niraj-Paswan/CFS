@@ -31,13 +31,13 @@
         class="mx-6 lg:mx-12 px-2 py-3 flex items-center justify-between relative"
       >
         <!-- Logo -->
-        <div class="flex items-center gap-2">
+        <a href="../index.html" class="flex items-center gap-2">
           <img
             src="../assets/CFS TRANSPARENT.png"
             class="h-12 w-auto"
             alt="Chimulkar Financial Services Logo"
           />
-        </div>
+        </a>
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex gap-10 text-[16px] font-medium items-center">
@@ -715,7 +715,7 @@
 
         <!-- Big Stat -->
         <h2
-          class="text-2xl md:text-4xl font-semibold mb-6 text-center lg:text-left text-gray-900 leading-snug"
+          class="text-2xl md:text-4xl font-semibold mb-6 text-start lg:text-left text-gray-900 leading-snug"
           data-aos="fade-up"
           data-aos-delay="300"
         >
@@ -724,7 +724,7 @@
 
         <!-- Description -->
         <p
-          class="text-gray-700 text-base md:text-lg leading-relaxed text-center lg:text-left max-w-3xl"
+          class="text-gray-700 text-base md:text-lg leading-relaxed text-start lg:text-left max-w-3xl"
           data-aos="fade-up"
           data-aos-delay="400"
         >
@@ -1983,20 +1983,42 @@
 
     <!-- Schedule Free Clarity Call Banner -->
     <div
-      class="block lg:hidden fixed bottom-0 w-full h-12 bg-secondary z-40 flex items-center justify-center px-4 text-sm"
+      class="block lg:hidden fixed bottom-0 w-full h-12 bg-secondary z-40 flex items-center justify-center px-4 text-sm overflow-hidden"
     >
       <a
         href="../index.html#consultation"
         class="inline-flex font-semibold items-center border border-transparent text-white rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
       >
-        Schedule Free clarity call
+        Schedule Free clarity call
         <span
           class="bg-white text-black rounded-full p-1 flex items-center justify-center transition-transform group-hover:translate-x-1"
         >
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </span>
       </a>
+
+      <!-- Shine overlay applied to full div -->
+      <span
+        class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 shine-effect pointer-events-none"
+      ></span>
     </div>
+
+    <style>
+      /* Shine animation for full div */
+      @keyframes shine {
+        0% {
+          transform: translateX(-150%) skewX(-12deg);
+        }
+        100% {
+          transform: translateX(150%) skewX(-12deg);
+        }
+      }
+
+      .shine-effect {
+        animation: shine 3s infinite;
+        animation-delay: 4s; /* adds a pause so it's not too flashy */
+      }
+    </style>
 
     <!-- =================================================================== -->
     <!-- EXTERNAL LIBRARIES AND SCRIPTS -->
