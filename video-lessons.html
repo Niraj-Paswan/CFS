@@ -1,0 +1,2600 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Lessons - Chimulkar Financial Services</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="shortcut icon" href="./assets/Logo.svg" type="image/x-icon" />
+
+    <!-- External Stylesheets and Fonts -->
+    <link rel="stylesheet" href="./src/output.css" />
+    <!-- Tailwind CSS -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Lucide Icons -->
+
+    <!-- Google Fonts - Poppins for consistent typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Hide scrollbars for carousel elements while maintaining functionality */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+    </style>
+    <style>
+      html,
+      body {
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+    </style>
+    <style>
+      .navigation-panel {
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      }
+
+      .navigation-panel.hidden-mobile {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+
+      /* Added sidebar collapse functionality */
+      .navigation-panel.collapsed {
+        transform: translateX(-100%);
+      }
+
+      .category-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+        opacity: 0;
+      }
+
+      .category-content.expanded {
+        max-height: 500px;
+        opacity: 1;
+      }
+
+      .chevron-icon {
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .chevron-icon.rotated {
+        transform: rotate(180deg);
+      }
+
+      .overlay-backdrop {
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .lesson-scroll {
+        scrollbar-width: thin;
+        scrollbar-color: #e5e7eb #f9fafb;
+      }
+
+      .lesson-scroll::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .lesson-scroll::-webkit-scrollbar-track {
+        background: #f9fafb;
+        border-radius: 3px;
+      }
+
+      .lesson-scroll::-webkit-scrollbar-thumb {
+        background: #e5e7eb;
+        border-radius: 3px;
+      }
+
+      .lesson-scroll::-webkit-scrollbar-thumb:hover {
+        background: #d1d5db;
+      }
+
+      /* Added main content transition for sidebar collapse */
+      .main-content {
+        transition: margin-left 0.3s ease-in-out;
+      }
+    </style>
+  </head>
+  <body class="">
+    <header class="bg-secondary shadow-sm fixed w-full top-0 z-50">
+      <div
+        class="mx-6 lg:mx-12 px-2 py-3 flex items-center justify-between relative"
+      >
+        <!-- Logo -->
+        <a href="./index.html" class="flex items-center gap-2">
+          <img
+            src="./assets/CFS TRANSPARENT.png"
+            class="h-12 w-auto"
+            alt="Chimulkar Financial Services Logo"
+          />
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex gap-10 text-[16px] font-medium items-center">
+          <!-- About Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              About <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute top-full left-0 mt-3 text-sm bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="./about-us.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="building-2" class="w-5 h-5"></i> About Us
+              </a>
+
+              <!-- Nested Team Dropdown -->
+              <div class="relative group/team">
+                <button
+                  class="flex items-center justify-between w-full gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                >
+                  <span class="flex items-center gap-3">
+                    <i data-lucide="users" class="w-5 h-5"></i> Our Team
+                  </span>
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+                <div
+                  class="absolute top-0 left-full ml-2 bg-white rounded-2xl p-2 min-w-[12rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover/team:opacity-100 group-hover/team:visible transition-all duration-200"
+                >
+                  <a
+                    href="./teams/Prashant-Chimulkar.html"
+                    class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                  >
+                    <i data-lucide="user" class="w-5 h-5"></i> Prashant
+                  </a>
+                  <a
+                    href="./teams/Pranav-Chimulkar.html"
+                    class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                  >
+                    <i data-lucide="user" class="w-5 h-5"></i> Pranav
+                  </a>
+                </div>
+              </div>
+
+              <a
+                href="foundation.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="heart-handshake" class="w-5 h-5"></i> Foundation
+              </a>
+            </div>
+          </div>
+
+          <!-- Services Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              Services <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="./services/mutual-funds.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="layers" class="w-5 h-5"></i> Mutual Funds
+              </a>
+              <a
+                href="./services/retirement-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="calendar-check" class="w-5 h-5"></i> Retirement
+                Planning
+              </a>
+              <a
+                href="./services/tax-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="file-text" class="w-5 h-5"></i> Tax Planning
+              </a>
+              <a
+                href="./services/insurance-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="shield-check" class="w-5 h-5"></i> Insurance
+                Planning
+              </a>
+              <a
+                href="./services/education-savings.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                Education Savings
+              </a>
+              <a
+                href="./services/legacy-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="archive" class="w-5 h-5"></i> Legacy Planning
+              </a>
+            </div>
+          </div>
+
+          <!-- Calculator Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              Calculator <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="./calculators/sip-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="calculator" class="w-5 h-5"></i> SIP Calculator
+              </a>
+              <a
+                href="./calculators/lump-sump-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="percent" class="w-5 h-5"></i> Lump Sum
+              </a>
+              <a
+                href="./calculators/swp-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="activity" class="w-5 h-5"></i> SWP Calculator
+              </a>
+              <a
+                href="./calculators/inflation-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="trending-up" class="w-5 h-5"></i> Inflation
+                Calculator
+              </a>
+            </div>
+          </div>
+
+          <!-- Financial Literacy Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              Financial Literacy
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="#lit-1"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="book-open" class="w-5 h-5"></i> Basics
+              </a>
+              <a
+                href="#lit-2"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="lightbulb" class="w-5 h-5"></i> Tips & Guides
+              </a>
+              <a
+                href="#lit-3"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="play-circle" class="w-5 h-5"></i> Video Lessons
+              </a>
+            </div>
+          </div>
+
+          <!-- Simple links -->
+          <a href="#nri-corner" class="text-white hover:text-primary transition"
+            >NRI Corner</a
+          >
+          <a
+            href="./contact-us.html"
+            class="text-white hover:text-primary transition"
+            >Contact Us</a
+          >
+          <a
+            href="./refer-us.html"
+            class="text-white hover:text-primary transition"
+            >Refer Us</a
+          >
+        </nav>
+
+        <!-- CTA Button -->
+        <a
+          href="#"
+          class="hidden md:inline-flex items-center border border-transparent bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+        >
+          Get Free Assessment
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="menuToggle"
+          class="md:hidden p-2 bg-gray-50 border border-gray-300 rounded-full hover:bg-gray-100"
+        >
+          <i data-lucide="align-right" class="w-6 h-6 text-secondary"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Announcement Bar - Positioned below navbar -->
+    <!-- <div
+      class="fixed top-[72px] w-full h-12 bg-strokes z-40 flex items-center justify-center px-4 text-sm"
+    >
+      <a
+        href="#"
+        class="flex items-center font-semibold text-black hover:underline"
+      >
+        Get a no cost, no commitment assessment
+      </a>
+      <a
+        href="#"
+        class="hidden lg:inline-flex font-semibold items-center text-white mr-2"
+      >
+        <span class="text-black mx-2">|</span> Celebrating 40 Years of Trust
+      </a>
+    </div> -->
+
+    <!-- Mobile Menu Backdrop - Dark overlay when mobile menu is open -->
+    <div
+      id="backdrop"
+      class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 hidden opacity-0 transition"
+    ></div>
+
+    <!-- =================================================================== -->
+    <!-- MOBILE NAVIGATION MENU - Slide-in from right -->
+    <!-- =================================================================== -->
+    <div
+      id="mobileMenu"
+      class="md:hidden fixed top-0 right-0 h-full max-w-xs bg-white shadow-xl transform translate-x-full transition duration-300 z-50 flex flex-col justify-between overflow-y-auto"
+    >
+      <!-- Mobile menu content -->
+      <div class="p-6 flex flex-col gap-4">
+        <!-- Mobile menu header with logo and close button -->
+        <div class="flex justify-between items-center mb-4">
+          <img src="../assets/Logo.svg" class="h-10" alt="Logo" />
+          <button
+            id="closeMenu"
+            class="p-2 bg-gray-50 text-secondary border border-gray-300 rounded-full hover:bg-gray-100 hover:cursor-pointer"
+          >
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <!-- Mobile navigation links -->
+
+        <!-- Mobile About Us Accordion -->
+        <!-- About Us (mobile accordion) -->
+
+        <style>
+          /* hide default marker */
+          summary {
+            list-style: none;
+          }
+          summary::-webkit-details-marker {
+            display: none;
+          }
+
+          /* rotate only the chevron inside the SAME details > summary */
+          details > summary .chev {
+            transition: transform 0.2s ease;
+            display: inline-flex;
+          }
+          details[open] > summary .chev {
+            transform: rotate(180deg);
+          }
+        </style>
+
+        <details>
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="info" class="w-4 h-4"></i> About
+            </span>
+            <span class="chev"
+              ><i data-lucide="chevron-down" class="w-4 h-4"></i
+            ></span>
+          </summary>
+
+          <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+            <a
+              href="../about-us.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+            >
+              <i data-lucide="building-2" class="w-4 h-4"></i> About Us
+            </a>
+
+            <!-- Nested team -->
+            <details>
+              <summary
+                class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-primary hover:text-white cursor-pointer"
+              >
+                <span class="flex items-center gap-2">
+                  <i data-lucide="users" class="w-4 h-4"></i> Our Team
+                </span>
+                <span class="chev"
+                  ><i data-lucide="chevron-down" class="w-4 h-4"></i
+                ></span>
+              </summary>
+
+              <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+                <a
+                  href="./teams/Prashant-Chimulkar.html"
+                  class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+                >
+                  <i data-lucide="user" class="w-4 h-4"></i> Prashant
+                </a>
+                <a
+                  href="./teams/Pranav-Chimulkar.html"
+                  class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+                >
+                  <i data-lucide="user" class="w-4 h-4"></i> Pranav
+                </a>
+              </div>
+            </details>
+            <a
+              href="./foundation.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+            >
+              <i data-lucide="heart-handshake" class="w-4 h-4"></i> Foundation
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Services Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="briefcase" class="w-4 h-4"></i> Services
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+
+          <!-- Sub-links -->
+          <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+            <a
+              href="./services/mutual-funds.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="layers" class="w-4 h-4"></i> Mutual Funds
+            </a>
+            <a
+              href="./services/retirement-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="calendar-check" class="w-4 h-4"></i> Retirement
+              Planning
+            </a>
+            <a
+              href="./services/tax-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="file-text" class="w-4 h-4"></i> Tax Planning
+            </a>
+            <a
+              href="./services/insurance-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="shield-check" class="w-4 h-4"></i> Insurance
+              Planning
+            </a>
+            <a
+              href="./services/education-savings.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i> Education
+              Savings
+            </a>
+            <a
+              href="./services/legacy-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="archive" class="w-4 h-4"></i> Legacy Planning
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Calculator Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="circle-divide" class="w-4 h-4"></i> Calculators
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+          <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
+            <a
+              href="../calculators/sip-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="calculator" class="w-4 h-4"></i> SIP Calculator
+            </a>
+            <a
+              href="../calculators/lump-sump-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="percent" class="w-4 h-4"></i> Lump Sum
+            </a>
+
+            <a
+              href="../calculators/swp-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
+            </a>
+            <a
+              href="../calculators/inflation-calculator.html"
+              class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-lg cursor-pointer"
+            >
+              <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
+              Calculator
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Financial Literacy Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i> Financial
+              Literacy
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+          <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
+            <a
+              href="#lit-1"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="book-open" class="w-4 h-4"></i> Basics
+            </a>
+            <a
+              href="#lit-2"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="lightbulb" class="w-4 h-4"></i> Tips & Guides
+            </a>
+            <a
+              href="#lit-3"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="play-circle" class="w-4 h-4"></i> Video Lessons
+            </a>
+          </div>
+        </details>
+
+        <!-- Additional mobile navigation links -->
+        <a
+          href="#nri-corner"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="globe" class="w-4 h-4"></i>NRI Corner
+        </a>
+        <a
+          href="../contact-us.html"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="phone-call" class="w-4 h-4"></i> Contact Us
+        </a>
+        <a
+          href="./refer-us.html"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="heart-handshake" class="w-4 h-4"></i> Refer Us
+        </a>
+      </div>
+
+      <!-- Mobile CTA button at bottom -->
+      <div class="p-6">
+        <a
+          href="#"
+          class="inline-flex items-center bg-primary text-secondary pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:bg-secondary hover:text-white"
+        >
+          Get Free Assessment
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Toggle Button
+    <button
+      id="menuToggleBtn"
+      class="lg:hidden absolute top-24 left-4 z-50 bg-white border border-gray-300 rounded-lg p-2 shadow-lg hover:bg-gray-50 transition-colors duration-200"
+      aria-label="Toggle navigation menu"
+    >
+      <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
+    </button> -->
+
+    <!-- Overlay for mobile -->
+    <div
+      id="mobileOverlay"
+      class="lg:hidden fixed inset-0 bg-black/40 bg-opacity-50 z-30 opacity-0 pointer-events-none overlay-backdrop"
+    ></div>
+
+    <body class="antialiased bg-gray-50">
+      <!-- Page wrapper -->
+      <div class="min-h-screen lg:flex lg:items-start">
+        <!-- Sidebar (desktop only) -->
+        <aside
+          id="navigationPanel"
+          class="navigation-panel fixed lg:relative z-40 w-80 bg-white border-r border-gray-300 flex-shrink-0 lg:translate-x-0"
+        >
+          <div
+            class="p-6 border-b border-gray-300 bg-white sticky top-0 z-10 lg:pt-24 flex items-center justify-between"
+          >
+            <!-- Added collapse toggle button within Video Lessons header -->
+            <div class="flex items-center space-x-3">
+              <p class="text-[16px] text-black font-semibold">Video Lessons</p>
+              <button
+                id="sidebarCollapseBtn"
+                class="hidden lg:flex ml-24 items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-lg p-2 transition-colors duration-200 cursor-pointer"
+                aria-label="Collapse sidebar"
+              >
+                <i
+                  data-lucide="panel-left-close"
+                  class="w-5 h-5 text-black"
+                ></i>
+              </button>
+            </div>
+
+            <!-- Close button (mobile only) -->
+            <button
+              id="closePanelBtn"
+              class="lg:hidden bg-gray-100 rounded-full p-2 hover:bg-gray-200 transition-colors duration-200"
+              aria-label="Close navigation menu"
+            >
+              <i data-lucide="panel-left-close" class="w-5 h-5 text-black"></i>
+            </button>
+          </div>
+
+          <!-- Sidebar content -->
+          <div
+            class="p-6 space-y-4 overflow-y-auto max-h-[calc(100vh-6rem)] sidebar-scroll"
+          >
+            <!-- Updated sidebar to support hierarchical categories with dropdowns -->
+            <!-- CATEGORY BLOCK (Unified Section with Divider) -->
+            <div
+              class="category-group w-full rounded-2xl border border-gray-300 bg-white p-4 hover:scale-[1.02] transition-all duration-200"
+              data-category="mutual"
+            >
+              <!-- HEADER -->
+              <div
+                class="category-header flex items-center justify-between cursor-pointer"
+              >
+                <div class="flex items-center space-x-3">
+                  <i data-lucide="layers" class="text-black w-5 h-5"></i>
+                  <span class="text-black font-medium text-base"
+                    >Mutual Funds</span
+                  >
+                </div>
+                <i
+                  data-lucide="chevron-down"
+                  class="chevron-icon w-4 h-4 text-gray-500 transition-transform duration-300"
+                ></i>
+              </div>
+
+              <!-- SUBCATEGORIES INSIDE SAME SECTION -->
+              <div class="subcategories mt-5 space-y-3 hidden">
+                <div
+                  data-key="mutual-basics"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >What is Mutual Funds</span
+                  >
+                </div>
+
+                <div
+                  data-key="mutual-invest"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >How to Invest</span
+                  >
+                </div>
+
+                <div
+                  data-key="mutual-types"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Types: SIP vs Lump Sum</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="category-group w-full rounded-2xl border border-gray-300 bg-white p-4 hover:scale-[1.02] transition-all duration-200"
+              data-category="retirement"
+            >
+              <!-- HEADER -->
+              <div
+                class="category-header flex items-center justify-between cursor-pointer"
+              >
+                <div class="flex items-center space-x-3">
+                  <i
+                    data-lucide="calendar-check"
+                    class="text-black w-5 h-5"
+                  ></i>
+                  <span class="text-black font-medium text-base"
+                    >Retirement</span
+                  >
+                </div>
+                <i
+                  data-lucide="chevron-down"
+                  class="chevron-icon w-4 h-4 text-gray-500 transition-transform duration-300"
+                ></i>
+              </div>
+
+              <!-- SUBCATEGORIES INSIDE SAME SECTION -->
+              <div class="subcategories mt-5 space-y-3 hidden">
+                <div
+                  data-key="retirement-planning"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Retirement Planning
+                  </span>
+                </div>
+
+                <div
+                  data-key="retirement-401k"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >401(k) Optimization</span
+                  >
+                </div>
+
+                <div
+                  data-key="retirement-income"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Creating Income Streams</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="category-group w-full rounded-2xl border border-gray-300 bg-white p-4 hover:scale-[1.02] transition-all duration-200"
+              data-category="tax"
+            >
+              <!-- HEADER -->
+              <div
+                class="category-header flex items-center justify-between cursor-pointer"
+              >
+                <div class="flex items-center space-x-3">
+                  <i data-lucide="file-text" class="text-black w-5 h-5"></i>
+                  <span class="text-black font-medium text-base"
+                    >Tax Planning</span
+                  >
+                </div>
+                <i
+                  data-lucide="chevron-down"
+                  class="chevron-icon w-4 h-4 text-gray-500 transition-transform duration-300"
+                ></i>
+              </div>
+
+              <!-- SUBCATEGORIES INSIDE SAME SECTION -->
+              <div class="subcategories mt-5 space-y-3 hidden">
+                <div
+                  data-key="tax-strategies"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Tax-Efficient Strategies</span
+                  >
+                </div>
+
+                <div
+                  data-key="tax-deductions"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Deductions & Credits</span
+                  >
+                </div>
+
+                <div
+                  data-key="tax-compliance"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Compliance Guidelines</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="category-group w-full rounded-2xl border border-gray-300 bg-white p-4 hover:scale-[1.02] transition-all duration-200"
+              data-category="insurance"
+            >
+              <div
+                class="category-header flex items-center justify-between cursor-pointer"
+              >
+                <div class="flex items-center space-x-3">
+                  <i data-lucide="shield" class="text-black w-5 h-5"></i>
+                  <span class="text-black font-medium text-base"
+                    >Insurance</span
+                  >
+                </div>
+                <i
+                  data-lucide="chevron-down"
+                  class="chevron-icon w-4 h-4 text-gray-500 transition-transform duration-300"
+                ></i>
+              </div>
+              <div class="subcategories mt-5 space-y-3 hidden">
+                <div
+                  data-key="insurance-life"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Life Insurance</span
+                  >
+                </div>
+                <div
+                  data-key="insurance-health"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Health Insurance</span
+                  >
+                </div>
+                <div
+                  data-key="insurance-property"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Property Insurance</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="category-group w-full rounded-2xl border border-gray-300 bg-white p-4 hover:scale-[1.02] transition-all duration-200"
+              data-category="education"
+            >
+              <div
+                class="category-header flex items-center justify-between cursor-pointer"
+              >
+                <div class="flex items-center space-x-3">
+                  <i data-lucide="book-open" class="text-black w-5 h-5"></i>
+                  <span class="text-black font-medium text-base"
+                    >Education Savings</span
+                  >
+                </div>
+                <i
+                  data-lucide="chevron-down"
+                  class="chevron-icon w-4 h-4 text-gray-500 transition-transform duration-300"
+                ></i>
+              </div>
+              <div class="subcategories mt-5 space-y-3 hidden">
+                <div
+                  data-key="education-529"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >529 Plans</span
+                  >
+                </div>
+                <div
+                  data-key="education-esa"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Coverdell ESAs</span
+                  >
+                </div>
+                <div
+                  data-key="education-strategies"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Saving Strategies</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="category-group w-full rounded-2xl border border-gray-300 bg-white p-4 hover:scale-[1.02] transition-all duration-200"
+              data-category="legacy"
+            >
+              <div
+                class="category-header flex items-center justify-between cursor-pointer"
+              >
+                <div class="flex items-center space-x-3">
+                  <i data-lucide="scroll-text" class="text-black w-5 h-5"></i>
+                  <span class="text-black font-medium text-base"
+                    >Legacy Planning</span
+                  >
+                </div>
+                <i
+                  data-lucide="chevron-down"
+                  class="chevron-icon w-4 h-4 text-gray-500 transition-transform duration-300"
+                ></i>
+              </div>
+              <div class="subcategories mt-5 space-y-3 hidden">
+                <div
+                  data-key="legacy-wills"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Wills & Trusts</span
+                  >
+                </div>
+                <div
+                  data-key="legacy-estate"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Estate Tax Planning</span
+                  >
+                </div>
+                <div
+                  data-key="legacy-transfer"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Wealth Transfer</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="category-group w-full rounded-2xl border border-gray-300 bg-white p-4 hover:scale-[1.02] transition-all duration-200"
+              data-category="nri"
+            >
+              <div
+                class="category-header flex items-center justify-between cursor-pointer"
+              >
+                <div class="flex items-center space-x-3">
+                  <i data-lucide="globe" class="text-black w-5 h-5"></i>
+                  <span class="text-black font-medium text-base">NRI</span>
+                </div>
+                <i
+                  data-lucide="chevron-down"
+                  class="chevron-icon w-4 h-4 text-gray-500 transition-transform duration-300"
+                ></i>
+              </div>
+              <div class="subcategories mt-5 space-y-3 hidden">
+                <div
+                  data-key="nri-investments"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >NRI Investment Options</span
+                  >
+                </div>
+                <div
+                  data-key="nri-taxation"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Tax Implications</span
+                  >
+                </div>
+                <div
+                  data-key="nri-repatriation"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Repatriation Rules</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="category-group w-full rounded-2xl border border-gray-300 bg-white p-4 hover:scale-[1.02] transition-all duration-200"
+              data-category="foundation"
+            >
+              <div
+                class="category-header flex items-center justify-between cursor-pointer"
+              >
+                <div class="flex items-center space-x-3">
+                  <i data-lucide="building-2" class="text-black w-5 h-5"></i>
+                  <span class="text-black font-medium text-base"
+                    >Foundation</span
+                  >
+                </div>
+                <i
+                  data-lucide="chevron-down"
+                  class="chevron-icon w-4 h-4 text-gray-500 transition-transform duration-300"
+                ></i>
+              </div>
+              <div class="subcategories mt-5 space-y-3 hidden">
+                <div
+                  data-key="foundation-emergency"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Emergency Funds</span
+                  >
+                </div>
+                <div
+                  data-key="foundation-budgeting"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Budgeting Basics</span
+                  >
+                </div>
+                <div
+                  data-key="foundation-goals"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Financial Goals</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="category-group w-full rounded-2xl border border-gray-300 bg-white p-4 hover:scale-[1.02] transition-all duration-200"
+              data-category="sip"
+            >
+              <div
+                class="category-header flex items-center justify-between cursor-pointer"
+              >
+                <div class="flex items-center space-x-3">
+                  <i data-lucide="calculator" class="text-black w-5 h-5"></i>
+                  <span class="text-black font-medium text-base"
+                    >SIP Investments</span
+                  >
+                </div>
+                <i
+                  data-lucide="chevron-down"
+                  class="chevron-icon w-4 h-4 text-gray-500 transition-transform duration-300"
+                ></i>
+              </div>
+              <div class="subcategories mt-5 space-y-3 hidden">
+                <div
+                  data-key="sip-basics"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >SIP Fundamentals</span
+                  >
+                </div>
+                <div
+                  data-key="sip-benefits"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Benefits of SIP</span
+                  >
+                </div>
+                <div
+                  data-key="sip-calculator"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >SIP Calculator</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Added floating expand button for when sidebar is collapsed -->
+        <button
+          id="sidebarExpandBtn"
+          class="hidden fixed top-24 left-4 z-50 bg-white border border-gray-300 rounded-lg p-2 shadow-lg hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
+          aria-label="Expand sidebar"
+        >
+          <i data-lucide="panel-left-open" class="w-5 h-5 text-black"></i>
+        </button>
+
+        <button
+          id="menuToggleBtn"
+          class="lg:hidden absolute top-24 left-4 bg-white border border-gray-300 rounded-full p-2 shadow-lg hover:bg-gray-50 transition-colors duration-200"
+          aria-label="Toggle navigation menu"
+        >
+          <i data-lucide="panel-left-open" class="w-6 h-6 text-gray-700"></i>
+        </button>
+
+        <!-- Main content -->
+        <main class="main-content flex-1 mt-16 p-4" id="mainContent">
+          <!-- Mobile Menu Toggle Button -->
+
+          <!-- Video + Right panel -->
+          <div class="flex flex-col lg:flex-row gap-8 mt-24 lg:mt-8">
+            <!-- Player -->
+            <div
+              class="flex-1 max-w-xs mx-auto lg:mx-0 aspect-[9/16] rounded-3xl overflow-hidden bg-blue-400 shadow-md"
+            >
+              <video
+                id="mainVideo"
+                src="./assets/Pranav Chimulkar Short Video.mp4"
+                class="w-full h-full object-cover"
+                loop
+                playsinline
+                controls
+                controlsList="nofullscreen"
+              ></video>
+            </div>
+
+            <!-- Right content with dynamic text -->
+            <div class="flex-1 max-w-2xl p-0 lg:p-4">
+              <div
+                class="bg-white rounded-3xl border border-gray-300 overflow-hidden"
+              >
+                <!-- Improved header with accent bar and better typography -->
+                <div class="relative px-4 lg:px-10 pt-8 pb-6">
+                  <div
+                    class="absolute top-0 left-0 right-0 h-[5px] bg-gradient-to-r from-blue-500 to-blue-600"
+                  ></div>
+
+                  <!-- Category Badge -->
+                  <div class="mb-4 hidden">
+                    <span
+                      id="videoCategory"
+                      class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-600 border border-blue-100"
+                    >
+                      <i data-lucide="folder" class="w-3 h-3"></i>
+                      Financial Literacy
+                    </span>
+                  </div>
+
+                  <h1
+                    id="videoTitle"
+                    class="text-2xl lg:text-3xl font-semibold text-gray-900 tracking-tight mb-2"
+                  >
+                    Mutual Funds
+                  </h1>
+                  <p
+                    id="videoSubtitle"
+                    class="text-base text-gray-500 leading-relaxed"
+                  >
+                    Know how to invest safe in the Long terms for the Mutual
+                    Funds
+                  </p>
+                </div>
+
+                <!-- Description with Read More expand/collapse functionality -->
+                <div class="px-4 lg:px-10 pb-6">
+                  <div
+                    class="bg-white rounded-xl border border-gray-300 overflow-hidden"
+                  >
+                    <div
+                      class="px-5 py-3 border-b border-gray-200 bg-gray-50/50"
+                    >
+                      <h3
+                        class="text-xs font-semibold uppercase tracking-wider text-gray-800 flex items-center gap-2"
+                      >
+                        <i data-lucide="file-text" class="w-4 h-4"></i>
+                        About this video
+                      </h3>
+                    </div>
+                    <div class="p-5">
+                      <!-- Collapsible content wrapper -->
+                      <div id="descriptionWrapper" class="relative">
+                        <p
+                          id="videoDescription"
+                          class="text-sm text-gray-800 leading-relaxed transition-all duration-300 ease-in-out overflow-hidden"
+                          style="max-height: 4.5em"
+                        >
+                          Learn the fundamentals of mutual fund investing,
+                          including how to choose the right funds, understand
+                          risk levels, and build a diversified portfolio for
+                          long-term wealth creation. This comprehensive guide
+                          covers everything from understanding expense ratios
+                          and fund types to analyzing historical performance and
+                          setting realistic investment goals. Whether you're a
+                          beginner or looking to refine your strategy, this
+                          video will help you make informed decisions for your
+                          financial future.
+                        </p>
+                        <!-- Gradient fade overlay -->
+                        <div
+                          id="descriptionFade"
+                          class="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-gray-50 to-transparent pointer-events-none transition-opacity duration-300"
+                        ></div>
+                      </div>
+                      <!-- Read More Button -->
+                      <button
+                        id="readMoreBtn"
+                        onclick="toggleDescription()"
+                        class="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors cursor-pointer group"
+                      >
+                        <span id="readMoreText">Read more</span>
+                        <i
+                          data-lucide="chevron-down"
+                          id="readMoreIcon"
+                          class="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5"
+                        ></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Better separated controls section with subtle background -->
+                <div class="px-8 py-5 bg-white">
+                  <div
+                    class="flex flex-col sm:flex-row items-center justify-between gap-4"
+                  >
+                    <!-- Prev / Next - Primary actions -->
+                    <div class="flex items-center gap-3 order-2 sm:order-1">
+                      <button
+                        id="prevBtn"
+                        class="flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all text-sm font-medium cursor-pointer"
+                        aria-label="Previous"
+                      >
+                        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                        <span>Previous</span>
+                      </button>
+                      <button
+                        id="nextBtn"
+                        class="flex items-center gap-2 px-6 py-2.5 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all text-sm font-medium cursor-pointer"
+                        aria-label="Next"
+                      >
+                        <span>Next</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+
+                    <!-- Utility Actions -->
+                    <div class="flex items-center gap-2 order-1 sm:order-2">
+                      <button
+                        id="shareBtn"
+                        class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-gray-900 hover:border-gray-300 transition-all text-sm cursor-pointer"
+                        aria-label="Share"
+                      >
+                        <i data-lucide="share-2" class="w-4 h-4"></i>
+                        <span class="hidden sm:inline">Share</span>
+                      </button>
+                      <button
+                        id="linkBtn"
+                        class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-gray-900 hover:border-gray-300 transition-all text-sm cursor-pointer"
+                        aria-label="Copy link"
+                      >
+                        <i data-lucide="link" class="w-4 h-4"></i>
+                        <span class="hidden sm:inline">Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Cleaner social section with divider -->
+                <div class="px-8 py-5 border-t border-gray-100 bg-white">
+                  <p
+                    class="text-xs text-center text-gray-400 uppercase tracking-wider mb-4"
+                  >
+                    Stay Connected with Us
+                  </p>
+                  <div class="flex justify-center gap-3">
+                    <a
+                      href="https://www.instagram.com/chimulkarfinancialservices?igsh=NTRiOWZrc2R6dGwy"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex items-center gap-2 px-5 py-2.5 border border-gray-200 bg-white text-gray-700 rounded-full hover:bg-gray-50 hover:border-gray-300 transition-all text-sm font-medium group cursor-pointer"
+                    >
+                      <i
+                        data-lucide="instagram"
+                        class="w-4 h-4 group-hover:text-pink-500 transition-colors"
+                      ></i>
+                      <span>Follow</span>
+                    </a>
+                    <a
+                      href="www.youtube.com/@ChimulkarFinancialServices"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex items-center gap-2 px-5 py-2.5 bg-red-500 text-white rounded-full hover:bg-red-600 transition-all text-sm font-medium cursor-pointer"
+                    >
+                      <i data-lucide="youtube" class="w-4 h-4"></i>
+                      <span>Subscribe</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- JavaScript for smooth expand/collapse animation -->
+            <script>
+              let isExpanded = false;
+
+              function toggleDescription() {
+                const description = document.getElementById("videoDescription");
+                const fade = document.getElementById("descriptionFade");
+                const text = document.getElementById("readMoreText");
+                const icon = document.getElementById("readMoreIcon");
+
+                isExpanded = !isExpanded;
+
+                if (isExpanded) {
+                  description.style.maxHeight = description.scrollHeight + "px";
+                  fade.style.opacity = "0";
+                  text.textContent = "Show less";
+                  icon.style.transform = "rotate(180deg)";
+                } else {
+                  description.style.maxHeight = "4.5em";
+                  fade.style.opacity = "1";
+                  text.textContent = "Read more";
+                  icon.style.transform = "rotate(0deg)";
+                }
+              }
+            </script>
+          </div>
+        </main>
+      </div>
+
+      <!-- Share Modal -->
+      <div
+        id="shareModal"
+        class="fixed inset-0 px-6 lg:px-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 hidden"
+      >
+        <div
+          class="bg-white rounded-3xl p-8 m-4 max-w-sm lg:max-w-lg w-full transform transition-all duration-300 scale-95 opacity-0 shadow-2xl border border-gray-100"
+          id="shareModalContent"
+        >
+          <div class="flex justify-between items-center mb-8">
+            <h3 class="text-xl font-semibold text-gray-900">Share Video</h3>
+            <button
+              id="closeModal"
+              class="p-2 hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
+            >
+              <i data-lucide="x" class="w-5 h-5 text-gray-500"></i>
+            </button>
+          </div>
+
+          <!-- Copy link section -->
+          <div class="mb-8 overflow-hidden lg:overflow-visible">
+            <label class="block text-sm font-semibold text-gray-700 mb-3"
+              >Share Link</label
+            >
+            <div class="flex flex-col lg:flex-row gap-3">
+              <input
+                id="shareLink"
+                type="text"
+                readonly
+                class="flex-1 px-4 py-3 border border-gray-200 rounded-xl bg-gray-50 text-sm text-gray-600 select-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+              <button
+                id="copyLinkBtn"
+                class="w-fit px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors text-sm font-semibold flex items-center gap-2 cursor-pointer"
+              >
+                <i data-lucide="copy" class="w-4 h-4"></i>
+                <span id="copyBtnText">Copy Link</span>
+              </button>
+            </div>
+            <div
+              id="copyFeedback"
+              class="text-sm text-green-600 mt-2 opacity-0 transition-opacity flex items-center gap-2"
+            >
+              <i data-lucide="check" class="w-4 h-4"></i>
+              Link copied to clipboard!
+            </div>
+          </div>
+
+          <!-- Share options - only WhatsApp and Email -->
+          <div class="space-y-4">
+            <p class="text-sm font-semibold text-gray-700 mb-4">Share via</p>
+
+            <!-- WhatsApp Button -->
+            <button
+              id="shareWhatsApp"
+              class="w-full flex items-center gap-4 p-4 border border-gray-200 rounded-2xl hover:bg-green-50 hover:border-green-200 transition-all group cursor-pointer"
+            >
+              <div
+                class="w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center group-hover:bg-green-600 transition-colors shadow-lg"
+              >
+                <img
+                  src="./assets/WhatsApp.svg"
+                  alt="WhatsApp Logo"
+                  class="w-6 h-6"
+                />
+              </div>
+
+              <div class="flex-1 text-left">
+                <span class="text-gray-900 font-semibold block text-base"
+                  >WhatsApp</span
+                >
+                <span class="text-gray-500 text-sm"
+                  >Share with your contacts</span
+                >
+              </div>
+
+              <i
+                data-lucide="chevron-right"
+                class="w-5 h-5 text-gray-400 group-hover:text-green-500 transition-colors"
+              ></i>
+            </button>
+
+            <!-- Email Button -->
+            <button
+              id="shareEmail"
+              class="w-full flex items-center gap-4 p-4 border border-gray-200 rounded-2xl hover:bg-blue-50 hover:border-blue-200 transition-all cursor-pointer"
+            >
+              <div
+                class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center group-hover:bg-gray-100 transition-colors shadow-lg"
+              >
+                <img
+                  src="./assets/Gmail.svg"
+                  alt="Email Logo"
+                  class="w-6 h-6"
+                />
+              </div>
+
+              <div class="flex-1 text-left">
+                <span class="text-gray-900 font-semibold block text-base"
+                  >Email</span
+                >
+                <span class="text-gray-500 text-sm">Send via email</span>
+              </div>
+
+              <i
+                data-lucide="chevron-right"
+                class="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors"
+              ></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        let sidebarCollapsed = false;
+        const navPanel = document.getElementById("navigationPanel");
+        const sidebarCollapseBtn =
+          document.getElementById("sidebarCollapseBtn");
+        const sidebarExpandBtn = document.getElementById("sidebarExpandBtn");
+        const mainContent = document.getElementById("mainContent");
+        const menuToggleBtn = document.getElementById("menuToggleBtn");
+        const closePanel = document.getElementById("closePanelBtn");
+        const mobileBackdrop = document.getElementById("mobileOverlay");
+
+        // Sidebar collapse/expand functionality
+        function toggleSidebarCollapse() {
+          sidebarCollapsed = !sidebarCollapsed;
+
+          if (sidebarCollapsed) {
+            // Collapse sidebar
+            navPanel.classList.add("collapsed");
+            mainContent.classList.remove("lg:ml-12"); // Adjust if sidebar width changes
+            mainContent.classList.add("ml-0");
+            sidebarExpandBtn.classList.remove("hidden");
+            menuToggleBtn.style.display = "none";
+          } else {
+            // Expand sidebar
+            navPanel.classList.remove("collapsed");
+            mainContent.classList.remove("ml-0");
+            mainContent.classList.add("lg:ml-12"); // Adjust if sidebar width changes
+            sidebarExpandBtn.classList.add("hidden");
+            menuToggleBtn.style.display = "block";
+          }
+        }
+
+        // Event listeners for sidebar collapse/expand
+        sidebarCollapseBtn.addEventListener("click", toggleSidebarCollapse);
+        sidebarExpandBtn.addEventListener("click", toggleSidebarCollapse);
+
+        // Toggle mobile navigation panel
+        function toggleNavigationPanel() {
+          const isHidden = navPanel.classList.contains("hidden-mobile");
+
+          if (isHidden) {
+            // Show panel
+            navPanel.classList.remove("hidden-mobile");
+            mobileBackdrop.classList.remove("opacity-0", "pointer-events-none");
+            mobileBackdrop.classList.add("opacity-100");
+            document.body.style.overflow = "hidden";
+          } else {
+            // Hide panel
+            navPanel.classList.add("hidden-mobile");
+            mobileBackdrop.classList.add("opacity-0", "pointer-events-none");
+            mobileBackdrop.classList.remove("opacity-100");
+            document.body.style.overflow = "";
+          }
+        }
+
+        // Event listeners for mobile navigation
+        menuToggleBtn.addEventListener("click", toggleNavigationPanel);
+        closePanel.addEventListener("click", toggleNavigationPanel);
+        mobileBackdrop.addEventListener("click", toggleNavigationPanel);
+
+        // Category expansion functionality
+        const lessonHeaders = document.querySelectorAll(".lesson-header");
+
+        lessonHeaders.forEach((header) => {
+          header.addEventListener("click", function () {
+            const lessonGroup = this.parentElement;
+            const categoryContent =
+              lessonGroup.querySelector(".category-content");
+            const chevronIcon = this.querySelector(".chevron-icon");
+
+            // Toggle expanded state
+            const isExpanded = categoryContent.classList.contains("expanded");
+
+            if (isExpanded) {
+              // Collapse
+              categoryContent.classList.remove("expanded");
+              chevronIcon.classList.remove("rotated");
+            } else {
+              // Expand
+              categoryContent.classList.add("expanded");
+              chevronIcon.classList.add("rotated");
+            }
+          });
+        });
+
+        // Handle lesson item clicks
+        const lessonItems = document.querySelectorAll("[data-key]");
+
+        lessonItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            // Remove active state from all items
+            lessonItems.forEach((i) =>
+              i.classList.remove("bg-blue-100", "border-blue-300")
+            );
+
+            // Add active state to clicked item
+            this.classList.add("bg-blue-100", "border-blue-300");
+
+            // Get lesson key
+            const lessonKey = this.getAttribute("data-key");
+            console.log("Selected lesson:", lessonKey);
+
+            // Close mobile panel after selection
+            if (window.innerWidth < 1024) {
+              toggleNavigationPanel();
+            }
+          });
+        });
+
+        // Handle window resize
+        window.addEventListener("resize", function () {
+          if (window.innerWidth >= 1024) {
+            // Desktop view - ensure panel is visible and reset mobile states
+            navPanel.classList.remove("hidden-mobile");
+            mobileBackdrop.classList.add("opacity-0", "pointer-events-none");
+            mobileBackdrop.classList.remove("opacity-100");
+            document.body.style.overflow = "";
+
+            // Show collapse button on desktop
+            sidebarCollapseBtn.classList.remove("hidden");
+            menuToggleBtn.style.display = "none"; // Hide mobile toggle on desktop
+          } else {
+            // Mobile view - ensure panel is hidden by default and hide collapse button
+            if (!navPanel.classList.contains("hidden-mobile")) {
+              navPanel.classList.add("hidden-mobile");
+            }
+            sidebarCollapseBtn.classList.add("hidden");
+            sidebarExpandBtn.classList.add("hidden");
+            menuToggleBtn.style.display = "block"; // Show mobile toggle on mobile
+
+            // Reset collapsed state on mobile
+            if (sidebarCollapsed) {
+              navPanel.classList.remove("collapsed");
+              mainContent.classList.remove("ml-0");
+              mainContent.classList.add("lg:ml-80"); // Ensure correct margin for desktop
+              sidebarCollapsed = false;
+            }
+          }
+        });
+      </script>
+      <!-- Initialize Lucide icons -->
+
+      <!-- Main JavaScript -->
+      <script>
+        const videoList = [
+          // Mutual Funds subcategories
+          {
+            key: "mutual-basics",
+            src: "./assets/pranav chimulkar short video.mp4",
+            title: "What is Mutual Funds",
+            subtitle: "Understanding the basics of mutual fund investments",
+            category: "Mutual Funds - Basics",
+            description:
+              "Learn what mutual funds are, how they work, and why they're a popular investment choice for building long-term wealth.",
+          },
+          {
+            key: "mutual-invest",
+            src: "./assets/nature.mp4",
+            title: "How to Invest in Mutual Funds",
+            subtitle: "Step-by-step guide to start your mutual fund journey",
+            category: "Mutual Funds - Investment",
+            description:
+              "Discover the practical steps to invest in mutual funds, from choosing the right platform to selecting suitable funds for your goals.",
+          },
+          {
+            key: "mutual-types",
+            src: "https://res.cloudinary.com/dwr14ya0c/video/upload/v1750954651/high_1_nnqxys.mp4",
+            title: "SIP vs Lump Sum Investment",
+            subtitle: "Compare systematic and lump sum investment strategies",
+            category: "Mutual Funds - Types",
+            description:
+              "Understand the differences between SIP and lump sum investments, and learn which strategy works best for different financial situations.",
+          },
+
+          // Retirement subcategories
+          {
+            key: "retirement-planning",
+            src: "./assets/retirement.mp4",
+            title: "Retirement Planning Basics",
+            subtitle: "Build a solid foundation for your retirement",
+            category: "Retirement - Planning",
+            description:
+              "Learn the fundamentals of retirement planning, including how much to save, when to start, and key strategies for a secure future.",
+          },
+          {
+            key: "retirement-401k",
+            src: "./assets/401k.mp4",
+            title: "401(k) Optimization",
+            subtitle: "Maximize your employer-sponsored retirement benefits",
+            category: "Retirement - 401(k)",
+            description:
+              "Discover how to optimize your 401(k) contributions, understand employer matching, and make the most of tax advantages.",
+          },
+          {
+            key: "retirement-income",
+            src: "./assets/income.mp4",
+            title: "Creating Retirement Income Streams",
+            subtitle: "Build multiple sources of retirement income",
+            category: "Retirement - Income",
+            description:
+              "Explore various strategies to create sustainable income streams during retirement, from pensions to investment withdrawals.",
+          },
+
+          // Tax Planning subcategories
+          {
+            key: "tax-strategies",
+            src: "./assets/tax-strategies.mp4",
+            title: "Tax-Efficient Investment Strategies",
+            subtitle: "Minimize taxes while maximizing returns",
+            category: "Tax Planning - Strategies",
+            description:
+              "Learn advanced tax-efficient investing strategies to keep more of your investment returns and reduce your overall tax burden.",
+          },
+          {
+            key: "tax-deductions",
+            src: "./assets/deductions.mp4",
+            title: "Deductions & Tax Credits",
+            subtitle: "Maximize your tax savings through deductions",
+            category: "Tax Planning - Deductions",
+            description:
+              "Understand available tax deductions and credits that can significantly reduce your tax liability and increase your refund.",
+          },
+          {
+            key: "tax-compliance",
+            src: "./assets/compliance.mp4",
+            title: "Tax Compliance Guidelines",
+            subtitle: "Stay compliant with current tax regulations",
+            category: "Tax Planning - Compliance",
+            description:
+              "Navigate complex tax regulations and ensure you're meeting all compliance requirements while optimizing your tax position.",
+          },
+
+          // Insurance subcategories
+          {
+            key: "insurance-life",
+            src: "./assets/life-insurance.mp4",
+            title: "Life Insurance Planning",
+            subtitle: "Protect your family's financial future",
+            category: "Insurance - Life",
+            description:
+              "Understand different types of life insurance, how much coverage you need, and how to choose the right policy for your family.",
+          },
+          {
+            key: "insurance-health",
+            src: "./assets/health-insurance.mp4",
+            title: "Health Insurance Optimization",
+            subtitle: "Navigate healthcare costs and coverage options",
+            category: "Insurance - Health",
+            description:
+              "Learn how to choose the right health insurance plan, understand deductibles and copays, and maximize your healthcare benefits.",
+          },
+          {
+            key: "insurance-property",
+            src: "./assets/property-insurance.mp4",
+            title: "Property Insurance Essentials",
+            subtitle: "Protect your home and valuable assets",
+            category: "Insurance - Property",
+            description:
+              "Discover how to properly insure your home, car, and other valuable assets to protect against unexpected losses.",
+          },
+
+          // Education subcategories
+          {
+            key: "education-529",
+            src: "./assets/529-plans.mp4",
+            title: "529 Education Plans",
+            subtitle: "Tax-advantaged savings for education expenses",
+            category: "Education - 529 Plans",
+            description:
+              "Learn how 529 plans work, their tax benefits, and how to use them effectively to save for education expenses.",
+          },
+          {
+            key: "education-esa",
+            src: "./assets/esa.mp4",
+            title: "Coverdell Education Savings Accounts",
+            subtitle: "Alternative education funding strategies",
+            category: "Education - ESA",
+            description:
+              "Understand Coverdell ESAs as an alternative to 529 plans, including contribution limits and qualified expenses.",
+          },
+          {
+            key: "education-strategies",
+            src: "./assets/education-strategies.mp4",
+            title: "Education Saving Strategies",
+            subtitle: "Comprehensive approach to education funding",
+            category: "Education - Strategies",
+            description:
+              "Explore various strategies to save for education costs, from traditional savings to investment accounts and financial aid planning.",
+          },
+
+          // Legacy subcategories
+          {
+            key: "legacy-wills",
+            src: "./assets/wills-trusts.mp4",
+            title: "Wills & Trust Planning",
+            subtitle: "Essential estate planning documents",
+            category: "Legacy - Wills & Trusts",
+            description:
+              "Learn about wills, trusts, and other essential estate planning documents to ensure your assets are distributed according to your wishes.",
+          },
+          {
+            key: "legacy-estate",
+            src: "./assets/estate-tax.mp4",
+            title: "Estate Tax Planning",
+            subtitle: "Minimize estate taxes for your heirs",
+            category: "Legacy - Estate Tax",
+            description:
+              "Understand estate tax implications and strategies to minimize the tax burden on your beneficiaries.",
+          },
+          {
+            key: "legacy-transfer",
+            src: "./assets/wealth-transfer.mp4",
+            title: "Wealth Transfer Strategies",
+            subtitle: "Efficiently transfer wealth to next generation",
+            category: "Legacy - Transfer",
+            description:
+              "Explore advanced wealth transfer strategies to efficiently pass assets to your heirs while minimizing taxes and complications.",
+          },
+
+          //NRI subcategories
+          {
+            key: "nri-investments",
+            src: "./assets/nri-investments.mp4",
+            title: "NRI Investment Options",
+            subtitle: "Investment opportunities for Non-Resident Indians",
+            category: "NRI - Investments",
+            description:
+              "Discover investment options available to NRIs, including mutual funds, stocks, and real estate opportunities in India.",
+          },
+          {
+            key: "nri-taxation",
+            src: "./assets/nri-tax.mp4",
+            title: "NRI Tax Implications",
+            subtitle: "Navigate tax obligations across countries",
+            category: "NRI - Taxation",
+            description:
+              "Understand the complex tax implications for NRIs, including double taxation treaties and tax planning strategies.",
+          },
+          {
+            key: "nri-repatriation",
+            src: "./assets/nri-repatriation.mp4",
+            title: "Repatriation Rules & Regulations",
+            subtitle: "Understanding money transfer regulations",
+            category: "NRI - Repatriation",
+            description:
+              "Learn about repatriation rules, limits, and procedures for transferring money from India to your country of residence.",
+          },
+
+          // Foundation subcategories
+          {
+            key: "foundation-emergency",
+            src: "./assets/emergency-fund.mp4",
+            title: "Building Emergency Funds",
+            subtitle: "Create a financial safety net",
+            category: "Foundation - Emergency Fund",
+            description:
+              "Learn how to build and maintain an emergency fund that can cover unexpected expenses and provide financial security.",
+          },
+          {
+            key: "foundation-budgeting",
+            src: "./assets/budgeting.mp4",
+            title: "Budgeting Fundamentals",
+            subtitle: "Master the art of personal budgeting",
+            category: "Foundation - Budgeting",
+            description:
+              "Discover effective budgeting techniques to track expenses, control spending, and allocate money toward your financial goals.",
+          },
+          {
+            key: "foundation-goals",
+            src: "./assets/financial-goals.mp4",
+            title: "Setting Financial Goals",
+            subtitle: "Create a roadmap for financial success",
+            category: "Foundation - Goals",
+            description:
+              "Learn how to set SMART financial goals, prioritize them, and create actionable plans to achieve your financial objectives.",
+          },
+
+          // SIP subcategories
+          {
+            key: "sip-basics",
+            src: "./assets/sip-basics.mp4",
+            title: "SIP Fundamentals",
+            subtitle: "Understanding Systematic Investment Plans",
+            category: "SIP - Basics",
+            description:
+              "Learn the basics of SIPs, how they work, and why they're an effective way to build wealth through disciplined investing.",
+          },
+          {
+            key: "sip-benefits",
+            src: "./assets/sip-benefits.mp4",
+            title: "Benefits of SIP Investing",
+            subtitle: "Advantages of systematic investing approach",
+            category: "SIP - Benefits",
+            description:
+              "Discover the key benefits of SIP investing, including rupee cost averaging, disciplined investing, and long-term wealth creation.",
+          },
+          {
+            key: "sip-calculator",
+            src: "./assets/sip-calculator.mp4",
+            title: "Using SIP Calculators",
+            subtitle: "Plan your SIP investments effectively",
+            category: "SIP - Calculator",
+            description:
+              "Learn how to use SIP calculators to plan your investments, estimate returns, and determine the right SIP amount for your goals.",
+          },
+        ];
+
+        const subcategoryMapping = {
+          mutual: [
+            { key: "mutual-basics", title: "What is MF" },
+            { key: "mutual-invest", title: "How to Invest" },
+            { key: "mutual-types", title: "SIP vs Lump Sum" },
+          ],
+          retirement: [
+            { key: "retirement-planning", title: "Planning Basics" },
+            { key: "retirement-401k", title: "401(k) Tips" },
+            { key: "retirement-income", title: "Income Streams" },
+          ],
+          tax: [
+            { key: "tax-strategies", title: "Tax Strategies" },
+            { key: "tax-deductions", title: "Deductions" },
+            { key: "tax-compliance", title: "Compliance" },
+          ],
+          insurance: [
+            { key: "insurance-life", title: "Life Insurance" },
+            { key: "insurance-health", title: "Health Insurance" },
+            { key: "insurance-property", title: "Property Insurance" },
+          ],
+          education: [
+            { key: "education-529", title: "529 Plans" },
+            { key: "education-esa", title: "ESA Accounts" },
+            { key: "education-strategies", title: "Strategies" },
+          ],
+          legacy: [
+            { key: "legacy-wills", title: "Wills & Trusts" },
+            { key: "legacy-estate", title: "Estate Tax" },
+            { key: "legacy-transfer", title: "Wealth Transfer" },
+          ],
+          nri: [
+            { key: "nri-investments", title: "Investments" },
+            { key: "nri-taxation", title: "Taxation" },
+            { key: "nri-repatriation", title: "Repatriation" },
+          ],
+          foundation: [
+            { key: "foundation-emergency", title: "Emergency Fund" },
+            { key: "foundation-budgeting", title: "Budgeting" },
+            { key: "foundation-goals", title: "Goals" },
+          ],
+          sip: [
+            { key: "sip-basics", title: "SIP Basics" },
+            { key: "sip-benefits", title: "Benefits" },
+            { key: "sip-calculator", title: "Calculator" },
+          ],
+        };
+
+        const mainVideo = document.getElementById("mainVideo");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+
+        // Content elements
+        const videoTitle = document.getElementById("videoTitle");
+        const videoSubtitle = document.getElementById("videoSubtitle");
+        const videoCategory = document.getElementById("videoCategory");
+        const videoDescription = document.getElementById("videoDescription");
+
+        let currentIndex = 0;
+        let currentCategory = null;
+
+        // Update content based on selected video
+        function updateContent(videoData) {
+          videoTitle.textContent = videoData.title;
+          videoSubtitle.textContent = videoData.subtitle;
+          videoCategory.textContent = videoData.category;
+          videoDescription.textContent = videoData.description;
+        }
+
+        // Function to get video data from URL or default to first
+        function getInitialVideoData() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const videoKey = urlParams.get("video");
+          if (videoKey) {
+            const index = videoList.findIndex((v) => v.key === videoKey);
+            if (index !== -1) {
+              return index;
+            }
+          }
+          return 0; // Default to the first video
+        }
+
+        // Load video by index
+        function loadIndex(index, autoplay = true) {
+          const videoData = videoList[index];
+          if (!videoData) return;
+
+          mainVideo.src = videoData.src;
+          updateContent(videoData);
+
+          if (autoplay) {
+            mainVideo.play().catch(() => {});
+          }
+
+          currentIndex = index;
+          updateSelected(videoData.key);
+
+          // Expand the appropriate category in sidebar
+          const categoryKey = videoData.key.split("-")[0];
+          const categoryGroup = document.querySelector(
+            `[data-category="${categoryKey}"]`
+          );
+          if (categoryGroup) {
+            const subcategories = categoryGroup.querySelector(".subcategories");
+            const chevron = categoryGroup.querySelector(
+              '.category-header i[data-lucide="chevron-down"]'
+            );
+            if (subcategories && subcategories.classList.contains("hidden")) {
+              subcategories.classList.remove("hidden");
+              chevron.style.transform = "rotate(180deg)";
+            }
+          }
+
+          const newUrl = `${window.location.pathname}?video=${videoData.key}`;
+          window.history.replaceState({ video: videoData.key }, "", newUrl);
+        }
+
+        // Share functionality
+        const shareBtn = document.getElementById("shareBtn");
+        const linkBtn = document.getElementById("linkBtn");
+        const shareModal = document.getElementById("shareModal");
+        const shareModalContent = document.getElementById("shareModalContent");
+        const closeModal = document.getElementById("closeModal");
+        const shareLink = document.getElementById("shareLink");
+        const copyLinkBtn = document.getElementById("copyLinkBtn");
+        const copyFeedback = document.getElementById("copyFeedback");
+
+        // Generate dynamic share link
+        function generateShareLink(videoData) {
+          const baseUrl = window.location.origin + window.location.pathname;
+          return `${baseUrl}?video=${videoData.key}&title=${encodeURIComponent(
+            videoData.title
+          )}`;
+        }
+
+        // Show share modal
+        function showShareModal() {
+          const currentVideo = videoList[currentIndex];
+          const shareUrl = generateShareLink(currentVideo);
+          shareLink.value = shareUrl;
+
+          shareModal.classList.remove("hidden");
+          setTimeout(() => {
+            shareModalContent.classList.remove("scale-95", "opacity-0");
+            shareModalContent.classList.add("scale-100", "opacity-100");
+          }, 10);
+        }
+
+        // Hide share modal
+        function hideShareModal() {
+          shareModalContent.classList.remove("scale-100", "opacity-100");
+          shareModalContent.classList.add("scale-95", "opacity-0");
+          setTimeout(() => {
+            shareModal.classList.add("hidden");
+          }, 300);
+        }
+
+        async function copyToClipboard() {
+          const copyBtn = document.getElementById("copyBtnText");
+          const originalText = copyBtn.textContent;
+
+          try {
+            await navigator.clipboard.writeText(shareLink.value);
+            copyBtn.textContent = "Copied!";
+            copyFeedback.classList.remove("opacity-0");
+
+            setTimeout(() => {
+              copyFeedback.classList.add("opacity-0");
+              copyBtn.textContent = originalText;
+            }, 2000);
+          } catch (err) {
+            // Fallback for older browsers
+            shareLink.select();
+            shareLink.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand("copy");
+
+            copyBtn.textContent = "Copied!";
+            copyFeedback.classList.remove("opacity-0");
+
+            setTimeout(() => {
+              copyFeedback.classList.add("opacity-0");
+              copyBtn.textContent = originalText;
+            }, 2000);
+          }
+        }
+
+        function shareViaWhatsApp() {
+          const currentVideo = videoList[currentIndex];
+          const shareUrl = generateShareLink(currentVideo);
+          const text = `🎥 *${currentVideo.title}*\n\n${currentVideo.subtitle}\n\n📚 Category: ${currentVideo.category}\n\nWatch now:`;
+          window.open(
+            `https://wa.me/?text=${encodeURIComponent(text + " " + shareUrl)}`,
+            "_blank"
+          );
+        }
+
+        function shareViaEmail() {
+          const currentVideo = videoList[currentIndex];
+          const shareUrl = generateShareLink(currentVideo);
+          const subject = `📚 Financial Learning: ${currentVideo.title}`;
+          const body = `Hi there!\n\nI thought you might be interested in this financial education video:\n\n📺 ${currentVideo.title}\n📝 ${currentVideo.subtitle}\n📚 Category: ${currentVideo.category}\n\n${currentVideo.description}\n\nWatch it here: ${shareUrl}\n\nBest regards!`;
+          window.open(
+            `mailto:?subject=${encodeURIComponent(
+              subject
+            )}&body=${encodeURIComponent(body)}`,
+            "_blank"
+          );
+        }
+
+        // Sidebar category headers (toggle dropdown)
+        document.querySelectorAll(".category-header").forEach((header) => {
+          header.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const categoryGroup = header.closest(".category-group");
+            toggleCategoryDropdown(categoryGroup);
+          });
+        });
+
+        // Sidebar subcategory items (load video)
+        document.querySelectorAll(".subcategories [data-key]").forEach((el) => {
+          el.addEventListener("click", () => {
+            const key = el.dataset.key;
+            const idx = videoList.findIndex((v) => v.key === key);
+            if (idx >= 0) loadIndex(idx);
+          });
+        });
+
+        // Mobile category chips (show subcategories)
+        document.querySelectorAll(".category-chip").forEach((chip) => {
+          chip.addEventListener("click", () => {
+            const category = chip.dataset.category;
+            showSubcategoryChips(category);
+
+            // Update category chip selection
+            document.querySelectorAll(".category-chip").forEach((c) => {
+              const isSelected = c.dataset.category === category;
+              if (isSelected) {
+                c.classList.remove("bg-white", "border-gray-300");
+                c.classList.add("bg-blue-600", "border-transparent");
+                c.querySelectorAll("span, i").forEach((el) => {
+                  el.classList.remove("text-black");
+                  el.classList.add("text-white");
+                });
+              } else {
+                c.classList.remove("bg-blue-600", "border-transparent");
+                c.classList.add("bg-white", "border-gray-300");
+                c.querySelectorAll("span, i").forEach((el) => {
+                  el.classList.remove("text-white");
+                  el.classList.add("text-black");
+                });
+              }
+            });
+          });
+        });
+
+        // Attach click handlers to all elements with data-key
+        document.querySelectorAll("[data-key]").forEach((el) => {
+          el.addEventListener("click", () => {
+            const key = el.dataset.key;
+            const idx = videoList.findIndex((v) => v.key === key);
+            if (idx >= 0) loadIndex(idx);
+          });
+        });
+
+        // Next/Prev handlers
+        nextBtn.addEventListener("click", () => {
+          const next = (currentIndex + 1) % videoList.length;
+          loadIndex(next);
+        });
+
+        prevBtn.addEventListener("click", () => {
+          const prev = (currentIndex - 1 + videoList.length) % videoList.length;
+          loadIndex(prev);
+        });
+
+        // Share modal event listeners
+        shareBtn.addEventListener("click", showShareModal);
+        linkBtn.addEventListener("click", showShareModal);
+        closeModal.addEventListener("click", hideShareModal);
+        shareModal.addEventListener("click", (e) => {
+          if (e.target === shareModal) hideShareModal();
+        });
+
+        // Copy and share event listeners
+        copyLinkBtn.addEventListener("click", copyToClipboard);
+        document
+          .getElementById("shareWhatsApp")
+          .addEventListener("click", shareViaWhatsApp);
+        document
+          .getElementById("shareEmail")
+          .addEventListener("click", shareViaEmail);
+
+        // Keyboard support
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && !shareModal.classList.contains("hidden")) {
+            hideShareModal();
+          }
+        });
+
+        // Initialize first video on load
+        // loadIndex(getInitialVideoData(), false); // Original line removed for updated logic
+
+        // Updated initialization function to check URL parameters first
+        function initializeFromURL() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const videoKey = urlParams.get("video");
+
+          if (videoKey) {
+            // Find the video index by key
+            const videoIndex = videoList.findIndex((v) => v.key === videoKey);
+            if (videoIndex !== -1) {
+              loadIndex(videoIndex, false);
+              return;
+            }
+          }
+          // Fallback to first video if no valid key found
+          loadIndex(0, false);
+        }
+
+        // Call initialization function
+        initializeFromURL();
+
+        window.addEventListener("popstate", (event) => {
+          if (event.state && event.state.video) {
+            const videoIndex = videoList.findIndex(
+              (v) => v.key === event.state.video
+            );
+            if (videoIndex !== -1) {
+              loadIndex(videoIndex, false);
+            }
+          } else {
+            // If no state, fallback to default or first video
+            initializeFromURL();
+          }
+        });
+
+        // Helper function to toggle category dropdowns
+        function toggleCategoryDropdown(categoryGroupElement) {
+          const subcategories =
+            categoryGroupElement.querySelector(".subcategories");
+          const chevron =
+            categoryGroupElement.querySelector(".chevron-icon") || // Check for chevron-icon first
+            categoryGroupElement.querySelector(
+              '.category-header i[data-lucide="chevron-down"]'
+            ) || // Fallback for direct icon
+            categoryGroupElement.querySelector(
+              '.category-header svg[data-lucide="chevron-down"]'
+            ); // Fallback for SVG
+
+          const isOpen = !subcategories.classList.contains("hidden");
+
+          // Close all other dropdowns, except the current one if it's already open
+          document.querySelectorAll(".category-group").forEach((group) => {
+            if (group === categoryGroupElement) return;
+            group.querySelector(".subcategories")?.classList.add("hidden");
+            const otherChevron = group.querySelector(".chevron-icon");
+            if (otherChevron) {
+              otherChevron.classList.remove("rotated");
+            }
+          });
+
+          // Toggle current dropdown
+          if (isOpen) {
+            subcategories.classList.add("hidden");
+            if (chevron) chevron.classList.remove("rotated");
+          } else {
+            subcategories.classList.remove("hidden");
+            if (chevron) chevron.classList.add("rotated");
+          }
+        }
+
+        // Helper function to show subcategory chips
+        function showSubcategoryChips(category) {
+          const subChipsContainer =
+            document.getElementById("subChipsContainer");
+          const subcategories = subcategoryMapping[category];
+
+          if (!subcategories) {
+            document.getElementById("subChips")?.classList.add("hidden");
+            return;
+          }
+
+          // Clear existing chips
+          subChipsContainer.innerHTML = "";
+
+          // Add subcategory chips
+          subcategories.forEach((sub) => {
+            const chip = document.createElement("button");
+            chip.className =
+              "flex-shrink-0 px-3 py-1.5 rounded-full border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition text-xs font-medium";
+            chip.setAttribute("data-key", sub.key);
+            chip.textContent = sub.title;
+
+            chip.addEventListener("click", () => {
+              const idx = videoList.findIndex((v) => v.key === sub.key);
+              if (idx >= 0) loadIndex(idx);
+            });
+
+            subChipsContainer.appendChild(chip);
+          });
+
+          document.getElementById("subChips")?.classList.remove("hidden");
+          currentCategory = category;
+        }
+
+        // Update selected state for chips and sidebar
+        function updateSelected(key) {
+          // Update sidebar subcategory selection
+          document.querySelectorAll("[data-key]").forEach((el) => {
+            const isSelected = el.dataset.key === key;
+            el.classList.toggle("selected", isSelected);
+
+            // --- Adjust styling based on selection ---
+            const parentCategoryGroup = el.closest(".category-group");
+            const parentSubcategories =
+              parentCategoryGroup?.querySelector(".subcategories");
+            const isSubcategoryItem =
+              parentSubcategories && parentSubcategories.contains(el);
+
+            if (isSelected) {
+              el.classList.remove(
+                "bg-white",
+                "bg-gray-25",
+                "border-gray-300",
+                "border-gray-200"
+              );
+              el.classList.add("bg-blue-600", "border-transparent");
+            } else {
+              // Reset to default styles
+              el.classList.remove("bg-blue-600", "border-transparent");
+              if (isSubcategoryItem) {
+                el.classList.add("bg-gray-25", "border-gray-200");
+              } else {
+                el.classList.add("bg-white", "border-gray-300");
+              }
+            }
+
+            // --- Adjust text color ---
+            const textEl = el.querySelector("span");
+            if (textEl) {
+              if (isSelected) {
+                textEl.classList.remove("text-black", "text-gray-700");
+                textEl.classList.add("text-white");
+              } else {
+                textEl.classList.remove("text-white");
+                if (isSubcategoryItem) {
+                  textEl.classList.add("text-gray-700");
+                } else {
+                  textEl.classList.add("text-black");
+                }
+              }
+            }
+          });
+
+          // Update mobile subcategory chips
+          document
+            .querySelectorAll("#subChipsContainer [data-key]")
+            .forEach((chip) => {
+              const isSelected = chip.dataset.key === key;
+              if (isSelected) {
+                chip.classList.remove(
+                  "bg-white",
+                  "text-gray-700",
+                  "border-gray-300"
+                );
+                chip.classList.add(
+                  "bg-blue-600",
+                  "text-white",
+                  "border-transparent"
+                );
+              } else {
+                chip.classList.remove(
+                  "bg-blue-600",
+                  "text-white",
+                  "border-transparent"
+                );
+                chip.classList.add(
+                  "bg-white",
+                  "text-gray-700",
+                  "border-gray-300"
+                );
+              }
+            });
+        }
+
+        // Helper function to toggle category dropdowns - Refined
+        document.querySelectorAll(".category-header").forEach((header) => {
+          header.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const categoryGroup = header.closest(".category-group");
+            toggleCategoryDropdown(categoryGroup);
+          });
+        });
+
+        // Event listeners for subcategory items in the sidebar
+        document.querySelectorAll(".subcategories [data-key]").forEach((el) => {
+          el.addEventListener("click", () => {
+            const key = el.dataset.key;
+            const idx = videoList.findIndex((v) => v.key === key);
+            if (idx >= 0) {
+              loadIndex(idx);
+              // Optionally close the mobile menu if it's open
+              if (window.innerWidth < 1024) {
+                closeMobileMenu();
+              }
+            }
+          });
+        });
+
+        // Event listeners for category chips (mobile view)
+        document.querySelectorAll(".category-chip").forEach((chip) => {
+          chip.addEventListener("click", () => {
+            const category = chip.dataset.category;
+            showSubcategoryChips(category);
+
+            // Update category chip selection
+            document.querySelectorAll(".category-chip").forEach((c) => {
+              const isSelected = c.dataset.category === category;
+              if (isSelected) {
+                c.classList.remove("bg-white", "border-gray-300");
+                c.classList.add("bg-blue-600", "border-transparent");
+                c.querySelectorAll("span, i").forEach((el) => {
+                  el.classList.remove("text-black");
+                  el.classList.add("text-white");
+                });
+              } else {
+                c.classList.remove("bg-blue-600", "border-transparent");
+                c.classList.add("bg-white", "border-gray-300");
+                c.querySelectorAll("span, i").forEach((el) => {
+                  el.classList.remove("text-white");
+                  el.classList.add("text-black");
+                });
+              }
+            });
+          });
+        });
+
+        // Initialize first video on load based on URL or default
+        // loadIndex(getInitialVideoData(), false); // Original line removed for updated logic
+      </script>
+    </body>
+
+    <!-- =================================================================== -->
+    <!-- FOOTER SECTION - Company information and links -->
+    <!-- =================================================================== -->
+    <footer class="w-full bg-white border-t border-gray-200">
+      <!-- Top Nav Links -->
+      <div
+        class="max-w-7xl mx-auto px-6 py-6 flex flex-wrap justify-center md:justify-between gap-6 text-sm text-gray-700"
+      >
+        <a href="/about" class="hover:text-primary transition">About Us</a>
+        <a href="/services" class="hover:text-primary transition">Services</a>
+        <a href="/calculators" class="hover:text-primary transition"
+          >Calculators</a
+        >
+        <a href="/financial-literacy" class="hover:text-primary transition"
+          >Financial Literacy</a
+        >
+        <a href="/nri-corner" class="hover:text-primary transition"
+          >NRI Corner</a
+        >
+        <a href="/contact" class="hover:text-primary transition">Contact Us</a>
+      </div>
+
+      <!-- Middle Section -->
+      <div
+        class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+      >
+        <!-- Left: Info -->
+        <div class="space-y-4">
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=15.4038977,74.0086659"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+          >
+            <i data-lucide="map-pin" class="w-5 h-5 text-primary"></i> Our
+            Office
+          </a>
+          <a
+            href="mailto:invest@chimulkar.com"
+            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+          >
+            <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
+            invest@chimulkar.com
+          </a>
+          <a
+            href="tel:+918208031927"
+            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+          >
+            <i data-lucide="phone" class="w-5 h-5 text-primary"></i>
+            +91 82080 31927
+          </a>
+        </div>
+
+        <!-- Center: Logo -->
+        <div class="flex flex-col items-center">
+          <img
+            src="../assets/Logo.svg"
+            alt="Chimulkar Financial Services"
+            class="w-40 h-auto mb-4"
+          />
+          <p class="text-gray-800 text-sm">Chimulkar Financial Services</p>
+        </div>
+
+        <!-- Right: Reviews & Social -->
+        <div class="flex flex-col items-center md:items-end space-y-4">
+          <p class="text-gray-800">10+ Five-Star Google Reviews</p>
+          <div class="flex gap-1">
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+          </div>
+          <div class="flex gap-4">
+            <a
+              href="https://www.instagram.com/chimulkarfinancialservices?utm_source=ig_web_button_share_sheet&igsh=MWZxMnFsZTY4OHNmeg=="
+              target="_blank"
+              aria-label="Instagram"
+              class="bg-yellow-100 rounded-full p-2 hover:bg-yellow-200 transition"
+            >
+              <i data-lucide="instagram" class="w-5 h-5 text-gray-800"></i>
+            </a>
+            <a
+              href="https://www.youtube.com/@ChimulkarFinancialServices"
+              target="_blank"
+              aria-label="YouTube"
+              rel="noopener noreferrer"
+              class="bg-yellow-100 rounded-full p-2 hover:bg-yellow-200 transition"
+            >
+              <i data-lucide="youtube" class="w-5 h-5 text-gray-800"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="bg-[#161f48] text-gray-100 text-xs text-center py-4">
+        <div
+          class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2"
+        >
+          <p>© 2025 Chimulkar Financial Services | Financial Consultant</p>
+          <div class="flex gap-4">
+            <a href="/terms" class="hover:underline">Terms & Conditions</a>
+            <a href="/privacy-policy" class="hover:underline">Privacy Policy</a>
+            <a href="/sitemap" class="hover:underline">Sitemap</a>
+          </div>
+          <p class="text-gray-400">
+            Designed & Developed by
+            <a
+              href="https://github.com/Niraj-Paswan"
+              target="_blank"
+              class="text-white hover:underline"
+              >~Niraj Paswan</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Initialize Lucide icons after page load
+      lucide.createIcons();
+
+      // ===================================================================
+      // MOBILE MENU FUNCTIONALITY
+      // ===================================================================
+
+      // Get mobile menu elements
+      const mobileMenuToggle = document.getElementById("menuToggle");
+      const mobileMenuClose = document.getElementById("closeMenu");
+      const mobileMenuPanel = document.getElementById("mobileMenu");
+      const mobileMenuBackdrop = document.getElementById("backdrop");
+
+      // Open mobile menu function
+      function openMobileMenu() {
+        mobileMenuPanel.classList.remove("translate-x-full");
+        mobileMenuBackdrop.classList.remove("hidden");
+        setTimeout(() => mobileMenuBackdrop.classList.remove("opacity-0"), 10);
+      }
+
+      // Close mobile menu function
+      function closeMobileMenu() {
+        mobileMenuPanel.classList.add("translate-x-full");
+        mobileMenuBackdrop.classList.add("opacity-0");
+        setTimeout(() => mobileMenuBackdrop.classList.add("hidden"), 300);
+      }
+
+      // Event listeners for mobile menu
+      mobileMenuToggle.addEventListener("click", openMobileMenu);
+      mobileMenuClose.addEventListener("click", closeMobileMenu);
+      mobileMenuBackdrop.addEventListener("click", closeMobileMenu);
+    </script>
+  </body>
+</html>
