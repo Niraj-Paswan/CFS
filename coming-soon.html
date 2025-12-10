@@ -70,49 +70,67 @@
         <img
           src="./assets/CFS TRANSPARENT.png"
           alt="CFS Logo"
-          class="absolute top-4 lg:top-12 left-1/2 -translate-x-1/2 w-44 lg:w-64 max-w-xs"
+          class="absolute top-24 lg:top-28 left-1/2 -translate-x-1/2 w-44 lg:w-60 max-w-xs"
         />
 
         <!-- Social Icons -->
         <div
-          class="absolute bottom-12 lg:bottom-8 left-1/2 -translate-x-1/2 text-center"
+          class="absolute bottom-4 lg:bottom-8 left-1/2 -translate-x-1/2 text-center"
         >
-          <p class="text-sm text-gray-200 mb-4 font-medium">Stay Connected</p>
-          <div class="flex justify-center space-x-4">
-            <!-- Phone -->
+          <p class="text-lg text-gray-200 mb-4 font-semibold uppercase">
+            Stay Tuenued
+          </p>
+
+          <!-- Column on mobile, Row on desktop -->
+          <div
+            class="flex flex-row items-center space-x-4 mb-12 lg:mb-0 lg:space-y-0"
+          >
+            <!-- Phone Button -->
             <a
               href="tel:+918208031927"
               target="_blank"
-              class="w-10 h-10 lg:w-12 lg:h-12 bg-white border border-white/10 rounded-full flex items-center justify-center hover:border-secondary transition-colors duration-300"
+              class="flex items-center border border-transparent bg-primary hover:bg-secondary hover:border-secondary text-white pl-1.5 pr-5 py-1.5 rounded-full text-sm gap-3 group transition duration-300 hover:opacity-90"
             >
-              <i
-                data-lucide="phone"
-                class="w-5 h-5 lg:w-6 lg:h-6 fill-secondary stroke-0"
-              ></i>
+              <!-- Arrow bubble moved to LEFT -->
+              <span
+                class="bg-white text-black text-xs lg:text-base rounded-full p-2 flex items-center justify-center transition-transform"
+              >
+                <i data-lucide="phone" class="w-[18px] h-[18px]"></i>
+              </span>
+
+              Call
             </a>
 
-            <!-- Email -->
+            <!-- Email Button -->
             <a
-              href="mailto:info@chimulkarfinancial.com"
+              href="mailto:chimulkarfinancialservices@gmail.com"
               target="_blank"
-              class="w-10 h-10 lg:w-12 lg:h-12 bg-white border border-white/10 rounded-full flex items-center justify-center hover:border-secondary transition-colors duration-300"
+              class="flex items-center border border-transparent bg-primary hover:bg-secondary hover:border-secondary text-white pl-1.5 pr-5 py-1.5 rounded-full text-sm gap-3 group transition duration-300 hover:opacity-90"
             >
-              <i
-                data-lucide="mail-open"
-                class="w-5 h-5 lg:w-6 lg:h-6 fill-secondary stroke-white"
-              ></i>
+              <!-- Arrow bubble moved to LEFT -->
+              <span
+                class="bg-white text-black text-xs lg:text-base rounded-full p-2 flex items-center justify-center transition-transform"
+              >
+                <i data-lucide="mail" class="w-[18px] h-[18px]"></i>
+              </span>
+
+              Mail
             </a>
 
-            <!-- Location -->
+            <!-- Location Button -->
             <a
               href="https://www.google.com/maps/dir/?api=1&destination=15.4038977,74.0086659"
               target="_blank"
-              class="w-10 h-10 lg:w-12 lg:h-12 bg-white border border-white/10 rounded-full flex items-center justify-center hover:border-secondary transition-colors duration-300"
+              class="flex items-center border border-transparent bg-primary hover:bg-secondary hover:border-secondary text-white pl-1.5 pr-5 py-1.5 rounded-full text-sm gap-3 group transition duration-300 hover:opacity-90"
             >
-              <i
-                data-lucide="map-pin"
-                class="w-5 h-5 lg:w-6 lg:h-6 fill-secondary stroke-white"
-              ></i>
+              <!-- Arrow bubble moved to LEFT -->
+              <span
+                class="bg-white text-black text-xs lg:text-base rounded-full p-2 flex items-center justify-center transition-transform"
+              >
+                <i data-lucide="map-pin" class="w-[18px] h-[18px]"></i>
+              </span>
+
+              Locate
             </a>
           </div>
         </div>
