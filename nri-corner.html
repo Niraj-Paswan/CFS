@@ -1,0 +1,2684 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Page Title and Favicon -->
+    <title>NRI Corner - Chimulkar Financial Services</title>
+    <link rel="shortcut icon" href="../assets/Logo.svg" type="image/x-icon" />
+
+    <!-- External Stylesheets and Fonts -->
+    <link rel="stylesheet" href="../src/output.css" />
+    <!-- Tailwind CSS -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Lucide Icons -->
+
+    <!-- Google Fonts - Poppins for consistent typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+    </style>
+  </head>
+  <body class="">
+    <header class="bg-secondary shadow-sm fixed w-full top-0 z-50">
+      <div
+        class="mx-6 lg:mx-12 px-2 py-3 flex items-center justify-between relative"
+      >
+        <!-- Logo -->
+        <a href="../index.html" class="flex items-center gap-2">
+          <img
+            src="../assets/CFS TRANSPARENT.png"
+            class="h-12 w-auto"
+            alt="Chimulkar Financial Services Logo"
+          />
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex gap-10 text-[16px] font-medium items-center">
+          <!-- About Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              About <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute top-full left-0 mt-3 text-sm bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="../about-us.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="building-2" class="w-5 h-5"></i> About Us
+              </a>
+
+              <!-- Nested Team Dropdown -->
+              <div class="relative group/team">
+                <button
+                  class="flex items-center justify-between w-full gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                >
+                  <span class="flex items-center gap-3">
+                    <i data-lucide="users" class="w-5 h-5"></i> Our Team
+                  </span>
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+                <div
+                  class="absolute top-0 left-full ml-2 bg-white rounded-2xl p-2 min-w-[12rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover/team:opacity-100 group-hover/team:visible transition-all duration-200"
+                >
+                  <a
+                    href="../teams/Prashant-Chimulkar.html"
+                    class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                  >
+                    <i data-lucide="user" class="w-5 h-5"></i> Prashant
+                  </a>
+                  <a
+                    href="../teams/Pranav-Chimulkar.html"
+                    class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                  >
+                    <i data-lucide="user" class="w-5 h-5"></i> Pranav
+                  </a>
+                </div>
+              </div>
+
+              <a
+                href="../foundation.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="heart-handshake" class="w-5 h-5"></i> Foundation
+              </a>
+            </div>
+          </div>
+
+          <!-- Services Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              Services <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="../services/mutual-funds.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="layers" class="w-5 h-5"></i> Mutual Funds
+              </a>
+              <a
+                href="../services/retirement-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="calendar-check" class="w-5 h-5"></i> Retirement
+                Planning
+              </a>
+              <a
+                href="../services/tax-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="file-text" class="w-5 h-5"></i> Tax Planning
+              </a>
+              <a
+                href="../services/insurance-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="shield-check" class="w-5 h-5"></i> Insurance
+                Planning
+              </a>
+              <a
+                href="../services/education-savings.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                Education Savings
+              </a>
+              <a
+                href="../services/legacy-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="archive" class="w-5 h-5"></i> Legacy Planning
+              </a>
+            </div>
+          </div>
+
+          <!-- Calculator Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              Calculator <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="../calculators/sip-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="calculator" class="w-5 h-5"></i> SIP Calculator
+              </a>
+              <a
+                href="../calculators/lump-sump-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="percent" class="w-5 h-5"></i> Lump Sum
+              </a>
+              <a
+                href="../calculators/swp-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="activity" class="w-5 h-5"></i> SWP Calculator
+              </a>
+              <a
+                href="../calculators/inflation-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="trending-up" class="w-5 h-5"></i> Inflation
+                Calculator
+              </a>
+            </div>
+          </div>
+
+          <!-- Financial Literacy Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              Financial Literacy
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="#lit-1"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="book-open" class="w-5 h-5"></i> Basics
+              </a>
+              <a
+                href="#lit-2"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="lightbulb" class="w-5 h-5"></i> Tips & Guides
+              </a>
+              <a
+                href="#lit-3"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="play-circle" class="w-5 h-5"></i> Video Lessons
+              </a>
+            </div>
+          </div>
+
+          <!-- Simple links -->
+          <a href="#nri-corner" class="text-white hover:text-primary transition"
+            >NRI Corner</a
+          >
+          <a
+            href="../contact-us.html"
+            class="text-white hover:text-primary transition"
+            >Contact Us</a
+          >
+          <a
+            href="../refer-us.html"
+            class="text-white hover:text-primary transition"
+            >Refer Us</a
+          >
+        </nav>
+
+        <!-- CTA Button -->
+        <a
+          href="#"
+          class="hidden md:inline-flex items-center border border-transparent bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+        >
+          Get Free Assessment
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="menuToggle"
+          class="md:hidden p-2 bg-gray-50 border border-gray-300 rounded-full hover:bg-gray-100"
+        >
+          <i data-lucide="align-right" class="w-6 h-6 text-secondary"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Announcement Bar - Positioned below navbar -->
+    <div
+      class="fixed top-[72px] w-full h-12 bg-strokes z-40 flex items-center justify-center px-4 text-sm"
+    >
+      <a
+        href="#"
+        class="flex items-center font-semibold text-black hover:underline"
+      >
+        Get a no cost, no commitment assessment
+      </a>
+      <a
+        href="#"
+        class="hidden lg:inline-flex font-semibold items-center text-white mr-2"
+      >
+        <span class="text-black mx-2">|</span> Celebrating 40 Years of Trust
+      </a>
+    </div>
+
+    <!-- Mobile Menu Backdrop - Dark overlay when mobile menu is open -->
+    <div
+      id="backdrop"
+      class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 hidden opacity-0 transition"
+    ></div>
+
+    <!-- =================================================================== -->
+    <!-- MOBILE NAVIGATION MENU - Slide-in from right -->
+    <!-- =================================================================== -->
+    <div
+      id="mobileMenu"
+      class="md:hidden fixed top-0 right-0 h-full max-w-xs bg-white shadow-xl transform translate-x-full transition duration-300 z-50 flex flex-col justify-between overflow-y-auto"
+    >
+      <!-- Mobile menu content -->
+      <div class="p-6 flex flex-col gap-4">
+        <!-- Mobile menu header with logo and close button -->
+        <div class="flex justify-between items-center mb-4">
+          <img src="../assets/Logo.svg" class="h-10" alt="Logo" />
+          <button
+            id="closeMenu"
+            class="p-2 bg-gray-50 text-secondary border border-gray-300 rounded-full hover:bg-gray-100 hover:cursor-pointer"
+          >
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <!-- Mobile navigation links -->
+
+        <!-- Mobile About Us Accordion -->
+        <!-- About Us (mobile accordion) -->
+
+        <style>
+          /* hide default marker */
+          summary {
+            list-style: none;
+          }
+          summary::-webkit-details-marker {
+            display: none;
+          }
+
+          /* rotate only the chevron inside the SAME details > summary */
+          details > summary .chev {
+            transition: transform 0.2s ease;
+            display: inline-flex;
+          }
+          details[open] > summary .chev {
+            transform: rotate(180deg);
+          }
+        </style>
+
+        <details>
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="info" class="w-4 h-4"></i> About
+            </span>
+            <span class="chev"
+              ><i data-lucide="chevron-down" class="w-4 h-4"></i
+            ></span>
+          </summary>
+
+          <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+            <a
+              href="../about-us.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+            >
+              <i data-lucide="building-2" class="w-4 h-4"></i> About Us
+            </a>
+
+            <!-- Nested team -->
+            <details>
+              <summary
+                class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-primary hover:text-white cursor-pointer"
+              >
+                <span class="flex items-center gap-2">
+                  <i data-lucide="users" class="w-4 h-4"></i> Our Team
+                </span>
+                <span class="chev"
+                  ><i data-lucide="chevron-down" class="w-4 h-4"></i
+                ></span>
+              </summary>
+
+              <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+                <a
+                  href="../teams/Prashant-Chimulkar.html"
+                  class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+                >
+                  <i data-lucide="user" class="w-4 h-4"></i> Prashant
+                </a>
+                <a
+                  href="../teams/Pranav-Chimulkar.html"
+                  class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+                >
+                  <i data-lucide="user" class="w-4 h-4"></i> Pranav
+                </a>
+              </div>
+            </details>
+            <a
+              href="../foundation.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+            >
+              <i data-lucide="heart-handshake" class="w-4 h-4"></i> Foundation
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Services Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="briefcase" class="w-4 h-4"></i> Services
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+
+          <!-- Sub-links -->
+          <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+            <a
+              href="../services/mutual-funds.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="layers" class="w-4 h-4"></i> Mutual Funds
+            </a>
+            <a
+              href="../services/retirement-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="calendar-check" class="w-4 h-4"></i> Retirement
+              Planning
+            </a>
+            <a
+              href="../services/tax-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="file-text" class="w-4 h-4"></i> Tax Planning
+            </a>
+            <a
+              href="../services/insurance-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="shield-check" class="w-4 h-4"></i> Insurance
+              Planning
+            </a>
+            <a
+              href="../services/education-savings.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i> Education
+              Savings
+            </a>
+
+            <a
+              href="../services/legacy-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="archive" class="w-4 h-4"></i> Legacy Planning
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Calculator Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="circle-divide" class="w-4 h-4"></i> Calculators
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+          <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
+            <a
+              href="../calculators/sip-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="calculator" class="w-4 h-4"></i> SIP Calculator
+            </a>
+            <a
+              href="../calculators/lump-sump-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="percent" class="w-4 h-4"></i> Lump Sum
+            </a>
+
+            <a
+              href="../calculators/swp-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
+            </a>
+            <a
+              href="../calculators/inflation-calculator.html"
+              class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-lg cursor-pointer"
+            >
+              <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
+              Calculator
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Financial Literacy Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i> Financial
+              Literacy
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+          <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
+            <a
+              href="#lit-1"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="book-open" class="w-4 h-4"></i> Basics
+            </a>
+            <a
+              href="#lit-2"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="lightbulb" class="w-4 h-4"></i> Tips & Guides
+            </a>
+            <a
+              href="#lit-3"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="play-circle" class="w-4 h-4"></i> Video Lessons
+            </a>
+          </div>
+        </details>
+
+        <!-- Additional mobile navigation links -->
+        <a
+          href="#nri-corner"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="globe" class="w-4 h-4"></i> NRI Corner
+        </a>
+        <a
+          href="../contact-us.html"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="phone-call" class="w-4 h-4"></i> Contact Us
+        </a>
+        <a
+          href="../refer-us.html"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="heart-handshake" class="w-4 h-4"></i> Refer Us
+        </a>
+      </div>
+
+      <!-- Mobile CTA button at bottom -->
+      <div class="p-6">
+        <a
+          href="#"
+          class="inline-flex items-center bg-primary text-secondary pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:bg-secondary hover:text-white"
+        >
+          Get Free Assessment
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative w-full h-full flex items-left lg:items-center">
+      <!-- Desktop Background Image -->
+      <img
+        src="../assets/father-mother-kissing-daugther.png"
+        class="hidden lg:block w-full h-full object-cover"
+        alt="Education Savings Background"
+        loading="lazy"
+      />
+
+      <!-- Mobile Background Image -->
+      <img
+        src="../assets/women-handshake.png"
+        class="block lg:hidden w-full h-full object-cover mt-12"
+        alt="Education Savings Mobile Background"
+        loading="lazy"
+      />
+
+      <!-- Gradient Overlay -->
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/100 to-transparent"
+      ></div>
+
+      <!-- Text Content -->
+      <div
+        class="absolute inset-0 flex flex-col justify-center items-start lg:items-start px-6 lg:px-24 text-white max-w-[1050px] mt-64 lg:mt-44"
+      >
+        <p class="text-sm lg:text-lg uppercase mb-2 text-start">NRI Hub</p>
+        <h2
+          class="text-xl lg:text-5xl font-medium leading-snug mb-4 text-start"
+        >
+          Investments Simplified for NRIs and<br class="hidden lg:blocks" />
+          OCIs who believe in India’s story
+        </h2>
+        <p class="text-sm lg:text-lg mb-6 text-white text-start">
+          Trusted & authorised partners for your investments in India.
+          <br class="hidden lg:block" />
+          Utilize your existing NRE/NRO funds to invest steadily and
+          <br class="hidden lg:block" />
+          grow your wealth over time.
+        </p>
+
+        <a
+          href="../index.html#consultation"
+          class="flex w-fit items-center font-semibold border border-transparent bg-primary text-black pl-5 pr-3 py-2 lg:py-2.5 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+        >
+          Schedule my FREE Clarity Call
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Body Section -->
+    <section class="max-w-8xl py-20 px-6 lg:px-24 overflow-hidden">
+      <h1
+        class="text-3xl lg:text-5xl font-semibold text-black text-satrt lg:text-center mb-12 lg:mb-24"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        Balance your life in a foreign country, <br class="hidden lg:block" />
+        and your connection to
+        <span class="font-bold text-bluee uppercase">INDIA</span>.
+      </h1>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Left Image Grid -->
+        <div
+          class="grid grid-cols-2 grid-rows-2 gap-3"
+          data-aos="zoom-in"
+          data-aos-delay="300"
+        >
+          <!-- Big image -->
+          <img
+            src="../assets/three-friends.png"
+            alt="Image 1"
+            class="col-span-1 row-span-2 rounded-2xl object-cover w-full h-full"
+            loading="lazy"
+          />
+          <!-- Top right small -->
+          <img
+            src="../assets/laptop-couple.png"
+            alt="Image 2"
+            class="rounded-2xl object-cover w-full h-full"
+            loading="lazy"
+          />
+          <!-- Bottom right tall -->
+          <img
+            src="../assets/indian-family-in-paris.png"
+            alt="Image 4"
+            class="col-span-1 row-span-2 rounded-2xl object-cover w-full h-full"
+            loading="lazy"
+          />
+          <!-- Bottom full width -->
+          <img
+            src="../assets/women-on-back-of-friend.png"
+            alt="Image 3"
+            class="rounded-2xl object-cover w-full h-full"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Right Text -->
+        <div
+          class="flex flex-col gap-12"
+          data-aos="fade-left"
+          data-aos-delay="400"
+        >
+          <div>
+            <h2
+              class="text-2xl md:text-3xl font-semibold mb-4"
+              data-aos="fade-up"
+              data-aos-delay="500"
+            >
+              The Unspoken
+            </h2>
+            <p
+              class="text-gray-700 leading-relaxed text-base"
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              Managing your finances in India from thousands of miles away can
+              be a constant source of anxiety. The complex rules on taxation,
+              repatriation, and investment options often lead to uncertainty.
+              The lack of a trusted partner on the ground can make you feel
+              disconnected from your own money.
+            </p>
+          </div>
+
+          <div>
+            <h2
+              class="text-2xl md:text-3xl font-semibold mb-4"
+              data-aos="fade-up"
+              data-aos-delay="700"
+            >
+              Your <span class="text-blue-600">Blueprint</span>
+            </h2>
+            <p
+              class="text-gray-700 leading-relaxed text-base"
+              data-aos="fade-up"
+              data-aos-delay="800"
+            >
+              You need a streamlined approach to financial management that
+              bridges the distance, a blueprint that is designed to simplify the
+              complexities, providing you with a clear path to managing your
+              Indian assets. So you remain in control, no matter where you are.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Did You Know Section -->
+    <section class="bg-strokes/15 py-20 px-6 lg:px-24">
+      <div class="max-w-7xl">
+        <!-- Small heading -->
+        <p
+          class="text-lg lg:text-xl font-semibold mb-4 text-start lg:text-left"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          Did you <span class="text-blue-600">Know?</span>
+        </p>
+
+        <!-- Big Stat -->
+        <h2
+          class="text-2xl md:text-4xl font-semibold mb-6 text-start lg:text-left text-gray-900 leading-snug"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          IMF says, India is the world’s fastest-growing major economy
+        </h2>
+
+        <!-- Description -->
+        <p
+          class="text-gray-700 text-base md:text-lg leading-relaxed text-start lg:text-left max-w-6xl"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
+          IMF says, India is the world’s fastest-growing major economy The
+          International Monetary Fund (IMF) has revised its forecast for India’s
+          economic growth to 6.4% for both 2025 and 2026. While China is
+          forecast to grow at 4.8% in 2025 and 4.2% in 2026, and the US at 1.9%
+          in 2025 and 2.0% in 2026.
+        </p>
+      </div>
+    </section>
+
+    <!-- About Mutual Funds Section With Video (Hidden) -->
+    <section class="hidden w-full py-20 px-6 lg:px-24 bg-white">
+      <div
+        class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+      >
+        <!-- Left Content -->
+        <div
+          class="flex flex-col items-start justify-center text-left"
+          data-aos="fade-right"
+          data-aos-duration="1000"
+          data-aos-delay="100"
+        >
+          <h2
+            class="text-3xl md:text-5xl font-semibold text-gray-900 leading-snug"
+          >
+            About <span class="text-blue-600">Mutual Funds</span>
+          </h2>
+          <p class="text-base mb-4 lg:mb-12 lg:text-lg text-black">
+            A quick overview of mutual funds and how to invest in them.
+          </p>
+          <p class="mt-6 text-gray-600 leading-relaxed">
+            Investing in Mutual funds shouldn't feel overwhelming. It should be
+            straightforward and accessible, even if you're new to investing. We
+            offer access to a wide variety of funds, a simplified investment
+            process, and the ongoing support you need to navigate your financial
+            journey with confidence.
+          </p>
+          <a
+            href="#"
+            class="w-fit inline-flex mt-8 items-center justify-center border border-transparent bg-primary hover:bg-secondary hover:border-secondary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition-transform hover:opacity-90 mx-auto lg:mx-0"
+            data-aos="zoom-in"
+            data-aos-duration="800"
+            data-aos-delay="300"
+          >
+            Watch more Videos
+            <span
+              class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+            >
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </a>
+        </div>
+
+        <!-- Right Video (9:16 reel style) -->
+        <div
+          class="mx-auto w-full max-w-xs lg:max-w-xs aspect-[9/16] rounded-2xl overflow-hidden bg-blue-400 shadow-md"
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        >
+          <video
+            src="../assets/call.mp4"
+            class="w-full h-full object-cover"
+            autoplay
+            loading="lazy"
+            loop
+            playsinline
+            controls
+          ></video>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-20 px-6 lg:px-24 relative overflow-hidden">
+      <div class="max-w-[1500px]">
+        <h1
+          class="text-3xl lg:text-5xl font-semibold text-start lg:text-start mb-8"
+        >
+          Serving NRIs and OCIs from
+          <span class="text-blue-600">12+ countries</span>
+          <!-- Using standard Tailwind color instead of arbitrary value -->
+          <p class="text-base lg:text-lg font-medium mt-4 text-gray-600">
+            Great financial services made available
+            <br class="hidden lg:inline" />
+            wherever you are
+          </p>
+        </h1>
+
+        <div class="relative w-full h-auto">
+          <!-- World Map -->
+          <img
+            src="./assets/World-Map.svg"
+            class="w-full h-auto opacity-90"
+            alt="World Map"
+          />
+
+          <!-- Enhanced SVG with much more visible stroke lines -->
+          <svg
+            class="absolute inset-0 w-full h-full z-10"
+            style="pointer-events: none"
+          >
+            <defs>
+              <linearGradient
+                id="lineGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
+                <stop
+                  offset="0%"
+                  style="stop-color: #1e40af; stop-opacity: 1"
+                />
+                <stop
+                  offset="50%"
+                  style="stop-color: #2563eb; stop-opacity: 1"
+                />
+                <stop
+                  offset="100%"
+                  style="stop-color: #1e40af; stop-opacity: 1"
+                />
+              </linearGradient>
+
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                <feMerge>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- Enhanced curved paths with more dramatic curves and smoother flow -->
+            <!-- USA -> GOA with dramatic arc over Atlantic -->
+            <path
+              d="M 18% 35% Q 30% 15% 45% 25% T 62% 55%"
+              stroke="#2e57c8"
+              stroke-width="4"
+              fill="none"
+              stroke-dasharray="12 8"
+              filter="url(#glow)"
+              opacity="0.9"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                from="0"
+                to="-320"
+                dur="5s"
+                repeatCount="indefinite"
+              />
+            </path>
+
+            <!-- UK -> GOA with elegant European curve -->
+            <path
+              d="M 44% 25% Q 50% 10% 58% 35% T 62% 55%"
+              stroke="#2e57c8"
+              stroke-width="4"
+              fill="none"
+              stroke-dasharray="12 8"
+              filter="url(#glow)"
+              opacity="0.9"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                from="0"
+                to="-320"
+                dur="4s"
+                repeatCount="indefinite"
+              />
+            </path>
+
+            <!-- Canada -> GOA with northern arc -->
+            <path
+              d="M 20% 22% Q 35% 5% 50% 30% T 62% 55%"
+              stroke="#2e57c8"
+              stroke-width="4"
+              fill="none"
+              stroke-dasharray="12 8"
+              filter="url(#glow)"
+              opacity="0.9"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                from="0"
+                to="-320"
+                dur="6s"
+                repeatCount="indefinite"
+              />
+            </path>
+
+            <!-- Australia -> GOA with southern ocean curve -->
+            <path
+              d="M 80% 75% Q 75% 85% 70% 70% T 62% 55%"
+              stroke="#2e57c8"
+              stroke-width="4"
+              fill="none"
+              stroke-dasharray="12 8"
+              filter="url(#glow)"
+              opacity="0.9"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                from="0"
+                to="-320"
+                dur="4.5s"
+                repeatCount="indefinite"
+              />
+            </path>
+
+            <!-- New Zealand -> GOA with Pacific curve -->
+            <path
+              d="M 86% 82% Q 80% 90% 75% 75% T 62% 55%"
+              stroke="#2e57c8"
+              stroke-width="4"
+              fill="none"
+              stroke-dasharray="12 8"
+              filter="url(#glow)"
+              opacity="0.9"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                from="0"
+                to="-320"
+                dur="5.5s"
+                repeatCount="indefinite"
+              />
+            </path>
+
+            <!-- Germany -> GOA with central European arc -->
+            <path
+              d="M 47% 28% Q 52% 15% 58% 40% T 62% 55%"
+              stroke="#2e57c8"
+              stroke-width="4"
+              fill="none"
+              stroke-dasharray="12 8"
+              filter="url(#glow)"
+              opacity="0.9"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                from="0"
+                to="-320"
+                dur="3.5s"
+                repeatCount="indefinite"
+              />
+            </path>
+
+            <!-- UAE -> GOA with gentle Middle Eastern curve -->
+            <path
+              d="M 58% 45% Q 59% 40% 61% 50% T 62% 55%"
+              stroke="#2e57c8"
+              stroke-width="4"
+              fill="none"
+              stroke-dasharray="12 8"
+              filter="url(#glow)"
+              opacity="0.9"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                from="0"
+                to="-320"
+                dur="2.5s"
+                repeatCount="indefinite"
+              />
+            </path>
+
+            <!-- Oman -> GOA with Arabian Sea curve -->
+            <path
+              d="M 56% 50% Q 58% 45% 60% 52% T 62% 55%"
+              stroke="#2e57c8"
+              stroke-width="4"
+              fill="none"
+              stroke-dasharray="12 8"
+              filter="url(#glow)"
+              opacity="0.9"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                from="0"
+                to="-320"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </path>
+
+            <!-- Singapore -> GOA with Southeast Asian curve -->
+            <path
+              d="M 68% 58% Q 66% 50% 64% 56% T 62% 55%"
+              stroke="#2e57c8"
+              stroke-width="4"
+              fill="none"
+              stroke-dasharray="12 8"
+              filter="url(#glow)"
+              opacity="0.9"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                from="0"
+                to="-320"
+                dur="3s"
+                repeatCount="indefinite"
+              />
+            </path>
+
+            <!-- Portugal -> GOA with Iberian curve -->
+            <path
+              d="M 40% 30% Q 45% 20% 52% 40% T 62% 55%"
+              stroke="#2e57c8"
+              stroke-width="4"
+              fill="none"
+              stroke-dasharray="12 8"
+              filter="url(#glow)"
+              opacity="0.9"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                from="0"
+                to="-320"
+                dur="4.2s"
+                repeatCount="indefinite"
+              />
+            </path>
+
+            <!-- Saudi Arabia -> GOA with Arabian Peninsula curve -->
+            <path
+              d="M 55% 48% Q 57% 43% 60% 51% T 62% 55%"
+              stroke="#2e57c8"
+              stroke-width="4"
+              fill="none"
+              stroke-dasharray="12 8"
+              filter="url(#glow)"
+              opacity="0.9"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                from="0"
+                to="-320"
+                dur="2.8s"
+                repeatCount="indefinite"
+              />
+            </path>
+          </svg>
+
+          <!-- Enhanced markers with better z-index positioning -->
+          <button
+            data-country="USA"
+            class="marker absolute w-4 h-4 bg-blue-600 rounded-full shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-125 hover:shadow-xl border-2 border-white z-20"
+            style="top: 30%; left: 12%"
+          >
+            <div
+              class="absolute inset-0 bg-blue-600 rounded-full animate-ping opacity-30"
+            ></div>
+          </button>
+
+          <button
+            data-country="UK"
+            class="marker absolute w-4 h-4 bg-blue-600 rounded-full shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-125 hover:shadow-xl border-2 border-white z-20"
+            style="top: 19%; left: 42%"
+          >
+            <div
+              class="absolute inset-0 bg-blue-600 rounded-full animate-ping opacity-30"
+            ></div>
+          </button>
+
+          <button
+            data-country="Canada"
+            class="marker absolute w-4 h-4 bg-blue-600 rounded-full shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-125 hover:shadow-xl border-2 border-white z-20"
+            style="top: 16%; left: 16%"
+          >
+            <div
+              class="absolute inset-0 bg-blue-600 rounded-full animate-ping opacity-30"
+            ></div>
+          </button>
+
+          <button
+            data-country="Australia"
+            class="marker absolute w-4 h-4 bg-blue-600 rounded-full shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-125 hover:shadow-xl border-2 border-white z-20"
+            style="top: 72%; left: 84%"
+          >
+            <div
+              class="absolute inset-0 bg-blue-600 rounded-full animate-ping opacity-30"
+            ></div>
+          </button>
+
+          <button
+            data-country="New Zealand"
+            class="marker absolute w-4 h-4 bg-blue-600 rounded-full shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-125 hover:shadow-xl border-2 border-white z-20"
+            style="top: 82%; left: 94%"
+          >
+            <div
+              class="absolute inset-0 bg-blue-600 rounded-full animate-ping opacity-30"
+            ></div>
+          </button>
+
+          <button
+            data-country="Germany"
+            class="marker absolute w-4 h-4 bg-blue-600 rounded-full shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-125 hover:shadow-xl border-2 border-white z-20"
+            style="top: 24%; left: 45%"
+          >
+            <div
+              class="absolute inset-0 bg-blue-600 rounded-full animate-ping opacity-30"
+            ></div>
+          </button>
+
+          <button
+            data-country="UAE"
+            class="marker absolute w-4 h-4 bg-blue-600 rounded-full shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-125 hover:shadow-xl border-2 border-white z-20"
+            style="top: 39%; left: 59%"
+          >
+            <div
+              class="absolute inset-0 bg-blue-600 rounded-full animate-ping opacity-30"
+            ></div>
+          </button>
+
+          <button
+            data-country="Oman"
+            class="marker absolute w-4 h-4 bg-blue-600 rounded-full shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-125 hover:shadow-xl border-2 border-white z-20"
+            style="top: 40%; left: 61%"
+          >
+            <div
+              class="absolute inset-0 bg-blue-600 rounded-full animate-ping opacity-30"
+            ></div>
+          </button>
+
+          <button
+            data-country="Singapore"
+            class="marker absolute w-4 h-4 bg-blue-600 rounded-full shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-125 hover:shadow-xl border-2 border-white z-20"
+            style="top: 54%; left: 75%"
+          >
+            <div
+              class="absolute inset-0 bg-blue-600 rounded-full animate-ping opacity-30"
+            ></div>
+          </button>
+
+          <button
+            data-country="Portugal"
+            class="marker absolute w-4 h-4 bg-blue-600 rounded-full shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-125 hover:shadow-xl border-2 border-white z-20"
+            style="top: 30%; left: 40%"
+          >
+            <div
+              class="absolute inset-0 bg-blue-600 rounded-full animate-ping opacity-30"
+            ></div>
+          </button>
+
+          <button
+            data-country="Saudi Arabia"
+            class="marker absolute w-4 h-4 bg-blue-600 rounded-full shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-125 hover:shadow-xl border-2 border-white z-20"
+            style="top: 41%; left: 57.5%"
+          >
+            <div
+              class="absolute inset-0 bg-blue-600 rounded-full animate-ping opacity-30"
+            ></div>
+          </button>
+
+          <!-- Simplified HQ marker with standard classes -->
+          <div
+            class="absolute w-6 h-6 bg-red-500 rounded-full shadow-xl border-4 border-white transform transition-all duration-300 hover:scale-110"
+            style="top: 44%; left: 66%"
+          >
+            <div
+              class="absolute inset-0 bg-red-500 rounded-full animate-pulse opacity-40"
+            ></div>
+            <div
+              class="absolute -inset-2 bg-red-500 rounded-full animate-ping opacity-20"
+            ></div>
+          </div>
+          <p
+            class="absolute text-center text-xs lg:text-sm font-medium lg:font-semibold text-gray-800 bg-white bg-opacity-80 px-2 py-1 rounded-lg shadow-md"
+            style="top: 49%; left: 63%"
+          >
+            HQ<br />GOA
+          </p>
+
+          <!-- Simplified popup with better positioning -->
+          <div
+            id="popup"
+            class="hidden absolute bg-black text-white text-xs lg:text-base font-medium px-2 py-1.5 lg:px-4 lg:py-3 rounded-lg lg:rounded-xl z-50 transition-all duration-300 flex items-center gap-2"
+          >
+            <img
+              id="popup-flag"
+              src=""
+              alt="Flag"
+              class="w-5 h-5 rounded-sm border hidden lg:block"
+            />
+            <span id="popup-text"></span>
+          </div>
+          <script>
+            const markers = document.querySelectorAll(".marker");
+            const popup = document.getElementById("popup");
+            const popupText = document.getElementById("popup-text");
+            const popupFlag = document.getElementById("popup-flag");
+
+            const flagUrls = {
+              USA: "https://flagcdn.com/us.svg",
+              UK: "https://flagcdn.com/gb.svg",
+              Canada: "https://flagcdn.com/ca.svg",
+              Australia: "https://flagcdn.com/au.svg",
+              "New Zealand": "https://flagcdn.com/nz.svg",
+              Germany: "https://flagcdn.com/de.svg",
+              UAE: "https://flagcdn.com/ae.svg",
+              Oman: "https://flagcdn.com/om.svg",
+              Singapore: "https://flagcdn.com/sg.svg",
+              Portugal: "https://flagcdn.com/pt.svg",
+              "Saudi Arabia": "https://flagcdn.com/sa.svg",
+            };
+
+            markers.forEach((marker) => {
+              marker.addEventListener("click", (e) => {
+                const country = marker.dataset.country;
+                popupText.textContent = country;
+                popupFlag.src = flagUrls[country];
+
+                popup.style.top = marker.style.top;
+                popup.style.left = marker.style.left;
+                popup.classList.remove("hidden");
+              });
+            });
+          </script>
+        </div>
+
+        <!-- Simplified JavaScript with better error handling -->
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            const markers = document.querySelectorAll(".marker");
+            const popup = document.getElementById("popup");
+            const popupText = document.getElementById("popup-text");
+
+            markers.forEach((marker) => {
+              marker.addEventListener("click", function (e) {
+                const country = this.getAttribute("data-country");
+                popupText.textContent = country + "";
+
+                const rect = this.getBoundingClientRect();
+                const container = this.offsetParent.getBoundingClientRect();
+
+                popup.style.left = rect.left - container.left + 25 + "px";
+                popup.style.top = rect.top - container.top - 50 + "px";
+
+                popup.classList.remove("hidden");
+
+                console.log("[v0] Showing popup for:", country);
+              });
+
+              marker.addEventListener("mouseenter", function () {
+                this.style.transform = "scale(1.3)";
+              });
+
+              marker.addEventListener("mouseleave", function () {
+                this.style.transform = "scale(1)";
+              });
+            });
+
+            document.addEventListener("click", function (e) {
+              if (!e.target.closest(".marker")) {
+                popup.classList.add("hidden");
+              }
+            });
+          });
+        </script>
+      </div>
+    </section>
+
+    <!-- Our Approach -->
+    <section class="bg-secondary text-white px-6 lg:px-24 overflow-hidden">
+      <div
+        class="max-w-fit grid grid-cols-1 lg:grid-cols-2 gap-12 py-20 lg:py-0"
+      >
+        <!-- Left Column -->
+        <div
+          class="flex flex-col justify-center text-start lg:text-start"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          <h2 class="text-3xl md:text-5xl font-semibold mb-4">
+            Our <span class="text-strokes">Approach</span>
+          </h2>
+          <p
+            class="text-gray-300 text-base lg:text-lg leading-relaxed mb-6 lg:mb-0"
+          >
+            We believe in a proactive, goal oriented approach to your Indian
+            finances. Our process is designed to give you clarity and control,
+            no matter where you are in the world.
+          </p>
+        </div>
+
+        <!-- Right Column -->
+        <div
+          class="lg:w-3xl rounded-2xl lg:rounded-none border border-bluee lg:border-l"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+        >
+          <!-- Vision -->
+          <div
+            class="p-10 lg:p-12 border-b border-bluee flex flex-col gap-3"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <!-- Icon + Heading in one row -->
+            <div class="flex items-center gap-3">
+              <i data-lucide="eye" class="w-8 h-8 text-strokes"></i>
+              <h3 class="text-xl font-semibold">Understand your goals</h3>
+            </div>
+
+            <!-- Paragraph -->
+            <p class="text-gray-300 text-sm leading-relaxed">
+              We start by having a detailed conversation about your financial
+              goals in India—whether it's building a retirement corpus, funding
+              your family’s needs, or securing property.
+            </p>
+          </div>
+
+          <!-- Plan -->
+          <div
+            class="p-10 lg:p-12 border-b border-bluee flex flex-col gap-3"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <!-- Icon + Heading Row -->
+            <div class="flex items-center gap-3">
+              <i data-lucide="target" class="w-8 h-8 text-strokes"></i>
+              <h3 class="text-xl font-semibold">Build a Strategic Plan</h3>
+            </div>
+
+            <!-- Paragraph -->
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Based on your goals, you need to design a smart, tax-efficient,
+              and fully compliant financial plan. This includes choosing the
+              right investment products and structuring your portfolio to align
+              with your goals
+            </p>
+          </div>
+
+          <!-- Journey -->
+          <div
+            class="p-10 lg:p-12 flex flex-col gap-3"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <!-- Icon + Heading Row -->
+            <div class="flex items-center gap-3">
+              <i data-lucide="search" class="w-8 h-8 text-strokes"></i>
+              <h3 class="text-xl font-semibold">Manage with Ease</h3>
+            </div>
+
+            <!-- Paragraph -->
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Easily track your investments, monitor their performance, and make
+              new contributions. We ensure every step of your financial journey
+              is seamless, transparent, and manageable from anywhere.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Your Advantage -->
+    <section class="bg-white py-20 px-6 lg:px-24 overflow-hidden">
+      <div
+        class="flex flex-col justify-center text-start lg:text-start"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <h2 class="text-3xl md:text-5xl font-semibold mb-4">
+          Your <span class="text-bluee"> Advantage </span>
+        </h2>
+        <p
+          class="text-black text-base text-start lg:text-lg leading-relaxed mb-6 lg:mb-0"
+        >
+          When you partner with us, rest assured <br class="hidden lg:block" />
+          you are in highly capable hands.
+        </p>
+      </div>
+
+      <div
+        class="max-w-7xl mt-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+      >
+        <!-- Left Image -->
+        <div data-aos="zoom-in" data-aos-duration="1200">
+          <img
+            src="../assets/two-friends-using-mobile.png"
+            alt="Couple checking phone"
+            class="rounded-2xl shadow-lg w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Right Content -->
+        <div class="space-y-8">
+          <!-- Features -->
+          <div data-aos="fade-left" data-aos-delay="200">
+            <h3 class="text-xl font-semibold mb-2 text-start">
+              Regulated & Reliable
+            </h3>
+            <p class="text-900 text-base leading-relaxed text-start">
+              Our team is registered and regulated by authorities like AMFI and
+              SEBI, ensuring we operate with the highest standards of integrity.
+            </p>
+          </div>
+
+          <div data-aos="fade-left" data-aos-delay="400">
+            <h3 class="text-xl font-semibold mb-2 text-start">
+              Experienced & Knowledgeable
+            </h3>
+            <p class="text-900 text-base leading-relaxed text-start">
+              Our team is well-qualified and experienced across all aspects of
+              personal finance, from wealth creation to risk management.
+            </p>
+          </div>
+
+          <div data-aos="fade-left" data-aos-delay="600">
+            <h3 class="text-xl font-semibold mb-2 text-start">
+              Goal-Oriented Partnership
+            </h3>
+            <p class="text-900 text-base leading-relaxed text-start">
+              We are fully aligned with your goals and interests, not with
+              pushing random products. Because, our success is tied to yours.
+            </p>
+          </div>
+
+          <div data-aos="fade-left" data-aos-delay="800">
+            <h3 class="text-xl font-semibold mb-2 text-start">Kind & Human</h3>
+            <p class="text-900 text-base leading-relaxed text-start">
+              We offer a non-judgmental space for your financial questions and
+              concerns, because everyone deserves a partner who is both an
+              expert and a guide.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Did You Know Section 2 -->
+    <section class="bg-strokes/15 py-20 px-6 lg:px-24 overflow-hidden">
+      <div
+        class="max-w-6xl text-start lg:text-start"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <!-- Small heading -->
+        <p class="text-lg lg:text-xl font-semibold mb-4">
+          Did you <span class="text-blue-600">Know?</span>
+        </p>
+
+        <!-- Big Stat -->
+        <h2
+          class="text-2xl md:text-4xl font-semibold mb-6 text-start"
+          data-aos="fade-right"
+          data-aos-delay="200"
+        >
+          India became the 4th largest global economy in 2025
+        </h2>
+
+        <!-- Description -->
+        <p
+          class="text-gray-700 text-base md:text-lg leading-relaxed text-start"
+          data-aos="fade-left"
+          data-aos-delay="400"
+        >
+          According to PIB (GOI), India is the world’s fastest-growing major
+          economy, with real GDP growing at 6.5% and nominal GDP tripling from
+          ₹106.57 lakh crore (2014–15) to ₹331.03 lakh crore (2024–25).
+        </p>
+      </div>
+    </section>
+
+    <style>
+      /* Hide scrollbar for mobile scroll */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+
+    <!-- NRI Types TABS -->
+    <div
+      class="max-w-fit py-20 px-6 lg:px-24"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
+      <!-- ========== TAB NAVIGATION - Refined Modern Tabs ========== -->
+      <!-- TAB NAVIGATION -->
+      <!-- ========== SECTION TITLE + TABS WRAPPER ========== -->
+      <div class="flex flex-col justify-center mb-10 gap-6 lg:gap-12">
+        <!-- LEFT TEXT BLOCK -->
+        <div
+          class="flex flex-col justify-center text-start lg:text-start"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          <h2 class="text-3xl md:text-5xl font-semibold mb-4">
+            What best describes<span class="text-bluee"> you? </span>
+          </h2>
+          <p
+            class="text-black text-base text-start lg:text-lg leading-relaxed mb-6 lg:mb-0"
+          >
+            Every NRI's financial journey is unique. Find tailored
+            <br class="hidden lg:block" />
+            solutions for your specific life stage and goals.
+            <br class="hidden lg:block" />
+          </p>
+        </div>
+
+        <!-- RIGHT TABS -->
+        <div
+          class="flex overflow-x-auto no-scrollbar bg-white gap-1 rounded-full p-1 border border-slate-300/80 max-w-full self-center"
+        >
+          <!-- Tab 1 -->
+          <button
+            class="tab-btn active flex items-center gap-2.5 px-5 py-3 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap cursor-pointer"
+            data-tab="moving"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              class="icon"
+            >
+              <path d="M2 22h20" />
+              <path
+                d="M6.36 17.4 4 17l-2-4 1.1-.55a2 2 0 0 1 1.8 0l.17.1a2 2 0 0 0 1.8 0L8 12 5 6l.9-.45a2 2 0 0 1 2.09.2l4.02 3a2 2 0 0 0 2.1.2l4.19-2.06a2.41 2.41 0 0 1 1.73-.17L21 7a1.4 1.4 0 0 1 .87 1.99l-.38.76c-.23.46-.6.84-1.07 1.08L7.58 17.2a2 2 0 0 1-1.22.18Z"
+              />
+            </svg>
+            <span>Moving abroad</span>
+          </button>
+
+          <!-- Tab 2 -->
+          <button
+            class="tab-btn flex items-center gap-2.5 px-5 py-3 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap cursor-pointer"
+            data-tab="study"
+          >
+            <svg
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              class="icon"
+            >
+              <path
+                d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"
+              />
+              <path d="M22 10v6" />
+              <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+            </svg>
+            <span>Study abroad</span>
+          </button>
+
+          <!-- Tab 3 -->
+          <button
+            class="tab-btn flex items-center gap-2.5 px-5 py-3 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap cursor-pointer"
+            data-tab="settled"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-briefcase-business-icon lucide-briefcase-business"
+            >
+              <path d="M12 12h.01" />
+              <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+              <path d="M22 13a18.15 18.15 0 0 1-20 0" />
+              <rect width="20" height="14" x="2" y="6" rx="2" />
+            </svg>
+            <span>Settled abroad</span>
+          </button>
+
+          <!-- Tab 4 -->
+          <button
+            class="tab-btn flex items-center gap-2.5 px-5 py-3 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap cursor-pointer"
+            data-tab="returning"
+          >
+            <svg
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              class="icon"
+            >
+              <path d="M2 22h20" />
+              <path
+                d="M3.77 10.77 2 9l2-4.5 1.1.55c.55.28.9.84.9 1.45s.35 1.17.9 1.45L8 8.5l3-6 1.05.53a2 2 0 0 1 1.09 1.52l.72 5.4a2 2 0 0 0 1.09 1.52l4.4 2.2c.42.22.78.55 1.01.96l.6 1.03c.49.88-.06 1.98-1.06 2.1l-1.18.15c-.47.06-.95-.02-1.37-.24L4.29 11.15a2 2 0 0 1-.52-.38Z"
+              />
+            </svg>
+            <span>Returning to India</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ========== TAB CONTENT ========== -->
+
+      <!-- Moving Abroad Content -->
+      <!-- Added items-start to prevent cards from stretching -->
+      <div
+        id="moving"
+        class="tab-content flex flex-col lg:flex-row lg:items-start gap-8"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <!-- Left: Image -->
+        <div class="lg:w-[320px] flex-shrink-0">
+          <img
+            src="../assets/woamn-using-calculator.png"
+            alt="Professional woman with phone"
+            class="rounded-3xl w-full h-[410px] object-cover"
+          />
+        </div>
+
+        <!-- Right: Info Cards Grid -->
+        <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          <div
+            class="bg-white rounded-2xl p-8 border border-gray-300 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              Opening the right accounts
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              Understand the purpose of NRE and NRO accounts, so you can manage
+              your foreign and Indian earnings correctly and ensure your funds
+              are fully repatriable when needed.
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-3xl p-8 border border-gray-300 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              Understanding tax implications
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              Learn about your tax obligations both in India and in your new
+              country of residence including the impact of Double Taxation
+              Avoidance Agreements (DTAA).
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-3xl p-8 border border-gray-300 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              Managing your existing assets
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              Create a strategy for your current assets, including your bank
+              accounts, mutual funds etc. and ensure your portfolio remains
+              compliant with NRI regulations.
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-3xl p-8 border border-gray-300 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              Securing Your Family back home
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              Create a systematic investment plan for your family's needs,
+              manage their insurance policies, and ensure sufficient funds are
+              easily accessible to them when required.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Study Abroad Content -->
+      <!-- Added items-start to prevent cards from stretching -->
+      <div
+        id="study"
+        class="tab-content flex flex-col lg:flex-row lg:items-start gap-8"
+      >
+        <div class="lg:w-[320px] flex-shrink-0">
+          <img
+            src="../assets/laptop-couple.png"
+            alt="Student studying abroad"
+            class="rounded-3xl w-full h-[410px] object-cover"
+          />
+        </div>
+
+        <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div
+            class="bg-white rounded-3xl p-8 border border-slate-200 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              Seamless Fund Transfers
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              Managing tuition fees and living expenses seamlessly so the focus
+              stays on academics without worrying about money getting to the
+              right place at the right time.
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-3xl p-8 border border-slate-200 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              Budgeting for Your Goals
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              Create a practical budget that ensures your money not only covers
+              your daily expenses but also allows for unexpected costs and lasts
+              throughout the academic year
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-3xl p-8 border border-slate-200 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              Managing your savings
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              Effectively manage your existing bank accounts and investments
+              from abroad and ensure it remains compliant, so you can leverage
+              it for your future goals.
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-3xl p-8 border border-slate-200 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              Building a financial foundation
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              The years you spend studying abroad are the perfect time to start
+              building your financial foundation. Even a small, systematic
+              investment can grow significantly over time.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settled Abroad Content -->
+      <!-- Added items-start to prevent cards from stretching -->
+      <div
+        id="settled"
+        class="tab-content hidden flex flex-col lg:flex-row lg:items-start gap-8"
+      >
+        <div class="lg:w-[320px] flex-shrink-0">
+          <img
+            src="../assets/indian-family-in-paris.png"
+            alt="Professional settled abroad"
+            class="rounded-3xl w-full h-[410px] object-cover"
+          />
+        </div>
+
+        <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div
+            class="bg-white rounded-3xl p-8 border border-gray-300 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              Stragegy and diversification
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              Build a diversified portfolio of mutual funds that aligns with
+              your long term goals. Monitor and manage your investments
+              remotely.
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-3xl p-8 border border-gray-300 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              Tax optimised investments
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              Navigate complex cross-border tax issues and understand how to
+              manage your tax liabilities on Indian income and capital gains.
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-3xl p-8 border border-gray-300 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              Planing your legacy effectively
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              Plan your retirement with a dual-country perspective, considering
+              pension portability, healthcare needs, and lifestyle goals in your
+              golden years.
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-3xl p-8 border border-gray-300 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              Repatriation & Fund Management
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              Seek expert guidance on the rules and process for repatriating
+              funds and managing your NRE and NRO accounts without any hassles.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Returning to India Content -->
+      <!-- Added items-start to prevent cards from stretching -->
+      <div
+        id="returning"
+        class="tab-content hidden flex flex-col lg:flex-row lg:items-start gap-8"
+      >
+        <div class="lg:w-[320px] flex-shrink-0">
+          <img
+            src="../assets/women-on-back-of-friend.png"
+            alt="Person returning to India"
+            class="rounded-3xl w-full h-[400px] object-cover"
+          />
+        </div>
+
+        <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div
+            class="bg-white rounded-3xl p-8 border border-gray-300 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              Closing your NRI Accounts
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              The first step to a smooth return is to convert your NRE/NRO
+              accounts to resident accounts. Ensure all your funds and accounts
+              are in order and compliant with the law.
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-3xl p-8 border border-gray-300 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              Managing Tax Implications
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              You need to understand the tax consequences of repatriating your
+              foreign-earned income and assets so that your return is seamless
+              and tax-efficient
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-3xl p-8 border border-gray-300 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              Reinvesting Your Wealth
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              You have an opportunity to put your foreign-earned wealth back to
+              work in the Indian economy. Build a smart investment plan that
+              aligns with your new financial goals and lifestyle in India.
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-3xl p-8 border border-gray-300 transition-all duration-200"
+          >
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">
+              A Fresh Financial Start
+            </h3>
+            <p class="text-slate-800 text-sm leading-relaxed">
+              Build a new financial plan tailored to your life back home. From
+              setting up a retirement corpus to planning for your family's
+              needs, ensure you have a clear financial roadmap for your life in
+              India.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+      const tabButtons = document.querySelectorAll(".tab-btn");
+      const tabContents = document.querySelectorAll(".tab-content");
+
+      tabButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const targetTab = button.dataset.tab;
+
+          // Remove active state from all buttons
+          tabButtons.forEach((btn) => {
+            btn.classList.remove("bg-blue-600", "text-white", "shadow-md");
+            btn.classList.add("text-black", "hover:bg-slate-100");
+          });
+
+          // Add active state to clicked button
+          button.classList.add("bg-blue-600", "text-white", "shadow-md");
+          button.classList.remove("text-black", "hover:bg-slate-100");
+
+          // Hide all content sections
+          tabContents.forEach((content) => {
+            content.classList.add("hidden");
+          });
+
+          // Show the target content
+          document.getElementById(targetTab).classList.remove("hidden");
+        });
+      });
+
+      // Initialize first tab as active on load
+      document.querySelector('.tab-btn[data-tab="moving"]').click();
+    </script>
+
+    <!-- Peace of Mind Section -->
+    <section class="bg-white py-20 px-6 lg:px-24">
+      <div class="max-w-fit">
+        <!-- Heading -->
+        <div class="mb-10" data-aos="fade-up" data-aos-duration="1000">
+          <h2
+            class="text-3xl md:text-5xl font-semibold mb-4 text-start lg:text-start"
+          >
+            Goal based investment <span class="text-blue-600">Solutions</span>
+          </h2>
+          <p
+            class="text-black text-base lg:text-lg leading-relaxed text-start lg:text-start"
+          >
+            Explore focused strategies and investment options
+            <br class="hidden lg:block" />
+            for the goals that matter most to you.
+          </p>
+        </div>
+
+        <!-- Image -->
+        <div class="mb-12" data-aos="zoom-in" data-aos-duration="1000">
+          <img
+            src="../assets/three-friends-in-park.png"
+            alt="Meditating woman"
+            class="rounded-2xl w-full object-cover shadow-lg"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Bottom Text Blocks -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20">
+          <!-- Block 1 -->
+          <div data-aos="fade-right" data-aos-delay="200">
+            <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+              Retirement Corpus
+            </h3>
+            <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+              Ensure financial independence in your golden years. By investing
+              systematically and building a substantial corpus, you can live
+              your retirement on your own terms, without financial worries.
+            </p>
+          </div>
+
+          <!-- Block 2 -->
+          <div data-aos="fade-left" data-aos-delay="400">
+            <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+              Wealth Creation
+            </h3>
+            <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+              Whether it's achieving your first crore or growing your assets for
+              a life-changing milestone, explore curated strategies to help you
+              build and grow your wealth.
+            </p>
+          </div>
+
+          <!-- Block3 -->
+          <div data-aos="fade-right" data-aos-delay="400">
+            <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+              Property Purchase Planning
+            </h3>
+            <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+              Turn your dream of owning a home into reality. Save and invest
+              smartly for the down payment and future home loan EMIs, making
+              your property dreams achievable.
+            </p>
+          </div>
+
+          <!-- Block 4 -->
+          <div data-aos="fade-left" data-aos-delay="400">
+            <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+              Monthly Fixed Income
+            </h3>
+            <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+              Diversify your portfolio with to achieve a balanced approach with
+              strategies like a Systematic Withdrawal Plan (SWP), that can help
+              you create a consistent income stream.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Did You Know Section 2 -->
+    <section class="bg-secondary text-white py-20 px-6 lg:px-24">
+      <div
+        class="max-w-4xl mx-auto flex flex-col items-center text-start lg:text-center"
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-once="true"
+      >
+        <!-- Small Heading -->
+        <p
+          class="text-3xl lg:text-5xl font-semibold mb-6 text-start lg:text-center"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          Ready for the big move?
+        </p>
+
+        <!-- Description -->
+        <p
+          class="text-white text-base md:text-lg font-medium leading-relaxed mb-10 text-start lg:text-center"
+          data-aos="fade-up"
+          data-aos-delay="250"
+        >
+          Every good thing starts with a conversation. Let’s turn your dreams
+          into a clear, actionable plan. Schedule a free call to start building
+          your financial roadmap today.
+        </p>
+
+        <!-- Button -->
+        <a
+          href="../index.html#consultation"
+          class="flex w-fit items-center font-semibold border border-transparent bg-primary text-black pl-5 pr-3 py-2 lg:py-2.5 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+          data-aos="zoom-in"
+          data-aos-delay="400"
+        >
+          Schedule my FREE Clarity Call
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section
+      id="faq"
+      class="mb-2 bg-transparent p-5 max-w-fit py-20 px-6 lg:px-24"
+    >
+      <div class="text-start mb-8">
+        <h2 class="text-3xl md:text-5xl font-semibold mb-3">
+          Frequently Asked <span class="text-blue-600">Questions</span>
+        </h2>
+        <p class="text-black text-base lg:text-lg mb-12">
+          Everything You Need to Know
+        </p>
+      </div>
+
+      <div
+        class="bg-white text-black border border-gray-300 rounded-2xl divide-y divide-gray-200"
+      >
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Can NRIs invest in Indian mutual funds?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes, NRIs can invest in Indian mutual funds by opening either an
+              NRE or NRO account and completing the mandatory KYC process as per
+              FEMA and SEBI regulations.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What documents are required for NRI mutual fund investment?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Required documents include a PAN card, proof of overseas address,
+              a valid passport, visa or OCI/PIO card, and bank details
+              (NRE/NRO).
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Which account type—NRE or NRO—is better for NRI mutual fund
+              investment?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              NRE accounts are ideal for investments that you want to repatriate
+              freely, while NRO accounts suit income earned or held in India;
+              NRO is non-repatriable except up to USD 1 million per financial
+              year.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Is KYC needed for NRIs moving or studying abroad?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes, new NRIs must update their KYC with overseas address proof
+              and relevant documents once their residency status changes.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Can NRIs continue SIPs after moving abroad or while studying?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes, NRIs can start or continue SIPs in Indian mutual funds
+              provided their accounts and KYC are updated with NRI status and
+              proper bank details.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How do currency fluctuations impact NRI mutual fund returns?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Returns are subject to currency risk—when converting INR returns
+              to another currency (USD, GBP, AED), fluctuations can affect
+              actual gains.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What is DTAA and how does it help NRIs?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              DTAA is an agreement between India and other countries to avoid
+              double taxation. NRIs can avail treaty benefits by submitting
+              relevant forms and proof of residence.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 8 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What happens to mutual fund investments if an NRI returns to
+              India?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              You need to update KYC, switch bank accounts from NRE/NRO to
+              resident accounts, and your tax status changes to resident for
+              future gains.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 9 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Are there funds NRIs from the US or Canada cannot invest in?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes, some Indian AMCs restrict investment by NRIs from the US and
+              Canada due to FATCA compliance; check eligibility before
+              investing.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 10 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Can NRIs invest in mutual funds online from anywhere?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes, Chimulkar Financial Services helps NRIs to invest online from
+              anywhere in the world after completing KYC and using NRE/NRO
+              accounts.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        faqItems.forEach((item) => {
+          const question = item.querySelector(".faq-question");
+          const answer = item.querySelector(".faq-answer");
+          const icon = item.querySelector(".faq-icon");
+
+          question.addEventListener("click", function () {
+            const isOpen =
+              answer.style.maxHeight && answer.style.maxHeight !== "0px";
+
+            // Close all other FAQ items
+            faqItems.forEach((otherItem) => {
+              if (otherItem !== item) {
+                const otherAnswer = otherItem.querySelector(".faq-answer");
+                const otherIcon = otherItem.querySelector(".faq-icon");
+                otherAnswer.style.maxHeight = "0px";
+                otherIcon.style.transform = "rotate(0deg)";
+              }
+            });
+
+            // Toggle current item
+            if (isOpen) {
+              answer.style.maxHeight = "0px";
+              icon.style.transform = "rotate(0deg)";
+            } else {
+              answer.style.maxHeight = answer.scrollHeight + "px";
+              icon.style.transform = "rotate(45deg)";
+            }
+          });
+        });
+      });
+    </script>
+
+    <!-- =================================================================== -->
+    <!-- FOOTER SECTION - Company information and links -->
+    <!-- =================================================================== -->
+    <footer class="w-full bg-white border-t border-gray-200 mb-12 lg:mb-0">
+      <!-- Top Nav Links -->
+      <div
+        class="max-w-7xl mx-auto px-6 py-6 flex flex-wrap justify-center md:justify-between gap-6 text-sm text-blueeborder-bluee"
+      >
+        <a href="/about" class="hover:text-primary transition">About Us</a>
+        <a href="/services" class="hover:text-primary transition">Services</a>
+        <a href="/calculators" class="hover:text-primary transition"
+          >Calculators</a
+        >
+        <a href="/financial-literacy" class="hover:text-primary transition"
+          >Financial Literacy</a
+        >
+        <a href="/nri-corner" class="hover:text-primary transition"
+          >NRI Corner</a
+        >
+        <a href="/contact" class="hover:text-primary transition">Contact Us</a>
+      </div>
+
+      <!-- Middle Section -->
+      <div
+        class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+      >
+        <!-- Left: Info -->
+        <div class="space-y-4">
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=15.4038977,74.0086659"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+          >
+            <i data-lucide="map-pin" class="w-5 h-5 text-primary"></i> Our
+            Office
+          </a>
+          <a
+            href="mailto:invest@chimulkar.com"
+            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+          >
+            <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
+            invest@chimulkar.com
+          </a>
+          <a
+            href="tel:+918208031927"
+            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+          >
+            <i data-lucide="phone" class="w-5 h-5 text-primary"></i>
+            +91 82080 31927
+          </a>
+        </div>
+
+        <!-- Center: Logo -->
+        <div class="flex flex-col items-center">
+          <img
+            src="../assets/Logo.svg"
+            alt="Chimulkar Financial Services"
+            class="w-40 h-auto mb-4"
+          />
+          <p class="text-gray-800 text-sm">Chimulkar Financial Services</p>
+        </div>
+
+        <!-- Right: Reviews & Social -->
+        <div class="flex flex-col items-center md:items-end space-y-4">
+          <p class="text-gray-800">10+ Five-Star Google Reviews</p>
+          <div class="flex gap-1">
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+          </div>
+          <div class="flex gap-4">
+            <a
+              href="https://www.instagram.com/chimulkarfinancialservices?utm_source=ig_web_button_share_sheet&igsh=MWZxMnFsZTY4OHNmeg=="
+              target="_blank"
+              aria-label="Instagram"
+              class="bg-yellow-100 rounded-full p-2 hover:bg-yellow-200 transition"
+            >
+              <i data-lucide="instagram" class="w-5 h-5 text-gray-800"></i>
+            </a>
+            <a
+              href="https://www.youtube.com/@ChimulkarFinancialServices"
+              target="_blank"
+              aria-label="YouTube"
+              rel="noopener noreferrer"
+              class="bg-yellow-100 rounded-full p-2 hover:bg-yellow-200 transition"
+            >
+              <i data-lucide="youtube" class="w-5 h-5 text-gray-800"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="bg-[#161f48] text-gray-100 text-xs text-center py-4">
+        <div
+          class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2"
+        >
+          <p>© 2025 Chimulkar Financial Services | Financial Consultant</p>
+          <div class="flex gap-4">
+            <a href="/terms" class="hover:underline">Terms & Conditions</a>
+            <a href="/privacy-policy" class="hover:underline">Privacy Policy</a>
+            <a href="/sitemap" class="hover:underline">Sitemap</a>
+          </div>
+          <p class="text-gray-400">
+            Designed & Developed by
+            <a
+              href="https://github.com/Niraj-Paswan"
+              target="_blank"
+              class="text-white hover:underline"
+              >~Niraj Paswan</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Schedule Free Clarity Call Banner -->
+    <div
+      class="block lg:hidden fixed bottom-0 w-full h-12 bg-secondary z-40 flex items-center justify-center px-4 text-sm overflow-hidden"
+    >
+      <a
+        href="../index.html#consultation"
+        class="inline-flex font-semibold items-center border border-transparent text-white rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+      >
+        Schedule Free clarity call
+        <span
+          class="bg-white text-black rounded-full p-1 flex items-center justify-center transition-transform group-hover:translate-x-1"
+        >
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </span>
+      </a>
+
+      <!-- Shine overlay applied to full div -->
+      <span
+        class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 shine-effect pointer-events-none"
+      ></span>
+    </div>
+
+    <style>
+      /* Shine animation for full div */
+      @keyframes shine {
+        0% {
+          transform: translateX(-150%) skewX(-12deg);
+        }
+        100% {
+          transform: translateX(150%) skewX(-12deg);
+        }
+      }
+
+      .shine-effect {
+        animation: shine 3s infinite;
+        animation-delay: 4s; /* adds a pause so it's not too flashy */
+      }
+    </style>
+
+    <!-- =================================================================== -->
+    <!-- EXTERNAL LIBRARIES AND SCRIPTS -->
+    <!-- =================================================================== -->
+
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      // Initialize AOS animations
+      AOS.init();
+    </script>
+
+    <!-- =================================================================== -->
+    <!-- CUSTOM JAVASCRIPT - All interactive functionality -->
+    <!-- =================================================================== -->
+    <script>
+      // Initialize Lucide icons after page load
+      lucide.createIcons();
+
+      // ===================================================================
+      // MOBILE MENU FUNCTIONALITY
+      // ===================================================================
+
+      // Get mobile menu elements
+      const mobileMenuToggle = document.getElementById("menuToggle");
+      const mobileMenuClose = document.getElementById("closeMenu");
+      const mobileMenuPanel = document.getElementById("mobileMenu");
+      const mobileMenuBackdrop = document.getElementById("backdrop");
+
+      // Open mobile menu function
+      function openMobileMenu() {
+        mobileMenuPanel.classList.remove("translate-x-full");
+        mobileMenuBackdrop.classList.remove("hidden");
+        setTimeout(() => mobileMenuBackdrop.classList.remove("opacity-0"), 10);
+      }
+
+      // Close mobile menu function
+      function closeMobileMenu() {
+        mobileMenuPanel.classList.add("translate-x-full");
+        mobileMenuBackdrop.classList.add("opacity-0");
+        setTimeout(() => mobileMenuBackdrop.classList.add("hidden"), 300);
+      }
+
+      // Event listeners for mobile menu
+      mobileMenuToggle.addEventListener("click", openMobileMenu);
+      mobileMenuClose.addEventListener("click", closeMobileMenu);
+      mobileMenuBackdrop.addEventListener("click", closeMobileMenu);
+    </script>
+  </body>
+</html>
