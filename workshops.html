@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Page Title and Favicon -->
+    <title>Workshops - Chimulkar Financial Services</title>
+    <link rel="shortcut icon" href="../assets/Logo.svg" type="image/x-icon" />
+
+    <!-- External Stylesheets and Fonts -->
+    <link rel="stylesheet" href="../src/output.css" />
+    <!-- Tailwind CSS -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Lucide Icons -->
+
+    <!-- Google Fonts - Poppins for consistent typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+    </style>
+  </head>
+  <body class="overflow-x-hidden">
+    <header class="bg-secondary shadow-sm fixed w-full top-0 z-50">
+      <div
+        class="mx-6 lg:mx-12 px-2 py-3 flex items-center justify-between relative"
+      >
+        <!-- Logo -->
+        <a href="../index.html" class="flex items-center gap-2">
+          <img
+            src="../assets/CFS TRANSPARENT.png"
+            class="h-12 w-auto"
+            alt="Chimulkar Financial Services Logo"
+          />
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex gap-10 text-[16px] font-medium items-center">
+          <!-- About Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              About <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute top-full left-0 mt-3 text-sm bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="../about-us.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="building-2" class="w-5 h-5"></i> About Us
+              </a>
+
+              <!-- Nested Team Dropdown -->
+              <div class="relative group/team">
+                <button
+                  class="flex items-center justify-between w-full gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                >
+                  <span class="flex items-center gap-3">
+                    <i data-lucide="users" class="w-5 h-5"></i> Our Team
+                  </span>
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+                <div
+                  class="absolute top-0 left-full ml-2 bg-white rounded-2xl p-2 min-w-[12rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover/team:opacity-100 group-hover/team:visible transition-all duration-200"
+                >
+                  <a
+                    href="../teams/Prashant-Chimulkar.html"
+                    class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                  >
+                    <i data-lucide="user" class="w-5 h-5"></i> Prashant
+                  </a>
+                  <a
+                    href="../teams/Pranav-Chimulkar.html"
+                    class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                  >
+                    <i data-lucide="user" class="w-5 h-5"></i> Pranav
+                  </a>
+                </div>
+              </div>
+
+              <a
+                href="../foundation.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="heart-handshake" class="w-5 h-5"></i> Foundation
+              </a>
+            </div>
+          </div>
+
+          <!-- Services Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              Services <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="../services/mutual-funds.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="layers" class="w-5 h-5"></i> Mutual Funds
+              </a>
+              <a
+                href="../services/retirement-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="calendar-check" class="w-5 h-5"></i> Retirement
+                Planning
+              </a>
+              <a
+                href="../services/tax-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="file-text" class="w-5 h-5"></i> Tax Planning
+              </a>
+              <a
+                href="../services/insurance-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="shield-check" class="w-5 h-5"></i> Insurance
+                Planning
+              </a>
+              <a
+                href="../services/education-savings.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                Education Savings
+              </a>
+              <a
+                href="../services/legacy-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="archive" class="w-5 h-5"></i> Legacy Planning
+              </a>
+            </div>
+          </div>
+
+          <!-- Calculator Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              Calculator <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="../calculators/sip-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="calculator" class="w-5 h-5"></i> SIP Calculator
+              </a>
+              <a
+                href="../calculators/lump-sump-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="percent" class="w-5 h-5"></i> Lump Sum
+              </a>
+              <a
+                href="../calculators/swp-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="activity" class="w-5 h-5"></i> SWP Calculator
+              </a>
+              <a
+                href="../calculators/inflation-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="trending-up" class="w-5 h-5"></i> Inflation
+                Calculator
+              </a>
+            </div>
+          </div>
+
+          <!-- Financial Literacy Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              Financial Literacy
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="#lit-1"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="book-open" class="w-5 h-5"></i> Basics
+              </a>
+              <a
+                href="#lit-2"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="lightbulb" class="w-5 h-5"></i> Tips & Guides
+              </a>
+              <a
+                href="#lit-3"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="play-circle" class="w-5 h-5"></i> Video Lessons
+              </a>
+            </div>
+          </div>
+
+          <!-- Simple links -->
+          <a href="#nri-corner" class="text-white hover:text-primary transition"
+            >NRI Corner</a
+          >
+          <a
+            href="../contact-us.html"
+            class="text-white hover:text-primary transition"
+            >Contact Us</a
+          >
+          <a
+            href="../refer-us.html"
+            class="text-white hover:text-primary transition"
+            >Refer Us</a
+          >
+        </nav>
+
+        <!-- CTA Button -->
+        <a
+          href="#"
+          class="hidden md:inline-flex items-center border border-transparent bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+        >
+          Get Free Assessment
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="menuToggle"
+          class="md:hidden p-2 bg-gray-50 border border-gray-300 rounded-full hover:bg-gray-100"
+        >
+          <i data-lucide="align-right" class="w-6 h-6 text-secondary"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Announcement Bar - Positioned below navbar -->
+    <div
+      class="fixed top-[72px] w-full h-12 bg-strokes z-40 flex items-center justify-center px-4 text-sm"
+    >
+      <a
+        href="#"
+        class="flex items-center font-semibold text-black hover:underline"
+      >
+        Get a no cost, no commitment assessment
+      </a>
+      <a
+        href="#"
+        class="hidden lg:inline-flex font-semibold items-center text-white mr-2"
+      >
+        <span class="text-black mx-2">|</span> Celebrating 40 Years of Trust
+      </a>
+    </div>
+
+    <!-- Mobile Menu Backdrop - Dark overlay when mobile menu is open -->
+    <div
+      id="backdrop"
+      class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 hidden opacity-0 transition"
+    ></div>
+
+    <!-- =================================================================== -->
+    <!-- MOBILE NAVIGATION MENU - Slide-in from right -->
+    <!-- =================================================================== -->
+    <div
+      id="mobileMenu"
+      class="md:hidden fixed top-0 right-0 h-full max-w-xs bg-white shadow-xl transform translate-x-full transition duration-300 z-50 flex flex-col justify-between overflow-y-auto"
+    >
+      <!-- Mobile menu content -->
+      <div class="p-6 flex flex-col gap-4">
+        <!-- Mobile menu header with logo and close button -->
+        <div class="flex justify-between items-center mb-4">
+          <img src="../assets/Logo.svg" class="h-10" alt="Logo" />
+          <button
+            id="closeMenu"
+            class="p-2 bg-gray-50 text-secondary border border-gray-300 rounded-full hover:bg-gray-100 hover:cursor-pointer"
+          >
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <!-- Mobile navigation links -->
+
+        <!-- Mobile About Us Accordion -->
+        <!-- About Us (mobile accordion) -->
+
+        <style>
+          /* hide default marker */
+          summary {
+            list-style: none;
+          }
+          summary::-webkit-details-marker {
+            display: none;
+          }
+
+          /* rotate only the chevron inside the SAME details > summary */
+          details > summary .chev {
+            transition: transform 0.2s ease;
+            display: inline-flex;
+          }
+          details[open] > summary .chev {
+            transform: rotate(180deg);
+          }
+        </style>
+
+        <details>
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="info" class="w-4 h-4"></i> About
+            </span>
+            <span class="chev"
+              ><i data-lucide="chevron-down" class="w-4 h-4"></i
+            ></span>
+          </summary>
+
+          <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+            <a
+              href="../about-us.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+            >
+              <i data-lucide="building-2" class="w-4 h-4"></i> About Us
+            </a>
+
+            <!-- Nested team -->
+            <details>
+              <summary
+                class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-primary hover:text-white cursor-pointer"
+              >
+                <span class="flex items-center gap-2">
+                  <i data-lucide="users" class="w-4 h-4"></i> Our Team
+                </span>
+                <span class="chev"
+                  ><i data-lucide="chevron-down" class="w-4 h-4"></i
+                ></span>
+              </summary>
+
+              <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+                <a
+                  href="../teams/Prashant-Chimulkar.html"
+                  class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+                >
+                  <i data-lucide="user" class="w-4 h-4"></i> Prashant
+                </a>
+                <a
+                  href="../teams/Pranav-Chimulkar.html"
+                  class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+                >
+                  <i data-lucide="user" class="w-4 h-4"></i> Pranav
+                </a>
+              </div>
+            </details>
+            <a
+              href="../foundation.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+            >
+              <i data-lucide="heart-handshake" class="w-4 h-4"></i> Foundation
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Services Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="briefcase" class="w-4 h-4"></i> Services
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+
+          <!-- Sub-links -->
+          <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+            <a
+              href="../services/mutual-funds.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="layers" class="w-4 h-4"></i> Mutual Funds
+            </a>
+            <a
+              href="../services/retirement-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="calendar-check" class="w-4 h-4"></i> Retirement
+              Planning
+            </a>
+            <a
+              href="../services/tax-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="file-text" class="w-4 h-4"></i> Tax Planning
+            </a>
+            <a
+              href="../services/insurance-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="shield-check" class="w-4 h-4"></i> Insurance
+              Planning
+            </a>
+            <a
+              href="../services/education-savings.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i> Education
+              Savings
+            </a>
+
+            <a
+              href="../services/legacy-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="archive" class="w-4 h-4"></i> Legacy Planning
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Calculator Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="circle-divide" class="w-4 h-4"></i> Calculators
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+          <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
+            <a
+              href="../calculators/sip-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="calculator" class="w-4 h-4"></i> SIP Calculator
+            </a>
+            <a
+              href="../calculators/lump-sump-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="percent" class="w-4 h-4"></i> Lump Sum
+            </a>
+
+            <a
+              href="../calculators/swp-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
+            </a>
+            <a
+              href="../calculators/inflation-calculator.html"
+              class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-lg cursor-pointer"
+            >
+              <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
+              Calculator
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Financial Literacy Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i> Financial
+              Literacy
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+          <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
+            <a
+              href="#lit-1"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="book-open" class="w-4 h-4"></i> Basics
+            </a>
+            <a
+              href="#lit-2"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="lightbulb" class="w-4 h-4"></i> Tips & Guides
+            </a>
+            <a
+              href="#lit-3"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="play-circle" class="w-4 h-4"></i> Video Lessons
+            </a>
+          </div>
+        </details>
+
+        <!-- Additional mobile navigation links -->
+        <a
+          href="#nri-corner"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="globe" class="w-4 h-4"></i> NRI Corner
+        </a>
+        <a
+          href="../contact-us.html"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="phone-call" class="w-4 h-4"></i> Contact Us
+        </a>
+        <a
+          href="../refer-us.html"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="heart-handshake" class="w-4 h-4"></i> Refer Us
+        </a>
+      </div>
+
+      <!-- Mobile CTA button at bottom -->
+      <div class="p-6">
+        <a
+          href="#"
+          class="inline-flex items-center bg-primary text-secondary pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:bg-secondary hover:text-white"
+        >
+          Get Free Assessment
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <section class="relative w-full h-full flex items-left lg:items-center">
+      <!-- Desktop Background Image -->
+      <img
+        src="../assets/interaction-with-students-copy.jpg"
+        class="hidden lg:block w-full h-full object-cover mt-16"
+        alt="Insurance Planning Background"
+        loading="lazy"
+      />
+
+      <!-- Mobile Background Image -->
+      <img
+        src="../assets/gfmc.jpg"
+        class="block lg:hidden w-full h-full object-cover mt-16"
+        alt="Insurance Planning Mobile Background"
+        loading="lazy"
+      />
+
+      <!-- Gradient Overlay -->
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/100 to-transparent"
+      ></div>
+
+      <!-- Text Content -->
+      <div
+        class="absolute inset-0 flex flex-col justify-center items-start lg:items-start px-6 lg:px-24 text-white max-w-5xl mt-80 lg:mt-44"
+      >
+        <p class="text-sm lg:text-lg uppercase mb-2 text-start">Workshops</p>
+        <h2
+          class="text-xl lg:text-5xl font-medium leading-snug mb-4 text-start"
+        >
+          Financial literacy for everyone.<br class="hidden lg:blocks" />
+          Schools, colleges, workplaces.
+        </h2>
+        <p class="text-sm lg:text-lg mb-6 text-white text-start">
+          You and everyone else deserves access to the basics of
+          <br class="hidden lg:block" />
+          making, saving and investing money, regardless of age or
+          <br class="hidden lg:block" />
+          profession. Our workshops give you the confidence to take
+          <br class="hidden lg:block" />
+          control of your money and build a secure future.
+        </p>
+
+        <a
+          href="#"
+          class="flex w-fit items-center font-semibold border border-transparent bg-primary text-black pl-5 pr-3 py-2 lg:py-2.5 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+        >
+          Book a Workshop
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Body Section -->
+    <section class="max-w-8xl py-20 px-6 lg:px-24 overflow-hidden">
+      <h1
+        class="text-3xl lg:text-5xl font-semibold text-black text-start lg:text-center mb-12 lg:mb-24"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        The knowledge gap is leading to
+        <br class="hidden lg:block" />
+        stress, debt, and missed
+        <span class="text-bluee">opportunities</span>
+      </h1>
+
+      <!-- Image -->
+      <div class="mb-12" data-aos="zoom-in" data-aos-duration="1000">
+        <img
+          src="../assets/interaction-with-womens.jpeg"
+          alt="Meditating woman"
+          class="rounded-2xl w-full object-cover shadow-lg"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Bottom Text Blocks -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
+        <!-- Block 1 -->
+        <div data-aos="fade-right" data-aos-delay="200">
+          <h3 class="text-xl lg:text-3xl font-semibold mb-3">The Unspoken</h3>
+          <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+            Protect your life's savings from the high costs of medical
+            emergencies. With the right health plan, you can focus on recovery,
+            not bills, knowing you have a financial shield against the
+            uncertainties that may come your way.
+          </p>
+        </div>
+
+        <!-- Block 2 -->
+        <div data-aos="fade-left" data-aos-delay="400">
+          <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+            Your <span class="text-bluee">Blueprint</span>
+          </h3>
+          <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+            A Life insurance term plan is a simple, powerful way to secure your
+            family's financial future. In your absence, it ensures your loved
+            ones can meet their financial goals and continue to live the life
+            you've worked so hard to provide.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Did You Know Section -->
+    <section class="bg-strokes/15 py-20 px-6 lg:px-24">
+      <div class="max-w-6xl">
+        <!-- Small heading -->
+        <p
+          class="text-lg lg:text-xl font-semibold mb-4 text-start lg:text-left"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          Did you <span class="text-blue-600">Know?</span>
+        </p>
+
+        <!-- Big Stat -->
+        <h2
+          class="text-2xl md:text-4xl font-semibold mb-6 text-start lg:text-left text-gray-900 leading-snug"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          3 amongst 4 Indian adults could be financially illiterate
+        </h2>
+
+        <!-- Description -->
+        <p
+          class="text-gray-700 text-base md:text-lg leading-relaxed text-start lg:text-left max-w-6xl"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
+          According to a research paper published in IOSRJournals.org, The
+          National Centre for financial education (NCFE) estimates that only 27%
+          of Indian adults are financially literate.
+        </p>
+      </div>
+    </section>
+
+    <!-- About Mutual Funds Section With Video (Hidden) -->
+    <section class="hidden w-full px-6 lg:px-24 py-20 bg-white">
+      <div
+        class="max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+      >
+        <!-- Left Content -->
+        <div
+          class="flex flex-col items-start justify-center text-left"
+          data-aos="fade-right"
+          data-aos-duration="1000"
+          data-aos-delay="100"
+        >
+          <h2
+            class="text-3xl md:text-5xl font-semibold text-gray-900 leading-snug"
+          >
+            About <span class="text-blue-600">Mutual Funds</span>
+          </h2>
+          <p class="text-base lg:text-lg text-black">
+            A quick overview of mutual funds and how to invest in them.
+          </p>
+          <p class="mt-6 text-gray-600 leading-relaxed">
+            Investing in Mutual funds shouldn't feel overwhelming. It should be
+            straightforward and accessible, even if you're new to investing. We
+            offer access to a wide variety of funds, a simplified investment
+            process, and the ongoing support you need to navigate your financial
+            journey with confidence.
+          </p>
+          <a
+            href="#"
+            class="w-fit inline-flex mt-8 items-center justify-center border border-transparent bg-primary hover:bg-secondary hover:border-secondary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition-transform hover:opacity-90 mx-auto lg:mx-0"
+            data-aos="zoom-in"
+            data-aos-duration="800"
+            data-aos-delay="300"
+          >
+            Watch more Videos
+            <span
+              class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+            >
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </a>
+        </div>
+
+        <!-- Right Video (9:16 reel style) -->
+        <div
+          class="mx-auto w-full max-w-xs lg:max-w-xs aspect-[9/16] rounded-2xl overflow-hidden bg-blue-400 shadow-md"
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        >
+          <video
+            src="../assets/call.mp4"
+            class="w-full h-full object-cover"
+            autoplay
+            loading="lazy"
+            loop
+            playsinline
+            controls
+          ></video>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Approach -->
+    <section class="bg-secondary text-white px-6 lg:px-24 overflow-hidden">
+      <div
+        class="max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 py-20 lg:py-0"
+      >
+        <!-- Left Column -->
+        <div
+          class="flex flex-col justify-center text-start lg:text-start"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          <h2 class="text-3xl md:text-5xl font-semibold mb-4">
+            Our <span class="text-strokes">Approach</span>
+          </h2>
+          <p
+            class="text-gray-300 text-base lg:text-lg leading-relaxed mb-6 lg:mb-0"
+          >
+            Our sessions are built on real-world experience, ensuring every
+            takeaway is immediately useful. So you leave with a clear roadmap to
+            start your financial journey.
+          </p>
+        </div>
+
+        <!-- Right Column -->
+        <div
+          class="lg:w-3xl rounded-2xl lg:rounded-none border border-bluee lg:border-l"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+        >
+          <!-- Vision -->
+          <div
+            class="p-10 lg:p-12 border-b border-bluee flex flex-col gap-3"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <!-- Icon + Heading in one row -->
+            <div class="flex items-center gap-3">
+              <i data-lucide="target" class="w-8 h-8 text-strokes"></i>
+              <h3 class="text-xl font-semibold">Personalise to your goals</h3>
+            </div>
+
+            <!-- Paragraph -->
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Every session is tailored to the age and income level of your
+              audience. From foundational budgeting for students to advanced
+              strategies for professionals.
+            </p>
+          </div>
+
+          <!-- Plan -->
+          <div
+            class="p-10 lg:p-12 border-b border-bluee flex flex-col gap-3"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <!-- Icon + Heading Row -->
+            <div class="flex items-center gap-3">
+              <i data-lucide="graduation-cap" class="w-8 h-8 text-strokes"></i>
+              <h3 class="text-xl font-semibold">Learn from the experts</h3>
+            </div>
+
+            <!-- Paragraph -->
+            <p class="text-gray-300 text-sm leading-relaxed">
+              All workshops are led by our experienced financial professionals
+              who bring regulatory compliance, practical money insights, and a
+              passion for teaching.
+            </p>
+          </div>
+
+          <!-- Journey -->
+          <div
+            class="p-10 lg:p-12 flex flex-col gap-3"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <!-- Icon + Heading Row -->
+            <div class="flex items-center gap-3">
+              <i data-lucide="gauge" class="w-8 h-8 text-strokes"></i>
+              <h3 class="text-xl font-semibold">Interact & Engage</h3>
+            </div>
+
+            <!-- Paragraph -->
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Learn through high intent games, real-life case studies,
+              interactive discussions, and Q&A sessions to ensure high
+              engagement and active learning.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Your Advantage -->
+    <section class="bg-white py-20 px-6 lg:px-24 overflow-hidden">
+      <div
+        class="flex flex-col justify-center text-start lg:text-start"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <h2 class="text-3xl md:text-5xl font-semibold mb-4">
+          Designed for your <span class="text-bluee"> Audience </span>
+        </h2>
+        <p
+          class="text-black text-base text-start lg:text-lg leading-relaxed mb-6 lg:mb-0"
+        >
+          Specialized content and delivery tailored to the audience<br
+            class="hidden lg:block"
+          />
+          group, ensuring maximum relevance and impact.
+        </p>
+      </div>
+
+      <!-- Image -->
+      <div class="mb-12 mt-20" data-aos="zoom-in" data-aos-duration="1000">
+        <img
+          src="./assets/public-interaction.jpeg"
+          alt="Meditating woman"
+          class="rounded-2xl w-full object-cover shadow-lg"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Bottom Text Blocks -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
+        <!-- Block 1 -->
+        <div data-aos="fade-right" data-aos-delay="200">
+          <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+            Professionals (Doctors, Lawyers etc.)
+          </h3>
+          <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+            These sessions are tailored for high-income professionals who need
+            advanced strategies for wealth preservation, growth, and complex
+            financial structuring. Essential guidance on managing practice
+            finance, navigating succession planning, and protecting their
+            professional wealth.
+          </p>
+        </div>
+
+        <!-- Block 2 -->
+        <div data-aos="fade-left" data-aos-delay="400">
+          <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+            Your Corporates (Employee Financial Wellness)
+          </h3>
+          <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+            Investing in your employees' financial health is a direct investment
+            in your business, leading to a more focused and productive
+            workforce. Help them maximize their compensation, build systematic
+            investment plans (SIPs) for their goals, and effectively manage
+            their personal debt.
+          </p>
+        </div>
+
+        <!-- Block -3 -->
+        <div data-aos="fade-left" data-aos-delay="400">
+          <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+            Students (Undergraduates & Graduates)
+          </h3>
+          <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+            These workshops focus on building the foundational habits necessary
+            for a successful financial life as they transition into the
+            workforce. Equip them with the first-salary roadmap, teaching them
+            to budget, save, and start investing early to leverage the power of
+            time.
+          </p>
+        </div>
+
+        <!-- Bock- 4 -->
+        <div data-aos="fade-left" data-aos-delay="400">
+          <h3 class="text-xl lg:text-3xl font-semibold mb-3">
+            Community & Livelihood Groups
+          </h3>
+          <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+            This category focuses on empowering individuals at the grassroots
+            level, often supported by NGOs, with foundational financial literacy
+            to strengthen their livelihoods. Practical guidance on responsible
+            borrowing, and strengthening community savings within Self-Help
+            Groups (SHGs).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Your Advantage -->
+    <section class="bg-strokes/10 py-20 px-6 lg:px-24 overflow-hidden">
+      <div
+        class="flex flex-col justify-center text-start"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <h2 class="text-3xl md:text-5xl font-semibold mb-4">
+          Wide variety of <span class="text-bluee"> Topics </span>
+        </h2>
+
+        <p class="text-black text-base lg:text-lg leading-relaxed mb-6">
+          to suit the needs of your audience.
+        </p>
+
+        <!-- Grid Section -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 mt-10"
+          data-aos="fade-up"
+        >
+          <!-- Card -->
+          <div
+            class="bg-white rounded-4xl px-12 py-16 lg:px-16 lg:py-16 center justify-center text-center"
+          >
+            <p class="text-black text-lg lg:text-xl">
+              Budgeting & The Art of Saving
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-4xl px-12 py-16 lg:px-16 lg:py-16 center justify-center text-center"
+          >
+            <p class="text-black text-lg lg:text-xl">
+              Understanding Mutual Funds & SIPs
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-4xl px-12 py-16 lg:px-16 lg:py-16 center justify-center text-center"
+          >
+            <p class="text-black text-lg lg:text-xl">
+              The Power of Compounding
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-4xl px-12 py-16 lg:px-16 lg:py-16 center justify-center text-center"
+          >
+            <p class="text-black text-lg lg:text-xl">
+              Insurance: What You Need & Don't
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-4xl px-12 py-16 lg:px-16 lg:py-16 center justify-center text-center"
+          >
+            <p class="text-black text-lg lg:text-xl">
+              Retirement Planning: Never Too Early to Start
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-4xl px-12 py-16 lg:px-16 lg:py-16 center justify-center text-center"
+          >
+            <p class="text-black text-lg lg:text-xl">
+              Understanding and beating inflation
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Did You Know Section 2 -->
+    <section class="bg-secondary text-white py-20 px-6 lg:px-24">
+      <div
+        class="max-w-5xl mx-auto flex flex-col items-center text-start lg:text-start"
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-once="true"
+      >
+        <!-- Small Heading -->
+        <p
+          class="text-3xl lg:text-5xl font-semibold mb-6"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          Build a Financially Smarter Community.
+        </p>
+
+        <!-- Description -->
+        <p
+          class="text-white text-base md:text-lg font-medium leading-relaxed mb-10 text-start lg:text-start"
+          data-aos="fade-up"
+          data-aos-delay="250"
+        >
+          Let's have a conversation about your insurance needs. Our free clarity
+          call is the perfect opportunity to discuss your liabilities and
+          explore how we can help you build a personalized plan that protects
+          you
+        </p>
+
+        <!-- Button -->
+        <a
+          href="#"
+          class="flex w-fit items-center font-semibold border border-transparent bg-primary text-black pl-5 pr-3 py-2 lg:py-2.5 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+          data-aos="zoom-in"
+          data-aos-delay="400"
+        >
+          Book a Workshop
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section
+      id="faq"
+      class="mb-2 bg-transparent p-5 max-w-fit py-20 px-6 lg:px-24"
+    >
+      <div class="text-start mb-8">
+        <h2 class="text-3xl md:text-5xl font-semibold mb-3">
+          Frequently Asked <span class="text-blue-600">Questions</span>
+        </h2>
+        <p class="text-black text-base lg:text-lg mb-12">
+          Everything You Need to Know
+        </p>
+      </div>
+
+      <div
+        class="bg-white text-black border border-gray-300 rounded-2xl divide-y divide-gray-200"
+      >
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What is the objective of these financial literacy workshops?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              The primary objective is educational: to simplify complex
+              financial concepts and empower participants with practical
+              knowledge. Our goal is to promote informed decision-making and
+              build financial discipline, helping individuals achieve their
+              personal goals.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Are your workshops compliant with financial regulations?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes. Our content is designed strictly for financial awareness and
+              education purposes only. We operate within the necessary
+              guidelines, ensuring that our presentations are unbiased,
+              factually accurate, and prioritize the general principles of
+              personal finance.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Do you recommend specific investment products during the workshop?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              No. We maintain strict neutrality. The workshops focus on
+              explaining product categories (like mutual funds, insurance types,
+              etc.), their features, and how they function. We do not provide
+              specific product recommendations, direct investment advice, or
+              personal portfolio suggestions to any participant during these
+              sessions.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How long does a typical workshop session last?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Our standard workshop duration is flexible, ranging from 60
+              minutes to 120 minutes, including a dedicated Q&A segment. We can
+              tailor the length and depth of the content based on the time slot
+              provided by your organization.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What is the minimum group size required for a session?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              We are flexible and can conduct sessions for groups ranging from
+              20 participants (for interactive classroom-style settings) up to
+              large auditoriums. We recommend a minimum size of 30 to maximize
+              audience engagement and interactive learning.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Can we record the session for internal use?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Workshop recordings must be approved in advance. We typically
+              grant permission for internal use subject to a mutual agreement,
+              ensuring that the content—which is our intellectual property—is
+              used solely for the educational purpose it was intended for.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Do participants need to bring any materials or have prior
+              financial knowledge?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              No, no prior financial knowledge is required. Our workshops are
+              designed to start with foundational concepts. Participants only
+              need to bring a willingness to learn; we provide all necessary
+              materials and handouts.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 8 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Is this a sales pitch for your services?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Absolutely not. The content is purely educational. While we
+              briefly introduce our firm's mission, the focus remains entirely
+              on delivering high-value financial knowledge. We prioritize
+              empowerment over any form of solicitation.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 9 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Are the workshops available online (virtual) or only in person?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              We offer both in-person workshops and high-quality virtual
+              sessions via popular platforms. This ensures we can cater to
+              geographically dispersed teams or audiences and maintain
+              flexibility based on your organization's preference.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 10 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How do we book a specific topic or request a customized session?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              You can reach out via the contact form on our website or call us
+              directly. We will schedule a brief consultation to understand your
+              audience, goals, and any specific topics you wish to prioritize,
+              allowing us to tailor the perfect session for you
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        faqItems.forEach((item) => {
+          const question = item.querySelector(".faq-question");
+          const answer = item.querySelector(".faq-answer");
+          const icon = item.querySelector(".faq-icon");
+
+          question.addEventListener("click", function () {
+            const isOpen =
+              answer.style.maxHeight && answer.style.maxHeight !== "0px";
+
+            // Close all other FAQ items
+            faqItems.forEach((otherItem) => {
+              if (otherItem !== item) {
+                const otherAnswer = otherItem.querySelector(".faq-answer");
+                const otherIcon = otherItem.querySelector(".faq-icon");
+                otherAnswer.style.maxHeight = "0px";
+                otherIcon.style.transform = "rotate(0deg)";
+              }
+            });
+
+            // Toggle current item
+            if (isOpen) {
+              answer.style.maxHeight = "0px";
+              icon.style.transform = "rotate(0deg)";
+            } else {
+              answer.style.maxHeight = answer.scrollHeight + "px";
+              icon.style.transform = "rotate(45deg)";
+            }
+          });
+        });
+      });
+    </script>
+
+    <!-- =================================================================== -->
+    <!-- FOOTER SECTION - Company information and links -->
+    <!-- =================================================================== -->
+    <footer class="w-full bg-white border-t border-gray-200 mb-12 lg:mb-0">
+      <!-- Top Nav Links -->
+      <div
+        class="max-w-7xl mx-auto px-6 py-6 flex flex-wrap justify-center md:justify-between gap-6 text-sm text-blueeborder-bluee"
+      >
+        <a href="/about" class="hover:text-primary transition">About Us</a>
+        <a href="/services" class="hover:text-primary transition">Services</a>
+        <a href="/calculators" class="hover:text-primary transition"
+          >Calculators</a
+        >
+        <a href="/financial-literacy" class="hover:text-primary transition"
+          >Financial Literacy</a
+        >
+        <a href="/nri-corner" class="hover:text-primary transition"
+          >NRI Corner</a
+        >
+        <a href="/contact" class="hover:text-primary transition">Contact Us</a>
+      </div>
+
+      <!-- Middle Section -->
+      <div
+        class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+      >
+        <!-- Left: Info -->
+        <div class="space-y-4">
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=15.4038977,74.0086659"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+          >
+            <i data-lucide="map-pin" class="w-5 h-5 text-primary"></i> Our
+            Office
+          </a>
+          <a
+            href="mailto:invest@chimulkar.com"
+            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+          >
+            <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
+            invest@chimulkar.com
+          </a>
+          <a
+            href="tel:+918208031927"
+            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+          >
+            <i data-lucide="phone" class="w-5 h-5 text-primary"></i>
+            +91 82080 31927
+          </a>
+        </div>
+
+        <!-- Center: Logo -->
+        <div class="flex flex-col items-center">
+          <img
+            src="../assets/Logo.svg"
+            alt="Chimulkar Financial Services"
+            class="w-40 h-auto mb-4"
+          />
+          <p class="text-gray-800 text-sm">Chimulkar Financial Services</p>
+        </div>
+
+        <!-- Right: Reviews & Social -->
+        <div class="flex flex-col items-center md:items-end space-y-4">
+          <p class="text-gray-800">10+ Five-Star Google Reviews</p>
+          <div class="flex gap-1">
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+          </div>
+          <div class="flex gap-4">
+            <a
+              href="https://www.instagram.com/chimulkarfinancialservices?utm_source=ig_web_button_share_sheet&igsh=MWZxMnFsZTY4OHNmeg=="
+              target="_blank"
+              aria-label="Instagram"
+              class="bg-yellow-100 rounded-full p-2 hover:bg-yellow-200 transition"
+            >
+              <i data-lucide="instagram" class="w-5 h-5 text-gray-800"></i>
+            </a>
+            <a
+              href="https://www.youtube.com/@ChimulkarFinancialServices"
+              target="_blank"
+              aria-label="YouTube"
+              rel="noopener noreferrer"
+              class="bg-yellow-100 rounded-full p-2 hover:bg-yellow-200 transition"
+            >
+              <i data-lucide="youtube" class="w-5 h-5 text-gray-800"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="bg-[#161f48] text-gray-100 text-xs text-center py-4">
+        <div
+          class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2"
+        >
+          <p>© 2025 Chimulkar Financial Services | Financial Consultant</p>
+          <div class="flex gap-4">
+            <a href="/terms" class="hover:underline">Terms & Conditions</a>
+            <a href="/privacy-policy" class="hover:underline">Privacy Policy</a>
+            <a href="/sitemap" class="hover:underline">Sitemap</a>
+          </div>
+          <p class="text-gray-400">
+            Designed & Developed by
+            <a
+              href="https://github.com/Niraj-Paswan"
+              target="_blank"
+              class="text-white hover:underline"
+              >~Niraj Paswan</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Schedule Free Clarity Call Banner -->
+    <div
+      class="block lg:hidden fixed bottom-0 w-full h-12 bg-secondary z-40 flex items-center justify-center px-4 text-sm overflow-hidden"
+    >
+      <a
+        href="../index.html#consultation"
+        class="inline-flex font-semibold items-center border border-transparent text-white rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+      >
+        Schedule Free clarity call
+        <span
+          class="bg-white text-black rounded-full p-1 flex items-center justify-center transition-transform group-hover:translate-x-1"
+        >
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </span>
+      </a>
+
+      <!-- Shine overlay applied to full div -->
+      <span
+        class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 shine-effect pointer-events-none"
+      ></span>
+    </div>
+
+    <style>
+      /* Shine animation for full div */
+      @keyframes shine {
+        0% {
+          transform: translateX(-150%) skewX(-12deg);
+        }
+        100% {
+          transform: translateX(150%) skewX(-12deg);
+        }
+      }
+
+      .shine-effect {
+        animation: shine 3s infinite;
+        animation-delay: 4s; /* adds a pause so it's not too flashy */
+      }
+    </style>
+
+    <!-- =================================================================== -->
+    <!-- EXTERNAL LIBRARIES AND SCRIPTS -->
+    <!-- =================================================================== -->
+
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      // Initialize AOS animations
+      AOS.init();
+    </script>
+
+    <!-- =================================================================== -->
+    <!-- CUSTOM JAVASCRIPT - All interactive functionality -->
+    <!-- =================================================================== -->
+    <script>
+      // Initialize Lucide icons after page load
+      lucide.createIcons();
+
+      // ===================================================================
+      // MOBILE MENU FUNCTIONALITY
+      // ===================================================================
+
+      // Get mobile menu elements
+      const mobileMenuToggle = document.getElementById("menuToggle");
+      const mobileMenuClose = document.getElementById("closeMenu");
+      const mobileMenuPanel = document.getElementById("mobileMenu");
+      const mobileMenuBackdrop = document.getElementById("backdrop");
+
+      // Open mobile menu function
+      function openMobileMenu() {
+        mobileMenuPanel.classList.remove("translate-x-full");
+        mobileMenuBackdrop.classList.remove("hidden");
+        setTimeout(() => mobileMenuBackdrop.classList.remove("opacity-0"), 10);
+      }
+
+      // Close mobile menu function
+      function closeMobileMenu() {
+        mobileMenuPanel.classList.add("translate-x-full");
+        mobileMenuBackdrop.classList.add("opacity-0");
+        setTimeout(() => mobileMenuBackdrop.classList.add("hidden"), 300);
+      }
+
+      // Event listeners for mobile menu
+      mobileMenuToggle.addEventListener("click", openMobileMenu);
+      mobileMenuClose.addEventListener("click", closeMobileMenu);
+      mobileMenuBackdrop.addEventListener("click", closeMobileMenu);
+    </script>
+  </body>
+</html>
