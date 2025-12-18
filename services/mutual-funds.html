@@ -40,6 +40,11 @@
           setTimeout(() => (loader.style.display = "none"), 400);
         };
 
+        // Determine first load or subsequent load
+        const firstLoad = !localStorage.getItem("hasVisited");
+        const fallbackTime = firstLoad ? 7000 : 0; // 7s first, 2s later
+        localStorage.setItem("hasVisited", "true");
+
         // Gather all images and videos
         const mediaElements = [
           ...Array.from(document.images),
@@ -47,7 +52,7 @@
         ];
 
         if (mediaElements.length === 0) {
-          hideLoader();
+          setTimeout(hideLoader, fallbackTime);
           return;
         }
 
@@ -68,7 +73,6 @@
               media.naturalWidth !== 0) ||
             (media.tagName === "VIDEO" && media.readyState >= 3)
           ) {
-            // HAVE_FUTURE_DATA or more
             checkLoaded();
           } else {
             media.addEventListener("load", checkLoaded, { once: true });
@@ -80,8 +84,8 @@
           }
         });
 
-        // Safety fallback (maximum wait)
-        setTimeout(hideLoader, 5000); // adjust to 2s if you want faster UX
+        // Safety fallback
+        setTimeout(hideLoader, fallbackTime);
       });
     </script>
 
