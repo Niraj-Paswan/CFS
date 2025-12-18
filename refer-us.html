@@ -24,8 +24,99 @@
         overflow-x: hidden; /* Prevent horizontal scroll */
       }
     </style>
+    <!-- Temporaray Loader hidden logic -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const loader = document.querySelector(".logo-loader");
+        if (!loader) return;
+
+        const images = Array.from(document.images);
+        let hidden = false;
+
+        const hideLoader = () => {
+          if (hidden) return;
+          hidden = true;
+          loader.style.opacity = "0";
+          loader.style.transition = "opacity 0.4s ease";
+          setTimeout(() => (loader.style.display = "none"), 400);
+        };
+
+        if (images.length === 0) {
+          hideLoader();
+          return;
+        }
+
+        const promises = images.map((img) => {
+          if (img.complete && img.naturalWidth !== 0) return Promise.resolve();
+          return new Promise((resolve) => {
+            img.addEventListener("load", resolve, { once: true });
+            img.addEventListener("error", resolve, { once: true });
+          });
+        });
+
+        // Hide loader when all images are done
+        Promise.all(promises).then(hideLoader);
+
+        // Safety fallback
+        setTimeout(hideLoader, 1500); // faster fallback
+      });
+    </script>
+
+    <!-- Style of the Loader -->
+    <style>
+      /* Fullscreen loader wrapper */
+      .logo-loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        background: #161f48;
+        z-index: 9999;
+      }
+
+      /* Static logo (no animation) */
+      .logo-loader img {
+        width: 150px;
+      }
+
+      /* DOT LOADER (unchanged, working as-is) */
+      .loader {
+        width: 10px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        animation: l5 1s infinite linear alternate;
+      }
+
+      @keyframes l5 {
+        0% {
+          box-shadow: 16px 0 #fcaf1b, -16px 0 rgba(252, 175, 27, 0.25);
+          background: #fcaf1b;
+        }
+        33% {
+          box-shadow: 16px 0 #fcaf1b, -16px 0 rgba(252, 175, 27, 0.25);
+          background: rgba(252, 175, 27, 0.25);
+        }
+        66% {
+          box-shadow: 16px 0 rgba(252, 175, 27, 0.25), -16px 0 #fcaf1b;
+          background: rgba(252, 175, 27, 0.25);
+        }
+        100% {
+          box-shadow: 16px 0 rgba(252, 175, 27, 0.25), -16px 0 #fcaf1b;
+          background: #fcaf1b;
+        }
+      }
+    </style>
   </head>
   <body class="">
+    <!-- Loader Class -->
+    <div class="logo-loader">
+      <img src="./assets/CFS TRANSPARENT.png" alt="Loading" />
+
+      <div class="loader"></div>
+    </div>
     <header class="bg-secondary shadow-sm fixed w-full top-0 z-50">
       <div
         class="mx-6 lg:mx-12 px-2 py-3 flex items-center justify-between relative"
