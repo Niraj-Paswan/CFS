@@ -30,7 +30,6 @@
         const loader = document.querySelector(".logo-loader");
         if (!loader) return;
 
-        const images = Array.from(document.images);
         let hidden = false;
 
         const hideLoader = () => {
@@ -41,24 +40,48 @@
           setTimeout(() => (loader.style.display = "none"), 400);
         };
 
-        if (images.length === 0) {
+        // Gather all images and videos
+        const mediaElements = [
+          ...Array.from(document.images),
+          ...Array.from(document.querySelectorAll("video")),
+        ];
+
+        if (mediaElements.length === 0) {
           hideLoader();
           return;
         }
 
-        const promises = images.map((img) => {
-          if (img.complete && img.naturalWidth !== 0) return Promise.resolve();
-          return new Promise((resolve) => {
-            img.addEventListener("load", resolve, { once: true });
-            img.addEventListener("error", resolve, { once: true });
-          });
+        let loadedCount = 0;
+        const totalMedia = mediaElements.length;
+
+        const checkLoaded = () => {
+          loadedCount++;
+          if (loadedCount >= totalMedia) {
+            hideLoader();
+          }
+        };
+
+        mediaElements.forEach((media) => {
+          if (
+            (media.tagName === "IMG" &&
+              media.complete &&
+              media.naturalWidth !== 0) ||
+            (media.tagName === "VIDEO" && media.readyState >= 3)
+          ) {
+            // HAVE_FUTURE_DATA or more
+            checkLoaded();
+          } else {
+            media.addEventListener("load", checkLoaded, { once: true });
+            media.addEventListener("error", checkLoaded, { once: true });
+            if (media.tagName === "VIDEO") {
+              media.addEventListener("loadeddata", checkLoaded, { once: true });
+              media.addEventListener("error", checkLoaded, { once: true });
+            }
+          }
         });
 
-        // Hide loader when all images are done
-        Promise.all(promises).then(hideLoader);
-
-        // Safety fallback
-        setTimeout(hideLoader, 2000); // faster fallback
+        // Safety fallback (maximum wait)
+        setTimeout(hideLoader, 5000); // adjust to 2s if you want faster UX
       });
     </script>
 
