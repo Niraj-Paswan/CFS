@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Page Title and Favicon -->
-    <title>Mutual Funds - Chimulkar Financial Services</title>
+    <title>Financial Literacy - Chimulkar Financial Services</title>
     <link rel="shortcut icon" href="../assets/Logo.svg" type="image/x-icon" />
 
     <!-- External Stylesheets and Fonts -->
@@ -238,6 +238,241 @@
         setTimeout(hideLoader, fallbackTime);
       });
     </script>
+
+    <script>
+      // All timeline + observer logic inside DOMContentLoaded so elements exist
+      document.addEventListener("DOMContentLoaded", () => {
+        // Initialize lucide icons & AOS
+        if (window.lucide && typeof lucide.createIcons === "function") {
+          lucide.createIcons();
+        }
+        if (window.AOS && typeof AOS.init === "function") {
+          AOS.init();
+        }
+
+        // Intersection Observer setup
+        const observerOptions = {
+          threshold: 0.2,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("active");
+          });
+        }, observerOptions);
+
+        document.querySelectorAll(".timeline-item, .fade-up").forEach((el) => {
+          observer.observe(el);
+        });
+
+        // Timeline progress line logic (robust)
+        const timelineContainer = document.querySelector(".timeline-wrapper");
+        const progressLine = document.getElementById("progressLine");
+        const progressLineMobile =
+          document.getElementById("progressLineMobile");
+
+        function clamp(v, a = 0, b = 1) {
+          return Math.max(a, Math.min(b, v));
+        }
+
+        function updateProgress() {
+          if (!timelineContainer) return;
+          const rect = timelineContainer.getBoundingClientRect();
+          const total = rect.height + window.innerHeight;
+          // how much of the container has been passed by viewport bottom
+          const passed = window.innerHeight - rect.top;
+          let progress = passed / total;
+          progress = clamp(progress, 0, 1);
+
+          const percent = progress * 100;
+          if (progressLine) progressLine.style.height = percent + "%";
+          if (progressLineMobile)
+            progressLineMobile.style.height = percent + "%";
+        }
+
+        // Run on load, scroll, and resize
+        updateProgress();
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        window.addEventListener("resize", updateProgress);
+
+        // Ensure initial AOS & observer state after window load too
+        window.addEventListener("load", () => {
+          updateProgress();
+          // observe again in case late DOM nodes were added
+          document
+            .querySelectorAll(".timeline-item, .fade-up")
+            .forEach((el) => {
+              if (!el.classList.contains("active")) observer.observe(el);
+            });
+        });
+      });
+    </script>
+
+    <style>
+      /* Scroll Animation Classes */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .fade-up.active {
+        animation: fadeUp 0.8s ease-out forwards;
+      }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Timeline Animations */
+      .timeline-item {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      .timeline-item.active {
+        animation: slideInLeft 0.6s ease-out forwards;
+      }
+
+      .timeline-item:nth-child(even).active {
+        animation: slideInRight 0.6s ease-out forwards;
+        transform: translateX(20px);
+      }
+
+      @keyframes slideInLeft {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* Timeline card with professional styling */
+      .timeline-card {
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+        background: #ffffff;
+        border-radius: 24px;
+        border: 1px solid #d1d5db;
+      }
+
+      .icon-container {
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      /* Timeline line positioned BELOW number badges (z-index: 5 for badges, z-index: 1 for lines) */
+      .timeline-line-bg {
+        position: absolute;
+        left: 50%;
+        width: 3.5px;
+        height: calc(100% - 80px);
+        background: #e5e7eb;
+        transform: translateX(-50%);
+        z-index: 0;
+      }
+
+      .timeline-line-progress {
+        position: absolute;
+        left: 50%;
+        top: 60px;
+        width: 3.5px;
+        height: 0%;
+        background: linear-gradient(
+          to bottom,
+          rgba(68, 111, 230, 0) 0%,
+          #3b82f6 45%,
+          #3b82f6 55%
+        );
+        transform: translateX(-50%);
+        z-index: 0;
+        transition: height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border-radius: 4px;
+      }
+
+      /* Number badge with higher z-index to stay above timeline lines */
+      .number-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        background: white;
+        border: 1px solid #d1d5db; /* Tailwind gray-300 */
+        color: black;
+        border-radius: 50%;
+        font-weight: 700;
+        font-size: 1.25rem;
+        z-index: 10;
+        position: relative;
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      /* Mobile: exactly HALF size */
+      @media (max-width: 768px) {
+        .number-badge {
+          width: 36px;
+          height: 36px;
+          font-size: 1rem;
+        }
+      }
+
+      /* Stagger Animation */
+      .timeline-item:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .timeline-item:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .timeline-item:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .timeline-item:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .timeline-item:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .timeline-item:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+
+      /* Mobile timeline – line & badge on left, cards spaced */
+      @media (max-width: 768px) {
+        /* Timeline line */
+        .timeline-line-bg,
+        .timeline-line-progress {
+          left: 24px;
+          top: 10px;
+          border-radius: 24px;
+        }
+
+        /* Each timeline item creates space for line + badge */
+        .timeline-item {
+          position: relative;
+          padding-left: 44px; /* gap between line and cards */
+        }
+
+        /* Number badge aligned to line */
+        .number-badge {
+          position: absolute;
+          left: 8px;
+          transform: translateX(-50%);
+        }
+
+        .md\:hidden {
+          padding: 0 16px;
+        }
+      }
+    </style>
 
     <!-- Style of the Loader -->
     <style>
@@ -518,9 +753,9 @@
         <!-- Mobile Menu Button -->
         <button
           id="menuToggle"
-          class="md:hidden p-2 bg-gray-50 border border-gray-300 rounded-full hover:bg-gray-100"
+          class="md:hidden w-12 h-12 flex items-center justify-center bg-gray-50 border border-gray-300 rounded-full hover:bg-gray-100 transition"
         >
-          <i data-lucide="align-right" class="w-6 h-6 text-secondary"></i>
+          <i data-lucide="align-right" class="w-12 h-12 text-secondary"></i>
         </button>
       </div>
     </header>
@@ -833,239 +1068,314 @@
           <h2
             class="text-3xl md:text-5xl font-semibold mb-4 text-start lg:text-start"
           >
-            The Peace of Mind You <span class="text-blue-600">Deserve</span>
+            Start <span class="text-blue-600">here.</span>
           </h2>
           <p
-            class="text-gray-600 text-base lg:text-lg leading-relaxed text-start lg:text-start"
+            class="text-gray-800 text-base lg:text-lg leading-relaxed text-start lg:text-start"
           >
-            Investing in mutual funds can feel intimidating, but it doesn't have
-            to be. We help you find peace of mind by providing clarity on the
-            core benefits that come with this investment vehicle.
+            This page is your financial reset button. It breaks the entire money
+            journey into clear, <br class="hidden lg:flex" />
+            practical truths so you always know what to focus on next, without
+            overwhelm or jargon.
           </p>
         </div>
+      </div>
+    </section>
 
-        <!-- Cards Wrapper -->
-        <div
-          id="cardsWrapper"
-          class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8"
-        >
-          <!-- Card -->
-          <div class="card group card-hover cursor-pointer p-6 mt-0 lg:mt-36">
-            <div class="relative mb-16 flex justify-center">
-              <div class="bubble max-w-[340px]">Cut the Noise</div>
-            </div>
-            <div class="relative h-80 rounded-2xl overflow-hidden">
-              <img
-                src="./assets/man4.png"
-                class="w-full h-full object-cover image-zoom"
-              />
-            </div>
-          </div>
+    <section class="max-w-8xl px-6 lg:px-24 overflow-hidden">
+      <h1
+        class="text-3xl lg:text-5xl font-semibold text-black text-start lg:text-center mb-12 lg:mb-24 fade-up"
+      >
+        24 <span class="text-blue-600">Money</span> rules
+        <br class="hidden lg:block" />
+        to live by
+      </h1>
 
-          <div class="card group card-hover cursor-pointer p-6">
-            <div class="relative mb-16">
-              <div class="bubble max-w-[340px]">Define your "Enough"</div>
-            </div>
-            <div class="relative h-80 rounded-2xl overflow-hidden -mt-8">
-              <img
-                src="./assets/man6.png"
-                class="w-full h-full object-cover image-zoom"
-              />
-            </div>
-          </div>
+      <!-- Timeline Container -->
+      <div class="relative max-w-6xl mx-auto">
+        <!-- Desktop Timeline -->
+        <div class="hidden md:block relative py-12">
+          <div class="timeline-line-bg rounded-full"></div>
+          <div
+            class="timeline-line-progress rounded-full"
+            id="progressLine"
+          ></div>
 
-          <div class="card group card-hover cursor-pointer p-6 mt-0 lg:mt-36">
-            <div class="relative mb-16">
-              <div class="bubble max-w-[340px]">Define your "Enough"</div>
-            </div>
-            <div class="relative h-80 rounded-2xl overflow-hidden -mt-8">
-              <img
-                src="./assets/man1.png"
-                class="w-full h-full object-cover image-zoom"
-              />
-            </div>
-          </div>
-
-          <div class="card group card-hover cursor-pointer p-6 mt-0 lg:-mt-12">
-            <div class="relative mb-16">
-              <div class="bubble max-w-[340px]">Turn Dreams into Deadlines</div>
-            </div>
-            <div class="relative h-80 rounded-2xl overflow-hidden -mt-8">
-              <img
-                src="./assets/man2.png"
-                class="w-full h-full object-cover image-zoom"
-              />
-            </div>
-          </div>
-
-          <div class="card group card-hover cursor-pointer p-6 mt-0 lg:mt-24">
-            <div class="relative mb-16">
-              <div class="bubble max-w-[340px]">
-                Skills, not jobs, mean security
+          <div class="space-y-24">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1 text-right">
+                  <div class="timeline-card p-8">
+                    <h3
+                      class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                    >
+                      Cut the <span class="text-blue-600">noise</span>
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed text-start">
+                      We are often taught that wealth is loud, big weddings, new
+                      cars, and gold. But true wealth is actually quiet. It is
+                      the ability to sleep without worry and say "no" to things
+                      that don't bring you joy. Real success is defined by your
+                      peace of mind, not your neighbor's applause.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">1</div>
+                </div>
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img src="./assets/Calendar.png" alt="" />
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="relative h-80 rounded-2xl overflow-hidden -mt-8">
-              <img
-                src="./assets/man3.png"
-                class="w-full h-full object-cover image-zoom"
-              />
+
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img src="./assets/man2.png" alt="" />
+                  </div>
+                </div>
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">2</div>
+                </div>
+                <div class="flex-1">
+                  <div class="timeline-card p-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3">
+                      Find your <span class="text-blue-600">enough</span>
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed">
+                      If you don't find out how much is "enough" you will run on
+                      a treadmill forever. In India, the pressure to upgrade
+                      your lifestyle never ends. Pause and ask yourself: "Am I
+                      buying this for my happiness, or for someone else's
+                      approval?"
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1 text-left">
+                  <div class="timeline-card p-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3">
+                      Turn Dreams into
+                      <span class="text-blue-600">Deadlines</span>
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed">
+                      Define your goals (e.g. retirement, house down payment)
+                      with a specific target amount and a clear date when the
+                      money is needed (the time horizon). This allows you to
+                      calculate how much to invest monthly.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">3</div>
+                </div>
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img src="./assets/man3.png" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Timeline - Centered layout with all items in middle, proper gaps, and professional styling -->
+        <div class="md:hidden space-y-16 relative">
+          <div class="timeline-line-bg"></div>
+          <div class="timeline-line-progress" id="progressLineMobile"></div>
+
+          <!-- Mobile Item 1 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">1</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img
+                    src="../assets/Calendar.png"
+                    class="w-1/2 h-1/2"
+                    alt=""
+                  />
+                </div>
+                <h3
+                  class="text-2xl font-semibold text-gray-900 mb-3 text-center"
+                >
+                  Cut the <span class="text-blue-600">noise</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  We are often taught that wealth is loud, big weddings, new
+                  cars, and gold. But true wealth is actually quiet. It is the
+                  ability to sleep without worry and say "no" to things that
+                  don't bring you joy.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 2 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-6">
+              <div class="number-badge font-semibold">2</div>
+              <div
+                class="timeline-card w-full p-6 rounded-16"
+                style="max-width: 320px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <svg class="w-24 h-24" viewBox="0 0 200 200" fill="none">
+                    <circle
+                      cx="100"
+                      cy="100"
+                      r="45"
+                      fill="#E0E7FF"
+                      stroke="#3B82F6"
+                      stroke-width="3"
+                    />
+                    <circle cx="100" cy="100" r="8" fill="#3B82F6" />
+                    <line
+                      x1="100"
+                      y1="100"
+                      x2="100"
+                      y2="60"
+                      stroke="#3B82F6"
+                      stroke-width="3"
+                    />
+                    <line
+                      x1="100"
+                      y1="100"
+                      x2="130"
+                      y2="100"
+                      stroke="#3B82F6"
+                      stroke-width="3"
+                    />
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">
+                  Find your <span class="text-blue-600">enough</span>
+                </h3>
+                <p class="text-gray-600 text-sm leading-relaxed text-center">
+                  If you don't find out how much is "enough" you will run on a
+                  treadmill forever. In India, the pressure to upgrade your
+                  lifestyle never ends. Pause and ask yourself.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 3 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-6">
+              <div class="number-badge font-semibold">3</div>
+              <div
+                class="timeline-card w-full p-6 rounded-16"
+                style="max-width: 320px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <svg class="w-24 h-24" viewBox="0 0 200 200" fill="none">
+                    <rect
+                      x="30"
+                      y="40"
+                      width="140"
+                      height="120"
+                      rx="10"
+                      fill="#E0E7FF"
+                      stroke="#3B82F6"
+                      stroke-width="2"
+                    />
+                    <circle cx="50" cy="60" r="8" fill="#3B82F6" />
+                    <circle cx="100" cy="60" r="8" fill="#3B82F6" />
+                    <circle cx="150" cy="60" r="8" fill="#3B82F6" />
+                    <line
+                      x1="40"
+                      y1="80"
+                      x2="160"
+                      y2="80"
+                      stroke="#3B82F6"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">
+                  Turn Dreams into <span class="text-blue-600">Deadlines</span>
+                </h3>
+                <p class="text-gray-600 text-sm leading-relaxed text-center">
+                  Define your goals with a specific target amount and a clear
+                  date when the money is needed. This allows you to calculate
+                  how much to invest monthly.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- ================= MODAL ================= -->
-    <div
-      id="modal"
-      class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-    >
-      <div
-        class="bg-white rounded-3xl w-full max-w-3xl max-h-[95vh] flex flex-col overflow-hidden"
-      >
-        <!-- Header -->
-        <div
-          class="flex justify-between items-start p-6 border-b border-gray-200"
-        >
-          <h2 id="modalTitle" class="text-2xl lg:text-4xl font-semibold"></h2>
-          <button
-            onclick="closeModal()"
-            class="p-2 rounded-full bg-gray-100 hover:bg-gray-200"
-          >
-            <i data-lucide="x" class="w-5 h-5"></i>
-          </button>
-        </div>
 
-        <!-- Content -->
-        <div class="flex-1 overflow-y-auto p-6 space-y-4">
-          <p
-            id="modalDate"
-            class="text-sm font-semibold tracking-tight uppercase"
-          ></p>
-          <p id="modalDescription" class="text-base leading-relaxed"></p>
-        </div>
-
-        <!-- Footer -->
-        <div class="p-6">
-          <div id="indicators" class="flex justify-center gap-3 mb-6"></div>
-
-          <div class="flex gap-4">
-            <button
-              id="prevBtn"
-              class="flex-1 py-3 rounded-full bg-gray-900 text-white"
-            >
-              Previous
-            </button>
-            <button
-              id="nextBtn"
-              class="flex-1 py-3 rounded-full bg-gray-900 text-white"
-            >
-              Next
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= SCRIPT ================= -->
     <script>
-      const cards = document.querySelectorAll(".card");
-      const indicatorsWrapper = document.getElementById("indicators");
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        threshold: 0.2,
+        rootMargin: "0px 0px -50px 0px",
+      };
 
-      const articles = [
-        {
-          title: "Cut the Noise",
-          date: "April 09, 2022",
-          description:
-            "True wealth is quiet. Peace of mind matters more than applause.",
-        },
-        {
-          title: 'Define your "Enough"',
-          date: "April 09, 2022",
-          description: "If you don’t define enough, you’ll chase forever.",
-        },
-        {
-          title: "Turn Dreams into Deadlines",
-          date: "April 09, 2022",
-          description: "Dreams need timelines to become reality.",
-        },
-        {
-          title: "Skills, not jobs, mean security",
-          date: "April 09, 2022",
-          description: "Skills compound. Jobs don’t.",
-        },
-        {
-          title: "Skills, not jobs, mean security",
-          date: "April 09, 2022",
-          description: "Skills compound. Jobs don’t.",
-        },
-      ];
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      }, observerOptions);
 
-      let currentIndex = 0;
-      const total = cards.length;
-
-      // 🔹 Assign index automatically
-      cards.forEach((card, index) => {
-        card.dataset.index = index;
-        card.addEventListener("click", () => openModal(index));
+      // Observe all timeline items and fade-up elements
+      document.querySelectorAll(".timeline-item, .fade-up").forEach((el) => {
+        observer.observe(el);
       });
 
-      // 🔹 Generate indicators automatically
-      for (let i = 0; i < total; i++) {
-        const dot = document.createElement("button");
-        dot.className = "indicator-dot w-2 h-2 rounded-full bg-gray-300";
-        dot.addEventListener("click", () => openModal(i));
-        indicatorsWrapper.appendChild(dot);
-      }
+      const timelineContainer = document.querySelector(".relative.max-w-6xl");
+      const progressLine = document.getElementById("progressLine");
+      const progressLineMobile = document.getElementById("progressLineMobile");
 
-      function openModal(index) {
-        currentIndex = index;
+      window.addEventListener("scroll", () => {
+        if (timelineContainer) {
+          const containerRect = timelineContainer.getBoundingClientRect();
+          const containerHeight = timelineContainer.scrollHeight;
+          const windowHeight = window.innerHeight;
 
-        document.getElementById("modalTitle").textContent =
-          articles[index].title;
-        document.getElementById("modalDate").textContent =
-          articles[index].date.toUpperCase();
-        document.getElementById("modalDescription").textContent =
-          articles[index].description;
+          // Calculate scroll progress
+          const scrollTop = window.scrollY;
+          const elementTop = timelineContainer.offsetTop;
+          const elementBottom = elementTop + containerHeight;
 
-        document.getElementById("modal").classList.remove("hidden");
-        document.body.style.overflow = "hidden";
+          let progress =
+            (scrollTop - elementTop + windowHeight) /
+            (containerHeight + windowHeight);
+          progress = Math.max(0, Math.min(1, progress));
 
-        updateIndicators();
-        updateButtons();
-      }
+          // Update progress line height
+          if (progressLine) {
+            progressLine.style.height = progress * 100 + "%";
+          }
+          if (progressLineMobile) {
+            progressLineMobile.style.height = progress * 100 + "%";
+          }
+        }
+      });
 
-      function closeModal() {
-        document.getElementById("modal").classList.add("hidden");
-        document.body.style.overflow = "auto";
-      }
-
-      function nextArticle() {
-        if (currentIndex < total - 1) openModal(currentIndex + 1);
-      }
-
-      function previousArticle() {
-        if (currentIndex > 0) openModal(currentIndex - 1);
-      }
-
-      function updateIndicators() {
-        document.querySelectorAll(".indicator-dot").forEach((dot, i) => {
-          dot.classList.toggle("bg-gray-900", i === currentIndex);
-          dot.classList.toggle("scale-125", i === currentIndex);
-          dot.classList.toggle("bg-gray-300", i !== currentIndex);
-        });
-      }
-
-      function updateButtons() {
-        prevBtn.disabled = currentIndex === 0;
-        nextBtn.disabled = currentIndex === total - 1;
-
-        prevBtn.classList.toggle("opacity-40", prevBtn.disabled);
-        nextBtn.classList.toggle("opacity-40", nextBtn.disabled);
-      }
-
-      prevBtn.onclick = previousArticle;
-      nextBtn.onclick = nextArticle;
+      // Smooth scroll behavior
+      document.documentElement.style.scrollBehavior = "smooth";
     </script>
+    <!-- ================= SCRIPT ================= -->
 
     <!-- =================================================================== -->
     <!-- FOOTER SECTION - Company information and links -->
