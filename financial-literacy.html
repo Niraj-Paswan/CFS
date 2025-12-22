@@ -23,221 +23,7 @@
       body {
         overflow-x: hidden; /* Prevent horizontal scroll */
       }
-
-      /* Added smooth animations and transitions */
-      @keyframes fadeInScale {
-        from {
-          opacity: 0;
-          transform: scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-
-      @keyframes slideUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes slideDown {
-        from {
-          opacity: 0;
-          transform: translateY(-20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .modal-open {
-        animation: fadeInScale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      }
-
-      .modal-close {
-        animation: fadeInScale 0.3s ease-out reverse;
-      }
-
-      .card-hover:hover {
-        transform: translateY(-8px);
-      }
-
-      .icon-hover {
-        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      }
-
-      .icon-hover:hover {
-        transform: scale(1.1) rotate(5deg);
-      }
-
-      .button-hover {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .button-hover::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.1);
-        transition: left 0.3s ease;
-      }
-
-      .button-hover:hover::before {
-        left: 100%;
-      }
-
-      .dot-animation {
-        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      }
-
-      .gradient-overlay {
-        transition: opacity 0.3s ease;
-      }
-
-      .card-hover:hover .gradient-overlay {
-        opacity: 0.9;
-      }
-
-      /* ================= Bubble ================= */
-      .bubble {
-        position: relative;
-        background: #ffffff;
-        color: #161f48;
-        border: 2px solid #161f48;
-        border-radius: 16px;
-
-        /* p-6 equivalent */
-        padding: 1rem;
-
-        /* auto alignment */
-        width: fit-content;
-        max-width: 340px;
-        margin: 0 auto;
-
-        text-align: center;
-
-        transition: background-color 0.4s ease, color 0.4s ease,
-          border-color 0.4s ease;
-      }
-
-      /* First dot */
-      .bubble::before {
-        content: "";
-        position: absolute;
-        bottom: -36px;
-        left: 48px;
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        background: #ffffff;
-        border: 3px solid #161f48;
-        transition: background-color 0.4s ease, border-color 0.4s ease;
-      }
-
-      /* Second dot */
-      .bubble::after {
-        content: "";
-        position: absolute;
-        bottom: -60px;
-        left: 66px;
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: #ffffff;
-        border: 3px solid #161f48;
-        transition: background-color 0.4s ease, border-color 0.4s ease;
-      }
-
-      /* ================= GROUP HOVER (Bubble Only) ================= */
-      .group:hover .bubble {
-        background: #161f48;
-        color: #fff;
-        border-color: #161f48;
-      }
-
-      .group:hover .bubble::before,
-      .group:hover .bubble::after {
-        background: #161f48;
-        border-color: #161f48;
-      }
     </style>
-
-    <!-- Temporaray Loader hidden logic -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const loader = document.querySelector(".logo-loader");
-        if (!loader) return;
-
-        let hidden = false;
-
-        const hideLoader = () => {
-          if (hidden) return;
-          hidden = true;
-          loader.style.opacity = "0";
-          loader.style.transition = "opacity 0.4s ease";
-          setTimeout(() => (loader.style.display = "none"), 400);
-        };
-
-        // Determine first load or subsequent load
-        const firstLoad = !localStorage.getItem("hasVisited");
-        const fallbackTime = firstLoad ? 7000 : 0; // 7s first, 2s later
-        localStorage.setItem("hasVisited", "true");
-
-        // Gather all images and videos
-        const mediaElements = [
-          ...Array.from(document.images),
-          ...Array.from(document.querySelectorAll("video")),
-        ];
-
-        if (mediaElements.length === 0) {
-          setTimeout(hideLoader, fallbackTime);
-          return;
-        }
-
-        let loadedCount = 0;
-        const totalMedia = mediaElements.length;
-
-        const checkLoaded = () => {
-          loadedCount++;
-          if (loadedCount >= totalMedia) {
-            hideLoader();
-          }
-        };
-
-        mediaElements.forEach((media) => {
-          if (
-            (media.tagName === "IMG" &&
-              media.complete &&
-              media.naturalWidth !== 0) ||
-            (media.tagName === "VIDEO" && media.readyState >= 3)
-          ) {
-            checkLoaded();
-          } else {
-            media.addEventListener("load", checkLoaded, { once: true });
-            media.addEventListener("error", checkLoaded, { once: true });
-            if (media.tagName === "VIDEO") {
-              media.addEventListener("loadeddata", checkLoaded, { once: true });
-              media.addEventListener("error", checkLoaded, { once: true });
-            }
-          }
-        });
-
-        // Safety fallback
-        setTimeout(hideLoader, fallbackTime);
-      });
-    </script>
 
     <script>
       // All timeline + observer logic inside DOMContentLoaded so elements exist
@@ -373,7 +159,7 @@
       .timeline-line-bg {
         position: absolute;
         left: 50%;
-        width: 3.5px;
+        width: 4.5px;
         height: calc(100% - 80px);
         background: #e5e7eb;
         transform: translateX(-50%);
@@ -384,7 +170,7 @@
         position: absolute;
         left: 50%;
         top: 60px;
-        width: 3.5px;
+        width: 4.5px;
         height: 0%;
         background: linear-gradient(
           to bottom,
@@ -407,7 +193,7 @@
         height: 56px;
         background: white;
         border: 1px solid #d1d5db; /* Tailwind gray-300 */
-        color: black;
+        color: #2e57c8;
         border-radius: 50%;
         font-weight: 700;
         font-size: 1.25rem;
@@ -419,8 +205,8 @@
       /* Mobile: exactly HALF size */
       @media (max-width: 768px) {
         .number-badge {
-          width: 36px;
-          height: 36px;
+          width: 40px;
+          height: 40px;
           font-size: 1rem;
         }
       }
@@ -474,7 +260,6 @@
       }
     </style>
 
-    <!-- Style of the Loader -->
     <style>
       /* Fullscreen loader wrapper */
       .logo-loader {
@@ -484,50 +269,106 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 16px;
+        gap: 20px;
         background: #161f48;
         z-index: 9999;
       }
 
-      /* Static logo (no animation) */
+      /* Logo */
       .logo-loader img {
         width: 150px;
       }
 
-      /* DOT LOADER (unchanged, working as-is) */
-      .loader {
-        width: 10px;
-        aspect-ratio: 1;
-        border-radius: 50%;
-        animation: l5 1s infinite linear alternate;
+      /* Progress wrapper */
+      .progress-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
       }
 
-      @keyframes l5 {
-        0% {
-          box-shadow: 16px 0 #fcaf1b, -16px 0 rgba(252, 175, 27, 0.25);
-          background: #fcaf1b;
-        }
-        33% {
-          box-shadow: 16px 0 #fcaf1b, -16px 0 rgba(252, 175, 27, 0.25);
-          background: rgba(252, 175, 27, 0.25);
-        }
-        66% {
-          box-shadow: 16px 0 rgba(252, 175, 27, 0.25), -16px 0 #fcaf1b;
-          background: rgba(252, 175, 27, 0.25);
-        }
-        100% {
-          box-shadow: 16px 0 rgba(252, 175, 27, 0.25), -16px 0 #fcaf1b;
-          background: #fcaf1b;
-        }
+      /* Progress bar container */
+      .progress-bar {
+        width: 220px;
+        height: 6px;
+        background: rgba(70, 70, 70, 0.25);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      /* Progress fill */
+      .progress-bar span {
+        display: block;
+        height: 100%;
+        width: 0%;
+        background: #ffffff;
+        border-radius: 999px;
+        transition: width 0.2s ease;
+      }
+
+      /* Percentage text */
+      #progressText {
+        font-size: 14px;
+        color: #ffffff;
+        font-weight: 500;
+      }
+      .logo-loader {
+        transition: opacity 0.3s ease;
       }
     </style>
+
+    <!-- Temporaray Loader hidden logic -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const progressFill = document.getElementById("progressFill");
+        const progressText = document.getElementById("progressText");
+        const loader = document.querySelector(".logo-loader");
+
+        // Check if site was loaded before
+        const isFirstLoad = !localStorage.getItem("siteLoaded");
+
+        // Duration control
+        const totalDuration = isFirstLoad ? 6000 : 1000; // ms
+        const intervalTime = totalDuration / 100; // % sync
+
+        let progress = 0;
+
+        const interval = setInterval(() => {
+          progress += 1;
+          progressFill.style.width = progress + "%";
+          progressText.textContent = progress + "%";
+
+          if (progress >= 100) {
+            clearInterval(interval);
+
+            // Mark site as loaded (ONLY once)
+            localStorage.setItem("siteLoaded", "true");
+
+            // Hide loader smoothly
+            setTimeout(() => {
+              loader.style.opacity = "0";
+              loader.style.pointerEvents = "none";
+
+              setTimeout(() => {
+                loader.style.display = "none";
+              }, 300);
+            }, 200);
+          }
+        }, intervalTime);
+      });
+    </script>
   </head>
   <body class="">
     <!-- Loader Class -->
     <div class="logo-loader">
-      <img src="./assets/CFS TRANSPARENT.png" alt="Loading" />
+      <img src="./assets/CFS TRANSPARENT.png" alt="Logo" />
 
-      <div class="loader"></div>
+      <div class="progress-wrapper">
+        <div class="progress-bar">
+          <span id="progressFill"></span>
+        </div>
+        <span id="progressText">0%</span>
+      </div>
     </div>
 
     <header class="bg-secondary shadow-sm fixed w-full top-0 z-50">
@@ -1061,7 +902,7 @@
     </div>
 
     <!-- Peace of Mind Section -->
-    <section class="bg-white mt-12 py-20 lg:py-40 px-6 lg:px-24">
+    <section class="bg-white mt-12 py-20 lg:py-20 px-6 lg:px-24">
       <div class="max-w-wit">
         <!-- Heading -->
         <div class="mb-10" data-aos="fade-up" data-aos-duration="1000">
@@ -1084,7 +925,7 @@
 
     <section class="max-w-8xl px-6 lg:px-24 overflow-hidden">
       <h1
-        class="text-3xl lg:text-5xl font-semibold text-black text-start lg:text-center mb-12 lg:mb-24 fade-up"
+        class="text-3xl lg:text-5xl font-semibold text-black text-start lg:text-center mb-12 lg:mb-4 fade-up"
       >
         24 <span class="text-blue-600">Money</span> rules
         <br class="hidden lg:block" />
@@ -1092,7 +933,7 @@
       </h1>
 
       <!-- Timeline Container -->
-      <div class="relative max-w-6xl mx-auto">
+      <div class="relative max-w-6xl mx-auto mb-36">
         <!-- Desktop Timeline -->
         <div class="hidden md:block relative py-12">
           <div class="timeline-line-bg rounded-full"></div>
@@ -1106,19 +947,27 @@
             <div class="timeline-item">
               <div class="flex items-center gap-8">
                 <div class="flex-1 text-right">
-                  <div class="timeline-card p-8">
-                    <h3
-                      class="text-3xl font-semibold text-gray-900 mb-3 text-start"
-                    >
-                      Cut the <span class="text-blue-600">noise</span>
-                    </h3>
-                    <p class="text-gray-800 leading-relaxed text-start">
-                      We are often taught that wealth is loud, big weddings, new
-                      cars, and gold. But true wealth is actually quiet. It is
-                      the ability to sleep without worry and say "no" to things
-                      that don't bring you joy. Real success is defined by your
-                      peace of mind, not your neighbor's applause.
-                    </p>
+                  <div class="relative inline-block">
+                    <!-- Card -->
+                    <div class="timeline-card p-8">
+                      <h3
+                        class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                      >
+                        Cut the <span class="text-blue-600">noise</span>
+                      </h3>
+                      <p class="text-gray-800 leading-relaxed text-start">
+                        We are often taught that wealth is loud, big weddings,
+                        new cars, and gold. But true wealth is actually quiet.
+                        It is the ability to sleep without worry and say "no" to
+                        things that don't bring you joy. Real success is defined
+                        by your peace of mind, not your neighbor's applause.
+                      </p>
+                    </div>
+
+                    <!-- RIGHT LINE (Desktop only) -->
+                    <span
+                      class="absolute right-0 top-1/2 translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                    ></span>
                   </div>
                 </div>
                 <div class="flex-shrink-0 flex flex-col items-center">
@@ -1126,7 +975,11 @@
                 </div>
                 <div class="flex-1">
                   <div class="icon-container flex justify-center">
-                    <img src="./assets/Calendar.png" alt="" />
+                    <img
+                      src="./assets/megaphone.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
                   </div>
                 </div>
               </div>
@@ -1137,15 +990,23 @@
               <div class="flex items-center gap-8">
                 <div class="flex-1">
                   <div class="icon-container flex justify-center">
-                    <img src="./assets/man2.png" alt="" />
+                    <img src="./assets/search.png" class="w-1/2 h-1/2" alt="" />
                   </div>
                 </div>
+
                 <div class="flex-shrink-0 flex flex-col items-center">
                   <div class="number-badge">2</div>
                 </div>
-                <div class="flex-1">
+
+                <div class="flex-1 relative">
+                  <!-- Desktop LEFT line -->
+                  <span
+                    class="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                  ></span>
+
+                  <!-- Card -->
                   <div class="timeline-card p-8">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-3">
+                    <h3 class="text-3xl font-semibold text-gray-900 mb-3">
                       Find your <span class="text-blue-600">enough</span>
                     </h3>
                     <p class="text-gray-800 leading-relaxed">
@@ -1163,18 +1024,29 @@
             <!-- Timeline Item 3 -->
             <div class="timeline-item">
               <div class="flex items-center gap-8">
-                <div class="flex-1 text-left">
-                  <div class="timeline-card p-8">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-3">
-                      Turn Dreams into
-                      <span class="text-blue-600">Deadlines</span>
-                    </h3>
-                    <p class="text-gray-800 leading-relaxed">
-                      Define your goals (e.g. retirement, house down payment)
-                      with a specific target amount and a clear date when the
-                      money is needed (the time horizon). This allows you to
-                      calculate how much to invest monthly.
-                    </p>
+                <div class="flex-1 text-right">
+                  <div class="relative inline-block">
+                    <!-- Card -->
+                    <div class="timeline-card p-8">
+                      <h3
+                        class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                      >
+                        Turn Dreams into
+                        <span class="text-blue-600">Deadlines</span>
+                      </h3>
+                      <p class="text-gray-800 leading-relaxed text-start">
+                        Define your goals (e.g., retirement, house down payment)
+                        not just as wishes, but with a specific target amount
+                        and a clear date when the money is needed (the time
+                        horizon). This allows you to calculate how much to
+                        invest monthly.
+                      </p>
+                    </div>
+
+                    <!-- RIGHT LINE (Desktop only) -->
+                    <span
+                      class="absolute right-0 top-1/2 translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                    ></span>
                   </div>
                 </div>
                 <div class="flex-shrink-0 flex flex-col items-center">
@@ -1182,7 +1054,854 @@
                 </div>
                 <div class="flex-1">
                   <div class="icon-container flex justify-center">
-                    <img src="./assets/man3.png" alt="" />
+                    <img
+                      src="./assets/Calendar.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 4 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/dollar-padlock.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">4</div>
+                </div>
+
+                <div class="flex-1 relative">
+                  <!-- Desktop LEFT line -->
+                  <span
+                    class="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                  ></span>
+
+                  <!-- Card -->
+                  <div class="timeline-card p-8">
+                    <h3 class="text-3xl font-semibold text-gray-900 mb-3">
+                      Skills, not jobs, mean
+                      <span class="text-blue-600">security</span>
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed">
+                      We grow up believing a "permanent job" is the ultimate
+                      safety net. But in today's economy, safety comes from
+                      having multiple skills, not one employer. Relying on a
+                      single salary is like standing on a one-legged stool.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 5 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1 text-right">
+                  <div class="relative inline-block">
+                    <!-- Card -->
+                    <div class="timeline-card p-8">
+                      <h3
+                        class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                      >
+                        Count value over
+                        <span class="text-blue-600">hours</span>
+                      </h3>
+                      <p class="text-gray-800 leading-relaxed text-start">
+                        Don't just work harder; work smarter by solving better
+                        problems. If you want to earn more, stop asking "How can
+                        I work more hours?" and start asking "How can I be more
+                        useful?"
+                      </p>
+                    </div>
+
+                    <!-- RIGHT LINE (Desktop only) -->
+                    <span
+                      class="absolute right-0 top-1/2 translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                    ></span>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">5</div>
+                </div>
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img src="./assets/clock.png" class="w-1/2 h-1/2" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 6 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/indian-rupee-inr.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">6</div>
+                </div>
+
+                <div class="flex-1 relative">
+                  <!-- Desktop LEFT line -->
+                  <span
+                    class="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                  ></span>
+
+                  <!-- Card -->
+                  <div class="timeline-card p-8">
+                    <h3 class="text-3xl font-semibold text-gray-900 mb-3">
+                      Tax-Saving is
+                      <span class="text-blue-600">Income</span>
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed">
+                      Learn the legal ways to reduce your tax liability. Utilize
+                      instruments like Section 80C (PPF, EPF, ELSS) and Section
+                      80D (Health Insurance) to maximize your tax deductions,
+                      effectively increasing your net income.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 7 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1 text-right">
+                  <div class="relative inline-block">
+                    <!-- Card -->
+                    <div class="timeline-card p-8">
+                      <h3
+                        class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                      >
+                        Mindful <span class="text-blue-600">Spending</span>
+                      </h3>
+                      <p class="text-gray-800 leading-relaxed text-start">
+                        Budgeting isn't about punishment; it is about awareness.
+                        It is simply noticing where your hard-earned money
+                        flows. Is it going toward your dreams or just vanishing
+                        into daily "chutta" (small expenses)? When you pay
+                        attention, you naturally spend less.
+                      </p>
+                    </div>
+
+                    <!-- RIGHT LINE (Desktop only) -->
+                    <span
+                      class="absolute right-0 top-1/2 translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                    ></span>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">7</div>
+                </div>
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/money-bags.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 8 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/24-date.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">8</div>
+                </div>
+
+                <div class="flex-1 relative">
+                  <!-- Desktop LEFT line -->
+                  <span
+                    class="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                  ></span>
+
+                  <!-- Card -->
+                  <div class="timeline-card p-8">
+                    <h3 class="text-3xl font-semibold text-gray-900 mb-3">
+                      The 24-Hour
+                      <span class="text-blue-600">Rule</span>
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed">
+                      Impulse buying is the enemy of wealth. When you see
+                      something you want online, wait 24 hours before buying it.
+                      You will be surprised how often the urge disappears by the
+                      next morning.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 9 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1 text-right">
+                  <div class="relative inline-block">
+                    <!-- Card -->
+                    <div class="timeline-card p-8">
+                      <h3
+                        class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                      >
+                        Track It to
+                        <span class="text-blue-600">Tame It</span>
+                      </h3>
+                      <p class="text-gray-800 leading-relaxed text-start">
+                        Awareness requires action. Choose a simple method -
+                        whether a mobile app, a dedicated notebook, or an excel
+                        sheet to track every rupee spent for at least one month.
+                        You cannot control what you do not measure.
+                      </p>
+                    </div>
+
+                    <!-- RIGHT LINE (Desktop only) -->
+                    <span
+                      class="absolute right-0 top-1/2 translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                    ></span>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">9</div>
+                </div>
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/upload-arrow.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 10 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/emi-money.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">10</div>
+                </div>
+
+                <div class="flex-1 relative">
+                  <!-- Desktop LEFT line -->
+                  <span
+                    class="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                  ></span>
+
+                  <!-- Card -->
+                  <div class="timeline-card p-8">
+                    <h3 class="text-3xl font-semibold text-gray-900 mb-3">
+                      The Weight of <span class="text-blue-600">EMI</span>
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed">
+                      An EMI isn't just a monthly payment; it is a piece of your
+                      future freedom sold to a bank. Before taking a loan for a
+                      luxury, remember that you are trading your future peace
+                      for a temporary thrill. Live lighter.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 11 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1 text-right">
+                  <div class="relative inline-block">
+                    <!-- Card -->
+                    <div class="timeline-card p-8">
+                      <h3
+                        class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                      >
+                        Interest eats
+                        <span class="text-blue-600">savings</span>
+                      </h3>
+                      <p class="text-gray-800 leading-relaxed text-start">
+                        Credit card debt is like a hole in your pocket that
+                        grows bigger every day. Paying the "minimum due" is a
+                        trap designed to keep you in debt forever. Clear it
+                        fully, or don't swipe at all.
+                      </p>
+                    </div>
+
+                    <!-- RIGHT LINE (Desktop only) -->
+                    <span
+                      class="absolute right-0 top-1/2 translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                    ></span>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">11</div>
+                </div>
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/discount-tag.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 12 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/user-folder.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">12</div>
+                </div>
+
+                <div class="flex-1 relative">
+                  <!-- Desktop LEFT line -->
+                  <span
+                    class="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                  ></span>
+
+                  <!-- Card -->
+                  <div class="timeline-card p-8">
+                    <h3 class="text-3xl font-semibold text-gray-900 mb-3">
+                      Your Financial
+                      <span class="text-blue-600">Report Card </span>
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed">
+                      Your Credit (CIBIL) Score is the foundation of your
+                      borrowing life. A score above 750 ensures you get the best
+                      interest rates on home or car loans. Pay all your EMIs and
+                      credit card bills on time, every time to maintain a
+                      perfect score.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 13 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1 text-right">
+                  <div class="relative inline-block">
+                    <!-- Card -->
+                    <div class="timeline-card p-8">
+                      <h3
+                        class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                      >
+                        The Sleep-Well
+                        <span class="text-blue-600">Fund</span>
+                      </h3>
+                      <p class="text-gray-800 leading-relaxed text-start">
+                        Life is unpredictable. Medical issues or job shifts
+                        happen. An emergency fund is not an investment; it is a
+                        buffer that prevents a crisis from becoming a disaster.
+                        It allows you to breathe when things go wrong.
+                      </p>
+                    </div>
+
+                    <!-- RIGHT LINE (Desktop only) -->
+                    <span
+                      class="absolute right-0 top-1/2 translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                    ></span>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">13</div>
+                </div>
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img src="./assets/sleep.png" class="w-1/2 h-1/2" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 14 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img src="./assets/Beaker.png" class="w-1/2 h-1/2" alt="" />
+                  </div>
+                </div>
+
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">14</div>
+                </div>
+
+                <div class="flex-1 relative">
+                  <!-- Desktop LEFT line -->
+                  <span
+                    class="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                  ></span>
+
+                  <!-- Card -->
+                  <div class="timeline-card p-8">
+                    <h3 class="text-3xl font-semibold text-gray-900 mb-3">
+                      Liquidity
+                      <span class="text-blue-600">Matters</span>
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed">
+                      Don't lock all your safety money in real estate or gold,
+                      which are hard to sell quickly. Keep 3-6 months of
+                      expenses in a simple bank account or liquid fund.
+                      Accessibility is more important than returns here.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 15 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1 text-right">
+                  <div class="relative inline-block">
+                    <!-- Card -->
+                    <div class="timeline-card p-8">
+                      <h3
+                        class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                      >
+                        The short-term
+                        <span class="text-blue-600">sinking fund</span>
+                      </h3>
+                      <p class="text-gray-800 leading-relaxed text-start">
+                        Distinguish your Safety Fund (Emergency Fund) from your
+                        Short-Term Goals fund (e.g., saving for a vacation or a
+                        new gadget next year). Short-term goal savings can be
+                        placed in slightly better-yielding liquid funds or
+                        short-term FDs, as the required date is fixed.
+                      </p>
+                    </div>
+
+                    <!-- RIGHT LINE (Desktop only) -->
+                    <span
+                      class="absolute right-0 top-1/2 translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                    ></span>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">15</div>
+                </div>
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img src="./assets/fund.png" class="w-1/2 h-1/2" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 16 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/inflation.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">16</div>
+                </div>
+
+                <div class="flex-1 relative">
+                  <!-- Desktop LEFT line -->
+                  <span
+                    class="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                  ></span>
+
+                  <!-- Card -->
+                  <div class="timeline-card p-8">
+                    <h3 class="text-3xl font-semibold text-gray-900 mb-3">
+                      Beating <span class="text-blue-600">Inflation</span>
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed">
+                      Putting money under the mattress or in a low-interest
+                      savings account means it is slowly shrinking due to
+                      inflation. To preserve your purchasing power, your money
+                      must grow faster than the cost of living rises.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 17 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1 text-right">
+                  <div class="relative inline-block">
+                    <!-- Card -->
+                    <div class="timeline-card p-8">
+                      <h3
+                        class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                      >
+                        The Power of <span class="text-blue-600">Patience</span>
+                      </h3>
+                      <p class="text-gray-800 leading-relaxed text-start">
+                        Investing is like planting a mango tree; you don't dig
+                        up the seed every day to check if it's growing. Trust
+                        the process, stay consistent with SIPs, and give it
+                        time. Wealth is waiting, not racing.
+                      </p>
+                    </div>
+
+                    <!-- RIGHT LINE (Desktop only) -->
+                    <span
+                      class="absolute right-0 top-1/2 translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                    ></span>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">17</div>
+                </div>
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/Patience.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 18 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/Risk-of-return.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">18</div>
+                </div>
+
+                <div class="flex-1 relative">
+                  <!-- Desktop LEFT line -->
+                  <span
+                    class="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                  ></span>
+
+                  <!-- Card -->
+                  <div class="timeline-card p-8">
+                    <h3 class="text-3xl font-semibold text-gray-900 mb-3">
+                      The Risk-Return
+                      <span class="text-blue-600">Trade-off</span>
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed">
+                      There is no return without risk. Equity (Stocks/Equity
+                      MFs) offers higher potential returns but is volatile (high
+                      risk). Debt (Bonds/FDs) offers lower returns but is stable
+                      (low risk). Your comfort level with risk and your time
+                      horizon must guide your asset allocation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 19 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1 text-right">
+                  <div class="relative inline-block">
+                    <!-- Card -->
+                    <div class="timeline-card p-8">
+                      <h3
+                        class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                      >
+                        Protect the
+                        <span class="text-blue-600">Breadwinner</span>
+                      </h3>
+                      <p class="text-gray-800 leading-relaxed text-start">
+                        If your family relies on your income, you need Term
+                        Insurance. It is a selfless act, ensuring that even if
+                        you aren't there, the rent is paid and education
+                        continues. It is the cheapest way to buy certainty.
+                      </p>
+                    </div>
+
+                    <!-- RIGHT LINE (Desktop only) -->
+                    <span
+                      class="absolute right-0 top-1/2 translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                    ></span>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">19</div>
+                </div>
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/Protect.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 20 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img src="./assets/wipe.png" class="w-1/2 h-1/2" alt="" />
+                  </div>
+                </div>
+
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">20</div>
+                </div>
+
+                <div class="flex-1 relative">
+                  <!-- Desktop LEFT line -->
+                  <span
+                    class="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                  ></span>
+
+                  <!-- Card -->
+                  <div class="timeline-card p-8">
+                    <h3 class="text-3xl font-semibold text-gray-900 mb-3">
+                      Don’t let one Illness
+                      <span class="text-blue-600">Wipe </span>You Out
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed">
+                      If you don't find out how much is "enough" you will run on
+                      a treadmill forever. In India, the pressure to upgrade
+                      your lifestyle never ends. Pause and ask yourself: "Am I
+                      buying this for my happiness, or for someone else's
+                      approval?"
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 21 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1 text-right">
+                  <div class="relative inline-block">
+                    <!-- Card -->
+                    <div class="timeline-card p-8">
+                      <h3
+                        class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                      >
+                        Keep Insurance and Investment
+                        <span class="text-blue-600">Separate</span>
+                      </h3>
+                      <p class="text-gray-800 leading-relaxed text-start">
+                        Avoid buying insurance policies that mix protection and
+                        returns (like ULIPs or Endowment plans). They offer poor
+                        returns and inadequate coverage. Buy pure Term Insurance
+                        for protection and invest the difference in mutual funds
+                        for better returns.
+                      </p>
+                    </div>
+
+                    <!-- RIGHT LINE (Desktop only) -->
+                    <span
+                      class="absolute right-0 top-1/2 translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                    ></span>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">21</div>
+                </div>
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/insuarance.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 22 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/Search-review.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">22</div>
+                </div>
+
+                <div class="flex-1 relative">
+                  <!-- Desktop LEFT line -->
+                  <span
+                    class="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                  ></span>
+
+                  <!-- Card -->
+                  <div class="timeline-card p-8">
+                    <h3 class="text-3xl font-semibold text-gray-900 mb-3">
+                      Review your plan
+                      <span class="text-blue-600">annually</span>
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed">
+                      Life changes. You get a raise, get married, or have a
+                      child. Your financial plan must be a living document.
+                      Review your goals, nominees, insurance coverage, and asset
+                      allocation at least once every year to ensure everything
+                      is still aligned.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 23 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1 text-right">
+                  <div class="relative inline-block">
+                    <!-- Card -->
+                    <div class="timeline-card p-8">
+                      <h3
+                        class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                      >
+                        Kindness in
+                        <span class="text-blue-600">Paperwork</span>
+                      </h3>
+                      <p class="text-gray-800 leading-relaxed text-start">
+                        Leaving your finances unorganized creates chaos for the
+                        people you love. Organizing your passwords, bank
+                        details, and nominees is an act of care, after you. Make
+                        it easy for them in their time of grief.
+                      </p>
+                    </div>
+
+                    <!-- RIGHT LINE (Desktop only) -->
+                    <span
+                      class="absolute right-0 top-1/2 translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                    ></span>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">23</div>
+                </div>
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/documentation.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 24 -->
+            <div class="timeline-item">
+              <div class="flex items-center gap-8">
+                <div class="flex-1">
+                  <div class="icon-container flex justify-center">
+                    <img
+                      src="./assets/peace-will.png"
+                      class="w-1/2 h-1/2"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div class="flex-shrink-0 flex flex-col items-center">
+                  <div class="number-badge">24</div>
+                </div>
+
+                <div class="flex-1 relative">
+                  <!-- Desktop LEFT line -->
+                  <span
+                    class="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2 w-[50px] h-[2px] bg-gray-300 hidden md:block"
+                  ></span>
+
+                  <!-- Card -->
+                  <div class="timeline-card p-8">
+                    <h3 class="text-3xl font-semibold text-gray-900 mb-3">
+                      The Will to
+                      <span class="text-blue-600">Peace</span>
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed">
+                      In India, families often drift apart over property
+                      disputes. A clear, written Will prevents confusion and
+                      protects relationships. It is not about death; it is about
+                      harmony for the living.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1205,13 +1924,13 @@
               >
                 <div class="icon-container flex justify-center mb-5">
                   <img
-                    src="../assets/Calendar.png"
+                    src="./assets/megaphone.png"
                     class="w-1/2 h-1/2"
                     alt=""
                   />
                 </div>
                 <h3
-                  class="text-2xl font-semibold text-gray-900 mb-3 text-center"
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
                 >
                   Cut the <span class="text-blue-600">noise</span>
                 </h3>
@@ -1227,48 +1946,25 @@
 
           <!-- Mobile Item 2 -->
           <div class="timeline-item">
-            <div class="flex flex-col items-center gap-6">
+            <div class="flex flex-col items-center gap-0">
               <div class="number-badge font-semibold">2</div>
               <div
-                class="timeline-card w-full p-6 rounded-16"
-                style="max-width: 320px"
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
               >
                 <div class="icon-container flex justify-center mb-5">
-                  <svg class="w-24 h-24" viewBox="0 0 200 200" fill="none">
-                    <circle
-                      cx="100"
-                      cy="100"
-                      r="45"
-                      fill="#E0E7FF"
-                      stroke="#3B82F6"
-                      stroke-width="3"
-                    />
-                    <circle cx="100" cy="100" r="8" fill="#3B82F6" />
-                    <line
-                      x1="100"
-                      y1="100"
-                      x2="100"
-                      y2="60"
-                      stroke="#3B82F6"
-                      stroke-width="3"
-                    />
-                    <line
-                      x1="100"
-                      y1="100"
-                      x2="130"
-                      y2="100"
-                      stroke="#3B82F6"
-                      stroke-width="3"
-                    />
-                  </svg>
+                  <img src="./assets/search.png" class="w-1/2 h-1/2" alt="" />
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">
-                  Find your <span class="text-blue-600">enough</span>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  Find your <span class="text-blue-600">enough </span>
                 </h3>
-                <p class="text-gray-600 text-sm leading-relaxed text-center">
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
                   If you don't find out how much is "enough" you will run on a
                   treadmill forever. In India, the pressure to upgrade your
-                  lifestyle never ends. Pause and ask yourself.
+                  lifestyle never ends. Pause and ask yourself: "Am I buying
+                  this for my happiness, or for someone else's approval?"
                 </p>
               </div>
             </div>
@@ -1276,44 +1972,624 @@
 
           <!-- Mobile Item 3 -->
           <div class="timeline-item">
-            <div class="flex flex-col items-center gap-6">
+            <div class="flex flex-col items-center gap-0">
               <div class="number-badge font-semibold">3</div>
               <div
-                class="timeline-card w-full p-6 rounded-16"
-                style="max-width: 320px"
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
               >
                 <div class="icon-container flex justify-center mb-5">
-                  <svg class="w-24 h-24" viewBox="0 0 200 200" fill="none">
-                    <rect
-                      x="30"
-                      y="40"
-                      width="140"
-                      height="120"
-                      rx="10"
-                      fill="#E0E7FF"
-                      stroke="#3B82F6"
-                      stroke-width="2"
-                    />
-                    <circle cx="50" cy="60" r="8" fill="#3B82F6" />
-                    <circle cx="100" cy="60" r="8" fill="#3B82F6" />
-                    <circle cx="150" cy="60" r="8" fill="#3B82F6" />
-                    <line
-                      x1="40"
-                      y1="80"
-                      x2="160"
-                      y2="80"
-                      stroke="#3B82F6"
-                      stroke-width="2"
-                    />
-                  </svg>
+                  <img src="./assets/Calendar.png" class="w-1/2 h-1/2" alt="" />
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
                   Turn Dreams into <span class="text-blue-600">Deadlines</span>
                 </h3>
-                <p class="text-gray-600 text-sm leading-relaxed text-center">
-                  Define your goals with a specific target amount and a clear
-                  date when the money is needed. This allows you to calculate
-                  how much to invest monthly.
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  Define your goals (e.g., retirement, house down payment) not
+                  just as wishes, but with a specific target amount and a clear
+                  date when the money is needed (the time horizon). This allows
+                  you to calculate how much to invest monthly.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 4 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">4</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img
+                    src="./assets/dollar-padlock.png"
+                    class="w-1/2 h-1/2"
+                    alt=""
+                  />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  Skills, not jobs, mean
+                  <span class="text-blue-600">security </span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  We grow up believing a "permanent job" is the ultimate safety
+                  net. But in today's economy, safety comes from having multiple
+                  skills, not one employer. Relying on a single salary is like
+                  standing on a one-legged stool.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 5 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">5</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img src="./assets/clock.png" class="w-1/2 h-1/2" alt="" />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  Count value over <span class="text-blue-600">hours</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  Don't just work harder; work smarter by solving better
+                  problems. If you want to earn more, stop asking "How can I
+                  work more hours?" and start asking "How can I be more useful?"
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 6 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">6</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img
+                    src="./assets/indian-rupee-inr.png"
+                    class="w-1/2 h-1/2"
+                    alt=""
+                  />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  Tax-Saving is <span class="text-blue-600">Income</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  Learn the legal ways to reduce your tax liability. Utilize
+                  instruments like Section 80C (PPF, EPF, ELSS) and Section 80D
+                  (Health Insurance) to maximize your tax deductions,
+                  effectively increasing your net income.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 7 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">7</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img
+                    src="./assets/money-bags.png"
+                    class="w-1/2 h-1/2"
+                    alt=""
+                  />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  Mindful <span class="text-blue-600">Spending</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  Budgeting isn't about punishment; it is about awareness. It is
+                  simply noticing where your hard-earned money flows. Is it
+                  going toward your dreams or just vanishing into daily "chutta"
+                  (small expenses)? When you pay attention, you naturally spend
+                  less.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 8 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">8</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img src="./assets/24-date.png" class="w-1/2 h-1/2" alt="" />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  The 24-Hour <span class="text-blue-600">Rule</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  Impulse buying is the enemy of wealth. When you see something
+                  you want online, wait 24 hours before buying it. You will be
+                  surprised how often the urge disappears by the next morning.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 9 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">9</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img
+                    src="./assets/upload-arrow.png"
+                    class="w-1/2 h-1/2"
+                    alt=""
+                  />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  Track It to <span class="text-blue-600">Tame It</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  Awareness requires action. Choose a simple method - whether a
+                  mobile app, a dedicated notebook, or an excel sheet to track
+                  every rupee spent for at least one month. You cannot control
+                  what you do not measure.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 10 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">10</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img
+                    src="./assets/emi-money.png"
+                    class="w-1/2 h-1/2"
+                    alt=""
+                  />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  The Weight of <span class="text-blue-600">EMI</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  An EMI isn't just a monthly payment; it is a piece of your
+                  future freedom sold to a bank. Before taking a loan for a
+                  luxury, remember that you are trading your future peace for a
+                  temporary thrill. Live lighter.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 11 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">11</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img src="./assets/Calendar.png" class="w-1/2 h-1/2" alt="" />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  Interest eats <span class="text-blue-600">savings</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  Credit card debt is like a hole in your pocket that grows
+                  bigger every day. Paying the "minimum due" is a trap designed
+                  to keep you in debt forever. Clear it fully, or don't swipe at
+                  all.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 12 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">12</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img
+                    src="./assets/user-folder.png"
+                    class="w-1/2 h-1/2"
+                    alt=""
+                  />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  Your Financial <span class="text-blue-600">Report Card</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  Your Credit (CIBIL) Score is the foundation of your borrowing
+                  life. A score above 750 ensures you get the best interest
+                  rates on home or car loans. Pay all your EMIs and credit card
+                  bills on time, every time to maintain a perfect score.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 13 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">13</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img src="./assets/sleep.png" class="w-1/2 h-1/2" alt="" />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  The Sleep-Well <span class="text-blue-600">Fund</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  Life is unpredictable. Medical issues or job shifts happen. An
+                  emergency fund is not an investment; it is a buffer that
+                  prevents a crisis from becoming a disaster. It allows you to
+                  breathe when things go wrong.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 14 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">14</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img src="./assets/Beaker.png" class="w-1/2 h-1/2" alt="" />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  Liquidity <span class="text-blue-600">Matters</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  Don't lock all your safety money in real estate or gold, which
+                  are hard to sell quickly. Keep 3-6 months of expenses in a
+                  simple bank account or liquid fund. Accessibility is more
+                  important than returns here.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 15 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">15</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img src="./assets/fund.png" class="w-1/2 h-1/2" alt="" />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  The short-term <span class="text-blue-600">sinking fund</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  Distinguish your Safety Fund (Emergency Fund) from your
+                  Short-Term Goals fund (e.g., saving for a vacation or a new
+                  gadget next year). Short-term goal savings can be placed in
+                  slightly better-yielding liquid funds or short-term FDs, as
+                  the required date is fixed.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 16 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">16</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img
+                    src="./assets/inflation.png"
+                    class="w-1/2 h-1/2"
+                    alt=""
+                  />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  Beating <span class="text-blue-600">Inflation</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  Putting money under the mattress or in a low-interest savings
+                  account means it is slowly shrinking due to inflation. To
+                  preserve your purchasing power, your money must grow faster
+                  than the cost of living rises.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 17 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">17</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img src="./assets/Patience.png" class="w-1/2 h-1/2" alt="" />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  The Power of <span class="text-blue-600">Patience</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  We are often taught that wealth is loud, big weddings, new
+                  cars, and gold. But true wealth is actually quiet. It is the
+                  ability to sleep without worry and say "no" to things that
+                  don't bring you joy.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 18 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">18</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img
+                    src="./assets/Risk-of-return.png"
+                    class="w-1/2 h-1/2"
+                    alt=""
+                  />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  The Risk-Return <span class="text-blue-600">Trade-off</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  There is no return without risk. Equity (Stocks/Equity MFs)
+                  offers higher potential returns but is volatile (high risk).
+                  Debt (Bonds/FDs) offers lower returns but is stable (low
+                  risk). Your comfort level with risk and your time horizon must
+                  guide your asset allocation.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 19 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">19</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img src="./assets/Protect.png" class="w-1/2 h-1/2" alt="" />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  Protect the <span class="text-blue-600">Breadwinner</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  If your family relies on your income, you need Term Insurance.
+                  It is a selfless act, ensuring that even if you aren't there,
+                  the rent is paid and education continues. It is the cheapest
+                  way to buy certainty.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 20 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">20</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img src="./assets/wipe.png" class="w-1/2 h-1/2" alt="" />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  Don’t let one Illness<span class="text-blue-600"> Wipe</span>
+                  You Out
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  If you don't find out how much is "enough" you will run on a
+                  treadmill forever. In India, the pressure to upgrade your
+                  lifestyle never ends. Pause and ask yourself: "Am I buying
+                  this for my happiness, or for someone else's approval?"
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 21 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">21</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img
+                    src="./assets/insuarance.png"
+                    class="w-1/2 h-1/2"
+                    alt=""
+                  />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  Keep Insurance and Investment
+                  <span class="text-blue-600">Separate</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  Avoid buying insurance policies that mix protection and
+                  returns (like ULIPs or Endowment plans). They offer poor
+                  returns and inadequate coverage. Buy pure Term Insurance for
+                  protection and invest the difference in mutual funds for
+                  better returns.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 22 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">22</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img
+                    src="./assets/Search-review.png"
+                    class="w-1/2 h-1/2"
+                    alt=""
+                  />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  Review your plan <span class="text-blue-600">annually</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  Life changes. You get a raise, get married, or have a child.
+                  Your financial plan must be a living document. Review your
+                  goals, nominees, insurance coverage, and asset allocation at
+                  least once every year to ensure everything is still aligned.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 23 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">23</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img
+                    src="./assets/documentation.png"
+                    class="w-1/2 h-1/2"
+                    alt=""
+                  />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  Kindness in <span class="text-blue-600">Paperwork</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  Leaving your finances unorganized creates chaos for the people
+                  you love. Organizing your passwords, bank details, and
+                  nominees is an act of care, after you. Make it easy for them
+                  in their time of grief.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Item 24 -->
+          <div class="timeline-item">
+            <div class="flex flex-col items-center gap-0">
+              <div class="number-badge font-semibold">24</div>
+              <div
+                class="timeline-card w-full p-5 rounded-16"
+                style="max-width: 450px"
+              >
+                <div class="icon-container flex justify-center mb-5">
+                  <img
+                    src="./assets/peace-will.png"
+                    class="w-1/2 h-1/2"
+                    alt=""
+                  />
+                </div>
+                <h3
+                  class="text-3xl font-semibold text-gray-900 mb-3 text-start"
+                >
+                  The Will to <span class="text-blue-600">Peace</span>
+                </h3>
+                <p class="text-gray-800 text-sm leading-relaxed text-start">
+                  In India, families often drift apart over property disputes. A
+                  clear, written Will prevents confusion and protects
+                  relationships. It is not about death; it is about harmony for
+                  the living.
                 </p>
               </div>
             </div>
