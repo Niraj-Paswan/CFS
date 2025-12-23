@@ -324,12 +324,18 @@
         const progressText = document.getElementById("progressText");
         const loader = document.querySelector(".logo-loader");
 
+        const isFirstLoad = !localStorage.getItem("siteLoaded");
+
+        const MAX_TIME = 7000; // hard safety cap
+        const FAST_EXIT = 2000; // repeat visit exit
+        const startTime = Date.now();
+
         let visualProgress = 0;
         let targetProgress = 0;
-        let pageFullyLoaded = false;
+        let finished = false;
 
         /* ===============================
-       REAL IMAGE TRACKING
+       REAL IMAGE-BASED PROGRESS
        =============================== */
         const images = Array.from(document.images);
         const totalAssets = images.length || 1;
@@ -350,31 +356,34 @@
         });
 
         /* ===============================
-       SMOOTH PROGRESS ANIMATION
+       SMOOTH VISUAL ANIMATION
        =============================== */
-        const progressTimer = setInterval(() => {
-          if (visualProgress < targetProgress) {
-            visualProgress += Math.max(
-              0.5,
-              (targetProgress - visualProgress) * 0.1
-            );
-          }
+        const animate = setInterval(() => {
+          visualProgress += Math.max(
+            0.4,
+            (targetProgress - visualProgress) * 0.1
+          );
 
           visualProgress = Math.min(visualProgress, 100);
 
           progressFill.style.width = visualProgress + "%";
           progressText.textContent = Math.floor(visualProgress) + "%";
 
-          if (visualProgress >= 100 && pageFullyLoaded) {
-            clearInterval(progressTimer);
-            hideLoaderImmediate();
+          if (visualProgress >= 100) {
+            clearInterval(animate);
+            hideLoader();
           }
         }, 16);
 
         /* ===============================
-       IMMEDIATE FADE-OUT
+       SAFE EXIT HANDLERS
        =============================== */
-        function hideLoaderImmediate() {
+        function hideLoader() {
+          if (finished) return;
+          finished = true;
+
+          localStorage.setItem("siteLoaded", "true");
+
           loader.style.transition = "opacity 0.4s ease-in";
           loader.style.opacity = "0";
           loader.style.pointerEvents = "none";
@@ -384,9 +393,17 @@
           }, 400);
         }
 
-        window.addEventListener("load", () => {
-          pageFullyLoaded = true;
-        });
+        /* MAX 7s SAFETY */
+        setTimeout(() => {
+          targetProgress = 100;
+        }, MAX_TIME);
+
+        /* FAST EXIT FOR REPEAT VISITS */
+        if (!isFirstLoad) {
+          setTimeout(() => {
+            targetProgress = 100;
+          }, FAST_EXIT);
+        }
       });
     </script>
   </head>
