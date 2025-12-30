@@ -356,28 +356,31 @@
               class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
             >
               <a
-                href="#lit-1"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
-              >
-                <i data-lucide="book-open" class="w-5 h-5"></i> Basics
-              </a>
-              <a
-                href="#lit-2"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
-              >
-                <i data-lucide="lightbulb" class="w-5 h-5"></i> Tips & Guides
-              </a>
-              <a
-                href="#lit-3"
+                href="../video-lessons.html"
                 class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
                 <i data-lucide="play-circle" class="w-5 h-5"></i> Video Lessons
+              </a>
+              <a
+                href="../financial-literacy.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="book-open" class="w-5 h-5"></i> Financial
+                Literacy
+              </a>
+              <a
+                href="../workshops.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="presentation" class="w-5 h-5"></i> Workshop
               </a>
             </div>
           </div>
 
           <!-- Simple links -->
-          <a href="#nri-corner" class="text-white hover:text-primary transition"
+          <a
+            href="../nri-corner.html"
+            class="text-white hover:text-primary transition"
             >NRI Corner</a
           >
           <a
@@ -394,7 +397,7 @@
 
         <!-- CTA Button -->
         <a
-          href="#"
+          href="../financial-assessment.html"
           class="hidden md:inline-flex items-center border border-transparent bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
         >
           Get Free Assessment
@@ -420,13 +423,13 @@
       class="fixed top-[72px] w-full h-12 bg-strokes z-40 flex items-center justify-center px-4 text-sm"
     >
       <a
-        href="#"
+        href="../financial-assessment.html"
         class="flex items-center font-semibold text-black hover:underline"
       >
         Get a no cost, no commitment assessment
       </a>
       <a
-        href="#"
+        href="../about-us.html"
         class="hidden lg:inline-flex font-semibold items-center text-white mr-2"
       >
         <span class="text-black mx-2">|</span> Celebrating 40 Years of Trust
@@ -658,29 +661,29 @@
           </summary>
           <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
             <a
-              href="#lit-1"
-              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
-            >
-              <i data-lucide="book-open" class="w-4 h-4"></i> Basics
-            </a>
-            <a
-              href="#lit-2"
-              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
-            >
-              <i data-lucide="lightbulb" class="w-4 h-4"></i> Tips & Guides
-            </a>
-            <a
-              href="#lit-3"
+              href="../video-lessons.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
             >
               <i data-lucide="play-circle" class="w-4 h-4"></i> Video Lessons
+            </a>
+            <a
+              href="../financial-literacy.html"
+              class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-primary hover:text-white"
+            >
+              <i data-lucide="book-open" class="w-4 h-4"></i> Financial Literacy
+            </a>
+            <a
+              href="../workshops.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="presentation" class="w-4 h-4"></i> Workshop
             </a>
           </div>
         </details>
 
         <!-- Additional mobile navigation links -->
         <a
-          href="#nri-corner"
+          href="../nri-corner.html"
           class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
         >
           <i data-lucide="globe" class="w-4 h-4"></i> NRI Corner
@@ -702,7 +705,7 @@
       <!-- Mobile CTA button at bottom -->
       <div class="p-6">
         <a
-          href="#"
+          href="../financial-assessment.html"
           class="inline-flex items-center bg-primary text-secondary pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:bg-secondary hover:text-white"
         >
           Get Free Assessment
@@ -1366,7 +1369,8 @@
 
         <!-- Button -->
         <a
-          href="https://wa.me/?text=Hey%2C%20I%20found%20this%20useful!%20Check%20out%20the%20FREE%20Assessment%20by%20Chimulkar%20Financial%20Services%20👉%20https://yourdomain.com/free-assessment.html"
+          id="whatsapp-share"
+          href="#"
           target="_blank"
           class="flex w-fit items-center font-semibold border border-transparent bg-primary text-black pl-5 pr-3 py-2 lg:py-2.5 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
           data-aos="zoom-in"
@@ -1379,6 +1383,21 @@
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </span>
         </a>
+        <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            const btn = document.getElementById("whatsapp-share");
+
+            if (!btn) return;
+
+            const currentURL = window.location.href;
+            const message = `Hey, I found this useful! Check out the FREE Assessment by Chimulkar Financial Services 👉 ${currentURL}`;
+
+            const whatsappLink =
+              "https://wa.me/?text=" + encodeURIComponent(message);
+
+            btn.href = whatsappLink;
+          });
+        </script>
       </div>
     </section>
 
@@ -1599,7 +1618,7 @@
     <footer class="w-full bg-white border-t border-gray-200 mb-12 lg:mb-0">
       <!-- Top Nav Links -->
       <div
-        class="max-w-7xl mx-auto px-6 py-6 flex flex-wrap justify-center md:justify-between gap-6 text-sm text-blueeborder-bluee"
+        class="max-w-7xl hidden mx-auto px-6 py-6 flex flex-wrap justify-center md:justify-between gap-6 text-sm text-blueeborder-bluee"
       >
         <a href="/about" class="hover:text-primary transition">About Us</a>
         <a href="/services" class="hover:text-primary transition">Services</a>
@@ -1631,11 +1650,11 @@
             Office
           </a>
           <a
-            href="mailto:invest@chimulkar.com"
+            href="mailto:chimulkarfinancialservices@gmail.com"
             class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
           >
             <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
-            invest@chimulkar.com
+            chimulkarfinancialservices@gmail.com
           </a>
           <a
             href="tel:+918208031927"
