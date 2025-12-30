@@ -22,6 +22,8 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
     <style>
       /* Hide scrollbars for carousel elements while maintaining functionality */
       .no-scrollbar::-webkit-scrollbar {
@@ -38,6 +40,16 @@
         overflow-x: hidden; /* Prevent horizontal scroll */
       }
     </style>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: "ease-out-cubic",
+        once: true,
+        offset: 120,
+      });
+    </script>
+
     <!-- Temporaray Loader hidden logic -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -341,32 +353,55 @@
     </div>
 
     <section class="relative bg-white">
-      <!-- Image -->
-      <img
-        src="./assets/hands together.jpg"
-        alt="Pranav Chimulkar"
-        class="w-full h-full object-cover mt-[60px]"
-      />
+      <!-- Image Wrapper -->
+      <div class="relative w-full h-full" data-aos="fade-in">
+        <img
+          src="./assets/hands together.jpg"
+          alt="Pranav Chimulkar"
+          class="hidden lg:block w-full h-full object-cover mt-[60px]"
+        />
+        <img
+          src="./assets/hands-Mobile.png"
+          alt="Pranav Chimulkar"
+          class="flex lg:hidden w-full h-full object-cover"
+        />
+
+        <div
+          class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"
+        ></div>
+      </div>
 
       <!-- Text Overlay -->
       <div
-        class="absolute inset-0 flex items-center justify-center text-center bottom-0 lg:bottom-[850px]"
+        class="absolute inset-0 flex items-center justify-center text-start lg:text-center mt-80 lg:mt-5 px-2"
       >
-        <div class="max-w-2xl pl-4 lg:pl-20 mt-4 lg:mt-[450px]">
-          <h1 class="text-base lg:text-xl font-medium text-white leading-tight">
-            Chimulkar Foundation: Legacy Forward
+        <div class="max-w-2xl pl-4 lg:pl-20 mt-4 lg:mb-[450px]">
+          <h1
+            class="text-base lg:text-xl font-medium text-white"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            Chimulkar Foundation
           </h1>
-          <p class="mt-4 text-2xl lg:text-5xl font-semibold text-white">
+
+          <p
+            class="mt-4 text-3xl lg:text-5xl font-semibold text-white"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+          >
             Channel your <span class="text-lightred">success</span> into
-            <br class="inline lg:hidden" />
-            meaningful <span class="text-lightred">impact</span>
+            meaningful
+            <span class="text-lightred">impact</span>
           </p>
+
           <a
             href="#"
-            class="inline-flex mt-2 lg:mt-36 items-center border border-transparent bg-white text-reds pl-5 pr-3 py-3 rounded-full text-sm gap-3 group transition hover:opacity-90"
+            class="inline-flex mt-6 items-center bg-white text-reds px-6 py-3 rounded-full text-sm gap-3 transition hover:opacity-90"
+            data-aos="zoom-in"
+            data-aos-delay="300"
           >
             Join the Movement
-            <img src="./assets/fwdicon.png" class="w-5 h-5" alt="" />
+            <img src="./assets/fwdicon.png" class="w-5 h-5" />
           </a>
         </div>
       </div>
@@ -376,7 +411,10 @@
     <section class="bg-white py-20 px-6 lg:px-24" id="about-us">
       <div class="max-w-7xl space-y-24">
         <!-- Block 1 - Left -->
-        <div class="flex flex-col lg:flex-row items-start lg:items-center">
+        <div
+          class="flex flex-col lg:flex-row items-start lg:items-center"
+          data-aos="fade-right"
+        >
           <div class="lg:w-1/2">
             <h2
               class="text-3xl font-semibold text-start lg:text-left text-darkcrimson"
@@ -409,10 +447,10 @@
             />
           </div>
         </div>
-
         <!-- Block 2 - Right -->
         <div
           class="flex flex-col lg:flex-row-reverse items-start lg:items-center"
+          data-aos="fade-left"
         >
           <div class="lg:w-1/2">
             <h2
@@ -447,9 +485,11 @@
             />
           </div>
         </div>
-
         <!-- Block 3 - Left -->
-        <div class="flex flex-col lg:flex-row items-start lg:items-center">
+        <div
+          class="flex flex-col lg:flex-row items-start lg:items-center"
+          data-aos="fade-right"
+        >
           <div class="lg:w-1/2">
             <h2
               class="text-3xl font-semibold text-start lg:text-left text-darkcrimson"
@@ -521,7 +561,7 @@
         <div
           class="bg-transparent p-8 lg:p-8 rounded-2xl border-2 border-reds hover:shadow-xl transition-transform"
           data-aos="fade-up"
-          data-aos-delay="100"
+          data-aos-delay="200"
         >
           <img
             src="./assets/healthcare.png"
@@ -537,7 +577,7 @@
         <div
           class="bg-transparent p-8 lg:p-8 rounded-2xl border-2 border-reds hover:shadow-xl transition-transform"
           data-aos="fade-up"
-          data-aos-delay="100"
+          data-aos-delay="300"
         >
           <img
             src="./assets/livelihoods.png"
@@ -553,7 +593,7 @@
         <div
           class="bg-transparent p-8 lg:p-8 rounded-2xl border-2 border-reds hover:shadow-xl transition-transform"
           data-aos="fade-up"
-          data-aos-delay="100"
+          data-aos-delay="400"
         >
           <img
             src="./assets/community.png"
@@ -568,7 +608,10 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 mt-20">
         <!-- Support Learning -->
-        <div class="flex flex-col md:flex-row items-start md:items-start gap-4">
+        <div
+          class="flex flex-col md:flex-row items-start gap-4"
+          data-aos="fade-up"
+        >
           <img
             src="./assets/educationicon.png"
             alt="Support Learning"
@@ -590,7 +633,10 @@
         </div>
 
         <!-- Expand Healthcare Access -->
-        <div class="flex flex-col md:flex-row items-start md:items-start gap-4">
+        <div
+          class="flex flex-col md:flex-row items-start gap-4"
+          data-aos="fade-up"
+        >
           <img
             src="./assets/healthcare.png"
             alt="Healthcare"
@@ -612,7 +658,10 @@
         </div>
 
         <!-- Enable Livelihoods -->
-        <div class="flex flex-col md:flex-row items-start md:items-start gap-4">
+        <div
+          class="flex flex-col md:flex-row items-start gap-4"
+          data-aos="fade-up"
+        >
           <img
             src="./assets/livelihoods.png"
             alt="Enable Livelihoods"
@@ -634,7 +683,10 @@
         </div>
 
         <!-- Strengthen Communities -->
-        <div class="flex flex-col md:flex-row items-start md:items-start gap-4">
+        <div
+          class="flex flex-col md:flex-row items-start gap-4"
+          data-aos="fade-up"
+        >
           <img
             src="./assets/community.png"
             alt="Communities"
@@ -682,6 +734,8 @@
             src="./assets/Prashant-Ch.PNG"
             alt="Generation 2"
             class="w-full max-w-xl rounded-2xl object-cover"
+            data-aos="zoom-in"
+            data-aos-delay="100"
           />
           <div
             class="mt-6 bg-gray-200 text-black px-6 py-3 rounded-full text-base lg:text-lg font-semibold"
@@ -696,6 +750,8 @@
             src="./assets/Pranav-Ch.jpg"
             alt="Generation 3"
             class="w-full max-w-xl rounded-2xl object-cover"
+            data-aos="zoom-in"
+            data-aos-delay="200"
           />
           <div
             class="mt-6 bg-gray-200 text-black px-6 py-3 rounded-full text-base lg:text-lg font-semibold"
@@ -731,6 +787,8 @@
           <a
             href="https://www.instagram.com/chimulkarfinancialservices?utm_source=ig_web_button_share_sheet&igsh=MWZxMnFsZTY4OHNmeg=="
             class="flex-1 flex flex-col items-center justify-center bg-white px-16 py-6 rounded-4xl w-64 md:w-auto"
+            data-aos="zoom-in"
+            data-aos-delay="100"
           >
             <i data-lucide="instagram" class="w-10 h-10 text-black mb-2"></i>
             <p class="mt-2 text-gray-800 lg:text-lg text-base">Instagram</p>
@@ -740,6 +798,8 @@
           <a
             href="#"
             class="flex-1 flex flex-col items-center justify-center bg-white px-16 py-6 rounded-4xl w-64 md:w-auto"
+            data-aos="zoom-in"
+            data-aos-delay="100"
           >
             <i data-lucide="linkedin" class="w-10 h-10 text-black mb-2"></i>
             <p class="mt-2 text-gray-800 lg:text-lg text-base">LinkedIn</p>
@@ -749,6 +809,8 @@
           <a
             href="https://www.youtube.com/@ChimulkarFinancialServices"
             class="flex-1 flex flex-col items-center justify-center bg-white px-16 py-6 rounded-4xl w-64 md:w-auto"
+            data-aos="zoom-in"
+            data-aos-delay="100"
           >
             <i data-lucide="youtube" class="w-10 h-10 text-black mb-2"></i>
             <p class="mt-2 text-gray-800 lg:text-lg text-base">YouTube</p>
@@ -761,6 +823,7 @@
     <section class="bg-white py-20" id="contact-us">
       <h2
         class="text-3xl lg:text-5xl font-semibold text-center text-darkcrimson p-4"
+        data-aos="fade-up"
       >
         Join the <span class="text-reds">Movement</span>
         <span class="inline-block ml-2 align-middle">
@@ -768,79 +831,115 @@
             src="./assets/fwdicon.png"
             class="w-6 h-6 lg:w-10 lg:h-10 mt-0 lg:-mt-12"
             alt=""
+            data-aos="zoom-in"
           />
         </span>
       </h2>
-      <p class="text-base lg:text-xl mt-2 text-black text-center">
+      <p
+        class="text-base lg:text-xl mt-2 text-black text-center"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
         Together, we can create a lasting impact
       </p>
 
       <img src="./assets/join-2.png" class="mt-12" alt="" />
 
       <div class="px-6 lg:px-24">
+        <!-- Individual -->
         <h1
-          class="text-2xl lg:text-3xl font-semibold text-darkcrimson mt-28 text-start lg:text-start"
+          class="text-2xl lg:text-3xl font-semibold text-darkcrimson mt-28 text-start"
+          data-aos="fade-up"
         >
           Individual
         </h1>
         <p
-          class="text-base lg:text-lg font-medium text-black mt-1 text-start lg:text-start"
+          class="text-base lg:text-lg font-medium text-black mt-1 text-start"
+          data-aos="fade-up"
+          data-aos-delay="100"
         >
           For those who wish to contribute or give back.
         </p>
 
+        <!-- Corporate -->
         <h1
-          class="text-2xl lg:text-3xl font-semibold text-darkcrimson mt-8 text-start lg:text-start"
+          class="text-2xl lg:text-3xl font-semibold text-darkcrimson mt-8 text-start"
+          data-aos="fade-up"
+          data-aos-delay="150"
         >
           Corporate
         </h1>
         <p
-          class="text-base lg:text-lg font-medium text-black mt-1 text-start lg:text-start"
+          class="text-base lg:text-lg font-medium text-black mt-1 text-start"
+          data-aos="fade-up"
+          data-aos-delay="250"
         >
           For organizations looking to collaborate through CSR or sponsorship.
         </p>
 
+        <!-- Volunteer -->
         <h1
-          class="text-2xl lg:text-3xl font-semibold text-darkcrimson mt-8 text-start lg:text-start"
+          class="text-2xl lg:text-3xl font-semibold text-darkcrimson mt-8 text-start"
+          data-aos="fade-up"
+          data-aos-delay="300"
         >
           Volunteer
         </h1>
         <p
-          class="text-base lg:text-lg font-medium text-black mt-1 text-start lg:text-start"
+          class="text-base lg:text-lg font-medium text-black mt-1 text-start"
+          data-aos="fade-up"
+          data-aos-delay="400"
         >
           For individuals offering their skills, expertise, or time.
         </p>
 
+        <!-- NGO -->
         <h1
-          class="text-2xl lg:text-3xl font-semibold text-darkcrimson mt-8 text-start lg:text-start"
+          class="text-2xl lg:text-3xl font-semibold text-darkcrimson mt-8 text-start"
+          data-aos="fade-up"
+          data-aos-delay="450"
         >
           NGO or Social Enterprise
         </h1>
         <p
-          class="text-base lg:text-lg font-medium text-black mt-1 text-start lg:text-start"
+          class="text-base lg:text-lg font-medium text-black mt-1 text-start"
+          data-aos="fade-up"
+          data-aos-delay="550"
         >
           For groups seeking to partner on programs or initiatives.
         </p>
+
+        <!-- Press -->
         <h1
-          class="text-2xl lg:text-3xl font-semibold text-darkcrimson mt-8 text-start lg:text-start"
+          class="text-2xl lg:text-3xl font-semibold text-darkcrimson mt-8 text-start"
+          data-aos="fade-up"
+          data-aos-delay="600"
         >
           Press
         </h1>
         <p
-          class="text-base lg:text-lg font-medium text-black mt-1 text-start lg:text-start"
+          class="text-base lg:text-lg font-medium text-black mt-1 text-start"
+          data-aos="fade-up"
+          data-aos-delay="700"
         >
           I’d like to request information, interviews, or press material.
         </p>
+
+        <!-- CTA Heading -->
         <h1
-          class="text-3xl lg:text-5xl font-semibold text-black mt-8 text-center mt-24"
+          class="text-3xl lg:text-5xl font-semibold text-black mt-24 text-center"
+          data-aos="fade-up"
+          data-aos-delay="800"
         >
-          I’m <span class="text-reds"> reaching out</span> as
+          I’m <span class="text-reds">reaching out</span> as
         </h1>
         <div
           class="flex flex-row flex-wrap lg:flex-row lg:flex-nowrap justify-center items-center gap-4 mt-10"
         >
           <a
             href="#"
+            data-aos="fade-up"
+            data-aos-delay="100"
             class="inline-flex items-center justify-center border border-transparent bg-lightred text-darkcrimson px-4 py-2 text-sm font-semibold rounded-full md:px-6 md:py-3 md:text-base transition hover:opacity-90"
           >
             Individual
@@ -848,6 +947,8 @@
 
           <a
             href="#"
+            data-aos="fade-up"
+            data-aos-delay="200"
             class="inline-flex items-center justify-center border border-transparent bg-lightred text-darkcrimson px-4 py-2 text-sm font-semibold rounded-full md:px-6 md:py-3 md:text-base transition hover:opacity-90"
           >
             Corporate
@@ -855,6 +956,8 @@
 
           <a
             href="#"
+            data-aos="fade-up"
+            data-aos-delay="300"
             class="inline-flex items-center justify-center border border-transparent bg-lightred text-darkcrimson px-4 py-2 text-sm font-semibold rounded-full md:px-6 md:py-3 md:text-base transition hover:opacity-90"
           >
             Volunteer
@@ -862,6 +965,8 @@
 
           <a
             href="#"
+            data-aos="fade-up"
+            data-aos-delay="400"
             class="inline-flex items-center justify-center border border-transparent bg-lightred text-darkcrimson px-4 py-2 text-sm font-semibold rounded-full md:px-6 md:py-3 md:text-base transition hover:opacity-90"
           >
             NGO
@@ -869,6 +974,8 @@
 
           <a
             href="#"
+            data-aos="fade-up"
+            data-aos-delay="500"
             class="inline-flex items-center justify-center border border-transparent bg-lightred text-darkcrimson px-4 py-2 text-sm font-semibold rounded-full md:px-6 md:py-3 md:text-base transition hover:opacity-90"
           >
             Press
