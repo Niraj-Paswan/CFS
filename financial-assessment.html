@@ -1,0 +1,2730 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Page Title and Favicon -->
+    <title>Financial Assessment - Chimulkar Financial Services</title>
+    <link rel="shortcut icon" href="./assets/Logo.svg" type="image/x-icon" />
+
+    <!-- External Stylesheets and Fonts -->
+    <link rel="stylesheet" href="./src/output.css" />
+    <!-- Tailwind CSS -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Confetti for rewards -->
+    <!-- Lucide Icons -->
+
+    <!-- Google Fonts - Poppins for consistent typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+      (function () {
+        emailjs.init("Ei7nopPNhgExd9OLX");
+      })();
+    </script>
+    <!-- Temporaray Loader hidden logic -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const progressFill = document.getElementById("progressFill");
+        const progressText = document.getElementById("progressText");
+        const loader = document.querySelector(".logo-loader");
+
+        const isFirstLoad = !localStorage.getItem("siteLoaded");
+
+        const MAX_TIME = 7000; // hard safety cap
+        const FAST_EXIT = 2000; // repeat visit exit
+        const startTime = Date.now();
+
+        let visualProgress = 0;
+        let targetProgress = 0;
+        let finished = false;
+
+        /* ===============================
+       REAL IMAGE-BASED PROGRESS
+       =============================== */
+        const images = Array.from(document.images);
+        const totalAssets = images.length || 1;
+        let loadedAssets = 0;
+
+        function assetLoaded() {
+          loadedAssets++;
+          targetProgress = (loadedAssets / totalAssets) * 100;
+        }
+
+        images.forEach((img) => {
+          if (img.complete) {
+            assetLoaded();
+          } else {
+            img.addEventListener("load", assetLoaded);
+            img.addEventListener("error", assetLoaded);
+          }
+        });
+
+        /* ===============================
+       SMOOTH VISUAL ANIMATION
+       =============================== */
+        const animate = setInterval(() => {
+          visualProgress += Math.max(
+            0.4,
+            (targetProgress - visualProgress) * 0.1
+          );
+
+          visualProgress = Math.min(visualProgress, 100);
+
+          progressFill.style.width = visualProgress + "%";
+          progressText.textContent = Math.floor(visualProgress) + "%";
+
+          if (visualProgress >= 100) {
+            clearInterval(animate);
+            hideLoader();
+          }
+        }, 16);
+
+        /* ===============================
+       SAFE EXIT HANDLERS
+       =============================== */
+        function hideLoader() {
+          if (finished) return;
+          finished = true;
+
+          localStorage.setItem("siteLoaded", "true");
+
+          loader.style.transition = "opacity 0.4s ease-in";
+          loader.style.opacity = "0";
+          loader.style.pointerEvents = "none";
+
+          setTimeout(() => {
+            loader.style.display = "none";
+          }, 400);
+        }
+
+        /* MAX 7s SAFETY */
+        setTimeout(() => {
+          targetProgress = 100;
+        }, MAX_TIME);
+
+        /* FAST EXIT FOR REPEAT VISITS */
+        if (!isFirstLoad) {
+          setTimeout(() => {
+            targetProgress = 100;
+          }, FAST_EXIT);
+        }
+      });
+    </script>
+
+    <!-- Style of the Loader -->
+    <style>
+      /* Fullscreen loader wrapper */
+      .logo-loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        background: #161f48;
+        z-index: 9999;
+      }
+
+      /* Logo */
+      .logo-loader img {
+        width: 150px;
+      }
+
+      /* Progress wrapper */
+      .progress-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* Progress bar container */
+      .progress-bar {
+        width: 220px;
+        height: 6px;
+        background: rgba(70, 70, 70, 0.25);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      /* Progress fill */
+      .progress-bar span {
+        display: block;
+        height: 100%;
+        width: 0%;
+        background: #ffffff;
+        border-radius: 999px;
+        transition: width 0.2s ease;
+      }
+
+      /* Percentage text */
+      #progressText {
+        font-size: 14px;
+        color: #ffffff;
+        font-weight: 500;
+      }
+      .logo-loader {
+        transition: opacity 0.3s ease;
+      }
+    </style>
+
+    <style>
+      /* Hide scrollbars for carousel elements while maintaining functionality */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+
+      /* Added refined quiz form styles with progress line and improved selection */
+      .option-btn {
+        transition: all 0.2s ease;
+      }
+
+      .option-btn:hover {
+        transform: translateY(-2px);
+        border-color: #3b82f6;
+      }
+
+      .option-btn.selected {
+        border-color: #3b82f6;
+        background-color: #eff6ff;
+      }
+
+      /* Progress line container with dots overlay */
+      .progress-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 0px; /* Mobile (default) */
+      }
+
+      .progress-line {
+        position: absolute;
+        top: 50%;
+        height: 2px;
+        background-color: #eaeaea;
+        transform: translateY(-50%);
+        z-index: 0;
+      }
+
+      .progress-dots {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        z-index: 1;
+      }
+
+      .step-dot {
+        transition: all 0.3s ease;
+      }
+
+      .reward-popup-tip {
+        animation: slideDown 0.3s ease forwards;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* -------------------------------
+   Modal Backdrop
+-------------------------------- */
+      .modal-backdrop {
+        animation: fadeIn 0.35s ease-out forwards;
+        backdrop-filter: blur(2px);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* -------------------------------
+   Modal Content
+-------------------------------- */
+      .modal-content {
+        animation: zoomIn 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      @keyframes zoomIn {
+        from {
+          opacity: 0;
+          transform: scale(0.85) translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      .force-circle {
+        aspect-ratio: 1 / 1;
+        border-radius: 9999px !important;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      @keyframes scoreReveal {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .animate-scoreReveal {
+        animation: scoreReveal 0.8s ease-out forwards;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Loader Class -->
+    <div class="logo-loader">
+      <img src="../assets/CFS TRANSPARENT.png" alt="Logo" />
+
+      <div class="progress-wrapper">
+        <div class="progress-bar">
+          <span id="progressFill"></span>
+        </div>
+        <span id="progressText">0%</span>
+      </div>
+    </div>
+
+    <!-- Disclaimer Modal -->
+    <div
+      id="disclaimer-modal"
+      class="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center px-6"
+    >
+      <!-- MODAL SHELL -->
+      <div
+        class="bg-white max-w-2xl w-full rounded-2xl shadow-2xl max-h-[80vh] overflow-hidden"
+      >
+        <!-- SCROLLABLE CONTENT -->
+        <div class="p-6 md:p-8 overflow-y-auto max-h-[80vh]">
+          <h2 class="text-xl md:text-2xl font-semibold text-gray-900 mb-2">
+            Personal Financial Wellness Assessment
+          </h2>
+
+          <p class="text-gray-900 mb-6 text-sm lg:text-base">
+            Understanding your financial health is the first step toward
+            informed decision-making.
+          </p>
+
+          <!-- Checkboxes -->
+          <div class="space-y-4 mb-6">
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                id="consent-1"
+                class="mt-1 w-5 h-5 accent-[#2d61c9]"
+              />
+              <span class="text-sm text-gray-800 leading-relaxed">
+                I agree to the
+                <a
+                  href="/terms-of-service"
+                  target="_blank"
+                  class="text-[#2d61c9] font-medium hover:underline"
+                >
+                  Terms of Service
+                </a>
+                &
+                <a
+                  href="/privacy-policy"
+                  target="_blank"
+                  class="text-[#2d61c9] font-medium hover:underline"
+                >
+                  Privacy Policy </a
+                >. I understand my data is stored securely and handled as per
+                data protection norms.
+              </span>
+            </label>
+
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                id="consent-2"
+                class="mt-1 w-5 h-5 accent-[#2d61c9]"
+              />
+              <span class="text-sm text-gray-800 leading-relaxed">
+                I understand that this assessment is for educational purposes
+                and does not constitute formal investment advice. I authorize
+                <a
+                  href="/"
+                  target="_blank"
+                  class="text-[#2d61c9] font-medium hover:underline"
+                >
+                  Chimulkar Financial Services
+                </a>
+                to contact me via Call / WhatsApp / Email.
+              </span>
+            </label>
+          </div>
+
+          <!-- Start Button -->
+          <button
+            id="start-assessment-btn"
+            disabled
+            class="w-full py-3 rounded-full font-semibold text-white bg-gray-300 cursor-not-allowed transition mb-6"
+          >
+            START ASSESSMENT
+          </button>
+
+          <!-- DISCLAIMER -->
+          <div class="text-xs text-gray-700 leading-relaxed">
+            <p
+              id="disclaimer-text"
+              class="max-h-16 overflow-hidden transition-all duration-300"
+            >
+              <strong>Disclaimer:</strong> This tool provides a general
+              assessment based on the information provided by you and should not
+              be considered a substitute for professional financial advice. The
+              score and information provided are based on the inputs shared by
+              you. Chimulkar Financial Services and its representatives do not
+              guarantee any specific financial outcomes based on this
+              assessment. Mutual Fund investments are subject to market risks,
+              read all scheme related documents carefully before investing. The
+              representatives of Chimulkar Financial Services are AMFI
+              registered Mutual Fund Distributors with ARNs 1818, 1921, 171155
+              and 251118.
+            </p>
+
+            <button
+              id="disclaimer-toggle"
+              class="mt-2 text-[#2d61c9] text-xs font-medium hover:underline"
+            >
+              Read More
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <header class="bg-secondary shadow-sm fixed w-full top-0 z-50">
+      <div
+        class="mx-6 lg:mx-12 px-2 py-3 flex items-center justify-between relative"
+      >
+        <!-- Logo -->
+        <a href="./index.html" class="flex items-center gap-2">
+          <img
+            src="./assets/CFS TRANSPARENT.png"
+            class="h-12 w-auto"
+            alt="Chimulkar Financial Services Logo"
+          />
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex gap-10 text-[16px] font-medium items-center">
+          <!-- About Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              About <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute top-full left-0 mt-3 text-sm bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="./about-us.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="building-2" class="w-5 h-5"></i> About Us
+              </a>
+
+              <!-- Nested Team Dropdown -->
+              <div class="relative group/team">
+                <button
+                  class="flex items-center justify-between w-full gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                >
+                  <span class="flex items-center gap-3">
+                    <i data-lucide="users" class="w-5 h-5"></i> Our Team
+                  </span>
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+                <div
+                  class="absolute top-0 left-full ml-2 bg-white rounded-2xl p-2 min-w-[12rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover/team:opacity-100 group-hover/team:visible transition-all duration-200"
+                >
+                  <a
+                    href="./teams/Prashant-Chimulkar.html"
+                    class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                  >
+                    <i data-lucide="user" class="w-5 h-5"></i> Prashant
+                  </a>
+                  <a
+                    href="./teams/Pranav-Chimulkar.html"
+                    class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                  >
+                    <i data-lucide="user" class="w-5 h-5"></i> Pranav
+                  </a>
+                </div>
+              </div>
+
+              <a
+                href="foundation.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="heart-handshake" class="w-5 h-5"></i> Foundation
+              </a>
+            </div>
+          </div>
+
+          <!-- Services Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              Services <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="./services/mutual-funds.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="layers" class="w-5 h-5"></i> Mutual Funds
+              </a>
+              <a
+                href="./services/retirement-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="calendar-check" class="w-5 h-5"></i> Retirement
+                Planning
+              </a>
+              <a
+                href="./services/tax-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="file-text" class="w-5 h-5"></i> Tax Planning
+              </a>
+              <a
+                href="./services/insurance-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="shield-check" class="w-5 h-5"></i> Insurance
+                Planning
+              </a>
+              <a
+                href="./services/education-savings.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                Education Savings
+              </a>
+              <a
+                href="./services/legacy-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="archive" class="w-5 h-5"></i> Legacy Planning
+              </a>
+            </div>
+          </div>
+
+          <!-- Calculator Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              Calculator <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="./calculators/sip-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="calculator" class="w-5 h-5"></i> SIP Calculator
+              </a>
+              <a
+                href="./calculators/lump-sump-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="percent" class="w-5 h-5"></i> Lump Sum
+              </a>
+              <a
+                href="./calculators/swp-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="activity" class="w-5 h-5"></i> SWP Calculator
+              </a>
+              <a
+                href="./calculators/inflation-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="trending-up" class="w-5 h-5"></i> Inflation
+                Calculator
+              </a>
+            </div>
+          </div>
+
+          <!-- Financial Literacy Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
+            >
+              Financial Literacy
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="#lit-1"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="book-open" class="w-5 h-5"></i> Basics
+              </a>
+              <a
+                href="#lit-2"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="lightbulb" class="w-5 h-5"></i> Tips & Guides
+              </a>
+              <a
+                href="#lit-3"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="play-circle" class="w-5 h-5"></i> Video Lessons
+              </a>
+            </div>
+          </div>
+
+          <!-- Simple links -->
+          <a href="#nri-corner" class="text-white hover:text-primary transition"
+            >NRI Corner</a
+          >
+          <a
+            href="./contact-us.html"
+            class="text-white hover:text-primary transition"
+            >Contact Us</a
+          >
+          <a
+            href="./refer-us.html"
+            class="text-white hover:text-primary transition"
+            >Refer Us</a
+          >
+        </nav>
+
+        <!-- CTA Button -->
+        <a
+          href="#"
+          class="hidden md:inline-flex items-center border border-transparent bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+        >
+          Get Free Assessment
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="menuToggle"
+          class="md:hidden p-2 bg-gray-50 border border-gray-300 rounded-full hover:bg-gray-100"
+        >
+          <i data-lucide="align-right" class="w-6 h-6 text-secondary"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Announcement Bar - Positioned below navbar -->
+    <!-- <div
+      class="fixed top-[72px] w-full h-12 bg-strokes z-40 flex items-center justify-center px-4 text-sm"
+    >
+      <a
+        href="#"
+        class="flex items-center font-semibold text-black hover:underline"
+      >
+        Get a no cost, no commitment assessment
+      </a>
+      <a
+        href="#"
+        class="hidden lg:inline-flex font-semibold items-center text-white mr-2"
+      >
+        <span class="text-black mx-2">|</span> Celebrating 40 Years of Trust
+      </a>
+    </div> -->
+
+    <!-- Mobile Menu Backdrop - Dark overlay when mobile menu is open -->
+    <div
+      id="backdrop"
+      class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 hidden opacity-0 transition"
+    ></div>
+
+    <!-- =================================================================== -->
+    <!-- MOBILE NAVIGATION MENU - Slide-in from right -->
+    <!-- =================================================================== -->
+    <div
+      id="mobileMenu"
+      class="md:hidden fixed top-0 right-0 h-full max-w-xs bg-white shadow-xl transform translate-x-full transition duration-300 z-50 flex flex-col justify-between overflow-y-auto"
+    >
+      <!-- Mobile menu content -->
+      <div class="p-6 flex flex-col gap-4">
+        <!-- Mobile menu header with logo and close button -->
+        <div class="flex justify-between items-center mb-4">
+          <img src="../assets/Logo.svg" class="h-10" alt="Logo" />
+          <button
+            id="closeMenu"
+            class="p-2 bg-gray-50 text-secondary border border-gray-300 rounded-full hover:bg-gray-100 hover:cursor-pointer"
+          >
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <!-- Mobile navigation links -->
+
+        <!-- Mobile About Us Accordion -->
+        <!-- About Us (mobile accordion) -->
+
+        <style>
+          /* hide default marker */
+          summary {
+            list-style: none;
+          }
+          summary::-webkit-details-marker {
+            display: none;
+          }
+
+          /* rotate only the chevron inside the SAME details > summary */
+          details > summary .chev {
+            transition: transform 0.2s ease;
+            display: inline-flex;
+          }
+          details[open] > summary .chev {
+            transform: rotate(180deg);
+          }
+        </style>
+
+        <details>
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="info" class="w-4 h-4"></i> About
+            </span>
+            <span class="chev"
+              ><i data-lucide="chevron-down" class="w-4 h-4"></i
+            ></span>
+          </summary>
+
+          <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+            <a
+              href="../about-us.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+            >
+              <i data-lucide="building-2" class="w-4 h-4"></i> About Us
+            </a>
+
+            <!-- Nested team -->
+            <details>
+              <summary
+                class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-primary hover:text-white cursor-pointer"
+              >
+                <span class="flex items-center gap-2">
+                  <i data-lucide="users" class="w-4 h-4"></i> Our Team
+                </span>
+                <span class="chev"
+                  ><i data-lucide="chevron-down" class="w-4 h-4"></i
+                ></span>
+              </summary>
+
+              <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+                <a
+                  href="./teams/Prashant-Chimulkar.html"
+                  class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+                >
+                  <i data-lucide="user" class="w-4 h-4"></i> Prashant
+                </a>
+                <a
+                  href="./teams/Pranav-Chimulkar.html"
+                  class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+                >
+                  <i data-lucide="user" class="w-4 h-4"></i> Pranav
+                </a>
+              </div>
+            </details>
+            <a
+              href="./foundation.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+            >
+              <i data-lucide="heart-handshake" class="w-4 h-4"></i> Foundation
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Services Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="briefcase" class="w-4 h-4"></i> Services
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+
+          <!-- Sub-links -->
+          <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+            <a
+              href="./services/mutual-funds.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="layers" class="w-4 h-4"></i> Mutual Funds
+            </a>
+            <a
+              href="./services/retirement-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="calendar-check" class="w-4 h-4"></i> Retirement
+              Planning
+            </a>
+            <a
+              href="./services/tax-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="file-text" class="w-4 h-4"></i> Tax Planning
+            </a>
+            <a
+              href="./services/insurance-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="shield-check" class="w-4 h-4"></i> Insurance
+              Planning
+            </a>
+            <a
+              href="./services/education-savings.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i> Education
+              Savings
+            </a>
+            <a
+              href="./services/legacy-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              <i data-lucide="archive" class="w-4 h-4"></i> Legacy Planning
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Calculator Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="circle-divide" class="w-4 h-4"></i> Calculators
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+          <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
+            <a
+              href="../calculators/sip-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="calculator" class="w-4 h-4"></i> SIP Calculator
+            </a>
+            <a
+              href="../calculators/lump-sump-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="percent" class="w-4 h-4"></i> Lump Sum
+            </a>
+
+            <a
+              href="../calculators/swp-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
+            </a>
+            <a
+              href="../calculators/inflation-calculator.html"
+              class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-lg cursor-pointer"
+            >
+              <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
+              Calculator
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Financial Literacy Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i> Financial
+              Literacy
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+          <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
+            <a
+              href="#lit-1"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="book-open" class="w-4 h-4"></i> Basics
+            </a>
+            <a
+              href="#lit-2"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="lightbulb" class="w-4 h-4"></i> Tips & Guides
+            </a>
+            <a
+              href="#lit-3"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="play-circle" class="w-4 h-4"></i> Video Lessons
+            </a>
+          </div>
+        </details>
+
+        <!-- Additional mobile navigation links -->
+        <a
+          href="#nri-corner"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="globe" class="w-4 h-4"></i> NRI Corner
+        </a>
+        <a
+          href="../contact-us.html"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="phone-call" class="w-4 h-4"></i> Contact Us
+        </a>
+        <a
+          href="./refer-us.html"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="heart-handshake" class="w-4 h-4"></i> Refer Us
+        </a>
+      </div>
+
+      <!-- Mobile CTA button at bottom -->
+      <div class="p-6">
+        <a
+          href="#"
+          class="inline-flex items-center bg-primary text-secondary pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:bg-secondary hover:text-white"
+        >
+          Get Free Assessment
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <section class="py-20 px-4 lg:px-24 bg-gray-50">
+      <div class="max-w-6xl mx-auto">
+        <!-- Survey Container -->
+        <div
+          class="bg-white rounded-3xl border border-gray-300 mt-16 p-6 md:p-16 relative"
+        >
+          <!-- Title -->
+          <div class="text-start lg:text-center mb-8">
+            <h1 class="text-2xl md:text-3xl font-semibold text-gray-900">
+              Personal Financial Wellness
+              <span class="text-[#2d61c9]">Assessment</span>
+            </h1>
+          </div>
+
+          <!-- Progress + Reward Row -->
+          <div
+            class="flex items-center justify-between mb-10 gap-4"
+            id="progress-tracker"
+          >
+            <!-- Progress Container -->
+            <div class="progress-container p-0 flex-1">
+              <div
+                class="progress-line left-[4%] right-[4%] lg:left-[2%] lg:right-[2%]"
+              ></div>
+              <div class="progress-dots">
+                <div
+                  id="dot-1"
+                  class="step-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full border-1 lg:border-2 border-[#2d61c9] bg-[#2d61c9]"
+                ></div>
+                <div
+                  id="dot-2"
+                  class="step-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full border-1 lg:border-2 border-gray-300 bg-white"
+                ></div>
+                <div
+                  id="dot-3"
+                  class="step-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full border-1 lg:border-2 border-gray-300 bg-white"
+                ></div>
+                <div
+                  id="dot-4"
+                  class="step-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full border-1 lg:border-2 border-gray-300 bg-white"
+                ></div>
+                <div
+                  id="dot-5"
+                  class="step-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full border-1 lg:border-2 border-gray-300 bg-white"
+                ></div>
+                <div
+                  id="dot-6"
+                  class="step-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full border-1 lg:border-2 border-gray-300 bg-white"
+                ></div>
+                <div
+                  id="dot-7"
+                  class="step-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full border-1 lg:border-2 border-gray-300 bg-white"
+                ></div>
+                <div
+                  id="dot-8"
+                  class="step-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full border-1 lg:border-2 border-gray-300 bg-white"
+                ></div>
+                <div
+                  id="dot-9"
+                  class="step-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full border-1 lg:border-2 border-gray-300 bg-white"
+                ></div>
+                <div
+                  id="dot-10"
+                  class="step-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full border-1 lg:border-2 border-gray-300 bg-white"
+                ></div>
+                <div
+                  id="dot-11"
+                  class="step-dot relative cursor-pointer bg-transparent group flex-shrink-0"
+                  onclick="showRewardMessage()"
+                >
+                  <div
+                    class="w-12 h-12 bg-[#2d61c9] flex items-center force-circle justify-center rounded-full"
+                  >
+                    <i
+                      data-lucide="gift"
+                      class="w-6 h-6 text-white stroke-[1.5px]"
+                    ></i>
+                    <span
+                      id="reward-count-badge"
+                      class="absolute -top-1 -right-1 w-5 h-5 force-circle bg-[#fcaf1b] text-white text-xs font-semibold rounded-full flex items-center justify-center z-[9999]"
+                      >0</span
+                    >
+                  </div>
+                  <div
+                    class="group-hover:block hidden absolute mt-2 right-0 w-56 bg-gray-900 text-white text-xs p-3 rounded-lg shadow-xl z-50"
+                  >
+                    <p>
+                      Please be patient! Your rewards will be available when you
+                      complete all the steps.
+                    </p>
+                    <div
+                      class="absolute -top-1 right-4 w-2 h-2 bg-gray-900 rotate-45"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question Container -->
+          <div id="question-container" class="mb-10"></div>
+
+          <!-- Strategic Nudge Container -->
+          <div id="nudge-container" class="hidden mb-8"></div>
+
+          <!-- Navigation -->
+          <div class="flex items-center justify-between mt-8">
+            <button
+              id="back-btn"
+              onclick="prevStep()"
+              class="flex items-center gap-2 text-gray-500 font-semibold hover:text-gray-700 transition-colors disabled:opacity-0 cursor-pointer disabled:pointer-events-none"
+              disabled
+            >
+              <i data-lucide="arrow-left" class="w-4 h-4"></i>
+              <span>BACK</span>
+            </button>
+            <button
+              id="next-btn"
+              onclick="nextStep()"
+              class="flex items-center gap-3 bg-[#fcaf1b] text-white font-semibold px-8 py-3 rounded-full cursor-pointer transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled
+            >
+              <span>NEXT</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reward Modal -->
+      <div
+        id="reward-modal"
+        class="fixed hidden inset-0 z-50 flex items-center justify-center p-6 modal-backdrop"
+        style="background-color: rgba(0, 0, 0, 0.5)"
+      >
+        <div
+          class="max-w-3xl w-full bg-white rounded-3xl shadow-2xl max-h-[80vh] overflow-hidden"
+        >
+          <!-- SCROLL AREA -->
+          <div class="p-8 md:p-10 overflow-y-auto max-h-[80vh]">
+            <!-- CONTENT GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+              <!-- LEFT CONTENT -->
+              <div class="text-left">
+                <h2 class="text-sm font-semibold text-gray-700 mb-2">
+                  Added to Your Gift Box
+                </h2>
+
+                <p
+                  id="reward-modal-text"
+                  class="text-black font-semibold text-2xl leading-snug mb-4"
+                >
+                  Loading...
+                </p>
+
+                <p
+                  id="reward-modal-description"
+                  class="text-gray-700 text-sm leading-relaxed"
+                >
+                  Loading description...
+                </p>
+              </div>
+
+              <!-- RIGHT CONTENT -->
+              <div
+                id="reward-right-content"
+                class="flex flex-col items-center gap-6"
+              >
+                <!-- Injected by JS -->
+              </div>
+            </div>
+
+            <!-- CONTINUE BUTTON -->
+            <div
+              id="reward-continue-wrapper"
+              class="mt-6 flex justify-center md:justify-end"
+            >
+              <button
+                id="reward-continue-btn"
+                onclick="closeRewardModal()"
+                class="px-10 py-3.5 bg-[#2d61c9] text-white rounded-full font-semibold text-sm hover:bg-[#1e47a8] cursor-pointer transition-all"
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      let currentStep = 1;
+      const totalSteps = 11;
+      let selections = {};
+      let rewardCount = 0;
+      let selectedOption = null;
+      let completedMilestones = new Set();
+
+      const rewardDetails = {
+        2: {
+          title: "The Emergency Fund Blueprint",
+          description:
+            "'Liquidity' isn't just about having money; it's about how fast you can access it without losing value. We've just added The Emergency Fund Blueprint to your gift box to help you structure your cash reserves more effectively.",
+          image: "../assets/CFS Documents.png",
+          imageAlt: "Emergency Fund Blueprint",
+        },
+        4: {
+          title: "360° Insurance Audit Checklist",
+          description:
+            "A single medical event can impact years of disciplined savings. We've just added The 360° Insurance Audit Checklist to your gift box. It's a guide designed to help you identify if your current cover is truly independent of your employment and sufficient for your family's long-term safety.",
+          image: "../assets/CFS Documents.png",
+          imageAlt: "Insurance Audit Checklist",
+        },
+        8: {
+          title: "The Inflation-Proofing Playbook",
+          description:
+            "Traditional savings are great for safety, but with average general inflation often hovering around 6%, 'safe' money can actually lose purchasing power over time. The Inflation-Proofing Playbook is now unlocked to show you the power of diversification.",
+          image: "../assets/CFS Documents.png",
+          imageAlt: "Inflation Proofing Playbook",
+        },
+        10: {
+          title: "15-Minute Discovery Call",
+          description: `Congratulations! Because you've completed the full assessment, we've added a Complimentary 15-Minute Discovery Call to your gift box. No obligations, just clarity.
+    During the call, we will:
+    <span class="text-black font-medium">
+      • Walk through your financial assessment and goals in detail
+      • Clarify any questions you may have
+      • Discuss how to optimize your current investment discipline
+    </span>
+  `,
+          image: "../assets/CFS Documents.png",
+          imageAlt: "Discovery Call",
+        },
+
+        default: {
+          title: "Reward Unlocked",
+          description:
+            "You've unlocked a reward. Check your gift box for helpful resources tailored to this milestone.",
+          image: "../assets/CFS Documents.png",
+          imageAlt: "Reward",
+        },
+      };
+
+      const surveyData = {
+        1: {
+          question:
+            "If your primary income stopped today, how long could you sustain your current lifestyle?",
+          options: [
+            { label: "A", text: "Less than 1 month", points: 0 },
+            { label: "B", text: "1 to 3 months", points: 5 },
+            { label: "C", text: "3 to 6 months", points: 8 },
+            { label: "D", text: "More than 6 months", points: 10 },
+          ],
+        },
+        2: {
+          question:
+            "How quickly can you access ₹2 Lakhs in a medical or family emergency?",
+          options: [
+            {
+              label: "A",
+              text: "I'd need to borrow or sell assets (Gold/Property)",
+              points: 0,
+            },
+            {
+              label: "B",
+              text: "It would take 3-5 days to break an FD or sell Mutual Funds",
+              points: 5,
+            },
+            {
+              label: "C",
+              text: "I have it instantly available in a Savings Account/Liquid Fund",
+              points: 10,
+            },
+          ],
+          isMilestone: true,
+        },
+        3: {
+          question:
+            "If the primary breadwinner were no longer around, is there a Life Insurance policy in place?",
+          options: [
+            { label: "A", text: "No insurance currently", points: 0 },
+            {
+              label: "B",
+              text: "Yes, an Endowment/Money-back/LIC policy",
+              points: 4,
+            },
+            {
+              label: "C",
+              text: "Yes, a dedicated Term Insurance plan",
+              points: 10,
+            },
+            {
+              label: "D",
+              text: "Only the group cover provided by my employer",
+              points: 2,
+            },
+          ],
+        },
+        4: {
+          question: "How is your family's Health Insurance structured?",
+          options: [
+            { label: "A", text: "No health insurance", points: 0 },
+            {
+              label: "B",
+              text: "Only the cover provided by my company",
+              points: 3,
+            },
+            {
+              label: "C",
+              text: "A private Family Floater/Individual policy (Independent of my job)",
+              points: 10,
+            },
+          ],
+          isMilestone: true,
+        },
+        5: {
+          question:
+            "What portion of your monthly take-home pay goes toward all EMIs combined?",
+          options: [
+            {
+              label: "A",
+              text: "More than 50% (Feeling the squeeze)",
+              points: 0,
+            },
+            {
+              label: "B",
+              text: "30% to 50% (Manageable but tight)",
+              points: 5,
+            },
+            { label: "C", text: "Less than 30% (Healthy)", points: 10 },
+            { label: "D", text: "I have zero EMIs", points: 10 },
+          ],
+        },
+        6: {
+          question: "How do you handle your Credit Card payments?",
+          options: [
+            {
+              label: "A",
+              text: "I frequently pay only the 'Minimum Amount Due'",
+              points: 0,
+            },
+            {
+              label: "B",
+              text: "I sometimes carry a balance to the next month",
+              points: 3,
+            },
+            {
+              label: "C",
+              text: "I always pay the full total on time",
+              points: 10,
+            },
+            { label: "D", text: "I do not use Credit Cards", points: 10 },
+          ],
+        },
+        7: {
+          question:
+            "What percentage of your monthly income is consistently invested?",
+          options: [
+            { label: "A", text: "Less than 5% (Or inconsistent)", points: 0 },
+            { label: "B", text: "5% to 15%", points: 5 },
+            { label: "C", text: "16% to 30%", points: 8 },
+            { label: "D", text: "More than 30%", points: 10 },
+          ],
+        },
+        8: {
+          question:
+            "Which of these best describes your current investment mix?",
+          options: [
+            {
+              label: "A",
+              text: "Mostly Safe: Bank FDs, PPF, and Savings Accounts",
+              points: 3,
+            },
+            {
+              label: "B",
+              text: "Mostly Physical: Real Estate and Gold",
+              points: 5,
+            },
+            {
+              label: "C",
+              text: "Market-Linked: Mutual Funds, Stocks, and NPS",
+              points: 8,
+            },
+            {
+              label: "D",
+              text: "A balanced mix of Fixed Income and Market-Linked assets",
+              points: 10,
+            },
+          ],
+          isMilestone: true,
+        },
+        9: {
+          question:
+            "When do you typically finalize your tax-saving investments?",
+          options: [
+            {
+              label: "A",
+              text: 'The "March Rush": I scramble at the end of the financial year',
+              points: 2,
+            },
+            {
+              label: "B",
+              text: "Throughout the year: I use SIPs or regular contributions",
+              points: 10,
+            },
+            {
+              label: "C",
+              text: "I don't really plan; I just submit whatever is deducted",
+              points: 0,
+            },
+          ],
+        },
+        10: {
+          question:
+            'Are you aware of your portfolio\'s "Real Return" (Return minus Inflation & Taxes)?',
+          options: [
+            { label: "A", text: "I haven't calculated it yet", points: 0 },
+            {
+              label: "B",
+              text: "I focus on the absolute returns shown in my statements",
+              points: 5,
+            },
+            {
+              label: "C",
+              text: "Yes, I track if my wealth is growing in terms of actual purchasing power",
+              points: 10,
+            },
+          ],
+          isMilestone: true,
+        },
+        11: {
+          question: "Claim Your Rewards",
+          isFinal: true,
+        },
+      };
+
+      const nudges = {
+        2: {
+          icon: "alert-circle",
+          title: "Why This Matters",
+          text: "A financial emergency could happen anytime. Having quick access to funds without penalties is crucial.",
+        },
+        3: {
+          icon: "shield",
+          title: "Term Insurance Advantage",
+          text: "Term insurance provides maximum coverage at the lowest cost, offering pure protection without investment.",
+        },
+        4: {
+          icon: "medical-cross",
+          title: "Independent Coverage",
+          text: "Relying solely on employer-provided coverage can leave you vulnerable if you change jobs.",
+        },
+        5: {
+          icon: "trending-down",
+          title: "EMI Impact",
+          text: "High EMI ratios reduce your capacity to invest and build wealth. Aim to keep it below 30%.",
+        },
+        6: {
+          icon: "credit-card",
+          title: "Credit Card Smart Usage",
+          text: "High credit card interest rates can compound debt quickly. Always pay full amounts on time.",
+        },
+        7: {
+          icon: "trending-up",
+          title: "Investment Discipline",
+          text: "Consistent small investments grow exponentially through compounding. Start with what you can afford.",
+        },
+        8: {
+          icon: "pie-chart",
+          title: "Diversification Power",
+          text: "A balanced portfolio reduces risk and optimizes returns across market cycles.",
+        },
+        9: {
+          icon: "calendar",
+          title: "Tax Planning Strategy",
+          text: "Planning year-round ensures you take advantage of all tax-saving opportunities.",
+        },
+        10: {
+          icon: "zap",
+          title: "Real Returns Matter",
+          text: "Absolute returns don't account for inflation and taxes. Focus on real purchasing power growth.",
+        },
+      };
+
+      const categoryDescriptions = {
+        "The Foundation Builder": {
+          focus: "Protection & Liquidity",
+          description:
+            "This profile typically represents the initial stage of financial planning, where the focus is on establishing baseline security and liquidity. The current data suggests that the primary emphasis is on creating a predictable cash reserve and ensuring that protection measures, such as insurance, are robust enough to cover basic life goals. Maintaining this focus helps in creating a stable platform from which future investment activities can be more confidently explored.",
+        },
+        "The Strategy Optimizer": {
+          focus: "Growth & Balance",
+          description:
+            "This profile represents an intermediate stage of financial maturity, where you've established a solid foundation and are now focused on optimizing your financial strategy. You're balancing growth objectives with risk management, paying attention to debt management, credit health, and asset diversification. This stage is about building momentum through strategic decisions that align investments with personal goals while maintaining protection mechanisms.",
+        },
+        "The Wealth Architect": {
+          focus: "Wealth Creation & Legacy",
+          description:
+            "This profile represents an advanced stage of financial sophistication, where you've moved beyond basic protection and growth to focus on wealth creation and legacy planning. You demonstrate strong discipline in savings, excellent credit management, diversified asset allocation, and forward-thinking tax planning. Your approach suggests a comprehensive understanding of how multiple financial components work together to create lasting wealth and meaningful impact.",
+        },
+      };
+
+      function renderStep(step) {
+        const container = document.getElementById("question-container");
+        const nudgeContainer = document.getElementById("nudge-container");
+        const data = surveyData[step];
+
+        for (let i = 1; i <= totalSteps; i++) {
+          const dot = document.getElementById(`dot-${i}`);
+          if (!dot) continue;
+          if (i < step) {
+            dot.classList.remove("bg-white", "border-gray-300");
+            dot.classList.add("bg-[#5e8dec]", "border-[#5e8dec]");
+          } else if (i === step) {
+            dot.classList.remove(
+              "bg-white",
+              "bg-[#5e8dec]",
+              "border-gray-300",
+              "border-[#5e8dec]"
+            );
+            dot.classList.add("bg-[#2d61c9]", "border-[#2d61c9]");
+          } else {
+            dot.classList.remove(
+              "bg-[#2d61c9]",
+              "bg-[#5e8dec]",
+              "border-[#2d61c9]",
+              "border-[#5e8dec]"
+            );
+            dot.classList.add("bg-white", "border-gray-300");
+          }
+        }
+
+        const backBtn = document.getElementById("back-btn");
+        backBtn.disabled = step === 1;
+
+        nudgeContainer.innerHTML = "";
+
+        if (data.isFinal) {
+          renderFinalForm(container);
+        } else {
+          renderOptions(container, step, data);
+        }
+
+        lucide.createIcons();
+      }
+
+      function renderOptions(container, step, data) {
+        selectedOption = selections[step] || null;
+        document.getElementById("next-btn").disabled = !selectedOption;
+
+        const optionsHtml = data.options
+          .map((opt) => {
+            const isSelected = selections[step] === opt.label;
+            return `
+        <button onclick="selectOption(this, '${
+          opt.label
+        }')" class="option-btn p-2.5 border border-gray-300 rounded-full text-left hover:border-blue-500 transition-all flex items-center gap-2.5 cursor-pointer ${
+              isSelected ? "selected" : ""
+            }" data-label="${opt.label}">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center font-bold text-base option-label text-gray-900 ${
+            isSelected ? "bg-[#2d61c9] text-black border-[#2d61c9]" : ""
+          }">${opt.label}</span>
+          <p class="text-black text-sm leading-relaxed">${opt.text}</p>
+        </button>
+      `;
+          })
+          .join("");
+
+        container.innerHTML = `
+        <div class="mb-8">
+          <p class="text-base md:text-lg font-semibold text-black leading-relaxed">${step}. ${data.question}</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">${optionsHtml}</div>
+      `;
+      }
+
+      function renderFinalForm(container) {
+        let totalScore = 0;
+
+        for (let step = 1; step <= 10; step++) {
+          const selectedLabel = selections[step];
+          const stepData = surveyData[step];
+          const option = stepData.options.find(
+            (opt) => opt.label === selectedLabel
+          );
+          if (option) totalScore += option.points;
+        }
+
+        /* -------------------------------
+     SCORE → CATEGORY → IMAGE LOGIC
+  -------------------------------- */
+        let categoryTitle = "The Foundation Builder";
+        let categoryColor = "bg-red-100 text-red-700";
+        let scoreImage = "./assets/The_Foundation_Builder.png";
+
+        // FOUNDATION BUILDER (0–45)
+        if (totalScore <= 45) {
+          categoryTitle = "The Foundation Builder";
+          categoryColor = "bg-red-100 text-red-700";
+
+          if (totalScore > 15) {
+            scoreImage = "./assets/The_Foundation_Builder-1.png";
+          } else {
+            scoreImage = "./assets/The_Foundation_Builder.png";
+          }
+        }
+
+        // STRATEGY OPTIMIZER (46–75)
+        else if (totalScore <= 75) {
+          categoryTitle = "The Strategy Optimizer";
+          categoryColor = "bg-yellow-100 text-yellow-700";
+
+          if (totalScore > 60) {
+            scoreImage = "./assets/The_Strategy_Optimizer-1.png";
+          } else {
+            scoreImage = "./assets/The_Strategy_Optimizer.png";
+          }
+        }
+
+        // WEALTH ARCHITECT (76+)
+        else {
+          categoryTitle = "The Wealth Architect";
+          categoryColor = "bg-green-100 text-green-700";
+
+          if (totalScore > 90) {
+            scoreImage = "./assets/The_Wealth_Architect-1.png";
+          } else {
+            scoreImage = "./assets/The_Wealth_Architect.png";
+          }
+        }
+
+        window_categoryTitle = categoryTitle;
+        window_totalScore = totalScore;
+
+        const categoryInfo = categoryDescriptions[categoryTitle];
+
+        /* -------------------------------
+     UI RENDER
+  -------------------------------- */
+
+        container.innerHTML = `
+  <div class="space-y-10">
+
+    <!-- SCORE IMAGE SECTION -->
+    <div class="flex flex-col items-center text-center">
+      <div class="w-64 h-64 flex items-center justify-center">
+        <img 
+          src="${scoreImage}" 
+          alt="" 
+          class="w-full h-full object-contain transition-all duration-700 ease-out scale-95 opacity-0 animate-scoreReveal"
+        />
+      </div>
+    </div>
+
+    
+
+    <!-- SCORE SUMMARY ROW -->
+    <div class="mt-2 flex flex-wrap justify-between text-center">
+
+    <div class="flex items-center gap-2">
+    <span class="text-base text-gray-700">Your Score:</span>
+    <span class="text-lg font-semibold text-gray-900">
+      ${totalScore}
+    </span>
+    </div>
+
+    <div class="flex items-center gap-2">
+    <span class="text-base text-gray-700">Result:</span>
+    <span class="text-lg font-semibold text-gray-900">
+      ${categoryTitle}
+    </span>
+    </div>
+
+    <div class="flex items-center gap-2">
+    <span class="text-base text-gray-700">Focus:</span>
+    <span class="text-lg font-semibold text-gray-900">
+      ${categoryInfo.focus}
+    </span>
+    </div>
+    </div>
+
+    <!-- CATEGORY DESCRIPTION -->
+    <div class="">
+      <p class="text-gray-800 text-base">
+        ${categoryInfo.description}
+      </p>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class=">
+      <p class="text-sm text-gray-700">
+        <strong>Note:</strong> This score is an educational evaluation and not a financial recommendation.
+      </p>
+    </div>
+    
+<!-- GIFTS SECTION HEADING -->
+<div class="text-start lg:text-center mt-12 mb-10">
+  <h2 class="text-2xl md:text-3xl font-semibold text-gray-900">
+    Congratulations! Here are your<span class="text-blue-600"> free gifts </span>
+  </h2>
+  <p class="text-gray-600 mt-2 text-sm md:text-base">
+    Download your resources below
+  </p>
+</div>
+
+<!-- RESOURCE DOWNLOAD GRID -->
+<div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+
+  <!-- CARD 1 -->
+  <div class="p-6 flex flex-col items-center text-center bg-white">
+    
+    <h3 class="text-base font-semibold text-gray-900 mb-4">
+      Financial Basics Guide
+    </h3>
+
+    <div class="w-40 h-40 mb-6">
+      <img
+        src="../assets/CFS Documents.png"
+        alt="Financial Basics"
+        class="w-full h-full object-contain"
+      />
+    </div>
+
+    <a
+      href="./downloads/financial-basics.pdf"
+      download
+      class="mt-auto inline-flex items-center gap-2 rounded-full border border-gray-300 px-7 py-3 text-base font-medium text-gray-900
+             transition-all duration-300
+             hover:bg-secondary hover:text-white hover:border-gray-900"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon">
+        <path d="M12 15V3"/>
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <path d="m7 10 5 5 5-5"/>
+      </svg>
+      Download
+    </a>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="p-6 flex flex-col items-center text-center bg-white">
+    
+    <h3 class="text-base font-semibold text-gray-900 mb-4">
+      Investment Planning
+    </h3>
+
+    <div class="w-40 h-40 mb-6">
+      <img
+        src="../assets/CFS Documents.png"
+        alt="Investment Planning"
+        class="w-full h-full object-contain"
+      />
+    </div>
+
+    <a
+      href="./downloads/investment-planning.pdf"
+      download
+      class="mt-auto inline-flex items-center gap-2 rounded-full border border-gray-300 px-7 py-3 text-base font-medium text-gray-900
+             transition-all duration-300
+             hover:bg-secondary hover:text-white hover:border-gray-900"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon">
+        <path d="M12 15V3"/>
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <path d="m7 10 5 5 5-5"/>
+      </svg>
+      Download
+    </a>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="p-6 flex flex-col items-center text-center bg-white">
+    
+    <h3 class="text-base font-semibold text-gray-900 mb-4">
+      Risk Management
+    </h3>
+
+    <div class="w-40 h-40 mb-6">
+      <img
+        src="../assets/CFS Documents.png"
+        alt="Risk Management"
+        class="w-full h-full object-contain"
+      />
+    </div>
+
+    <a
+      href="./downloads/risk-management.pdf"
+      download
+      class="mt-auto inline-flex items-center gap-2 rounded-full border border-gray-300 px-7 py-3 text-base font-medium text-gray-900
+             transition-all duration-300
+             hover:bg-secondary hover:text-white hover:border-gray-900"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" s fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon">
+        <path d="M12 15V3"/>
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <path d="m7 10 5 5 5-5"/>
+      </svg>
+      Download
+    </a>
+  </div>
+
+</div>
+
+
+
+
+    <!-- RESPONSES SUMMARY -->
+    <div class="bg-white hidden  border-2 border-gray-200 rounded-2xl p-8">
+      <h3 class="text-2xl font-bold text-gray-900 mb-6">
+        Your Assessment Responses
+      </h3>
+
+      <div class="space-y-4 max-h-96 overflow-y-auto">
+        ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+          .map((step) => {
+            const stepData = surveyData[step];
+            const selectedLabel = selections[step];
+            const option = stepData.options.find(
+              (opt) => opt.label === selectedLabel
+            );
+
+            return `
+          <div class="flex justify-between p-4 bg-gray-50 rounded-xl border">
+            <div>
+              <p class="font-semibold text-gray-900">${stepData.question}</p>
+              <p class="text-sm text-blue-600">Selected: ${selectedLabel}</p>
+            </div>
+            <div class="text-2xl font-bold text-blue-600">
+              ${option ? option.points : 0}
+            </div>
+          </div>
+          `;
+          })
+          .join("")}
+      </div>
+    </div>
+  </div>
+  `;
+
+        /* -------------------------------
+        BUTTON & STORAGE LOGIC
+        -------------------------------- */
+        const nextBtn = document.getElementById("next-btn");
+
+        nextBtn.innerHTML = "<span>CLOSE</span>";
+        nextBtn.disabled = false;
+
+        nextBtn.onclick = () => {
+          window.history.back();
+        };
+
+        const inputs = ["name-input", "email-input", "mobile-input"];
+        inputs.forEach((id) => {
+          document.getElementById(id).addEventListener("input", () => {
+            nextBtn.disabled = !inputs.every(
+              (i) => document.getElementById(i).value.trim() !== ""
+            );
+          });
+        });
+
+        nextBtn.addEventListener("click", () => {
+          localStorage.removeItem("financialAssessment");
+          localStorage.removeItem("surveyResults");
+          localStorage.setItem(
+            "financialAssessment",
+            JSON.stringify({
+              score: totalScore,
+              category: categoryTitle,
+              responses: selections,
+              timestamp: new Date().toISOString(),
+            })
+          );
+        });
+      }
+
+      function showNudge(step) {
+        const nudgeContainer = document.getElementById("nudge-container");
+        if (!nudges[step]) {
+          nudgeContainer.innerHTML = "";
+          return;
+        }
+
+        const nudge = nudges[step];
+        const html = `
+        <div class="nudge-container bg-[#f1f6ff] rounded-3xl p-4 lg:p-8">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0">
+              <i data-lucide="${nudge.icon}" class="hidden w-6 h-6 text-[#2d61c9]"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-semibold text-base text-black mb-2">${nudge.title}</h3>
+              <p class="text-black text-sm leading-relaxed">${nudge.text}</p>
+            </div>
+          </div>
+        </div>
+      `;
+        nudgeContainer.innerHTML = html;
+        lucide.createIcons();
+      }
+
+      function selectOption(element, label) {
+        const allOptions = document.querySelectorAll(".option-btn");
+
+        allOptions.forEach((opt) => {
+          // Reset option container
+          opt.classList.remove("selected", "bg-[#f0f4ff]", "border-[#2d61c9]");
+          opt.classList.add("border-gray-300");
+
+          // Reset ABCD label → DEFAULT STATE
+          const optLabel = opt.querySelector(".option-label");
+
+          optLabel.className =
+            "option-label flex-shrink-0 w-8 h-8 rounded-full border flex items-center justify-center font-bold text-base transition-all " +
+            "bg-white text-black border-gray-300";
+        });
+
+        // Selected option container
+        element.classList.add("selected", "bg-[#f0f4ff]", "border-[#2d61c9]");
+
+        // Selected ABCD label → BLUE BG → WHITE TEXT
+        const currentLabel = element.querySelector(".option-label");
+
+        currentLabel.className =
+          "option-label flex-shrink-0 w-8 h-8 rounded-full border flex items-center justify-center font-bold text-base transition-all " +
+          "bg-[#2d61c9] text-white border-[#2d61c9]";
+
+        selectedOption = label;
+        selections[currentStep] = label;
+        document.getElementById("next-btn").disabled = false;
+      }
+
+      function nextStep() {
+        const data = surveyData[currentStep];
+
+        if (data.isFinal) {
+          const name = document.getElementById("name-input").value.trim();
+          const email = document.getElementById("email-input").value.trim();
+          const mobile = document.getElementById("mobile-input").value.trim();
+
+          if (name && email && mobile) {
+            let totalScore = 0;
+            for (let step = 1; step <= 10; step++) {
+              const selectedLabel = selections[step];
+              const stepData = surveyData[step];
+              const option = stepData.options.find(
+                (opt) => opt.label === selectedLabel
+              );
+              if (option) {
+                totalScore += option.points;
+              }
+            }
+
+            let categoryTitle = "The Foundation Builder";
+            if (totalScore >= 76) {
+              categoryTitle = "The Wealth Architect";
+            } else if (totalScore >= 46) {
+              categoryTitle = "The Strategy Optimizer";
+            }
+
+            const surveyResults = {
+              name,
+              email,
+              mobile,
+              selections,
+              totalScore,
+              categoryTitle,
+              rewards: rewardCount,
+              completedAt: new Date().toISOString(),
+            };
+
+            localStorage.removeItem("financialAssessment");
+            localStorage.removeItem("surveyResults");
+            localStorage.setItem(
+              "surveyResults",
+              JSON.stringify(surveyResults)
+            );
+            console.log("[v0] Survey submitted and saved:", surveyResults);
+
+            alert(
+              `Thank you, ${name}! Your ${categoryTitle} profile with a score of ${totalScore}/100 has been saved. Your rewards will be sent to ${email} and ${mobile}.`
+            );
+          }
+          return;
+        }
+
+        if (data.isMilestone) {
+          if (!completedMilestones.has(currentStep)) {
+            completedMilestones.add(currentStep);
+            showRewardModal();
+          } else {
+            if (currentStep < totalSteps) {
+              currentStep++;
+              renderStep(currentStep);
+              setTimeout(() => {
+                showNudge(currentStep);
+              }, 300);
+            }
+          }
+          return;
+        }
+
+        if (currentStep < totalSteps) {
+          currentStep++;
+          renderStep(currentStep);
+
+          setTimeout(() => {
+            showNudge(currentStep);
+          }, 300);
+        }
+      }
+
+      function prevStep() {
+        if (currentStep > 1) {
+          currentStep--;
+          renderStep(currentStep);
+          setTimeout(() => {
+            showNudge(currentStep);
+          }, 300);
+        }
+      }
+
+      function showRewardModal() {
+        rewardCount++;
+
+        const badge = document.getElementById("reward-count-badge");
+        badge.textContent = rewardCount;
+        badge.classList.remove("hidden");
+
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+
+        const modal = document.getElementById("reward-modal");
+        const titleEl = modal.querySelector("#reward-modal-text");
+        const descEl = modal.querySelector("#reward-modal-description");
+        const rightContent = modal.querySelector("#reward-right-content");
+        const continueWrapper = modal.querySelector("#reward-continue-wrapper");
+
+        const detail = rewardDetails[currentStep] || rewardDetails.default;
+
+        // LEFT TEXT — ALWAYS VISIBLE
+        titleEl.textContent = detail.title;
+        descEl.innerHTML = detail.description.replace(/\n/g, "<br />");
+
+        // RIGHT CONTENT
+        if (currentStep === 10) {
+          rightContent.innerHTML = renderDiscoveryCallInputs();
+          attachDiscoveryCallListeners();
+
+          // Center button for form step
+          continueWrapper.className = " flex justify-center";
+        } else {
+          rightContent.innerHTML = `
+      <img
+        src="${detail.image}"
+        alt="${detail.imageAlt || "Reward image"}"
+        class="max-w-[220px] w-full"
+      />
+    `;
+
+          // Right aligned on desktop
+          continueWrapper.className =
+            "mt-10 flex justify-center md:justify-end";
+        }
+
+        modal.classList.remove("hidden");
+        lucide.createIcons();
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        renderStep(currentStep);
+      });
+
+      function closeRewardModal() {
+        const modal = document.getElementById("reward-modal");
+        modal.classList.add("hidden");
+
+        if (currentStep < totalSteps) {
+          currentStep++;
+          renderStep(currentStep);
+
+          setTimeout(() => {
+            showNudge(currentStep);
+          }, 300);
+        }
+      }
+
+      function showRewardMessage() {
+        const existingToast = document.getElementById("reward-toast");
+        if (existingToast) existingToast.remove();
+
+        const toast = document.createElement("div");
+        toast.id = "reward-toast";
+        toast.className =
+          "hidden lg:flex fixed bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-6 py-4 rounded-full shadow-2xl flex items-center gap-3 z-50";
+        toast.innerHTML = `
+        <i data-lucide="loader-circle" class="w-5 h-5 animate-spin text-yellow-400"></i>
+        <span class="text-sm font-medium">Please be patient! Your rewards will be delivered when you complete all steps.</span>
+      `;
+        document.body.appendChild(toast);
+        lucide.createIcons();
+        setTimeout(() => toast.remove(), 3500);
+      }
+
+      function renderDiscoveryCallInputs() {
+        return `
+    <div class="w-full max-w-sm space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          Full Name
+        </label>
+        <input
+          id="dc-name"
+          type="text"
+          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-[1px] focus:ring-[#2d61c9]"
+          placeholder="Enter your name"
+        />
+        <p id="dc-name-error" class="text-xs text-red-600 mt-1 hidden"></p>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          Email Address
+        </label>
+        <input
+          id="dc-email"
+          type="email"
+          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-[1px] focus:ring-[#2d61c9]"
+          placeholder="Enter your email"
+        />
+        <p id="dc-email-error" class="text-xs text-red-600 mt-1 hidden"></p>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          Mobile Number
+        </label>
+        <input
+          id="dc-mobile"
+          type="tel"
+          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-[1px] focus:ring-[#2d61c9]"
+          placeholder="Enter your mobile number"
+        />
+        <p id="dc-mobile-error" class="text-xs text-red-600 mt-1 hidden"></p>
+      </div>
+    </div>
+  `;
+      }
+
+      function showNudge(step) {
+        const nudgeContainer = document.getElementById("nudge-container");
+        if (!nudges[step]) {
+          nudgeContainer.innerHTML = "";
+          return;
+        }
+
+        const nudge = nudges[step];
+        const html = `
+        <div class="nudge-container bg-[#f1f6ff] rounded-3xl p-4 lg:p-8">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0">
+              <i data-lucide="${nudge.icon}" class="hidden w-6 h-6 text-[#2d61c9]"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-semibold text-base text-black mb-2">${nudge.title}</h3>
+              <p class="text-black text-sm leading-relaxed">${nudge.text}</p>
+            </div>
+          </div>
+        </div>
+      `;
+        nudgeContainer.innerHTML = html;
+        lucide.createIcons();
+      }
+
+      function selectOption(element, label) {
+        const allOptions = document.querySelectorAll(".option-btn");
+
+        allOptions.forEach((opt) => {
+          // Reset option container
+          opt.classList.remove("selected", "bg-[#f0f4ff]", "border-[#2d61c9]");
+          opt.classList.add("border-gray-300");
+
+          // Reset ABCD label → DEFAULT STATE
+          const optLabel = opt.querySelector(".option-label");
+
+          optLabel.className =
+            "option-label flex-shrink-0 w-8 h-8 rounded-full border flex items-center justify-center font-bold text-base transition-all " +
+            "bg-white text-black border-gray-300";
+        });
+
+        // Selected option container
+        element.classList.add("selected", "bg-[#f0f4ff]", "border-[#2d61c9]");
+
+        // Selected ABCD label → BLUE BG → WHITE TEXT
+        const currentLabel = element.querySelector(".option-label");
+
+        currentLabel.className =
+          "option-label flex-shrink-0 w-8 h-8 rounded-full border flex items-center justify-center font-bold text-base transition-all " +
+          "bg-[#2d61c9] text-white border-[#2d61c9]";
+
+        selectedOption = label;
+        selections[currentStep] = label;
+        document.getElementById("next-btn").disabled = false;
+      }
+
+      function nextStep() {
+        const data = surveyData[currentStep];
+
+        if (data.isFinal) {
+          const name = document.getElementById("name-input").value.trim();
+          const email = document.getElementById("email-input").value.trim();
+          const mobile = document.getElementById("mobile-input").value.trim();
+
+          if (name && email && mobile) {
+            let totalScore = 0;
+            for (let step = 1; step <= 10; step++) {
+              const selectedLabel = selections[step];
+              const stepData = surveyData[step];
+              const option = stepData.options.find(
+                (opt) => opt.label === selectedLabel
+              );
+              if (option) {
+                totalScore += option.points;
+              }
+            }
+
+            let categoryTitle = "The Foundation Builder";
+            if (totalScore >= 76) {
+              categoryTitle = "The Wealth Architect";
+            } else if (totalScore >= 46) {
+              categoryTitle = "The Strategy Optimizer";
+            }
+
+            const surveyResults = {
+              name,
+              email,
+              mobile,
+              selections,
+              totalScore,
+              categoryTitle,
+              rewards: rewardCount,
+              completedAt: new Date().toISOString(),
+            };
+
+            localStorage.removeItem("financialAssessment");
+            localStorage.removeItem("surveyResults");
+            localStorage.setItem(
+              "surveyResults",
+              JSON.stringify(surveyResults)
+            );
+            console.log("[v0] Survey submitted and saved:", surveyResults);
+
+            alert(
+              `Thank you, ${name}! Your ${categoryTitle} profile with a score of ${totalScore}/100 has been saved. Your rewards will be sent to ${email} and ${mobile}.`
+            );
+          }
+          return;
+        }
+
+        if (data.isMilestone) {
+          if (!completedMilestones.has(currentStep)) {
+            completedMilestones.add(currentStep);
+            showRewardModal();
+          } else {
+            if (currentStep < totalSteps) {
+              currentStep++;
+              renderStep(currentStep);
+              setTimeout(() => {
+                showNudge(currentStep);
+              }, 300);
+            }
+          }
+          return;
+        }
+
+        if (currentStep < totalSteps) {
+          currentStep++;
+          renderStep(currentStep);
+
+          setTimeout(() => {
+            showNudge(currentStep);
+          }, 300);
+        }
+      }
+
+      function prevStep() {
+        if (currentStep > 1) {
+          currentStep--;
+          renderStep(currentStep);
+          setTimeout(() => {
+            showNudge(currentStep);
+          }, 300);
+        }
+      }
+
+      function showRewardModal() {
+        rewardCount++;
+        const badge = document.getElementById("reward-count-badge");
+        badge.textContent = rewardCount;
+        badge.classList.remove("hidden");
+
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+
+        const modal = document.getElementById("reward-modal");
+        const modalTitleEl = modal.querySelector("#reward-modal-text");
+        const modalDescEl = modal.querySelector("p.text-gray-700");
+        const rightContent = modal.querySelector("#reward-right-content");
+
+        const detail = rewardDetails[currentStep] || rewardDetails.default;
+
+        if (modalTitleEl) modalTitleEl.textContent = detail.title;
+
+        if (modalDescEl) {
+          modalDescEl.innerHTML = detail.description.replace(/\n/g, "<br />");
+        }
+
+        if (currentStep === 10) {
+          rightContent.innerHTML = renderDiscoveryCallInputs();
+          attachDiscoveryCallListeners(); // ← Live validation attached here
+        } else {
+          rightContent.innerHTML = `
+        <img
+          src="${detail.image}"
+          alt="${detail.imageAlt || "Reward image"}"
+          class="max-w-[220px] w-full"
+        />
+      `;
+        }
+
+        modal.classList.remove("hidden");
+        lucide.createIcons();
+      }
+
+      function closeRewardModal() {
+        const modal = document.getElementById("reward-modal");
+        modal.classList.add("hidden");
+
+        if (currentStep < totalSteps) {
+          currentStep++;
+          renderStep(currentStep);
+
+          setTimeout(() => {
+            showNudge(currentStep);
+          }, 300);
+        }
+      }
+
+      function showRewardMessage() {
+        const existingToast = document.getElementById("reward-toast");
+        if (existingToast) existingToast.remove();
+
+        const toast = document.createElement("div");
+        toast.id = "reward-toast";
+        toast.className =
+          "hidden lg:flex fixed bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-6 py-4 rounded-full shadow-2xl flex items-center gap-3 z-50";
+        toast.innerHTML = `
+        <i data-lucide="loader-circle" class="w-5 h-5 animate-spin text-yellow-400"></i>
+        <span class="text-sm font-medium">Please be patient! Your rewards will be delivered when you complete all steps.</span>
+      `;
+        document.body.appendChild(toast);
+        lucide.createIcons();
+        setTimeout(() => toast.remove(), 3500);
+      }
+
+      function renderDiscoveryCallInputs() {
+        return `
+    <div class="w-full max-w-sm space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          Full Name
+        </label>
+        <input
+          id="dc-name"
+          type="text"
+          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-[1px] focus:ring-[#2d61c9]"
+          placeholder="Enter your name"
+        />
+        <p id="dc-name-error" class="text-xs text-red-600 mt-1 hidden"></p>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          Email Address
+        </label>
+        <input
+          id="dc-email"
+          type="email"
+          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-[1px] focus:ring-[#2d61c9]"
+          placeholder="Enter your email"
+        />
+        <p id="dc-email-error" class="text-xs text-red-600 mt-1 hidden"></p>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          Mobile Number
+        </label>
+        <input
+          id="dc-mobile"
+          type="tel"
+          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-[1px] focus:ring-[#2d61c9]"
+          placeholder="Enter your mobile number"
+        />
+        <p id="dc-mobile-error" class="text-xs text-red-600 mt-1 hidden"></p>
+      </div>
+    </div>
+  `;
+      }
+
+      function validateDiscoveryCallForm() {
+        let isValid = true;
+
+        const name = document.getElementById("dc-name");
+        const email = document.getElementById("dc-email");
+        const mobile = document.getElementById("dc-mobile");
+
+        const nameError = document.getElementById("dc-name-error");
+        const emailError = document.getElementById("dc-email-error");
+        const mobileError = document.getElementById("dc-mobile-error");
+
+        [nameError, emailError, mobileError].forEach((el) => {
+          el.textContent = "";
+          el.classList.add("hidden");
+        });
+
+        if (!name.value || name.value.trim().length < 5) {
+          nameError.textContent = "Name must be at least 5 characters long.";
+          nameError.classList.remove("hidden");
+          isValid = false;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value)) {
+          emailError.textContent = "Please enter a valid email address.";
+          emailError.classList.remove("hidden");
+          isValid = false;
+        }
+
+        const mobileRegex = /^[6-9][0-9]{9}$/;
+        if (!mobileRegex.test(mobile.value)) {
+          mobileError.textContent = "Mobile number must be 10 digits.";
+          mobileError.classList.remove("hidden");
+          isValid = false;
+        }
+
+        return isValid;
+      }
+
+      /* -------------------------------
+  DISCOVERY CALL EMAIL + SURVEY
+---------------------------------*/
+      function attachDiscoveryCallListeners() {
+        const modal = document.getElementById("reward-modal");
+        if (!modal) return;
+
+        const nameEl = modal.querySelector("#dc-name");
+        const emailEl = modal.querySelector("#dc-email");
+        const mobileEl = modal.querySelector("#dc-mobile");
+
+        if (!nameEl || !emailEl || !mobileEl) return;
+
+        const continueBtn =
+          modal.querySelector("#reward-continue-btn") ||
+          modal.querySelector('button[onclick="closeRewardModal()"]');
+
+        if (!continueBtn) return;
+
+        const handler = () => {
+          const valid = validateDiscoveryCallForm();
+          continueBtn.disabled = !valid;
+
+          if (valid) {
+            continueBtn.classList.remove("opacity-50", "cursor-not-allowed");
+          } else {
+            continueBtn.classList.add("opacity-50", "cursor-not-allowed");
+          }
+        };
+
+        [nameEl, emailEl, mobileEl].forEach((el) => {
+          el.addEventListener("input", handler);
+          el.addEventListener("blur", handler);
+        });
+
+        continueBtn.addEventListener("click", (e) => {
+          if (!validateDiscoveryCallForm()) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            return;
+          }
+
+          const SENDER_EMAIL = "paswanniraj324@gmail.com"; // receiver email
+
+          // Collect data from modal + survey
+          const surveyResults =
+            JSON.parse(localStorage.getItem("surveyResults")) || {};
+          const payload = {
+            from_name: nameEl.value.trim(),
+            from_email: emailEl.value.trim(),
+            to_email: SENDER_EMAIL,
+            from_mobile: mobileEl.value.trim(),
+            categoryTitle: surveyResults.categoryTitle || window_categoryTitle,
+            totalScore: surveyResults.totalScore || window_totalScore,
+            form_date_time: new Date().toLocaleString(),
+          };
+
+          // Attach 10 survey responses for EmailJS template
+          for (let i = 1; i <= 10; i++) {
+            payload[`response_${i}`] =
+              (surveyResults.selections && surveyResults.selections[i]) ||
+              "N/A";
+          }
+
+          sendDiscoveryCallEmail(payload)
+            .then(() => console.log("EmailJS sent successfully"))
+            .catch((err) => console.error("EmailJS error:", err));
+        });
+
+        handler();
+      }
+
+      function sendDiscoveryCallEmail(payload) {
+        return emailjs.send("service_tls91xd", "template_2zvq02l", {
+          from_name: payload.from_name,
+          from_email: payload.from_email,
+          to_email: payload.to_email,
+          from_mobile: payload.from_mobile,
+          categoryTitle: payload.categoryTitle,
+          totalScore: payload.totalScore,
+          form_date_time: payload.form_date_time,
+          response_1: payload.response_1,
+          response_2: payload.response_2,
+          response_3: payload.response_3,
+          response_4: payload.response_4,
+          response_5: payload.response_5,
+          response_6: payload.response_6,
+          response_7: payload.response_7,
+          response_8: payload.response_8,
+          response_9: payload.response_9,
+          response_10: payload.response_10,
+        });
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        renderStep(currentStep);
+      });
+    </script>
+
+    <!-- Modal expand Logic (CONSENT) -->
+    <script>
+      const disclaimerText = document.getElementById("disclaimer-text");
+      const toggleBtn = document.getElementById("disclaimer-toggle");
+
+      toggleBtn.addEventListener("click", () => {
+        const isCollapsed = disclaimerText.classList.contains("max-h-16");
+
+        if (isCollapsed) {
+          disclaimerText.classList.remove("max-h-16");
+          disclaimerText.classList.add("max-h-full");
+          toggleBtn.textContent = "Read Less";
+        } else {
+          disclaimerText.classList.add("max-h-16");
+          disclaimerText.classList.remove("max-h-full");
+          toggleBtn.textContent = "Read More";
+        }
+      });
+    </script>
+
+    <!-- Consent Form Logic -->
+    <script>
+      const consent1 = document.getElementById("consent-1");
+      const consent2 = document.getElementById("consent-2");
+      const startBtn = document.getElementById("start-assessment-btn");
+      const disclaimerModal = document.getElementById("disclaimer-modal");
+
+      function updateStartButton() {
+        if (consent1.checked && consent2.checked) {
+          startBtn.disabled = false;
+          startBtn.classList.remove("bg-gray-300", "cursor-not-allowed");
+          startBtn.classList.add("bg-[#2d61c9]", "hover:bg-[#244fa3]");
+        } else {
+          startBtn.disabled = true;
+          startBtn.classList.add("bg-gray-300", "cursor-not-allowed");
+          startBtn.classList.remove("bg-[#2d61c9]", "hover:bg-[#244fa3]");
+        }
+      }
+
+      consent1.addEventListener("change", updateStartButton);
+      consent2.addEventListener("change", updateStartButton);
+
+      startBtn.addEventListener("click", () => {
+        disclaimerModal.classList.add("hidden");
+        renderStep(currentStep); // starts your assessment cleanly
+      });
+    </script>
+
+    <!-- =================================================================== -->
+    <!-- FOOTER SECTION - Company information and links -->
+    <!-- =================================================================== -->
+    <footer class="w-full bg-white border-t border-gray-200">
+      <!-- Top Nav Links -->
+      <div
+        class="max-w-7xl mx-auto px-6 py-6 flex flex-wrap justify-center md:justify-between gap-6 text-sm text-gray-700"
+      >
+        <a href="/about" class="hover:text-primary transition">About Us</a>
+        <a href="/services" class="hover:text-primary transition">Services</a>
+        <a href="/calculators" class="hover:text-primary transition"
+          >Calculators</a
+        >
+        <a href="/financial-literacy" class="hover:text-primary transition"
+          >Financial Literacy</a
+        >
+        <a href="/nri-corner" class="hover:text-primary transition"
+          >NRI Corner</a
+        >
+        <a href="/contact" class="hover:text-primary transition">Contact Us</a>
+      </div>
+
+      <!-- Middle Section -->
+      <div
+        class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+      >
+        <!-- Left: Info -->
+        <div class="space-y-4">
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=15.4038977,74.0086659"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+          >
+            <i data-lucide="map-pin" class="w-5 h-5 text-primary"></i> Our
+            Office
+          </a>
+          <a
+            href="mailto:invest@chimulkar.com"
+            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+          >
+            <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
+            invest@chimulkar.com
+          </a>
+          <a
+            href="tel:+918208031927"
+            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+          >
+            <i data-lucide="phone" class="w-5 h-5 text-primary"></i>
+            +91 82080 31927
+          </a>
+        </div>
+
+        <!-- Center: Logo -->
+        <div class="flex flex-col items-center">
+          <img
+            src="../assets/Logo.svg"
+            alt="Chimulkar Financial Services"
+            class="w-40 h-auto mb-4"
+          />
+          <p class="text-gray-800 text-sm">Chimulkar Financial Services</p>
+        </div>
+
+        <!-- Right: Reviews & Social -->
+        <div class="flex flex-col items-center md:items-end space-y-4">
+          <p class="text-gray-800">10+ Five-Star Google Reviews</p>
+          <div class="flex gap-1">
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+            <i
+              data-lucide="star"
+              class="w-5 h-5 fill-yellow-400 text-yellow-400"
+            ></i>
+          </div>
+          <div class="flex gap-4">
+            <a
+              href="https://www.instagram.com/chimulkarfinancialservices?utm_source=ig_web_button_share_sheet&igsh=MWZxMnFsZTY4OHNmeg=="
+              target="_blank"
+              aria-label="Instagram"
+              class="bg-yellow-100 rounded-full p-2 hover:bg-yellow-200 transition"
+            >
+              <i data-lucide="instagram" class="w-5 h-5 text-gray-800"></i>
+            </a>
+            <a
+              href="https://www.youtube.com/@ChimulkarFinancialServices"
+              target="_blank"
+              aria-label="YouTube"
+              rel="noopener noreferrer"
+              class="bg-yellow-100 rounded-full p-2 hover:bg-yellow-200 transition"
+            >
+              <i data-lucide="youtube" class="w-5 h-5 text-gray-800"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="bg-[#161f48] text-gray-100 text-xs text-center py-4">
+        <div
+          class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2"
+        >
+          <p>© 2025 Chimulkar Financial Services | Financial Consultant</p>
+          <div class="flex gap-4">
+            <a href="/terms" class="hover:underline">Terms & Conditions</a>
+            <a href="/privacy-policy" class="hover:underline">Privacy Policy</a>
+            <a href="/sitemap" class="hover:underline">Sitemap</a>
+          </div>
+          <p class="text-gray-400">
+            Designed & Developed by
+            <a
+              href="https://github.com/Niraj-Paswan"
+              target="_blank"
+              class="text-white hover:underline"
+              >~Niraj Paswan</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =================================================================== -->
+    <!-- EXTERNAL LIBRARIES AND SCRIPTS -->
+    <!-- =================================================================== -->
+
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      // Initialize AOS animations
+      AOS.init();
+    </script>
+
+    <!-- =================================================================== -->
+    <!-- CUSTOM JAVASCRIPT - All interactive functionality -->
+    <!-- =================================================================== -->
+    <script>
+      // Initialize Lucide icons after page load
+      lucide.createIcons();
+
+      // ===================================================================
+      // MOBILE MENU FUNCTIONALITY
+      // ===================================================================
+
+      // Get mobile menu elements
+      const mobileMenuToggle = document.getElementById("menuToggle");
+      const mobileMenuClose = document.getElementById("closeMenu");
+      const mobileMenuPanel = document.getElementById("mobileMenu");
+      const mobileMenuBackdrop = document.getElementById("backdrop");
+
+      // Open mobile menu function
+      function openMobileMenu() {
+        mobileMenuPanel.classList.remove("translate-x-full");
+        mobileMenuBackdrop.classList.remove("hidden");
+        setTimeout(() => mobileMenuBackdrop.classList.remove("opacity-0"), 10);
+      }
+
+      // Close mobile menu function
+      function closeMobileMenu() {
+        mobileMenuPanel.classList.add("translate-x-full");
+        mobileMenuBackdrop.classList.add("opacity-0");
+        setTimeout(() => mobileMenuBackdrop.classList.add("hidden"), 300);
+      }
+
+      // Event listeners for mobile menu
+      mobileMenuToggle.addEventListener("click", openMobileMenu);
+      mobileMenuClose.addEventListener("click", closeMobileMenu);
+      mobileMenuBackdrop.addEventListener("click", closeMobileMenu);
+    </script>
+  </body>
+</html>
