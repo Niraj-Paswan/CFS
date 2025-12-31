@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sitemap | Chimulkar Financial Services</title>
+
+    <link rel="shortcut icon" href="../assets/Logo.svg" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      /* smooth hover transitions for links */
+      .link-item a {
+        color: #374151;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-block;
+      }
+      .link-item a:hover {
+        color: #2563eb;
+        transform: translateX(4px);
+      }
+      /* section title underline animation */
+      .section-title {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 10px;
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: #2563eb;
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .section-title:hover::after {
+        width: 100%;
+      }
+      /* search input styling */
+      .search-input {
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      .search-input:focus {
+        border-color: #2563eb;
+        outline: none;
+        box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.1);
+      }
+      /* hide sections when search doesn't match */
+      .hidden-section {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body class="bg-white text-black">
+    <!-- removed sticky header, made it scrollable -->
+    <header class="">
+      <div class="max-w-5xl mx-auto px-6 mt-24">
+        <div class="text-center flex flex-col items-center">
+          <!-- Logo -->
+          <img
+            src="./assets/Logo.svg"
+            alt="Chimulkar Logo"
+            class="w-24 lg:w-44 mb-6"
+          />
+
+          <!-- Heading -->
+          <h1
+            class="text-3xl sm:text-5xl font-semibold text-gray-900 mb-4 leading-tight"
+          >
+            Website Sitemap
+          </h1>
+
+          <!-- Description -->
+          <p
+            class="text-base text-gray-800 max-w-2xl mx-auto leading-relaxed mb-8"
+          >
+            Navigate through all pages and resources available on our website
+          </p>
+
+          <!-- Search Bar -->
+          <div class="max-w-sm w-full">
+            <input
+              type="text"
+              id="searchInput"
+              class="w-full bg-white border border-gray-300 rounded-full px-6 py-3 text-gray-900 placeholder-gray-500 text-base focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+              placeholder="Search pages here..."
+              autocomplete="off"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-6 py-16 sm:py-20">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16"
+      >
+        <!-- Home Section -->
+        <section class="sitemap-section" data-section="Home">
+          <h2 class="section-title text-lg font-semibold text-gray-900 mb-6">
+            Home
+          </h2>
+          <ul class="space-y-4">
+            <li class="link-item" data-search="Homepage Home">
+              <a href="/" class="text-base font-medium">Homepage</a>
+            </li>
+          </ul>
+        </section>
+
+        <!-- About Section -->
+        <section class="sitemap-section" data-section="About">
+          <h2 class="section-title text-lg font-semibold text-gray-900 mb-6">
+            About
+          </h2>
+          <ul class="space-y-4">
+            <li class="link-item" data-search="About Us">
+              <a href="/about-us.html" class="text-base font-medium"
+                >About Us</a
+              >
+            </li>
+            <li class="link-item" data-search="Foundation">
+              <a href="/foundation.html" class="text-base font-medium"
+                >Foundation</a
+              >
+            </li>
+            <li class="link-item" data-search="Prashant Chimulkar">
+              <a
+                href="/teams/Prashant-Chimulkar.html"
+                class="text-base font-medium"
+                >Prashant Chimulkar</a
+              >
+            </li>
+            <li class="link-item" data-search="Pranav Chimulkar">
+              <a
+                href="/teams/Pranav-Chimulkar.html"
+                class="text-base font-medium"
+                >Pranav Chimulkar</a
+              >
+            </li>
+          </ul>
+        </section>
+
+        <!-- Services Section -->
+        <section class="sitemap-section" data-section="Services">
+          <h2 class="section-title text-lg font-semibold text-gray-900 mb-6">
+            Services
+          </h2>
+          <ul class="space-y-4">
+            <li class="link-item" data-search="Mutual Funds">
+              <a
+                href="/services/mutual-funds.html"
+                class="text-base font-medium"
+                >Mutual Funds</a
+              >
+            </li>
+            <li class="link-item" data-search="Retirement Planning">
+              <a
+                href="/services/retirement-planning.html"
+                class="text-base font-medium"
+                >Retirement Planning</a
+              >
+            </li>
+            <li class="link-item" data-search="Tax Planning">
+              <a
+                href="/services/tax-planning.html"
+                class="text-base font-medium"
+                >Tax Planning</a
+              >
+            </li>
+            <li class="link-item" data-search="Insurance Planning">
+              <a
+                href="/services/insurance-planning.html"
+                class="text-base font-medium"
+                >Insurance Planning</a
+              >
+            </li>
+            <li class="link-item" data-search="Education Savings">
+              <a
+                href="/services/education-savings.html"
+                class="text-base font-medium"
+                >Education Savings</a
+              >
+            </li>
+            <li class="link-item" data-search="Legacy Planning">
+              <a
+                href="/services/legacy-planning.html"
+                class="text-base font-medium"
+                >Legacy Planning</a
+              >
+            </li>
+          </ul>
+        </section>
+
+        <!-- Calculators Section -->
+        <section class="sitemap-section" data-section="Calculators">
+          <h2 class="section-title text-lg font-semibold text-gray-900 mb-6">
+            Calculators
+          </h2>
+          <ul class="space-y-4">
+            <li class="link-item" data-search="SIP Calculator">
+              <a
+                href="/calculators/sip-calculator.html"
+                class="text-base font-medium"
+                >SIP Calculator</a
+              >
+            </li>
+            <li class="link-item" data-search="Lump Sum Calculator">
+              <a
+                href="/calculators/lump-sump-calculator.html"
+                class="text-base font-medium"
+                >Lump Sum Calculator</a
+              >
+            </li>
+            <li class="link-item" data-search="SWP Calculator">
+              <a
+                href="/calculators/swp-calculator.html"
+                class="text-base font-medium"
+                >SWP Calculator</a
+              >
+            </li>
+            <li class="link-item" data-search="Inflation Calculator">
+              <a
+                href="/calculators/inflation-calculator.html"
+                class="text-base font-medium"
+                >Inflation Calculator</a
+              >
+            </li>
+          </ul>
+        </section>
+
+        <!-- Learning & Resources Section -->
+        <section class="sitemap-section" data-section="Learning">
+          <h2 class="section-title text-lg font-semibold text-gray-900 mb-6">
+            Learning & Resources
+          </h2>
+          <ul class="space-y-4">
+            <li class="link-item" data-search="Video Lessons">
+              <a href="/video-lessons.html" class="text-base font-medium"
+                >Video Lessons</a
+              >
+            </li>
+            <li class="link-item" data-search="Financial Literacy">
+              <a href="/financial-literacy.html" class="text-base font-medium"
+                >Financial Literacy</a
+              >
+            </li>
+            <li class="link-item" data-search="Workshops">
+              <a href="/workshops.html" class="text-base font-medium"
+                >Workshops</a
+              >
+            </li>
+            <li class="link-item" data-search="NRI Corner">
+              <a href="/nri-corner.html" class="text-base font-medium"
+                >NRI Corner</a
+              >
+            </li>
+          </ul>
+        </section>
+
+        <!-- Contact & Actions Section -->
+        <section class="sitemap-section" data-section="Contact">
+          <h2 class="section-title text-lg font-semibold text-gray-900 mb-6">
+            Contact & Actions
+          </h2>
+          <ul class="space-y-4">
+            <li class="link-item" data-search="Contact Us">
+              <a href="/contact-us.html" class="text-base font-medium"
+                >Contact Us</a
+              >
+            </li>
+            <li class="link-item" data-search="Refer Us">
+              <a href="/refer-us.html" class="text-base font-medium"
+                >Refer Us</a
+              >
+            </li>
+            <li class="link-item" data-search="Financial Assessment">
+              <a href="/financial-assessment.html" class="text-base font-medium"
+                >Financial Assessment</a
+              >
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer
+      class="border-t border-gray-200 mt-16 bg-[#161f48] text-white sm:mt-20"
+    >
+      <div class="max-w-5xl mx-auto px-6 py-10 sm:py-12 text-center">
+        <!-- Copyright -->
+        <p class="text-gray-200 text-sm">
+          © 2025 Chimulkar Financial Services. All rights reserved.
+        </p>
+
+        <!-- Last Updated -->
+        <p class="text-gray-400 text-xs mt-1">Last updated: December 2025</p>
+
+        <!-- Developed & Maintained -->
+        <p class="text-gray-400 text-xs mt-2">
+          Developed & Maintained by
+          <a
+            href="https://github.com/Niraj-Paswan"
+            target="_blank"
+            class="text-blue-600 hover:underline"
+          >
+            Niraj Paswan
+          </a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      const searchInput = document.getElementById("searchInput");
+      const sections = document.querySelectorAll(".sitemap-section");
+
+      searchInput.addEventListener("input", function () {
+        const searchTerm = this.value.toLowerCase().trim();
+
+        sections.forEach((section) => {
+          let hasVisibleItems = false;
+          const items = section.querySelectorAll(".link-item");
+
+          items.forEach((item) => {
+            const searchText = item.getAttribute("data-search").toLowerCase();
+            const isMatch = searchText.includes(searchTerm);
+
+            if (searchTerm === "" || isMatch) {
+              item.style.display = "";
+              hasVisibleItems = true;
+            } else {
+              item.style.display = "none";
+            }
+          });
+
+          if (searchTerm === "" || hasVisibleItems) {
+            section.classList.remove("hidden-section");
+          } else {
+            section.classList.add("hidden-section");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
