@@ -1879,7 +1879,10 @@
           class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2"
         >
           <p>© 2025 Chimulkar Financial Services | Financial Consultant</p>
-          <div class="flex gap-4">
+          <div class="flex gap-6">
+            <a href="../Regulatory-Disclosure.html" class="hover:underline">
+              Disclosure</a
+            >
             <a href="../Terms&Conditions.html" class="hover:underline"
               >Terms & Conditions</a
             >
@@ -2290,8 +2293,10 @@
               document.getElementById("amountInput").value
             )
           )}\n`;
+
           const inflationEnabled =
             document.getElementById("inflationToggle").checked;
+
           if (inflationEnabled) {
             body += `Expected Inflation: ${lastExpectedInflation.toFixed(
               1
@@ -2302,15 +2307,17 @@
           } else {
             body += `Expected Inflation: Not considered\n`;
           }
-          body += `Est. Lump sum amount invested: ${formatCurrency(
+
+          body += `Est. Lumpsum amount invested: ${formatCurrency(
             lastCalculatedRequiredLumpsum
           )}\n`;
+
           body += `Estimated returns: ${formatCurrency(
             lastCalculatedReturns
-          )}\n`; // This is the growth to reach target
+          )}\n`;
+
           if (!inflationEnabled) {
-            // Only include total value if inflation is NOT enabled
-            body += `Total value: ${formatCurrency(lastCalculatedTotal)}\n\n`; // This is the target amount
+            body += `Total value: ${formatCurrency(lastCalculatedTotal)}\n\n`;
           }
         } else {
           body += `Mode: Lumpsum Investment\n`;
@@ -2326,75 +2333,85 @@
           )}%\n\n`;
         }
 
-        body += `Calculated using Chimulkar Financial Services Calculators.\n\n`;
+        body += `Calculated using Chimulkar Financial Services Lumpsum Calculator.\n`;
+        body += `Calculate yours now at ${window.location.href}`;
+
         window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
           body
         )}`;
       }
+
       // Function to generate WhatsApp message and open WhatsApp
       function sendWhatsAppPlan() {
         let message = `My Lumpsum Calculation Plan:\n\n`;
 
-        message += `Expected Return Rate: ${
+        message += `Expected Return Rate: *${
           document.getElementById("returnInput").value
-        }%\n`;
-        message += `Time Period: ${
+        }%*\n`;
+        message += `Time Period: *${
           document.getElementById("timeInput").value
-        } Years\n\n`;
+        } Years*\n\n`;
 
         message += `--- Results ---\n`;
 
         if (isTargetMode) {
-          message += `Mode: Target Amount\n`;
-          message += `Target Amount: ${formatCurrency(
+          message += `Mode: *Target Amount*\n`;
+          message += `Target Amount: *${formatCurrency(
             parseIndianFormattedNumber(
               document.getElementById("amountInput").value
             )
-          )}\n`;
+          )}*\n`;
+
           const inflationEnabled =
             document.getElementById("inflationToggle").checked;
+
           if (inflationEnabled) {
-            message += `Expected Inflation: ${lastExpectedInflation.toFixed(
+            message += `Expected Inflation: *${lastExpectedInflation.toFixed(
               1
-            )}%\n`;
-            message += `Target amount (inflation adjusted): ${formatCurrency(
+            )}%*\n`;
+            message += `Target amount (inflation adjusted): *${formatCurrency(
               lastCalculatedInflationAdjustedTarget
-            )}\n`;
+            )}*\n`;
           } else {
-            message += `Expected Inflation: Not considered\n`;
+            message += `Expected Inflation: *Not considered*\n`;
           }
-          message += `Est. Lump sum amount invested: ${formatCurrency(
+
+          message += `Est. Lumpsum amount invested: *${formatCurrency(
             lastCalculatedRequiredLumpsum
-          )}\n`;
-          message += `Estimated returns: ${formatCurrency(
+          )}*\n`;
+
+          message += `Estimated returns: *${formatCurrency(
             lastCalculatedReturns
-          )}\n`; // This is the growth to reach target
+          )}*\n`;
+
           if (!inflationEnabled) {
-            // Only include total value if inflation is NOT enabled
-            message += `Total value: ${formatCurrency(
+            message += `Total value: *${formatCurrency(
               lastCalculatedTotal
-            )}\n\n`; // This is the target amount
+            )}*\n\n`;
           }
         } else {
-          message += `Mode: Lumpsum Investment\n`;
-          message += `Lumpsum Investment: ${formatCurrency(
+          message += `Mode: *Lumpsum Investment*\n`;
+          message += `Lumpsum Investment: *${formatCurrency(
             lastCalculatedInvestment
-          )}\n`;
-          message += `Estimated returns: ${formatCurrency(
+          )}*\n`;
+          message += `Estimated returns: *${formatCurrency(
             lastCalculatedReturns
-          )}\n`;
-          message += `Total value: ${formatCurrency(lastCalculatedTotal)}\n`;
-          message += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(
+          )}*\n`;
+          message += `Total value: *${formatCurrency(lastCalculatedTotal)}*\n`;
+          message += `Growth Percentage: *${lastCalculatedGrowthPercentage.toFixed(
             1
-          )}%\n\n`;
+          )}%*\n\n`;
         }
 
-        message += `Calculated using Chimulkar Financial Services Calculator.`;
+        message += `Calculated using Chimulkar Financial Services Lumpsum Calculator.\n`;
+        message += `Calculate yours now at *${window.location.href}*`;
+
         window.open(
           `https://wa.me/?text=${encodeURIComponent(message)}`,
           "_blank"
         );
       }
+
       // Function to download a screenshot of the calculator
       function downloadCalculatorImage() {
         const calculatorElement = document.getElementById(

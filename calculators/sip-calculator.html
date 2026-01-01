@@ -1931,7 +1931,10 @@
           class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2"
         >
           <p>© 2025 Chimulkar Financial Services | Financial Consultant</p>
-          <div class="flex gap-4">
+          <div class="flex gap-6">
+            <a href="../Regulatory-Disclosure.html" class="hover:underline">
+              Disclosure</a
+            >
             <a href="../Terms&Conditions.html" class="hover:underline"
               >Terms & Conditions</a
             >
@@ -2390,39 +2393,49 @@
       function sendEmailPlan() {
         const subject = encodeURIComponent("My SIP Calculator Plan");
         let body = `Hello,\n\nHere is my SIP calculation plan:\n\n`;
+
         if (isTargetMode) {
           body += `Mode: Target Amount\n`;
+
           body += `Target Amount: ${formatCurrency(
             parseIndianFormattedNumber(
               document.getElementById("amountInput").value
             )
           )}\n`;
+
           const inflationEnabled =
             document.getElementById("inflationToggle").checked;
+
           if (inflationEnabled) {
             body += `Expected Inflation: ${
               document.getElementById("inflationInput").value
             }%\n`;
+
             body += `Target amount (inflation adjusted): ${formatCurrency(
               lastCalculatedInflationAdjustedTarget
             )}\n`;
           } else {
             body += `Expected Inflation: Not considered\n`;
           }
+
           body += `Est. monthly SIP required: ${formatCurrency(
             lastCalculatedRequiredSip
           )}\n`;
+
           body += `Est. Total amount invested in (${
             document.getElementById("timeInput").value
-          }) years: ${formatCurrency(lastCalculatedInvestment)}\n\n`; // New item
+          }) years: ${formatCurrency(lastCalculatedInvestment)}\n\n`;
         } else {
           body += `Mode: Monthly Investment\n`;
+
           body += `Monthly Investment: ${formatCurrency(
             parseIndianFormattedNumber(
               document.getElementById("amountInput").value
             )
           )}\n`;
+
           const stepUpEnabled = document.getElementById("stepUpToggle").checked;
+
           if (stepUpEnabled) {
             body += `Annual Step-up: ${
               document.getElementById("stepUpInput").value
@@ -2431,103 +2444,133 @@
             body += `Annual Step-up: No\n`;
           }
         }
+
         body += `Expected Return Rate: ${
           document.getElementById("returnInput").value
         }%\n`;
+
         body += `Time Period: ${
           document.getElementById("timeInput").value
         } Years\n\n`;
+
         body += `--- Results ---\n`;
+
         if (!isTargetMode) {
-          // Only include invested amount if not in target mode
           body += `Invested amount: ${formatCurrency(
             lastCalculatedInvestment
           )}\n`;
         }
+
         body += `Estimated returns: ${formatCurrency(lastCalculatedReturns)}\n`;
+
         body += `Total value: ${formatCurrency(lastCalculatedTotal)}\n`;
+
         if (!isTargetMode) {
           body += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(
             1
           )}%\n\n`;
         }
-        body += `Calculated using Chimulkar Financial Services Calculator.`;
+
+        body += `Calculated using Chimulkar Financial Services SIP Calculator.\n`;
+        body += `Calculate yours now at ${window.location.href}`;
+
         window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
           body
         )}`;
       }
+
       // Function to generate WhatsApp message and open WhatsApp
       function sendWhatsAppPlan() {
         let message = `My SIP Calculation Plan:\n\n`;
+
         if (isTargetMode) {
-          message += `Mode: Target Amount\n`;
-          message += `Target Amount: ${formatCurrency(
+          message += `Mode: *Target Amount*\n`;
+
+          message += `Target Amount: *${formatCurrency(
             parseIndianFormattedNumber(
               document.getElementById("amountInput").value
             )
-          )}\n`;
+          )}*\n`;
+
           const inflationEnabled =
             document.getElementById("inflationToggle").checked;
+
           if (inflationEnabled) {
-            message += `Expected Inflation: ${
+            message += `Expected Inflation: *${
               document.getElementById("inflationInput").value
-            }%\n`;
-            message += `Target amount (inflation adjusted): ${formatCurrency(
+            }%*\n`;
+
+            message += `Target amount (inflation adjusted): *${formatCurrency(
               lastCalculatedInflationAdjustedTarget
-            )}\n`;
+            )}*\n`;
           } else {
-            message += `Expected Inflation: Not considered\n`;
+            message += `Expected Inflation: *Not considered*\n`;
           }
-          message += `Est. monthly SIP required: ${formatCurrency(
+
+          message += `Est. monthly SIP required: *${formatCurrency(
             lastCalculatedRequiredSip
-          )}\n`;
+          )}*\n`;
+
           message += `Est. Total amount invested in (${
             document.getElementById("timeInput").value
-          }) years: ${formatCurrency(lastCalculatedInvestment)}\n\n`; // New item
+          }) years: *${formatCurrency(lastCalculatedInvestment)}*\n\n`;
         } else {
-          message += `Mode: Monthly Investment\n`;
-          message += `Monthly Investment: ${formatCurrency(
+          message += `Mode: *Monthly Investment*\n`;
+
+          message += `Monthly Investment: *${formatCurrency(
             parseIndianFormattedNumber(
               document.getElementById("amountInput").value
             )
-          )}\n`;
+          )}*\n`;
+
           const stepUpEnabled = document.getElementById("stepUpToggle").checked;
+
           if (stepUpEnabled) {
-            message += `Annual Step-up: ${
+            message += `Annual Step-up: *${
               document.getElementById("stepUpInput").value
-            }%\n`;
+            }%*\n`;
           } else {
-            message += `Annual Step-up: No\n`;
+            message += `Annual Step-up: *No*\n`;
           }
         }
-        message += `Expected Return Rate: ${
+
+        message += `Expected Return Rate: *${
           document.getElementById("returnInput").value
-        }%\n`;
-        message += `Time Period: ${
+        }%*\n`;
+
+        message += `Time Period: *${
           document.getElementById("timeInput").value
-        } Years\n\n`;
+        } Years*\n\n`;
+
         message += `--- Results ---\n`;
+
         if (!isTargetMode) {
-          // Only include invested amount if not in target mode
-          message += `Invested amount: ${formatCurrency(
+          message += `Invested amount: *${formatCurrency(
             lastCalculatedInvestment
-          )}\n`;
+          )}*\n`;
         }
-        message += `Estimated returns: ${formatCurrency(
+
+        message += `Estimated returns: *${formatCurrency(
           lastCalculatedReturns
-        )}\n`;
-        message += `Total value: ${formatCurrency(lastCalculatedTotal)}\n`;
+        )}*\n`;
+
+        message += `Total value: *${formatCurrency(lastCalculatedTotal)}*\n`;
+
         if (!isTargetMode) {
-          message += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(
+          message += `Growth Percentage: *${lastCalculatedGrowthPercentage.toFixed(
             1
-          )}%\n\n`;
+          )}%*\n\n`;
         }
-        message += `Calculated using Chimulkar Financial Services Calculator.`;
+
+        message += `Calculated using Chimulkar Financial Services SIP Calculator.\n`;
+        message += `Calculate yours now at *${window.location.href}*`;
+
         window.open(
           `https://wa.me/?text=${encodeURIComponent(message)}`,
           "_blank"
         );
       }
+
       // Function to download the entire calculator as an image
       function downloadCalculatorImage() {
         const calculatorContainer = document.getElementById(

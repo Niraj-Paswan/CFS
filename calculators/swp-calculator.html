@@ -1946,7 +1946,10 @@
           class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2"
         >
           <p>© 2025 Chimulkar Financial Services | Financial Consultant</p>
-          <div class="flex gap-4">
+          <div class="flex gap-6">
+            <a href="../Regulatory-Disclosure.html" class="hover:underline">
+              Disclosure</a
+            >
             <a href="../Terms&Conditions.html" class="hover:underline"
               >Terms & Conditions</a
             >
@@ -2322,7 +2325,9 @@
           lastCalculatedResults.finalBalance
         )}\n`;
         body += `Sustainability: ${lastCalculatedResults.sustainability}\n\n`;
-        body += `Calculated using Chimulkar Financial Services Calculators.\n\n`;
+
+        body += `Calculated using Chimulkar Financial Services SWP Calculator.\n`;
+        body += `Calculate yours now at ${window.location.href}`;
 
         window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
           body
@@ -2333,40 +2338,42 @@
       function sendWhatsAppPlan() {
         let message = `My SWP Calculation Plan:\n\n`;
 
-        message += `Mode: ${isMonthlyMode ? "Monthly" : "Yearly"} SWP\n`;
-        message += `Initial Investment: ${formatCurrency(
+        message += `Mode: *${isMonthlyMode ? "Monthly" : "Yearly"} SWP*\n`;
+        message += `Initial Investment: *${formatCurrency(
           lastCalculatedResults.initialInvestment
-        )}\n`;
+        )}*\n`;
         message += `${
           isMonthlyMode ? "Monthly" : "Yearly"
-        } Withdrawal: ${formatCurrency(
+        } Withdrawal: *${formatCurrency(
           lastCalculatedResults.withdrawalAmount
-        )}\n`;
-        message += `Expected Return Rate: ${
+        )}*\n`;
+        message += `Expected Return Rate: *${
           document.getElementById("returnInput").value
-        }%\n`;
-        message += `Withdrawal Period: ${
+        }%*\n`;
+        message += `Withdrawal Period: *${
           document.getElementById("timeInput").value
-        } Years\n`;
+        } Years*\n`;
 
         if (inflationEnabled) {
-          message += `Expected Inflation: ${
+          message += `Expected Inflation: *${
             document.getElementById("inflationInput").value
-          }%\n`;
+          }%*\n`;
         }
 
         message += `\n--- Results ---\n`;
-        message += `Initial Investment: ${formatCurrency(
+        message += `Initial Investment: *${formatCurrency(
           lastCalculatedResults.initialInvestment
-        )}\n`;
-        message += `Total Withdrawn: ${formatCurrency(
+        )}*\n`;
+        message += `Total Withdrawn: *${formatCurrency(
           lastCalculatedResults.totalWithdrawn
-        )}\n`;
-        message += `Final Balance: ${formatCurrency(
+        )}*\n`;
+        message += `Final Balance: *${formatCurrency(
           lastCalculatedResults.finalBalance
-        )}\n`;
-        message += `Sustainability: ${lastCalculatedResults.sustainability}\n\n`;
-        message += `Calculated using Chimulkar Financial Services Calculator.\n\n`;
+        )}*\n`;
+        message += `Sustainability: *${lastCalculatedResults.sustainability}*\n\n`;
+
+        message += `Calculated using Chimulkar Financial Services SWP Calculator.\n`;
+        message += `Calculate yours now at *${window.location.href}*`;
 
         window.open(
           `https://wa.me/?text=${encodeURIComponent(message)}`,

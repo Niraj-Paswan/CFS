@@ -1780,7 +1780,10 @@
           class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2"
         >
           <p>© 2025 Chimulkar Financial Services | Financial Consultant</p>
-          <div class="flex gap-4">
+          <div class="flex gap-6">
+            <a href="../Regulatory-Disclosure.html" class="hover:underline">
+              Disclosure</a
+            >
             <a href="../Terms&Conditions.html" class="hover:underline"
               >Terms & Conditions</a
             >
@@ -2291,7 +2294,9 @@
 
       // Email and WhatsApp functions (same as before)
       function sendEmailPlan() {
-        const subject = encodeURIComponent("My Inflation Calculator Results");
+        const subject = encodeURIComponent(
+          "My Inflation Impact Cost Calculator Results"
+        );
         let body = `Hello,\n\nHere are my inflation calculation results:\n\n`;
 
         body += `Current Cost: ${formatCurrency(lastCalculatedCurrentCost)}\n`;
@@ -2314,7 +2319,8 @@
           1
         )}% annual inflation.\n\n`;
 
-        body += `Calculated using Chimulkar Financial Services Calculator.`;
+        body += `Calculated using Chimulkar Financial Services Inflation Impact Cost Calculator.\n`;
+        body += `Calculate yours now at ${window.location.href}`;
 
         window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
           body
@@ -2322,31 +2328,34 @@
       }
 
       function sendWhatsAppPlan() {
-        let message = `My Inflation Calculation Results:\n\n`;
+        let message = `My Inflation Impact Cost Calculation Results:\n\n`;
 
-        message += `Current Cost: ${formatCurrency(
+        message += `Current Cost: *${formatCurrency(
           lastCalculatedCurrentCost
-        )}\n`;
-        message += `Time Period: ${lastCalculatedTimePeriod} Years\n`;
-        message += `Expected Inflation Rate: ${lastCalculatedInflationRate.toFixed(
+        )}*\n`;
+        message += `Time Period: *${lastCalculatedTimePeriod} Years*\n`;
+        message += `Expected Inflation Rate: *${lastCalculatedInflationRate.toFixed(
           1
-        )}%\n\n`;
+        )}%*\n\n`;
 
         message += `--- Results ---\n`;
-        message += `Future Cost: ${formatCurrency(lastCalculatedFutureCost)}\n`;
-        message += `Total Inflation Impact Cost: ${formatCurrency(
-          lastCalculatedInflationImpact
-        )}\n\n`;
-
-        message += `This means that what costs ${formatCurrency(
-          lastCalculatedCurrentCost
-        )} today will cost ${formatCurrency(
+        message += `Future Cost: *${formatCurrency(
           lastCalculatedFutureCost
-        )} after ${lastCalculatedTimePeriod} years with ${lastCalculatedInflationRate.toFixed(
-          1
-        )}% annual inflation.\n\n`;
+        )}*\n`;
+        message += `Total Inflation Impact Cost: *${formatCurrency(
+          lastCalculatedInflationImpact
+        )}*\n\n`;
 
-        message += `Calculated using Chimulkar Financial Services Calculator.`;
+        message += `This means that what costs *${formatCurrency(
+          lastCalculatedCurrentCost
+        )}* today will cost *${formatCurrency(
+          lastCalculatedFutureCost
+        )}* after *${lastCalculatedTimePeriod} years* with *${lastCalculatedInflationRate.toFixed(
+          1
+        )}%* annual inflation.\n\n`;
+
+        message += `Calculated using Chimulkar Financial Services Inflation Impact Cost Calculator.\n`;
+        message += `Calculate yours now at *${window.location.href}*`;
 
         window.open(
           `https://wa.me/?text=${encodeURIComponent(message)}`,
