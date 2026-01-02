@@ -1149,6 +1149,7 @@
       const totalSteps = 11;
       let selections = {};
       let rewardCount = 0;
+      let Response_summary = {};
       let selectedOption = null;
       let completedMilestones = new Set();
 
@@ -1589,6 +1590,7 @@
         window_totalScore = totalScore;
 
         const categoryInfo = categoryDescriptions[categoryTitle];
+        console.log("Response Summary Object:", Response_summary);
 
         /* -------------------------------
      UI RENDER
@@ -1678,7 +1680,7 @@
     </div>
 
     <a
-      href="./downloads/financial-basics.pdf"
+      href="../assets/EMERGENCY FUND BLUEPRINT.pdf"
       download
       class="mt-auto inline-flex items-center gap-2 rounded-full border border-gray-300 px-7 py-3 text-base font-medium text-gray-900
              transition-all duration-300
@@ -1689,7 +1691,7 @@
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
         <path d="m7 10 5 5 5-5"/>
       </svg>
-      Download
+      Download PDF
     </a>
   </div>
 
@@ -1709,7 +1711,7 @@
     </div>
 
     <a
-      href="./downloads/investment-planning.pdf"
+      href="../assets/360 INSURANCE.pdf"
       download
       class="mt-auto inline-flex items-center gap-2 rounded-full border border-gray-300 px-7 py-3 text-base font-medium text-gray-900
              transition-all duration-300
@@ -1720,7 +1722,7 @@
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
         <path d="m7 10 5 5 5-5"/>
       </svg>
-      Download
+      Download PDF
     </a>
   </div>
 
@@ -1740,7 +1742,7 @@
     </div>
 
     <a
-      href="./downloads/risk-management.pdf"
+      href="../assets/INFLATION-PROOFING HANDBOOK.pdf"
       download
       class="mt-auto inline-flex items-center gap-2 rounded-full border border-gray-300 px-7 py-3 text-base font-medium text-gray-900
              transition-all duration-300
@@ -1751,7 +1753,7 @@
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
         <path d="m7 10 5 5 5-5"/>
       </svg>
-      Download
+      Download PDF
     </a>
   </div>
 
@@ -1829,31 +1831,6 @@
         });
       }
 
-      function showNudge(step) {
-        const nudgeContainer = document.getElementById("nudge-container");
-        if (!nudges[step]) {
-          nudgeContainer.innerHTML = "";
-          return;
-        }
-
-        const nudge = nudges[step];
-        const html = `
-        <div class="nudge-container bg-[#f1f6ff] rounded-3xl p-4 lg:p-8">
-          <div class="flex items-start gap-4">
-            <div class="flex-shrink-0">
-              <i data-lucide="${nudge.icon}" class="hidden w-6 h-6 text-[#2d61c9]"></i>
-            </div>
-            <div class="flex-1">
-              <h3 class="font-semibold text-base text-black mb-2">${nudge.title}</h3>
-              <p class="text-black text-sm leading-relaxed">${nudge.text}</p>
-            </div>
-          </div>
-        </div>
-      `;
-        nudgeContainer.innerHTML = html;
-        lucide.createIcons();
-      }
-
       function selectOption(element, label) {
         const allOptions = document.querySelectorAll(".option-btn");
 
@@ -1882,6 +1859,19 @@
 
         selectedOption = label;
         selections[currentStep] = label;
+        const stepData = surveyData[currentStep];
+        const selectedOptionData = stepData.options.find(
+          (opt) => opt.label === label
+        );
+
+        Response_summary[`Question_${currentStep}`] = {
+          questionNumber: currentStep,
+          selectedLabel: label,
+          selectedText: selectedOptionData.text,
+        };
+
+        console.log("Updated Response_summary:", Response_summary);
+
         document.getElementById("next-btn").disabled = false;
       }
 
@@ -2021,10 +2011,6 @@
         lucide.createIcons();
       }
 
-      window.addEventListener("DOMContentLoaded", () => {
-        renderStep(currentStep);
-      });
-
       function closeRewardModal() {
         const modal = document.getElementById("reward-modal");
         modal.classList.add("hidden");
@@ -2099,221 +2085,6 @@
       </div>
     </div>
   `;
-      }
-
-      function showNudge(step) {
-        const nudgeContainer = document.getElementById("nudge-container");
-        if (!nudges[step]) {
-          nudgeContainer.innerHTML = "";
-          return;
-        }
-
-        const nudge = nudges[step];
-        const html = `
-        <div class="nudge-container bg-[#f1f6ff] rounded-3xl p-4 lg:p-8">
-          <div class="flex items-start gap-4">
-            <div class="flex-shrink-0">
-              <i data-lucide="${nudge.icon}" class="hidden w-6 h-6 text-[#2d61c9]"></i>
-            </div>
-            <div class="flex-1">
-              <h3 class="font-semibold text-base text-black mb-2">${nudge.title}</h3>
-              <p class="text-black text-sm leading-relaxed">${nudge.text}</p>
-            </div>
-          </div>
-        </div>
-      `;
-        nudgeContainer.innerHTML = html;
-        lucide.createIcons();
-      }
-
-      function selectOption(element, label) {
-        const allOptions = document.querySelectorAll(".option-btn");
-
-        allOptions.forEach((opt) => {
-          // Reset option container
-          opt.classList.remove("selected", "bg-[#f0f4ff]", "border-[#2d61c9]");
-          opt.classList.add("border-gray-300");
-
-          // Reset ABCD label → DEFAULT STATE
-          const optLabel = opt.querySelector(".option-label");
-
-          optLabel.className =
-            "option-label flex-shrink-0 w-8 h-8 rounded-full border flex items-center justify-center font-bold text-base transition-all " +
-            "bg-white text-black border-gray-300";
-        });
-
-        // Selected option container
-        element.classList.add("selected", "bg-[#f0f4ff]", "border-[#2d61c9]");
-
-        // Selected ABCD label → BLUE BG → WHITE TEXT
-        const currentLabel = element.querySelector(".option-label");
-
-        currentLabel.className =
-          "option-label flex-shrink-0 w-8 h-8 rounded-full border flex items-center justify-center font-bold text-base transition-all " +
-          "bg-[#2d61c9] text-white border-[#2d61c9]";
-
-        selectedOption = label;
-        selections[currentStep] = label;
-        document.getElementById("next-btn").disabled = false;
-      }
-
-      function nextStep() {
-        const data = surveyData[currentStep];
-
-        if (data.isFinal) {
-          const name = document.getElementById("name-input").value.trim();
-          const email = document.getElementById("email-input").value.trim();
-          const mobile = document.getElementById("mobile-input").value.trim();
-
-          if (name && email && mobile) {
-            let totalScore = 0;
-            for (let step = 1; step <= 10; step++) {
-              const selectedLabel = selections[step];
-              const stepData = surveyData[step];
-              const option = stepData.options.find(
-                (opt) => opt.label === selectedLabel
-              );
-              if (option) {
-                totalScore += option.points;
-              }
-            }
-
-            let categoryTitle = "The Foundation Builder";
-            if (totalScore >= 76) {
-              categoryTitle = "The Wealth Architect";
-            } else if (totalScore >= 46) {
-              categoryTitle = "The Strategy Optimizer";
-            }
-
-            const surveyResults = {
-              name,
-              email,
-              mobile,
-              selections,
-              totalScore,
-              categoryTitle,
-              rewards: rewardCount,
-              completedAt: new Date().toISOString(),
-            };
-
-            localStorage.removeItem("financialAssessment");
-            localStorage.removeItem("surveyResults");
-            localStorage.setItem(
-              "surveyResults",
-              JSON.stringify(surveyResults)
-            );
-            console.log("[v0] Survey submitted and saved:", surveyResults);
-
-            alert(
-              `Thank you, ${name}! Your ${categoryTitle} profile with a score of ${totalScore}/100 has been saved. Your rewards will be sent to ${email} and ${mobile}.`
-            );
-          }
-          return;
-        }
-
-        if (data.isMilestone) {
-          if (!completedMilestones.has(currentStep)) {
-            completedMilestones.add(currentStep);
-            showRewardModal();
-          } else {
-            if (currentStep < totalSteps) {
-              currentStep++;
-              renderStep(currentStep);
-              setTimeout(() => {
-                showNudge(currentStep);
-              }, 300);
-            }
-          }
-          return;
-        }
-
-        if (currentStep < totalSteps) {
-          currentStep++;
-          renderStep(currentStep);
-
-          setTimeout(() => {
-            showNudge(currentStep);
-          }, 300);
-        }
-      }
-
-      function prevStep() {
-        if (currentStep > 1) {
-          currentStep--;
-          renderStep(currentStep);
-          setTimeout(() => {
-            showNudge(currentStep);
-          }, 300);
-        }
-      }
-
-      function showRewardModal() {
-        rewardCount++;
-        const badge = document.getElementById("reward-count-badge");
-        badge.textContent = rewardCount;
-        badge.classList.remove("hidden");
-
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-
-        const modal = document.getElementById("reward-modal");
-        const modalTitleEl = modal.querySelector("#reward-modal-text");
-        const modalDescEl = modal.querySelector("p.text-gray-700");
-        const rightContent = modal.querySelector("#reward-right-content");
-
-        const detail = rewardDetails[currentStep] || rewardDetails.default;
-
-        if (modalTitleEl) modalTitleEl.textContent = detail.title;
-
-        if (modalDescEl) {
-          modalDescEl.innerHTML = detail.description.replace(/\n/g, "<br />");
-        }
-
-        if (currentStep === 10) {
-          rightContent.innerHTML = renderDiscoveryCallInputs();
-          attachDiscoveryCallListeners(); // ← Live validation attached here
-        } else {
-          rightContent.innerHTML = `
-        <img
-          src="${detail.image}"
-          alt="${detail.imageAlt || "Reward image"}"
-          class="max-w-[220px] w-full"
-        />
-      `;
-        }
-
-        modal.classList.remove("hidden");
-        lucide.createIcons();
-      }
-
-      function closeRewardModal() {
-        const modal = document.getElementById("reward-modal");
-        modal.classList.add("hidden");
-
-        if (currentStep < totalSteps) {
-          currentStep++;
-          renderStep(currentStep);
-
-          setTimeout(() => {
-            showNudge(currentStep);
-          }, 300);
-        }
-      }
-
-      function showRewardMessage() {
-        const existingToast = document.getElementById("reward-toast");
-        if (existingToast) existingToast.remove();
-
-        const toast = document.createElement("div");
-        toast.id = "reward-toast";
-        toast.className =
-          "hidden lg:flex fixed bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-6 py-4 rounded-full shadow-2xl flex items-center gap-3 z-50";
-        toast.innerHTML = `
-        <i data-lucide="loader-circle" class="w-5 h-5 animate-spin text-yellow-400"></i>
-        <span class="text-sm font-medium">Please be patient! Your rewards will be delivered when you complete all steps.</span>
-      `;
-        document.body.appendChild(toast);
-        lucide.createIcons();
-        setTimeout(() => toast.remove(), 3500);
       }
 
       function renderDiscoveryCallInputs() {
@@ -2442,26 +2213,27 @@
             return;
           }
 
-          const SENDER_EMAIL = "paswanniraj324@gmail.com"; // receiver email
+          const SENDER_EMAIL = "paswanniraj324@gmail.com";
 
-          // Collect data from modal + survey
-          const surveyResults =
-            JSON.parse(localStorage.getItem("surveyResults")) || {};
+          // Extract selectedText from Response_summary (NO localStorage)
+          const extractedAnswers = Object.values(Response_summary)
+            .sort((a, b) => a.questionNumber - b.questionNumber)
+            .map((item) => item.selectedText);
+
+          // Build EmailJS payload
           const payload = {
             from_name: nameEl.value.trim(),
             from_email: emailEl.value.trim(),
             to_email: SENDER_EMAIL,
             from_mobile: mobileEl.value.trim(),
-            categoryTitle: surveyResults.categoryTitle || window_categoryTitle,
-            totalScore: surveyResults.totalScore || window_totalScore,
+            categoryTitle: window_categoryTitle || "N/A",
+            totalScore: window_totalScore || "N/A",
             form_date_time: new Date().toLocaleString(),
           };
 
-          // Attach 10 survey responses for EmailJS template
+          // Attach responses 1–10
           for (let i = 1; i <= 10; i++) {
-            payload[`response_${i}`] =
-              (surveyResults.selections && surveyResults.selections[i]) ||
-              "N/A";
+            payload[`response_${i}`] = extractedAnswers[i - 1] || "N/A";
           }
 
           sendDiscoveryCallEmail(payload)
