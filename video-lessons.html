@@ -7,7 +7,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="shortcut icon" href="./assets/Logo.svg" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="../assets/favicon.png"
+      type="image/x-icon"
+    />
 
     <!-- External Stylesheets and Fonts -->
     <link rel="stylesheet" href="./src/output.css" />
@@ -20,10 +24,10 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <script>
+    <!-- <script>
       window.location.href =
         "https://www.youtube.com/@ChimulkarFinancialServices";
-    </script>
+    </script> -->
 
     <style>
       /* Hide scrollbars for carousel elements while maintaining functionality */
@@ -827,22 +831,25 @@
         <!-- Sidebar (desktop only) -->
         <aside
           id="navigationPanel"
-          class="navigation-panel fixed lg:relative z-40 w-80 bg-white border-r border-gray-300 flex-shrink-0 lg:translate-x-0"
+          class="navigation-panel fixed lg:relative z-40 w-[390px] bg-white border-r border-gray-300 flex-shrink-0 lg:translate-x-0"
         >
           <div
             class="p-6 border-b border-gray-300 bg-white sticky top-0 z-10 lg:pt-24 flex items-center justify-between"
           >
             <!-- Added collapse toggle button within Video Lessons header -->
-            <div class="flex items-center space-x-3">
-              <p class="text-[16px] text-black font-semibold">Video Lessons</p>
+            <div class="flex items-center justify-between w-full">
+              <p class="text-[16px] lg:text-xl text-black font-semibold">
+                Video Lessons
+              </p>
+
               <button
                 id="sidebarCollapseBtn"
-                class="hidden lg:flex ml-24 items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-lg p-2 transition-colors duration-200 cursor-pointer"
+                class="hidden lg:flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full p-2.5 transition-all duration-200 ease-in-out cursor-pointer"
                 aria-label="Collapse sidebar"
               >
                 <i
                   data-lucide="panel-left-close"
-                  class="w-5 h-5 text-black"
+                  class="w-6 h-6 text-black"
                 ></i>
               </button>
             </div>
@@ -872,9 +879,9 @@
                 class="category-header flex items-center justify-between cursor-pointer"
               >
                 <div class="flex items-center space-x-3">
-                  <i data-lucide="layers" class="text-black w-5 h-5"></i>
+                  <i data-lucide="brain" class="text-black w-5 h-5"></i>
                   <span class="text-black font-medium text-base"
-                    >Mutual Funds</span
+                    >The Financial Mindset</span
                   >
                 </div>
                 <i
@@ -890,7 +897,7 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >What is Mutual Funds</span
+                    >Defining Your "Enough"</span
                   >
                 </div>
 
@@ -899,7 +906,7 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >How to Invest</span
+                    >Inflation</span
                   >
                 </div>
 
@@ -908,7 +915,25 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Types: SIP vs Lump Sum</span
+                    >Active vs. Passive Income</span
+                  >
+                </div>
+
+                <div
+                  data-key="mutual-typees"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Active vs. Passive Income</span
+                  >
+                </div>
+
+                <div
+                  data-key="mutual-typeese"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >The Power of Patience</span
                   >
                 </div>
               </div>
@@ -923,12 +948,9 @@
                 class="category-header flex items-center justify-between cursor-pointer"
               >
                 <div class="flex items-center space-x-3">
-                  <i
-                    data-lucide="calendar-check"
-                    class="text-black w-5 h-5"
-                  ></i>
+                  <i data-lucide="wallet" class="text-black w-5 h-5"></i>
                   <span class="text-black font-medium text-base"
-                    >Retirement</span
+                    >Cash Flow & Foundations</span
                   >
                 </div>
                 <i
@@ -944,7 +966,7 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Retirement Planning
+                    >Budgeting 101
                   </span>
                 </div>
 
@@ -953,7 +975,7 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >401(k) Optimization</span
+                    >The Sleep-Well Fund</span
                   >
                 </div>
 
@@ -962,7 +984,16 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Creating Income Streams</span
+                    >Good Debt vs. Bad Debt</span
+                  >
+                </div>
+
+                <div
+                  data-key="retirement-income"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >The 24-Hour Rule</span
                   >
                 </div>
               </div>
@@ -977,9 +1008,9 @@
                 class="category-header flex items-center justify-between cursor-pointer"
               >
                 <div class="flex items-center space-x-3">
-                  <i data-lucide="file-text" class="text-black w-5 h-5"></i>
+                  <i data-lucide="shield-check" class="text-black w-5 h-5"></i>
                   <span class="text-black font-medium text-base"
-                    >Tax Planning</span
+                    >Risk Protection (Insurance)</span
                   >
                 </div>
                 <i
@@ -995,7 +1026,7 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Tax-Efficient Strategies</span
+                    >Insurance vs. Investment</span
                   >
                 </div>
 
@@ -1004,7 +1035,7 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Deductions & Credits</span
+                    >Term Insurance</span
                   >
                 </div>
 
@@ -1013,7 +1044,16 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Compliance Guidelines</span
+                    >Health Insurance</span
+                  >
+                </div>
+
+                <div
+                  data-key="tax-compliance"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Assessing Your Cover</span
                   >
                 </div>
               </div>
@@ -1027,9 +1067,9 @@
                 class="category-header flex items-center justify-between cursor-pointer"
               >
                 <div class="flex items-center space-x-3">
-                  <i data-lucide="shield" class="text-black w-5 h-5"></i>
+                  <i data-lucide="pie-chart" class="text-black w-5 h-5"></i>
                   <span class="text-black font-medium text-base"
-                    >Insurance</span
+                    >Demystifying Mutual Funds</span
                   >
                 </div>
                 <i
@@ -1043,7 +1083,7 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Life Insurance</span
+                    >What is a Mutual Fund?</span
                   >
                 </div>
                 <div
@@ -1051,7 +1091,7 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Health Insurance</span
+                    >The Power of SIP</span
                   >
                 </div>
                 <div
@@ -1059,7 +1099,31 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Property Insurance</span
+                    >Equity Funds</span
+                  >
+                </div>
+                <div
+                  data-key="insurance-property"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Debt Funds</span
+                  >
+                </div>
+                <div
+                  data-key="insurance-property"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Hybrid & Liquid Funds</span
+                  >
+                </div>
+                <div
+                  data-key="insurance-property"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Direct vs. Regular Plans</span
                   >
                 </div>
               </div>
@@ -1073,9 +1137,9 @@
                 class="category-header flex items-center justify-between cursor-pointer"
               >
                 <div class="flex items-center space-x-3">
-                  <i data-lucide="book-open" class="text-black w-5 h-5"></i>
+                  <i data-lucide="target" class="text-black w-5 h-5"></i>
                   <span class="text-black font-medium text-base"
-                    >Education Savings</span
+                    >Goal-Based Investing</span
                   >
                 </div>
                 <i
@@ -1089,7 +1153,7 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >529 Plans</span
+                    >Retirement Planning</span
                   >
                 </div>
                 <div
@@ -1097,7 +1161,7 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Coverdell ESAs</span
+                    >Children’s Future</span
                   >
                 </div>
                 <div
@@ -1105,7 +1169,15 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Saving Strategies</span
+                    >Buying Your First Home</span
+                  >
+                </div>
+                <div
+                  data-key="education-strategies"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >Short-term Goals</span
                   >
                 </div>
               </div>
@@ -1119,9 +1191,9 @@
                 class="category-header flex items-center justify-between cursor-pointer"
               >
                 <div class="flex items-center space-x-3">
-                  <i data-lucide="scroll-text" class="text-black w-5 h-5"></i>
+                  <i data-lucide="scale" class="text-black w-5 h-5"></i>
                   <span class="text-black font-medium text-base"
-                    >Legacy Planning</span
+                    >Regulation, Tax & Compliance</span
                   >
                 </div>
                 <i
@@ -1135,7 +1207,7 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Wills & Trusts</span
+                    >Understanding KYC</span
                   >
                 </div>
                 <div
@@ -1143,7 +1215,7 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Estate Tax Planning</span
+                    >Taxation of Mutual Funds</span
                   >
                 </div>
                 <div
@@ -1151,7 +1223,15 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Wealth Transfer</span
+                    >Nomination & Paperwork</span
+                  >
+                </div>
+                <div
+                  data-key="legacy-transfer"
+                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
+                >
+                  <span class="text-gray-900 ml-2 text-sm font-medium"
+                    >The Role of SEBI & AMFI</span
                   >
                 </div>
               </div>
@@ -1166,7 +1246,9 @@
               >
                 <div class="flex items-center space-x-3">
                   <i data-lucide="globe" class="text-black w-5 h-5"></i>
-                  <span class="text-black font-medium text-base">NRI</span>
+                  <span class="text-black font-medium text-base"
+                    >For the Global Indian NRI</span
+                  >
                 </div>
                 <i
                   data-lucide="chevron-down"
@@ -1179,7 +1261,7 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >NRI Investment Options</span
+                    >NRE vs. NRO Accounts</span
                   >
                 </div>
                 <div
@@ -1187,7 +1269,7 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Tax Implications</span
+                    >Repatriation Rules</span
                   >
                 </div>
                 <div
@@ -1195,99 +1277,15 @@
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Repatriation Rules</span
-                  >
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="category-group w-full rounded-2xl border border-gray-300 bg-white p-4 hover:scale-[1.02] transition-all duration-200"
-              data-category="foundation"
-            >
-              <div
-                class="category-header flex items-center justify-between cursor-pointer"
-              >
-                <div class="flex items-center space-x-3">
-                  <i data-lucide="building-2" class="text-black w-5 h-5"></i>
-                  <span class="text-black font-medium text-base"
-                    >Foundation</span
-                  >
-                </div>
-                <i
-                  data-lucide="chevron-down"
-                  class="chevron-icon w-4 h-4 text-gray-500 transition-transform duration-300"
-                ></i>
-              </div>
-              <div class="subcategories mt-5 space-y-3 hidden">
-                <div
-                  data-key="foundation-emergency"
-                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
-                >
-                  <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Emergency Funds</span
+                    >DTAA Basics</span
                   >
                 </div>
                 <div
-                  data-key="foundation-budgeting"
+                  data-key="nri-repatriation"
                   class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
                 >
                   <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Budgeting Basics</span
-                  >
-                </div>
-                <div
-                  data-key="foundation-goals"
-                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
-                >
-                  <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Financial Goals</span
-                  >
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="category-group w-full rounded-2xl border border-gray-300 bg-white p-4 hover:scale-[1.02] transition-all duration-200"
-              data-category="sip"
-            >
-              <div
-                class="category-header flex items-center justify-between cursor-pointer"
-              >
-                <div class="flex items-center space-x-3">
-                  <i data-lucide="calculator" class="text-black w-5 h-5"></i>
-                  <span class="text-black font-medium text-base"
-                    >SIP Investments</span
-                  >
-                </div>
-                <i
-                  data-lucide="chevron-down"
-                  class="chevron-icon w-4 h-4 text-gray-500 transition-transform duration-300"
-                ></i>
-              </div>
-              <div class="subcategories mt-5 space-y-3 hidden">
-                <div
-                  data-key="sip-basics"
-                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
-                >
-                  <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >SIP Fundamentals</span
-                  >
-                </div>
-                <div
-                  data-key="sip-benefits"
-                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
-                >
-                  <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >Benefits of SIP</span
-                  >
-                </div>
-                <div
-                  data-key="sip-calculator"
-                  class="rounded-xl p-3 cursor-pointer transition-all duration-300 border border-gray-300"
-                >
-                  <span class="text-gray-900 ml-2 text-sm font-medium"
-                    >SIP Calculator</span
+                    >Compliance for NRIs</span
                   >
                 </div>
               </div>
@@ -1298,10 +1296,10 @@
         <!-- Added floating expand button for when sidebar is collapsed -->
         <button
           id="sidebarExpandBtn"
-          class="hidden fixed top-24 left-4 z-50 bg-white border border-gray-300 rounded-lg p-2 shadow-lg hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
+          class="hidden fixed top-24 left-4 z-50 bg-white border border-gray-300 rounded-full p-2.5 shadow-lg hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
           aria-label="Expand sidebar"
         >
-          <i data-lucide="panel-left-open" class="w-5 h-5 text-black"></i>
+          <i data-lucide="panel-left-open" class="w-6 h-6 text-black"></i>
         </button>
 
         <button
@@ -1667,21 +1665,44 @@
           sidebarCollapsed = !sidebarCollapsed;
 
           if (sidebarCollapsed) {
-            // Collapse sidebar
+            // COLLAPSE SIDEBAR
             navPanel.classList.add("collapsed");
-            mainContent.classList.remove("lg:ml-12"); // Adjust if sidebar width changes
+
+            // LG: shift content | SM: stay at ml-0
+            mainContent.classList.remove("lg:ml-0");
+            mainContent.classList.add("lg:-ml-44");
             mainContent.classList.add("ml-0");
+
             sidebarExpandBtn.classList.remove("hidden");
             menuToggleBtn.style.display = "none";
           } else {
-            // Expand sidebar
+            // EXPAND SIDEBAR
             navPanel.classList.remove("collapsed");
-            mainContent.classList.remove("ml-0");
-            mainContent.classList.add("lg:ml-12"); // Adjust if sidebar width changes
+
+            // Restore original layout
+            mainContent.classList.remove("lg:-ml-44");
+            mainContent.classList.add("lg:ml-0");
+            mainContent.classList.add("ml-0");
+
             sidebarExpandBtn.classList.add("hidden");
             menuToggleBtn.style.display = "block";
           }
         }
+
+        document.addEventListener("keydown", function (event) {
+          const isToggleShortcut =
+            (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "b";
+
+          if (!isToggleShortcut) return;
+
+          // Prevent default browser action (bold text)
+          event.preventDefault();
+
+          toggleSidebarCollapse();
+        });
+
+        sidebarCollapseBtn.addEventListener("click", toggleSidebarCollapse);
+        sidebarExpandBtn.addEventListener("click", toggleSidebarCollapse);
 
         // Event listeners for sidebar collapse/expand
         sidebarCollapseBtn.addEventListener("click", toggleSidebarCollapse);
