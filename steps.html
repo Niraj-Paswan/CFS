@@ -3,2008 +3,710 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Survey - Why Join Fruitful</title>
+    <title>Fruitful - Premium Survey</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#10b981",
-              "primary-dark": "#059669",
-              "primary-light": "#34d399",
-            },
-            animation: {
-              "bounce-gentle": "bounce-gentle 2s infinite",
-              "pulse-slow": "pulse 3s infinite",
-              "slide-up": "slide-up 0.5s ease-out",
-              "scale-in": "scale-in 0.3s ease-out",
-              confetti: "confetti 0.6s ease-out",
-              "reward-glow": "reward-glow 2s infinite alternate",
-            },
-            keyframes: {
-              "bounce-gentle": {
-                "0%, 100%": { transform: "translateY(0)" },
-                "50%": { transform: "translateY(-5px)" },
-              },
-              "slide-up": {
-                "0%": { transform: "translateY(20px)", opacity: "0" },
-                "100%": { transform: "translateY(0)", opacity: "1" },
-              },
-              "scale-in": {
-                "0%": { transform: "scale(0.95)", opacity: "0" },
-                "100%": { transform: "scale(1)", opacity: "1" },
-              },
-              confetti: {
-                "0%": { transform: "scale(0) rotate(0deg)", opacity: "0" },
-                "50%": { transform: "scale(1.2) rotate(180deg)", opacity: "1" },
-                "100%": { transform: "scale(1) rotate(360deg)", opacity: "1" },
-              },
-              "reward-glow": {
-                "0%": { boxShadow: "0 0 20px rgba(16, 185, 129, 0.3)" },
-                "100%": { boxShadow: "0 0 30px rgba(16, 185, 129, 0.6)" },
-              },
-            },
-          },
-        },
-      };
-    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-      /* Added gift drop animation and enhanced confetti effects */
-      @keyframes gift-drop {
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      .survey-step {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .option-card {
+        transition: all 0.2s ease;
+      }
+
+      .option-card:hover {
+        transform: translateY(-2px);
+        border-color: #10b981;
+        background-color: #f0fdf4;
+      }
+
+      .option-card.selected {
+        border-color: #10b981;
+        background-color: #f0fdf4;
+        box-shadow: 0 0 0 1px #10b981;
+      }
+
+      /* Added reward milestone animations */
+      @keyframes reward-pop {
         0% {
-          transform: translateY(-100px) rotate(0deg);
+          transform: scale(0.8);
           opacity: 0;
         }
         50% {
-          transform: translateY(20px) rotate(180deg);
-          opacity: 1;
+          transform: scale(1.1);
         }
-        100% {
-          transform: translateY(0) rotate(360deg);
-          opacity: 1;
-        }
-      }
-
-      @keyframes confetti-fall {
-        0% {
-          transform: translateY(-100vh) rotate(0deg);
-          opacity: 1;
-        }
-        100% {
-          transform: translateY(100vh) rotate(720deg);
-          opacity: 0;
-        }
-      }
-
-      @keyframes cart-bounce {
-        0%,
         100% {
           transform: scale(1);
-        }
-        50% {
-          transform: scale(1.2);
+          opacity: 1;
         }
       }
 
-      .gift-drop {
-        animation: gift-drop 1s ease-out;
+      .reward-popup {
+        animation: reward-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+          forwards;
       }
 
-      .confetti-piece {
+      .progress-glow {
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+      }
+
+      /* Updated styles for the new reward location and hover states */
+      .reward-tag {
+        animation: slide-in-top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+          forwards;
         position: absolute;
-        width: 10px;
-        height: 10px;
-        background: linear-gradient(
-          45deg,
-          #ff6b6b,
-          #4ecdc4,
-          #45b7d1,
-          #96ceb4,
-          #feca57
-        );
-        animation: confetti-fall 3s linear infinite;
+        top: 0;
+        right: 0;
+        z-index: 20;
       }
 
-      .cart-bounce {
-        animation: cart-bounce 0.6s ease-in-out;
+      @keyframes slide-in-top {
+        0% {
+          transform: translateY(-20px) scale(0.9);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+
+      .tooltip-custom {
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      .reward-tag:hover .tooltip-custom {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
       }
     </style>
   </head>
-  <body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
-    <!-- Added floating particles background for visual appeal -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+  <body class="bg-[#fafafa] min-h-screen text-[#1a1a1a]">
+    <!-- Navigation / Header -->
+    <nav
+      class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 z-50"
+    >
       <div
-        class="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/20 rounded-full animate-bounce-gentle"
-      ></div>
-      <div
-        class="absolute top-1/3 right-1/3 w-1 h-1 bg-primary-light/30 rounded-full animate-pulse-slow"
-      ></div>
-      <div
-        class="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-primary/15 rounded-full animate-bounce-gentle"
-        style="animation-delay: 1s"
-      ></div>
-      <div
-        class="absolute top-1/2 right-1/4 w-1 h-1 bg-primary-light/25 rounded-full animate-pulse-slow"
-        style="animation-delay: 2s"
-      ></div>
-    </div>
-
-    <div class="max-w-2xl mx-auto px-4 py-8 relative z-10">
-      <!-- Enhanced cart with celebration animation and better visual feedback -->
-      <div id="cart-container" class="mb-6 flex justify-center">
-        <!-- Enhanced cart icon with gift drop container -->
-        <div class="flex items-center space-x-4">
-          <div class="relative">
-            <svg
-              class="w-8 h-8 text-primary transition-all duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5-6M20 13v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6m16 0V9a2 2 0 00-2-2H6a2 2 0 00-2-2v4"
-              ></path>
-            </svg>
-            <span
-              id="cart-count"
-              class="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center font-bold shadow-lg transition-all duration-300"
-              >0</span
-            >
-
-            <!-- Added gift drop animation container -->
-            <div
-              id="gift-drop-container"
-              class="absolute -top-8 left-1/2 transform -translate-x-1/2 hidden"
-            >
-              <div class="text-2xl">🎁</div>
-            </div>
-
-            <!-- Enhanced confetti container -->
-            <div
-              id="confetti-container"
-              class="absolute inset-0 pointer-events-none hidden"
-            >
-              <!-- Confetti pieces will be dynamically added here -->
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Enhanced progress bar with better visual feedback and motivational text -->
-      <div class="mb-8">
-        <div class="flex justify-between items-center mb-3">
-          <div class="flex items-center space-x-2">
-            <span class="text-sm font-medium text-gray-700"
-              >Step
-              <span id="current-step" class="text-primary font-bold">1</span> of
-              <span id="total-steps">6</span></span
-            >
-            <div id="progress-emoji" class="text-lg">🚀</div>
-          </div>
-          <div class="flex items-center space-x-2">
-            <span class="text-sm font-medium text-gray-700"
-              ><span id="progress-percent" class="text-primary font-bold"
-                >17</span
-              >%</span
-            >
-            <div
-              id="reward-indicator"
-              class="text-sm text-primary font-medium hidden"
-            >
-              🎁 Reward unlocked!
-            </div>
-          </div>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-3 shadow-inner">
-          <div
-            id="progress-bar"
-            class="bg-gradient-to-r from-primary to-primary-light h-3 rounded-full transition-all duration-700 ease-out shadow-sm"
-            style="width: 17%"
-          ></div>
-        </div>
-        <!-- Added motivational progress messages -->
-        <div
-          id="progress-message"
-          class="text-center mt-2 text-sm text-gray-600 font-medium animate-slide-up"
-        >
-          Great start! Keep going to unlock your rewards 🌟
-        </div>
-      </div>
-
-      <!-- Enhanced survey container with better shadows and animations -->
-      <div
-        id="survey-container"
-        class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 animate-slide-up"
+        class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between"
       >
-        <!-- Step 1: Why Join -->
-        <div id="step-1" class="survey-step">
-          <div class="text-center mb-6">
-            <div class="inline-block p-3 bg-primary/10 rounded-full mb-4">
-              <svg
-                class="w-8 h-8 text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-            </div>
+        <div class="flex items-center gap-2">
+          <div
+            class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center text-white"
+          >
+            <i data-lucide="leaf" class="w-5 h-5"></i>
           </div>
-          <h2 class="text-3xl font-bold text-gray-900 mb-3 text-center">
-            Why are you thinking about joining Fruitful?
-          </h2>
-          <p class="text-gray-600 mb-8 text-center text-lg">
-            Select all that apply to personalize your experience
-          </p>
-
-          <!-- Enhanced option cards with better hover effects and micro-interactions -->
-          <div class="space-y-4">
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="save-money"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">
-                      Save money on groceries
-                    </h3>
-                    <p class="text-sm text-gray-600">
-                      Get better deals and reduce food costs
-                    </p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="eat-healthier"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">
-                      Eat healthier
-                    </h3>
-                    <p class="text-sm text-gray-600">
-                      Access to fresh, organic produce
-                    </p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="reduce-waste"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">
-                      Reduce food waste
-                    </h3>
-                    <p class="text-sm text-gray-600">
-                      Help the environment and community
-                    </p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="convenience"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">
-                      Convenience
-                    </h3>
-                    <p class="text-sm text-gray-600">
-                      Easy grocery shopping and delivery
-                    </p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <span class="font-bold text-xl tracking-tight">Fruitful</span>
         </div>
-
-        <!-- Step 2: Shopping Frequency -->
-        <div id="step-2" class="survey-step hidden">
-          <div class="text-center mb-6">
-            <div class="inline-block p-3 bg-primary/10 rounded-full mb-4">
-              <svg
-                class="w-8 h-8 text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
-                ></path>
-              </svg>
-            </div>
+        <div class="flex items-center gap-4">
+          <div class="w-8 h-8 flex items-center justify-center">
+            <i data-lucide="info" class="w-5 h-5 text-gray-400"></i>
           </div>
-          <h2 class="text-3xl font-bold text-gray-900 mb-3 text-center">
-            How often do you grocery shop?
-          </h2>
-          <p class="text-gray-600 mb-8 text-center text-lg">
-            Select the option that best describes your habits
-          </p>
-
-          <div class="space-y-4">
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="daily"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">Daily</h3>
-                    <p class="text-sm text-gray-600">
-                      I shop for groceries every day
-                    </p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="weekly"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">Weekly</h3>
-                    <p class="text-sm text-gray-600">Once or twice a week</p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="monthly"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">Monthly</h3>
-                    <p class="text-sm text-gray-600">Once or twice a month</p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 3: Budget -->
-        <div id="step-3" class="survey-step hidden">
-          <div class="text-center mb-6">
-            <div class="inline-block p-3 bg-primary/10 rounded-full mb-4">
-              <svg
-                class="w-8 h-8 text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                ></path>
-              </svg>
-            </div>
-          </div>
-          <h2 class="text-3xl font-bold text-gray-900 mb-3 text-center">
-            What's your monthly grocery budget?
-          </h2>
-          <p class="text-gray-600 mb-8 text-center text-lg">
-            Select your typical spending range to unlock a reward
-          </p>
-
-          <div class="space-y-4">
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="under-200"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">
-                      Under $200
-                    </h3>
-                    <p class="text-sm text-gray-600">
-                      Budget-conscious shopping
-                    </p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="200-400"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">
-                      $200 - $400
-                    </h3>
-                    <p class="text-sm text-gray-600">Moderate spending</p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="over-400"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">
-                      Over $400
-                    </h3>
-                    <p class="text-sm text-gray-600">
-                      Premium shopping experience
-                    </p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Added Step 4: Dietary Preferences -->
-        <div id="step-4" class="survey-step hidden">
-          <div class="text-center mb-6">
-            <div class="inline-block p-3 bg-primary/10 rounded-full mb-4">
-              <svg
-                class="w-8 h-8 text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 17v-3m0 1a1 1 0 00-1 1v3a2 2 0 01-2 2H5a2 2 0 01-2-2v-3a1 1 0 011-1m0 1v-3a2 2 0 002-2H9a2 2 0 002 2v3m-3 7h3m-3-9h3m5 1a1 1 0 00-1 1v3a2 2 0 01-2 2H15a2 2 0 01-2-2v-3a1 1 0 011-1m0 1v-3a2 2 0 002-2h3a2 2 0 002 2v3m-3 7h3m-3-9h3"
-                ></path>
-              </svg>
-            </div>
-          </div>
-          <h2 class="text-3xl font-bold text-gray-900 mb-3 text-center">
-            What are your dietary preferences?
-          </h2>
-          <p class="text-gray-600 mb-8 text-center text-lg">
-            Select all that apply for personalized recommendations
-          </p>
-
-          <div class="space-y-4">
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="vegetarian"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 17v-3m0 1a1 1 0 00-1 1v3a2 2 0 01-2 2H5a2 2 0 01-2-2v-3a1 1 0 011-1m0 1v-3a2 2 0 002-2H9a2 2 0 002 2v3m-3 7h3m-3-9h3m5 1a1 1 0 00-1 1v3a2 2 0 01-2 2H15a2 2 0 01-2-2v-3a1 1 0 011-1m0 1v-3a2 2 0 002-2h3a2 2 0 002 2v3m-3 7h3m-3-9h3"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">
-                      Vegetarian
-                    </h3>
-                    <p class="text-sm text-gray-600">
-                      Plant-based diet with dairy and eggs
-                    </p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="vegan"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 17v-3m0 1a1 1 0 00-1 1v3a2 2 0 01-2 2H5a2 2 0 01-2-2v-3a1 1 0 011-1m0 1v-3a2 2 0 002-2H9a2 2 0 002 2v3m-3 7h3m-3-9h3m5 1a1 1 0 00-1 1v3a2 2 0 01-2 2H15a2 2 0 01-2-2v-3a1 1 0 011-1m0 1v-3a2 2 0 002-2h3a2 2 0 002 2v3m-3 7h3m-3-9h3"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">Vegan</h3>
-                    <p class="text-sm text-gray-600">
-                      Completely plant-based diet
-                    </p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="gluten-free"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 17v-3m0 1a1 1 0 00-1 1v3a2 2 0 01-2 2H5a2 2 0 01-2-2v-3a1 1 0 011-1m0 1v-3a2 2 0 002-2H9a2 2 0 002 2v3m-3 7h3m-3-9h3m5 1a1 1 0 00-1 1v3a2 2 0 01-2 2H15a2 2 0 01-2-2v-3a1 1 0 011-1m0 1v-3a2 2 0 002-2h3a2 2 0 002 2v3m-3 7h3m-3-9h3"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">
-                      Gluten-Free
-                    </h3>
-                    <p class="text-sm text-gray-600">
-                      No wheat, barley, or rye products
-                    </p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="no-restrictions"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 17v-3m0 1a1 1 0 00-1 1v3a2 2 0 01-2 2H5a2 2 0 01-2-2v-3a1 1 0 011-1m0 1v-3a2 2 0 002-2H9a2 2 0 002 2v3m-3 7h3m-3-9h3m5 1a1 1 0 00-1 1v3a2 2 0 01-2 2H15a2 2 0 01-2-2v-3a1 1 0 011-1m0 1v-3a2 2 0 002-2h3a2 2 0 002 2v3m-3 7h3m-3-9h3"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">
-                      No restrictions
-                    </h3>
-                    <p class="text-sm text-gray-600">I eat everything</p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Enhanced Step 5 with animated gift card reveal -->
-        <div id="step-5" class="survey-step hidden">
-          <div class="text-center mb-8">
-            <div class="inline-block relative">
-              <div
-                class="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-2xl p-6 shadow-2xl animate-reward-glow"
-              >
-                <div class="animate-bounce-gentle">
-                  <img
-                    src="/placeholder.svg?height=100&width=150"
-                    alt="Premium Gift Card"
-                    class="mx-auto mb-3 rounded-lg"
-                  />
-                  <p class="text-white font-bold text-lg">
-                    🎁 Bonus Reward Unlocked!
-                  </p>
-                  <p class="text-yellow-100 text-sm">You're doing amazing!</p>
-                </div>
-              </div>
-              <!-- Added floating sparkle effects -->
-              <div
-                class="absolute -top-2 -right-2 w-4 h-4 bg-yellow-300 rounded-full animate-ping"
-              ></div>
-              <div
-                class="absolute -bottom-2 -left-2 w-3 h-3 bg-orange-300 rounded-full animate-pulse"
-              ></div>
-            </div>
-          </div>
-
-          <h2 class="text-3xl font-bold text-gray-900 mb-3 text-center">
-            How many people are in your household?
-          </h2>
-          <p class="text-gray-600 mb-8 text-center text-lg">
-            This helps us recommend the perfect portions for you
-          </p>
-
-          <div class="space-y-4">
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="1-person"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 4.5v15m7.5-7.5h-15"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">
-                      Just me (1 person)
-                    </h3>
-                    <p class="text-sm text-gray-600">Single household</p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="2-people"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 4.5v15m7.5-7.5h-15"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">
-                      2 people
-                    </h3>
-                    <p class="text-sm text-gray-600">Couple or roommates</p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="3-4-people"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 4.5v15m7.5-7.5h-15"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">
-                      3-4 people
-                    </h3>
-                    <p class="text-sm text-gray-600">Small family</p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="option-card group border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-primary-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              data-value="5-plus-people"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="p-2 bg-green-100 rounded-lg group-hover:bg-primary/20 transition-colors duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 4.5v15m7.5-7.5h-15"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900 text-lg">
-                      5+ people
-                    </h3>
-                    <p class="text-sm text-gray-600">Large family</p>
-                  </div>
-                </div>
-                <div class="check-icon hidden">
-                  <div
-                    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-scale-in"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Enhanced final step with celebration and multiple gift card animations -->
-        <div id="step-6" class="survey-step hidden">
-          <div class="text-center mb-8">
-            <!-- Added confetti effect and enhanced gift card display -->
-            <div class="relative">
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div
-                  class="w-32 h-32 bg-yellow-200 rounded-full animate-ping opacity-20"
-                ></div>
-              </div>
-              <div class="flex justify-center space-x-6 mb-6 relative z-10">
-                <div
-                  class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-4 shadow-2xl transform hover:scale-105 transition-transform duration-300 animate-confetti"
-                >
-                  <img
-                    src="/placeholder.svg?height=80&width=120"
-                    alt="Amazon Gift Card"
-                    class="mx-auto rounded-lg"
-                  />
-                  <p class="text-white text-xs font-semibold mt-2">
-                    $25 Amazon
-                  </p>
-                </div>
-                <div
-                  class="bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl p-4 shadow-2xl transform hover:scale-105 transition-transform duration-300 animate-confetti"
-                  style="animation-delay: 0.2s"
-                >
-                  <img
-                    src="/placeholder.svg?height=80&width=120"
-                    alt="Starbucks Gift Card"
-                    class="mx-auto rounded-lg"
-                  />
-                  <p class="text-white text-xs font-semibold mt-2">
-                    $15 Starbucks
-                  </p>
-                </div>
-                <div
-                  class="bg-gradient-to-br from-red-500 to-pink-600 rounded-2xl p-4 shadow-2xl transform hover:scale-105 transition-transform duration-300 animate-confetti"
-                  style="animation-delay: 0.4s"
-                >
-                  <img
-                    src="/placeholder.svg?height=80&width=120"
-                    alt="Target Gift Card"
-                    class="mx-auto rounded-lg"
-                  />
-                  <p class="text-white text-xs font-semibold mt-2">
-                    $20 Target
-                  </p>
-                </div>
-              </div>
-              <div
-                class="bg-gradient-to-r from-primary to-primary-light rounded-2xl p-6 shadow-xl"
-              >
-                <h3 class="text-2xl font-bold text-white mb-2">
-                  🎉 Congratulations!
-                </h3>
-                <p class="text-green-100 text-lg">
-                  You've earned $60 in gift cards!
-                </p>
-                <div class="flex justify-center mt-4">
-                  <div class="flex space-x-1">
-                    <div
-                      class="w-2 h-2 bg-yellow-300 rounded-full animate-bounce"
-                    ></div>
-                    <div
-                      class="w-2 h-2 bg-yellow-300 rounded-full animate-bounce"
-                      style="animation-delay: 0.1s"
-                    ></div>
-                    <div
-                      class="w-2 h-2 bg-yellow-300 rounded-full animate-bounce"
-                      style="animation-delay: 0.2s"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <h2 class="text-3xl font-bold text-gray-900 mb-3 text-center">
-            Claim Your Rewards!
-          </h2>
-          <p class="text-gray-600 mb-8 text-center text-lg">
-            Just one more step to get your gift cards delivered
-          </p>
-
-          <!-- Enhanced form with better styling and validation feedback -->
-          <form id="contact-form" class="space-y-6">
-            <div class="relative">
-              <label
-                for="fullName"
-                class="block text-sm font-semibold text-gray-700 mb-2"
-                >Full Name *</label
-              >
-              <input
-                type="text"
-                id="fullName"
-                name="fullName"
-                required
-                class="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 text-lg"
-              />
-              <div class="absolute right-3 top-11 hidden" id="name-check">
-                <svg
-                  class="w-5 h-5 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-
-            <div class="relative">
-              <label
-                for="email"
-                class="block text-sm font-semibold text-gray-700 mb-2"
-                >Email Address *</label
-              >
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                class="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 text-lg"
-              />
-              <div class="absolute right-3 top-11 hidden" id="email-check">
-                <svg
-                  class="w-5 h-5 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-
-            <div>
-              <label
-                for="phone"
-                class="block text-sm font-semibold text-gray-700 mb-2"
-                >Phone Number (Optional)</label
-              >
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                class="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 text-lg"
-              />
-            </div>
-
-            <div class="flex items-start p-4 bg-gray-50 rounded-xl">
-              <input
-                type="checkbox"
-                id="newsletter"
-                name="newsletter"
-                class="mt-1 h-5 w-5 text-primary focus:ring-primary border-gray-300 rounded"
-              />
-              <label
-                for="newsletter"
-                class="ml-3 text-sm text-gray-700 font-medium"
-              >
-                🎁 Yes! Send me exclusive Fruitful offers and updates (optional)
-              </label>
-            </div>
-          </form>
         </div>
       </div>
+    </nav>
 
-      <!-- Enhanced navigation with better visual feedback and loading states -->
-      <div class="flex justify-between items-center mt-8">
-        <button
-          id="back-btn"
-          class="group px-6 py-3 text-gray-600 hover:text-gray-800 transition-all duration-300 font-medium hidden hover:bg-gray-100 rounded-lg"
-        >
-          <span class="flex items-center space-x-2">
-            <svg
-              class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 19l-7-7 7-7"
-              ></path>
-            </svg>
-            <span>Back</span>
-          </span>
-        </button>
-        <div class="flex-1"></div>
-        <button
-          id="next-btn"
-          class="group relative px-8 py-4 bg-gradient-to-r from-primary to-primary-dark text-white rounded-xl hover:shadow-lg transition-all duration-300 font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 disabled:hover:scale-100"
-          disabled
-        >
-          <span id="btn-text">Continue</span>
+    <main class="pt-32 pb-20 px-6">
+      <div
+        class="max-w-2xl mx-auto relative bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm"
+      >
+        <!-- Moved the reward badge inside the form container at the top right -->
+        <div id="reward-badge-container" class="absolute top-6 right-6 hidden">
           <div
-            id="btn-loading"
-            class="hidden absolute inset-0 flex items-center justify-center"
+            class="reward-tag relative group cursor-pointer flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full border border-emerald-200 shadow-sm transition-all hover:bg-emerald-200"
+            onclick="showRewardTip()"
+            onmouseenter="showRewardTip()"
           >
+            <i data-lucide="gift" class="w-4 h-4"></i>
+            <span class="text-xs font-bold uppercase tracking-wider"
+              >Rewards: <span id="reward-count-val">0</span></span
+            >
+
+            <!-- Tooltip -->
             <div
-              class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
+              class="tooltip-custom absolute top-full right-0 mt-2 w-48 bg-slate-900 text-white text-[10px] p-3 rounded-xl shadow-xl pointer-events-none z-50 transform translate-y-2"
+            >
+              <p class="leading-relaxed">
+                Stay patient! Your rewards will be delivered once you complete
+                all steps.
+              </p>
+              <div
+                class="absolute -top-1 right-6 w-2 h-2 bg-slate-900 rotate-45"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="mb-12">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <span
+                id="step-category"
+                class="text-xs font-semibold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2 py-1 rounded"
+                >Personalization</span
+              >
+              <span class="text-xs font-medium text-gray-400"
+                >Step <span id="current-step-label">1</span> of 8</span
+              >
+            </div>
+            <span id="percent-label" class="text-sm font-bold text-gray-900"
+              >12%</span
+            >
+          </div>
+          <div class="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
+            <div
+              id="progress-bar"
+              class="h-full bg-emerald-500 transition-all duration-700 ease-in-out"
+              style="width: 12.5%"
             ></div>
           </div>
-          <svg
-            class="w-5 h-5 ml-2 inline transform group-hover:translate-x-1 transition-transform duration-300"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 5l7 7-7 7"
-            ></path>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Added progress encouragement tooltip -->
-      <div
-        id="encouragement-tooltip"
-        class="fixed bottom-4 right-4 bg-primary text-white px-4 py-2 rounded-lg shadow-lg transform translate-y-full opacity-0 transition-all duration-300 pointer-events-none"
-      >
-        <div class="flex items-center space-x-2">
-          <span class="text-sm font-medium"
-            >Keep going! You're doing great! 🌟</span
-          >
         </div>
+
+        <!-- Survey Content Container -->
+        <div id="survey-content" class="animate-slide-in">
+          <!-- Content injected via JS -->
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div id="nav-container" class="mt-12 flex items-center justify-between">
+          <button
+            id="prev-btn"
+            onclick="prevStep()"
+            class="flex items-center gap-2 text-sm font-semibold text-gray-400 hover:text-gray-900 transition-colors opacity-0 pointer-events-none"
+          >
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            Back
+          </button>
+          <!-- Disabled auto-advance: users must click this button to proceed -->
+          <button
+            id="next-btn"
+            onclick="nextStep()"
+            class="bg-gray-900 text-white px-8 py-3.5 rounded-full font-semibold text-sm hover:bg-black transition-all hover:shadow-lg active:scale-95 disabled:opacity-50 disabled:pointer-events-none"
+            disabled
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Reward Milestone Modal -->
+    <div
+      id="reward-modal"
+      class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm"
+    >
+      <div
+        class="max-w-md w-full bg-white rounded-[2.5rem] shadow-2xl p-10 text-center reward-popup"
+      >
+        <div
+          class="w-24 h-24 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-lg rotate-3"
+        >
+          <i data-lucide="gift" class="w-12 h-12 text-white"></i>
+        </div>
+        <h2 class="text-4xl font-black text-slate-900 mb-4 leading-tight">
+          Reward Unlocked!
+        </h2>
+        <div
+          class="bg-emerald-50 p-6 rounded-2xl mb-8 border border-emerald-100"
+        >
+          <p id="reward-text" class="text-emerald-800 font-bold text-lg mb-1">
+            🎁 Premium Benefit Unlocked
+          </p>
+          <p class="text-emerald-600 text-sm">
+            Added to your claimable balance
+          </p>
+        </div>
+        <p class="text-slate-500 mb-10 text-lg leading-relaxed">
+          Fantastic work! You've reached a milestone. Continue to the end to
+          collect all your benefits.
+        </p>
+        <button
+          onclick="closeRewardModal()"
+          class="w-full py-5 bg-slate-900 text-white rounded-2xl font-black text-xl hover:bg-slate-800 transition-all shadow-xl hover:-translate-y-1"
+        >
+          Keep Going! 🚀
+        </button>
       </div>
     </div>
 
     <script>
-      class Survey {
-        constructor() {
-          this.currentStep = 1;
-          this.totalSteps = 6;
-          this.responses = {};
-          this.multiSelectSteps = [1, 4];
-          this.cartCount = 0;
-          this.engagementScore = 0;
-          this.lastInteractionTime = Date.now();
-          this.encouragementShown = false;
+      // Lucide implementation
+      lucide.createIcons();
 
-          this.init();
-        }
+      let currentStep = 1;
+      const totalSteps = 8;
+      let selections = {};
+      let cartCount = 0;
 
-        init() {
-          this.bindEvents();
-          this.updateUI();
-          this.startEngagementMonitoring();
-        }
+      const stepsData = {
+        1: {
+          category: "Discovery",
+          title: "Why are you joining Fruitful?",
+          desc: "Help us tailor your experience to your specific goals.",
+          options: [
+            {
+              icon: "banknote",
+              title: "Save money on groceries",
+              sub: "Reduce monthly spending",
+              color: "text-blue-600",
+              bg: "bg-blue-50",
+            },
+            {
+              icon: "apple",
+              title: "Eat healthier meals",
+              sub: "Access fresh produce",
+              color: "text-emerald-600",
+              bg: "bg-emerald-50",
+            },
+            {
+              icon: "clock",
+              title: "Save time shopping",
+              sub: "Smart delivery services",
+              color: "text-purple-600",
+              bg: "bg-purple-50",
+            },
+          ],
+        },
+        2: {
+          category: "Habits",
+          title: "How often do you shop?",
+          desc: "This helps us suggest the best delivery frequency.",
+          options: [
+            {
+              icon: "calendar-days",
+              title: "Daily",
+              sub: "Fresh items every day",
+              color: "text-emerald-600",
+              bg: "bg-emerald-50",
+            },
+            {
+              icon: "calendar",
+              title: "Weekly",
+              sub: "The most popular choice",
+              color: "text-indigo-600",
+              bg: "bg-indigo-50",
+            },
+            {
+              icon: "calendar-range",
+              title: "Monthly",
+              sub: "Bulk savings and staples",
+              color: "text-amber-600",
+              bg: "bg-amber-50",
+            },
+          ],
+        },
+        3: {
+          category: "Lifestyle",
+          title: "Household size?",
+          desc: "We'll customize our portions and bundle sizes.",
+          isMilestone: true,
+          rewardLabel: "🎁 Family Plan Bonus Unlocked!",
+          options: [
+            {
+              icon: "user",
+              title: "Just me",
+              sub: "Single person household",
+              color: "text-rose-600",
+              bg: "bg-rose-50",
+            },
+            {
+              icon: "users",
+              title: "Couple",
+              sub: "Two person household",
+              color: "text-cyan-600",
+              bg: "bg-cyan-50",
+            },
+            {
+              icon: "home",
+              title: "Family",
+              sub: "3+ person household",
+              color: "text-violet-600",
+              bg: "bg-violet-50",
+            },
+          ],
+        },
+        4: {
+          category: "Budget",
+          title: "What's your monthly budget?",
+          desc: "We want to make sure we fit into your financial plan.",
+          options: [
+            {
+              icon: "wallet",
+              title: "Under $200",
+              sub: "Budget conscious",
+              color: "text-slate-600",
+              bg: "bg-slate-50",
+            },
+            {
+              icon: "coins",
+              title: "$200 - $500",
+              sub: "Average household",
+              color: "text-yellow-600",
+              bg: "bg-yellow-50",
+            },
+            {
+              icon: "gem",
+              title: "$500+",
+              sub: "Premium selection",
+              color: "text-indigo-600",
+              bg: "bg-indigo-50",
+            },
+          ],
+        },
+        5: {
+          category: "Preferences",
+          title: "Dietary preferences?",
+          desc: "Select your primary eating style.",
+          options: [
+            {
+              icon: "leaf",
+              title: "Plant-based",
+              sub: "Vegan & Vegetarian",
+              color: "text-emerald-600",
+              bg: "bg-emerald-50",
+            },
+            {
+              icon: "beef",
+              title: "Everything",
+              sub: "No restrictions",
+              color: "text-red-600",
+              bg: "bg-red-50",
+            },
+            {
+              icon: "zap",
+              title: "Keto / Paleo",
+              sub: "High protein, low carb",
+              color: "text-orange-600",
+              bg: "bg-orange-50",
+            },
+          ],
+        },
+        6: {
+          category: "Health",
+          title: "Primary health goal?",
+          desc: "What do you want to achieve with Fruitful?",
+          isMilestone: true,
+          rewardLabel: "🚀 Wellness Booster Unlocked!",
+          options: [
+            {
+              icon: "dumbbell",
+              title: "Build Muscle",
+              sub: "Protein focused",
+              color: "text-blue-600",
+              bg: "bg-blue-50",
+            },
+            {
+              icon: "heart",
+              title: "Heart Health",
+              sub: "Low sodium & fresh",
+              color: "text-rose-600",
+              bg: "bg-rose-50",
+            },
+            {
+              icon: "brain",
+              title: "Mental Clarity",
+              sub: "Superfoods & antioxidants",
+              color: "text-amber-600",
+              bg: "bg-amber-50",
+            },
+          ],
+        },
+        7: {
+          category: "Expectations",
+          title: "Your main expectation?",
+          desc: "What's the one thing we must get right?",
+          options: [
+            {
+              icon: "truck",
+              title: "Fast Delivery",
+              sub: "Under 2 hours",
+              color: "text-indigo-600",
+              bg: "bg-indigo-50",
+            },
+            {
+              icon: "shield-check",
+              title: "Quality",
+              sub: "Hand-picked freshness",
+              color: "text-emerald-600",
+              bg: "bg-emerald-50",
+            },
+            {
+              icon: "tag",
+              title: "Best Prices",
+              sub: "Lowest in the market",
+              color: "text-yellow-600",
+              bg: "bg-yellow-50",
+            },
+          ],
+        },
+        8: {
+          category: "Final Step",
+          title: "Claim your rewards",
+          desc: "Enter your details to receive your collected benefits.",
+          isFinal: true,
+        },
+      };
 
-        startEngagementMonitoring() {
-          setInterval(() => {
-            const timeSinceLastInteraction =
-              Date.now() - this.lastInteractionTime;
+      function selectOption(element, step) {
+        const stepContainer = document.getElementById(`step-${step}`);
+        const cards = stepContainer.querySelectorAll(".option-card");
+        cards.forEach((card) => {
+          card.classList.remove("selected");
+          card
+            .querySelector(".check-circle")
+            .classList.remove("bg-emerald-500", "border-emerald-500");
+          card.querySelector(".lucide-check").classList.add("opacity-0");
+        });
 
-            // Show encouragement if user is idle for 10 seconds
-            if (
-              timeSinceLastInteraction > 10000 &&
-              !this.encouragementShown &&
-              this.currentStep < 6
-            ) {
-              this.showEncouragement();
-            }
-          }, 5000);
-        }
+        element.classList.add("selected");
+        const check = element.querySelector(".check-circle");
+        check.classList.add("bg-emerald-500", "border-emerald-500");
+        element.querySelector(".lucide-check").classList.remove("opacity-0");
 
-        showEncouragement() {
-          const tooltip = document.getElementById("encouragement-tooltip");
-          tooltip.classList.remove("translate-y-full", "opacity-0");
-          tooltip.classList.add("translate-y-0", "opacity-100");
-          this.encouragementShown = true;
+        selections[step] = element.querySelector("h3").innerText;
 
-          setTimeout(() => {
-            tooltip.classList.add("translate-y-full", "opacity-0");
-            tooltip.classList.remove("translate-y-0", "opacity-100");
-          }, 3000);
-        }
+        document.getElementById("next-btn").disabled = false;
+      }
 
-        bindEvents() {
-          document.addEventListener("click", (e) => {
-            this.lastInteractionTime = Date.now();
-            this.encouragementShown = false;
+      function updateCart() {
+        cartCount++;
+        const container = document.getElementById("reward-badge-container");
+        container.classList.remove("hidden");
 
-            const card = e.target.closest(".option-card");
-            if (card) {
-              this.handleOptionClick(card);
-            }
-          });
+        const badge = document.getElementById("reward-count-val");
+        badge.innerText = cartCount;
 
-          document.getElementById("next-btn").addEventListener("click", () => {
-            this.nextStep();
-          });
+        const tag = container.querySelector(".reward-tag");
+        tag.classList.add("scale-110", "bg-emerald-300");
+        setTimeout(
+          () => tag.classList.remove("scale-110", "bg-emerald-300"),
+          300
+        );
+      }
 
-          document.getElementById("back-btn").addEventListener("click", () => {
-            this.prevStep();
-          });
+      function showRewardTip() {
+        // Sweet toast-like notification logic
+        const tip = document.createElement("div");
+        tip.className =
+          "fixed bottom-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-bounce z-[200]";
+        tip.innerHTML = `
+                <i data-lucide="sparkles" class="  w-5 h-5 text-yellow-400"></i>
+                <span class=" text-sm font-medium">Patience! You'll get your rewards after Step 8!</span>
+            `;
+        document.body.appendChild(tip);
+        lucide.createIcons();
+        setTimeout(() => tip.remove(), 3000);
+      }
 
-          const form = document.getElementById("contact-form");
-          if (form) {
-            const nameInput = document.getElementById("fullName");
-            const emailInput = document.getElementById("email");
+      function closeRewardModal() {
+        const modal = document.getElementById("reward-modal");
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
 
-            nameInput.addEventListener("input", () => {
-              this.validateField("name", nameInput.value.trim());
-              this.validateContactForm();
-            });
+        currentStep++;
+        renderStep(currentStep);
+        updateProgress();
+      }
 
-            emailInput.addEventListener("input", () => {
-              this.validateField("email", emailInput.value.trim());
-              this.validateContactForm();
-            });
-          }
-        }
+      function renderStep(step) {
+        const data = stepsData[step];
+        const content = document.getElementById("survey-content");
+        content.style.opacity = "0";
 
-        validateField(type, value) {
-          const checkIcon = document.getElementById(`${type}-check`);
-          let isValid = false;
-
-          if (type === "name") {
-            isValid = value.length > 0;
-          } else if (type === "email") {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            isValid = emailRegex.test(value);
-          }
-
-          if (isValid) {
-            checkIcon.classList.remove("hidden");
+        setTimeout(() => {
+          if (data.isFinal) {
+            renderFinalForm(content);
           } else {
-            checkIcon.classList.add("hidden");
-          }
-        }
-
-        handleOptionClick(card) {
-          card.style.transform = "scale(0.98)";
-          setTimeout(() => {
-            card.style.transform = "";
-          }, 150);
-
-          const value = card.dataset.value;
-          const stepId = `step-${this.currentStep}`;
-          const isMultiSelect = this.multiSelectSteps.includes(
-            this.currentStep
-          );
-
-          if (isMultiSelect) {
-            if (!this.responses[stepId]) {
-              this.responses[stepId] = [];
-            }
-
-            const index = this.responses[stepId].indexOf(value);
-            if (index > -1) {
-              this.responses[stepId].splice(index, 1);
-              card.classList.remove(
-                "border-primary",
-                "bg-primary/5",
-                "shadow-lg",
-                "-translate-y-1"
-              );
-              card.classList.add("border-gray-200");
-              card.querySelector(".check-icon").classList.add("hidden");
-            } else {
-              this.responses[stepId].push(value);
-              card.classList.remove("border-gray-200");
-              card.classList.add(
-                "border-primary",
-                "bg-primary/5",
-                "shadow-lg",
-                "-translate-y-1"
-              );
-              card.querySelector(".check-icon").classList.remove("hidden");
-            }
-          } else {
-            const currentStep = document.getElementById(stepId);
-            const allCards = currentStep.querySelectorAll(".option-card");
-
-            allCards.forEach((c) => {
-              c.classList.remove(
-                "border-primary",
-                "bg-primary/5",
-                "shadow-lg",
-                "-translate-y-1"
-              );
-              c.classList.add("border-gray-200");
-              c.querySelector(".check-icon").classList.add("hidden");
-            });
-
-            card.classList.remove("border-gray-200");
-            card.classList.add(
-              "border-primary",
-              "bg-primary/5",
-              "shadow-lg",
-              "-translate-y-1"
-            );
-            card.querySelector(".check-icon").classList.remove("hidden");
-
-            this.responses[stepId] = value;
+            renderOptions(content, step, data);
           }
 
-          if ([3, 5].includes(this.currentStep)) {
-            this.updateCartCount();
-            this.triggerCelebration();
-          }
+          lucide.createIcons();
+          content.style.opacity = "1";
+          content.classList.remove("animate-slide-in");
+          void content.offsetWidth;
+          content.classList.add("animate-slide-in");
+        }, 200);
+      }
 
-          this.updateNextButton();
-          this.engagementScore += 10; // Track engagement
-        }
-
-        triggerCelebration() {
-          this.triggerGiftDrop();
-          this.triggerConfetti();
-
-          const rewardIndicator = document.getElementById("reward-indicator");
-          rewardIndicator.classList.remove("hidden");
-
-          setTimeout(() => {
-            rewardIndicator.classList.add("hidden");
-          }, 3000);
-        }
-
-        triggerGiftDrop() {
-          const giftContainer = document.getElementById("gift-drop-container");
-          const cartIcon = document.getElementById("cart-count").parentElement;
-
-          // Show and animate gift drop
-          giftContainer.classList.remove("hidden");
-          giftContainer.classList.add("gift-drop");
-
-          // Add bounce effect to cart
-          cartIcon.classList.add("cart-bounce");
-
-          setTimeout(() => {
-            giftContainer.classList.add("hidden");
-            giftContainer.classList.remove("gift-drop");
-            cartIcon.classList.remove("cart-bounce");
-          }, 1000);
-        }
-
-        triggerConfetti() {
-          const confettiContainer =
-            document.getElementById("confetti-container");
-          confettiContainer.classList.remove("hidden");
-
-          // Create multiple confetti pieces
-          for (let i = 0; i < 15; i++) {
-            const confetti = document.createElement("div");
-            confetti.className = "confetti-piece";
-            confetti.style.left = Math.random() * 100 + "%";
-            confetti.style.animationDelay = Math.random() * 2 + "s";
-            confetti.style.animationDuration = Math.random() * 2 + 2 + "s";
-
-            // Random colors
-            const colors = [
-              "#ff6b6b",
-              "#4ecdc4",
-              "#45b7d1",
-              "#96ceb4",
-              "#feca57",
-              "#fd79a8",
-            ];
-            confetti.style.background =
-              colors[Math.floor(Math.random() * colors.length)];
-
-            confettiContainer.appendChild(confetti);
-          }
-
-          // Clean up confetti after animation
-          setTimeout(() => {
-            confettiContainer.innerHTML = "";
-            confettiContainer.classList.add("hidden");
-          }, 4000);
-        }
-
-        updateCartCount() {
-          const rewardSteps = [3, 5];
-          let count = 0;
-
-          rewardSteps.forEach((step) => {
-            const stepId = `step-${step}`;
-            if (this.responses[stepId]) {
-              count++;
-            }
-          });
-
-          if (count > this.cartCount) {
-            const cartElement = document.getElementById("cart-count");
-
-            cartElement.style.transform = "scale(1.3)";
-            cartElement.style.background =
-              "linear-gradient(45deg, #10b981, #34d399)";
-
-            setTimeout(() => {
-              cartElement.style.transform = "scale(1)";
-              cartElement.style.background =
-                "linear-gradient(to right, #ef4444, #ec4899)";
-            }, 300);
-
-            this.cartCount = count;
-          }
-
-          document.getElementById("cart-count").textContent = this.cartCount;
-        }
-
-        validateContactForm() {
-          const fullName = document.getElementById("fullName").value.trim();
-          const email = document.getElementById("email").value.trim();
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-          const isValid = fullName.length > 0 && emailRegex.test(email);
-          const nextBtn = document.getElementById("next-btn");
-
-          nextBtn.disabled = !isValid;
-
-          if (isValid) {
-            nextBtn.classList.remove("opacity-50");
-            nextBtn.classList.add("hover:scale-105");
-          } else {
-            nextBtn.classList.add("opacity-50");
-            nextBtn.classList.remove("hover:scale-105");
-          }
-        }
-
-        updateNextButton() {
-          if (this.currentStep === 6) {
-            this.validateContactForm();
-            return;
-          }
-
-          const stepId = `step-${this.currentStep}`;
-          const hasSelection =
-            this.responses[stepId] &&
-            (Array.isArray(this.responses[stepId])
-              ? this.responses[stepId].length > 0
-              : this.responses[stepId]);
-
-          const nextBtn = document.getElementById("next-btn");
-          nextBtn.disabled = !hasSelection;
-
-          if (hasSelection) {
-            nextBtn.classList.remove("opacity-50");
-            nextBtn.classList.add("hover:scale-105");
-          } else {
-            nextBtn.classList.add("opacity-50");
-            nextBtn.classList.remove("hover:scale-105");
-          }
-        }
-
-        nextStep() {
-          const btnText = document.getElementById("btn-text");
-          const btnLoading = document.getElementById("btn-loading");
-
-          btnText.classList.add("opacity-0");
-          btnLoading.classList.remove("hidden");
-
-          setTimeout(() => {
-            if (this.currentStep < this.totalSteps) {
-              this.currentStep++;
-              this.updateUI();
-            } else {
-              this.submitSurvey();
-            }
-
-            btnText.classList.remove("opacity-0");
-            btnLoading.classList.add("hidden");
-          }, 500);
-        }
-
-        prevStep() {
-          if (this.currentStep > 1) {
-            this.currentStep--;
-            this.updateUI();
-          }
-        }
-
-        updateUI() {
-          const progress = (this.currentStep / this.totalSteps) * 100;
-          document.getElementById("progress-bar").style.width = `${progress}%`;
-          document.getElementById("current-step").textContent =
-            this.currentStep;
-          document.getElementById("total-steps").textContent = this.totalSteps;
-          document.getElementById("progress-percent").textContent =
-            Math.round(progress);
-
-          const messages = [
-            "Great start! Keep going to unlock your rewards 🌟",
-            "Awesome! You're making great progress 🚀",
-            "Fantastic! First reward unlocked! 🎁",
-            "You're halfway there! Keep it up! 💪",
-            "Amazing! Another reward earned! 🎉",
-            "Final step! Your rewards are waiting! 🏆",
-          ];
-
-          const emojis = ["🚀", "⭐", "🎁", "💪", "🎉", "🏆"];
-
-          document.getElementById("progress-message").textContent =
-            messages[this.currentStep - 1];
-          document.getElementById("progress-emoji").textContent =
-            emojis[this.currentStep - 1];
-
-          if ([3, 5, 6].includes(this.currentStep)) {
-            this.updateCartCount();
-          }
-
-          document.querySelectorAll(".survey-step").forEach((step, index) => {
-            if (index + 1 === this.currentStep) {
-              step.classList.remove("hidden");
-              step.style.animation = "slide-up 0.5s ease-out";
-            } else {
-              step.classList.add("hidden");
-            }
-          });
-
-          const backBtn = document.getElementById("back-btn");
-          const nextBtn = document.getElementById("next-btn");
-
-          if (this.currentStep === 1) {
-            backBtn.classList.add("hidden");
-          } else {
-            backBtn.classList.remove("hidden");
-          }
-
-          if (this.currentStep === this.totalSteps) {
-            nextBtn.innerHTML = `
-                        <span id="btn-text">🎁 Claim My $60 in Rewards!</span>
-                        <div id="btn-loading" class="hidden absolute inset-0 flex items-center justify-center">
-                            <div class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+      function renderOptions(content, step, data) {
+        let optionsHtml = data.options
+          .map(
+            (opt) => `
+                <button onclick="selectOption(this, ${step})" class="option-card flex items-center justify-between p-5 border-2 border-gray-100 rounded-2xl bg-white text-left group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl ${opt.bg} flex items-center justify-center ${opt.color} group-hover:opacity-80 transition-colors">
+                            <i data-lucide="${opt.icon}" class="w-6 h-6"></i>
                         </div>
-                    `;
-          } else {
-            nextBtn.innerHTML = `
-                        <span id="btn-text">Continue</span>
-                        <div id="btn-loading" class="hidden absolute inset-0 flex items-center justify-center">
-                            <div class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">${opt.title}</h3>
+                            <p class="text-sm text-gray-500">${opt.sub}</p>
                         </div>
-                        <svg class="w-5 h-5 ml-2 inline transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    `;
-          }
+                    </div>
+                    <div class="check-circle w-6 h-6 rounded-full border-2 border-gray-100 flex items-center justify-center transition-all group-hover:border-emerald-200">
+                        <i data-lucide="check" class="w-4 h-4 text-white opacity-0 transition-opacity"></i>
+                    </div>
+                </button>
+            `
+          )
+          .join("");
 
-          this.updateNextButton();
-          this.restoreSelections();
+        content.innerHTML = `
+                <div id="step-${step}" class="survey-step">
+                    <div class="mb-8">
+                        <h1 class="text-3xl font-bold mb-3 tracking-tight">${data.title}</h1>
+                        <p class="text-gray-500 text-lg">${data.desc}</p>
+                    </div>
+                    <div class="grid gap-4">
+                        ${optionsHtml}
+                    </div>
+                </div>
+            `;
+      }
+
+      function renderFinalForm(content) {
+        content.innerHTML = `
+                <div id="step-8" class="survey-step">
+                    <div class="mb-8 text-center">
+                        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="trophy" class="w-8 h-8"></i>
+                        </div>
+                        <h1 class="text-3xl font-bold mb-3 tracking-tight">Claim Your Rewards</h1>
+                        <p class="text-gray-500 text-lg">You've unlocked ${cartCount} premium benefits! Tell us where to send them.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="relative">
+                            <i data-lucide="user" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                            <input type="text" id="name" placeholder="Full Name" class="w-full pl-12 pr-4 py-4 bg-white border-2 border-gray-100 rounded-2xl focus:border-emerald-500 focus:outline-none transition-all font-medium">
+                        </div>
+                        <div class="relative">
+                            <i data-lucide="mail" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                            <input type="email" id="email" placeholder="Email Address" class="w-full pl-12 pr-4 py-4 bg-white border-2 border-gray-100 rounded-2xl focus:border-emerald-500 focus:outline-none transition-all font-medium">
+                        </div>
+                        <div class="relative">
+                            <i data-lucide="phone" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                            <input type="tel" id="mobile" placeholder="Mobile Number" class="w-full pl-12 pr-4 py-4 bg-white border-2 border-gray-100 rounded-2xl focus:border-emerald-500 focus:outline-none transition-all font-medium">
+                        </div>
+                    </div>
+                </div>
+            `;
+        document.getElementById("next-btn").innerText = "Claim All Rewards 🎁";
+        document.getElementById("next-btn").disabled = false;
+      }
+
+      function updateProgress() {
+        const progress = (currentStep / totalSteps) * 100;
+        document.getElementById("progress-bar").style.width = `${progress}%`;
+        document.getElementById("percent-label").innerText = `${Math.round(
+          progress
+        )}%`;
+        document.getElementById("current-step-label").innerText = currentStep;
+        document.getElementById("step-category").innerText =
+          stepsData[currentStep].category;
+
+        const prevBtn = document.getElementById("prev-btn");
+        if (currentStep > 1) {
+          prevBtn.classList.remove("opacity-0", "pointer-events-none");
+        } else {
+          prevBtn.classList.add("opacity-0", "pointer-events-none");
         }
 
-        restoreSelections() {
-          const stepId = `step-${this.currentStep}`;
-          const currentStep = document.getElementById(stepId);
-          const selections = this.responses[stepId];
-
-          if (!selections) return;
-
-          if (Array.isArray(selections)) {
-            selections.forEach((value) => {
-              const card = currentStep.querySelector(`[data-value="${value}"]`);
-              if (card) {
-                card.classList.remove("border-gray-200");
-                card.classList.add(
-                  "border-primary",
-                  "bg-primary/5",
-                  "shadow-lg",
-                  "-translate-y-1"
-                );
-                card.querySelector(".check-icon").classList.remove("hidden");
-              }
-            });
-          } else {
-            const card = currentStep.querySelector(
-              `[data-value="${selections}"]`
-            );
-            if (card) {
-              card.classList.remove("border-gray-200");
-              card.classList.add(
-                "border-primary",
-                "bg-primary/5",
-                "shadow-lg",
-                "-translate-y-1"
-              );
-              card.querySelector(".check-icon").classList.remove("hidden");
-            }
-          }
-        }
-
-        submitSurvey() {
-          const contactData = {
-            fullName: document.getElementById("fullName").value,
-            email: document.getElementById("email").value,
-            phone: document.getElementById("phone").value,
-            newsletter: document.getElementById("newsletter").checked,
-          };
-
-          console.log("Survey completed:", this.responses);
-          console.log("Contact information:", contactData);
-          console.log("Engagement score:", this.engagementScore);
-
-          setTimeout(() => {
-            alert(
-              "🎉 Congratulations! Your $60 in gift cards will be sent to your email within 24 hours. Thank you for completing the survey!"
-            );
-          }, 1000);
+        const nextBtn = document.getElementById("next-btn");
+        if (currentStep < totalSteps) {
+          nextBtn.innerText = "Continue";
+          nextBtn.disabled = !selections[currentStep];
         }
       }
 
-      document.addEventListener("DOMContentLoaded", () => {
-        new Survey();
-      });
+      function nextStep() {
+        const data = stepsData[currentStep];
+
+        if (data.isMilestone && !data.rewardGiven) {
+          data.rewardGiven = true;
+          showRewardModal(data.rewardLabel);
+          return; // Modal handles progression
+        }
+
+        if (currentStep < totalSteps) {
+          currentStep++;
+          renderStep(currentStep);
+          updateProgress();
+        } else {
+          completeSurvey();
+        }
+      }
+
+      function prevStep() {
+        if (currentStep > 1) {
+          currentStep--;
+          renderStep(currentStep);
+          updateProgress();
+        }
+      }
+
+      function showSuccess(name) {
+        triggerConfetti();
+        const container = document.querySelector("main .max-w-2xl");
+        document.getElementById("nav-container").style.display = "none";
+
+        container.innerHTML = `
+                <div class="text-center animate-slide-in pt-10">
+                    <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-8">
+                        <i data-lucide="check-circle" class="w-10 h-10"></i>
+                    </div>
+                    <h1 class="text-4xl font-bold mb-4 tracking-tight">Success, ${
+                      name.split(" ")[0]
+                    }!</h1>
+                    <p class="text-gray-500 text-lg mb-12 leading-relaxed">Your collection of ${cartCount} premium rewards has been secured. We've sent a confirmation to your email.</p>
+                    <button onclick="location.reload()" class="bg-emerald-500 text-white px-10 py-4 rounded-full font-bold hover:bg-emerald-600 transition-all shadow-lg hover:shadow-emerald-200">
+                        Back to Home
+                    </button>
+                </div>
+            `;
+        lucide.createIcons();
+        document.querySelector("#cart-badge").parentElement.style.display =
+          "none";
+      }
+
+      function showRewardModal(label) {
+        const modal = document.getElementById("reward-modal");
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        document.getElementById("reward-text").innerText = label;
+        updateCart();
+      }
+
+      function triggerConfetti() {
+        canvasConfetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+        });
+      }
+
+      function completeSurvey() {
+        const name = document.getElementById("name").value;
+        if (!name) {
+          alert("Please enter your details to claim your rewards!");
+          return;
+        }
+        showSuccess(name);
+      }
+
+      // Initial render
+      renderStep(1);
     </script>
   </body>
 </html>
