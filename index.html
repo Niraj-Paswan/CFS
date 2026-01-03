@@ -34,7 +34,7 @@
 
     <!-- Page Title and Favicon -->
     <title>Chimulkar Financial Services - Trust Is Everything</title>
-    <link rel="shortcut icon" href="./assets/Logo.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="./assets/favicon.svg" type="image/x-icon" />
 
     <!-- External Stylesheets and Fonts -->
     <link rel="stylesheet" href="./src/output.css" />
@@ -47,6 +47,90 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <style>
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes pulse-skeleton {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .modal-backdrop {
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      .modal-content {
+        animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .modal-hidden .modal-backdrop {
+        animation: fadeIn 0.3s ease-out reverse;
+      }
+
+      .modal-hidden .modal-content {
+        animation: slideUp 0.3s ease-in reverse;
+      }
+
+      .skeleton-pulse {
+        animation: pulse-skeleton 2s infinite;
+      }
+
+      .btn-hover {
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .btn-hover:hover {
+        transform: translateX(4px);
+      }
+
+      .modal-enter {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .modal-exit {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .iframe-container {
+        transition: opacity 0.3s ease-out;
+      }
+
+      .iframe-container.loaded {
+        opacity: 1;
+      }
+
+      .iframe-container.loading {
+        opacity: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+    </style>
 
     <!-- Custom CSS Styles -->
     <style>
@@ -319,7 +403,9 @@
               </div>
 
               <a
-                href="foundation.html"
+                href="../foundation.html"
+                target="_blank"
+                rel="noopener noreferrer"
                 class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
                 <i data-lucide="heart-handshake" class="w-5 h-5"></i> Foundation
@@ -608,7 +694,9 @@
               </div>
             </details>
             <a
-              href="./foundation.html"
+              href="../foundation.html"
+              target="_blank"
+              rel="noopener noreferrer"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
             >
               <i data-lucide="heart-handshake" class="w-4 h-4"></i> Foundation
@@ -2799,7 +2887,7 @@
           </section>
 
           <!-- Centered Address -->
-          <h3 class="text-2xl font-semibold text-gray-900 mt-4">
+          <h3 class="text-2xl font-semibold text-gray-900 mt-8">
             Virtual Office
           </h3>
           <p class="text-gray-700 mt-3 text-medium">
@@ -2807,18 +2895,182 @@
             <br class="hidden lg:block" />
             ones to join a meeting via Google Meet from anywhere
           </p>
-          <!-- Directions Button -->
-          <a
-            href="https://calendly.com/pranavchimulkar/25"
-            class="inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 mt-4 rounded-full text-sm gap-3 group transition-colors duration-300 hover:bg-secondary"
+
+          <button
+            type="button"
+            id="openModalBtn"
+            data-cal-link="pranavchimulkar/clarity-call"
+            data-cal-namespace="default"
+            data-cal-config='{"layout":"month_view"}'
+            class="inline-flex items-center bg-primary text-white pl-5 pr-3 py-2 mt-6 cursor-pointer rounded-full text-sm gap-3 group transition-colors duration-300 hover:bg-secondary focus:outline-none"
           >
             Reserve a Slot
             <span
-              class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:text-black group-hover:translate-x-1"
+              class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-all duration-300 group-hover:translate-x-1"
             >
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </span>
-          </a>
+          </button>
+
+          <!-- Modal Overlay -->
+          <div
+            id="modalOverlay"
+            class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-exit"
+          >
+            <!-- Backdrop with blur -->
+            <div
+              id="modalBackdrop"
+              class="absolute inset-0 bg-black/40 backdrop-blur-sm modal-backdrop"
+            ></div>
+
+            <!-- Modal Card -->
+            <div
+              id="modalCard"
+              class="relative z-10 w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden modal-content"
+            >
+              <!-- Header -->
+              <div
+                class="flex items-center justify-between px-6 py-4 border-b border-[#4c4c4c] bg-[#262626]"
+              >
+                <h2 class="text-lg font-semibold text-white">
+                  Schedule a Meeting
+                </h2>
+
+                <!-- Close Button -->
+                <button
+                  id="closeModalBtn"
+                  aria-label="Close modal"
+                  class="w-9 h-9 flex items-center cursor-pointer justify-center rounded-full text-gray-400 hover:text-gray-300 hover:bg-[#4c4c4c] transition-all duration-200"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Content Container -->
+              <div class="relative h-[70vh] bg-white overflow-hidden">
+                <!-- Loading Skeleton -->
+                <div
+                  id="loadingSkeleton"
+                  class="absolute inset-0 bg-white p-6 space-y-4"
+                >
+                  <div class="skeleton-pulse h-12 bg-gray-200 rounded-lg"></div>
+                  <div class="space-y-3">
+                    <div
+                      class="skeleton-pulse h-4 bg-gray-200 rounded w-3/4"
+                    ></div>
+                    <div
+                      class="skeleton-pulse h-4 bg-gray-200 rounded w-2/3"
+                    ></div>
+                    <div
+                      class="skeleton-pulse h-4 bg-gray-200 rounded w-5/6"
+                    ></div>
+                  </div>
+                  <div
+                    class="skeleton-pulse h-40 bg-gray-200 rounded-lg mt-6"
+                  ></div>
+                  <div class="space-y-3">
+                    <div
+                      class="skeleton-pulse h-4 bg-gray-200 rounded w-4/5"
+                    ></div>
+                    <div
+                      class="skeleton-pulse h-4 bg-gray-200 rounded w-3/5"
+                    ></div>
+                  </div>
+                </div>
+
+                <!-- Iframe Container -->
+                <!-- Iframe Container -->
+                <div
+                  class="w-full h-full overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"
+                >
+                  <iframe
+                    id="bookingIframe"
+                    src="https://cal.id/pranavchimulkar"
+                    class="w-full h-full border-none"
+                    loading="lazy"
+                    title="Schedule a call with us"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            const openBtn = document.getElementById("openModalBtn");
+            const modal = document.getElementById("modalOverlay");
+            const modalCard = document.getElementById("modalCard");
+            const backdrop = document.getElementById("modalBackdrop");
+            const closeBtn = document.getElementById("closeModalBtn");
+            const iframe = document.getElementById("bookingIframe");
+            const loadingSkeleton = document.getElementById("loadingSkeleton");
+
+            // Handle iframe loading
+            iframe.addEventListener("load", () => {
+              loadingSkeleton.style.opacity = "0";
+              loadingSkeleton.style.pointerEvents = "none";
+              iframe.classList.remove("loading");
+              iframe.classList.add("loaded");
+            });
+
+            function openModal() {
+              modal.classList.remove("hidden");
+              modal.classList.add("flex");
+              document.body.classList.add("overflow-hidden");
+
+              // Trigger animation with requestAnimationFrame
+              requestAnimationFrame(() => {
+                modal.classList.remove("modal-exit");
+                modal.classList.add("modal-enter");
+              });
+            }
+
+            function closeModal() {
+              modal.classList.add("modal-exit");
+              modal.classList.remove("modal-enter");
+
+              setTimeout(() => {
+                modal.classList.add("hidden");
+                modal.classList.remove("flex");
+                document.body.classList.remove("overflow-hidden");
+
+                // Reset skeleton for next open
+                loadingSkeleton.style.opacity = "1";
+                loadingSkeleton.style.pointerEvents = "auto";
+                iframe.classList.add("loading");
+                iframe.classList.remove("loaded");
+              }, 300);
+            }
+
+            // Event listeners
+            openBtn.addEventListener("click", openModal);
+            closeBtn.addEventListener("click", closeModal);
+
+            // Close on backdrop click
+            modal.addEventListener("click", (e) => {
+              if (e.target === modal || e.target === backdrop) {
+                closeModal();
+              }
+            });
+
+            // Close on Escape key
+            document.addEventListener("keydown", (e) => {
+              if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+                closeModal();
+              }
+            });
+          </script>
         </div>
 
         <!-- Right Side - Office Information Card -->
@@ -3050,7 +3302,7 @@
           }
 
           .multi-step-form * {
-            font-family: "Inter", sans-serif;
+            font-family: "Poppins", sans-serif;
           }
 
           .step-transition {
@@ -3301,7 +3553,7 @@
                     ></path>
                   </svg>
                 </div>
-                <h2 class="step-title text-2xl font-bold text-white mb-2">
+                <h2 class="step-title text-2xl font-semibold text-white mb-2">
                   Welcome! Let's get started
                 </h2>
                 <p class="step-description text-gray-400">
@@ -3393,7 +3645,7 @@
                     ></path>
                   </svg>
                 </div>
-                <h2 class="step-title text-2xl font-bold text-white mb-2">
+                <h2 class="step-title text-2xl font-semibold text-white mb-2">
                   Your contact number
                 </h2>
                 <p class="step-description text-gray-400">
@@ -3443,7 +3695,7 @@
                     ></path>
                   </svg>
                 </div>
-                <h2 class="step-title text-2xl font-bold text-white mb-2">
+                <h2 class="step-title text-2xl font-semibold text-white mb-2">
                   Email address
                 </h2>
                 <p class="step-description text-gray-400">
@@ -3493,7 +3745,7 @@
                     ></path>
                   </svg>
                 </div>
-                <h2 class="step-title text-2xl font-bold text-white mb-2">
+                <h2 class="step-title text-2xl font-semibold text-white mb-2">
                   What interests you?
                 </h2>
                 <p class="step-description text-gray-400">
@@ -3736,7 +3988,7 @@
             id="nextStepButton"
             type="button"
             disabled
-            class="action-btn w-full p-4 cursor-pointer rounded-full font-medium text-sm transition-all duration-300 button-hover mt-8 disabled:cursor-not-allowed bg-[#161f48]/50 text-gray-400"
+            class="action-btn w-full p-4 cursor-pointer rounded-full font-medium text-sm transition-all duration-300 button-hover mt-8 disabled:cursor-not-allowed bg-[#161f48]/50 text-white"
           >
             <span class="button-content flex items-center justify-center gap-2">
               <span id="buttonText">Get Started</span>
@@ -3906,7 +4158,7 @@
 
             <button
               id="confirmInfoModal"
-              class="modal-confirm cursor-pointer w-full bg-gradient-to-r from-[#fcaf1b] to-[#e09915] hover:from-[#e09915] hover:to-[#d18a0f] text-[#161f48] p-4 rounded-xl font-semibold transition-all duration-300 button-hover"
+              class="modal-confirm cursor-pointer w-full bg-gradient-to-r from-[#fcaf1b] to-[#e09915] hover:from-[#e09915] hover:to-[#d18a0f] text-white p-4 rounded-xl font-semibold transition-all duration-300 button-hover"
             >
               Perfect! Let's continue
             </button>
@@ -4002,9 +4254,9 @@
         <script>
           // ===== EMAILJS CONFIGURATION =====
           const EMAILJS_CONFIG = {
-            serviceId: "service_tls91xd",
-            templateId: "template_4w94avg",
-            publicKey: "Ei7nopPNhgExd9OLX",
+            serviceId: "service_yav8n0a",
+            templateId: "template_vybqnxh ",
+            publicKey: "2ZPd0lCWladX7_FCk",
           };
 
           // ===== FORM CONFIGURATION =====
@@ -4319,7 +4571,7 @@
                 FORM_CONFIG.formData.selectedInterest
               ),
               booking_id: bookingId,
-              to_email: "paswanniraj324@gmail.com",
+              to_email: "chimulkarfinancialservices@gmail.com",
               timestamp: new Date().toLocaleString(),
             };
 
@@ -4559,7 +4811,7 @@
         <div
           class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2"
         >
-          <p>© 2025 Chimulkar Financial Services | Financial Consultant</p>
+          <p>© 2026 Chimulkar Financial Services</p>
           <div class="flex gap-6">
             <a href="../Regulatory-Disclosure.html" class="hover:underline">
               Disclosure</a
@@ -4573,7 +4825,7 @@
             <a href="../sitemap.html" class="hover:underline">Sitemap</a>
           </div>
           <p class="text-gray-400">
-            Designed & Developed by
+            Developed & Maintained by
             <a
               href="https://github.com/Niraj-Paswan"
               target="_blank"
