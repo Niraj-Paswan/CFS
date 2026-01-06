@@ -831,14 +831,14 @@
         <!-- Sidebar (desktop only) -->
         <aside
           id="navigationPanel"
-          class="navigation-panel fixed lg:relative z-40 w-[390px] bg-white border-r border-gray-300 flex-shrink-0 lg:translate-x-0"
+          class="navigation-panel pr-8 lg:pr-0 fixed lg:relative z-40 w-[390px] bg-white border-r border-gray-300 flex-shrink-0 lg:translate-x-0"
         >
           <div
             class="p-6 border-b border-gray-300 bg-white sticky top-0 z-10 lg:pt-24 flex items-center justify-between"
           >
             <!-- Added collapse toggle button within Video Lessons header -->
-            <div class="flex items-center justify-between w-full">
-              <p class="text-[16px] lg:text-xl text-black font-semibold">
+            <div class="flex items-center justify-between w-full px-4">
+              <p class="text-[18px] lg:text-xl text-black font-semibold">
                 Video Lessons
               </p>
 
@@ -857,10 +857,10 @@
             <!-- Close button (mobile only) -->
             <button
               id="closePanelBtn"
-              class="lg:hidden bg-gray-100 rounded-full p-2 hover:bg-gray-200 transition-colors duration-200"
+              class="lg:hidden bg-gray-100 rounded-full p-2.5 hover:bg-gray-200 transition-colors duration-200"
               aria-label="Close navigation menu"
             >
-              <i data-lucide="panel-left-close" class="w-5 h-5 text-black"></i>
+              <i data-lucide="panel-left-close" class="w-6 h-6 text-black"></i>
             </button>
           </div>
 
@@ -1380,13 +1380,13 @@
                         About this video
                       </h3>
                     </div>
-                    <div class="p-5">
+                    <div class="p-3 lg:p-5">
                       <!-- Collapsible content wrapper -->
                       <div id="descriptionWrapper" class="relative p-2">
                         <p
                           id="videoDescription"
                           class="text-sm text-gray-800 leading-relaxed transition-all duration-300 ease-in-out overflow-hidden"
-                          style="max-height: 4.5em"
+                          style="max-height: 5em"
                         >
                           Learn the fundamentals of mutual fund investing,
                           including how to choose the right funds, understand
@@ -1707,7 +1707,21 @@
         sidebarCollapseBtn.addEventListener("click", toggleSidebarCollapse);
         sidebarExpandBtn.addEventListener("click", toggleSidebarCollapse);
 
+        // ------------------------------
+        // Initial mobile state (CRITICAL)
+        // ------------------------------
+        if (window.innerWidth < 1024) {
+          navPanel.classList.add("hidden-mobile");
+          mobileBackdrop.classList.add("opacity-0", "pointer-events-none");
+          document.body.style.overflow = "";
+          menuToggleBtn.style.display = "block";
+        } else {
+          menuToggleBtn.style.display = "none";
+        }
+
+        // ------------------------------
         // Toggle mobile navigation panel
+        // ------------------------------
         function toggleNavigationPanel() {
           const isHidden = navPanel.classList.contains("hidden-mobile");
 
@@ -1726,12 +1740,16 @@
           }
         }
 
-        // Event listeners for mobile navigation
+        // ------------------------------
+        // Event listeners (mobile nav)
+        // ------------------------------
         menuToggleBtn.addEventListener("click", toggleNavigationPanel);
         closePanel.addEventListener("click", toggleNavigationPanel);
         mobileBackdrop.addEventListener("click", toggleNavigationPanel);
 
-        // Category expansion functionality
+        // ------------------------------
+        // Category expand / collapse
+        // ------------------------------
         const lessonHeaders = document.querySelectorAll(".lesson-header");
 
         lessonHeaders.forEach((header) => {
@@ -1741,71 +1759,69 @@
               lessonGroup.querySelector(".category-content");
             const chevronIcon = this.querySelector(".chevron-icon");
 
-            // Toggle expanded state
             const isExpanded = categoryContent.classList.contains("expanded");
 
             if (isExpanded) {
-              // Collapse
               categoryContent.classList.remove("expanded");
               chevronIcon.classList.remove("rotated");
             } else {
-              // Expand
               categoryContent.classList.add("expanded");
               chevronIcon.classList.add("rotated");
             }
           });
         });
 
-        // Handle lesson item clicks
+        // ------------------------------
+        // Lesson item click handling
+        // ------------------------------
         const lessonItems = document.querySelectorAll("[data-key]");
 
         lessonItems.forEach((item) => {
           item.addEventListener("click", function () {
-            // Remove active state from all items
             lessonItems.forEach((i) =>
               i.classList.remove("bg-[#2D61C9]", "border-[#2D61C9]")
             );
 
-            // Add active state to clicked item
             this.classList.add("bg-[#2D61C9]", "border-[#2D61C9]");
 
-            // Get lesson key
             const lessonKey = this.getAttribute("data-key");
             console.log("Selected lesson:", lessonKey);
 
-            // Close mobile panel after selection
+            // Close sidebar on mobile after selection
             if (window.innerWidth < 1024) {
               toggleNavigationPanel();
             }
           });
         });
 
-        // Handle window resize
+        // ------------------------------
+        // Window resize handler
+        // ------------------------------
         window.addEventListener("resize", function () {
           if (window.innerWidth >= 1024) {
-            // Desktop view - ensure panel is visible and reset mobile states
+            // Desktop mode
             navPanel.classList.remove("hidden-mobile");
             mobileBackdrop.classList.add("opacity-0", "pointer-events-none");
             mobileBackdrop.classList.remove("opacity-100");
             document.body.style.overflow = "";
 
-            // Show collapse button on desktop
             sidebarCollapseBtn.classList.remove("hidden");
-            menuToggleBtn.style.display = "none"; // Hide mobile toggle on desktop
+            menuToggleBtn.style.display = "none";
           } else {
-            // Mobile view - ensure panel is hidden by default and hide collapse button
-            if (!navPanel.classList.contains("hidden-mobile")) {
-              navPanel.classList.add("hidden-mobile");
-            }
+            // Mobile mode
+            navPanel.classList.add("hidden-mobile");
+            mobileBackdrop.classList.add("opacity-0", "pointer-events-none");
+            document.body.style.overflow = "";
+
             sidebarCollapseBtn.classList.add("hidden");
             sidebarExpandBtn.classList.add("hidden");
-            menuToggleBtn.style.display = "block"; // Show mobile toggle on mobile
+            menuToggleBtn.style.display = "block";
 
-            // Reset collapsed state on mobile
+            // Reset collapsed desktop state
             if (sidebarCollapsed) {
               navPanel.classList.remove("collapsed");
               mainContent.classList.remove("ml-0");
-              mainContent.classList.add("lg:ml-80"); // Ensure correct margin for desktop
+              mainContent.classList.add("lg:ml-80");
               sidebarCollapsed = false;
             }
           }
