@@ -190,17 +190,20 @@
     </div>
 
     <header class="bg-secondary shadow-sm fixed w-full top-0 z-50">
+      <!-- Logo -->
       <div
         class="mx-6 lg:mx-12 px-2 py-3 flex items-center justify-between relative"
       >
         <!-- Logo -->
-        <a href="./index.html" class="flex items-center gap-2">
-          <img
-            src="./assets/CFS TRANSPARENT.png"
-            class="h-12 w-auto"
-            alt="Chimulkar Financial Services Logo"
-          />
-        </a>
+        <div class="flex items-center gap-2">
+          <a href="/" aria-label="Go to Home">
+            <img
+              src="../assets/CFS TRANSPARENT.png"
+              class="h-12 w-auto"
+              alt="Chimulkar Financial Services Logo"
+            />
+          </a>
+        </div>
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex gap-10 text-[16px] font-medium items-center">
@@ -253,9 +256,9 @@
                 href="../foundation.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="heart-handshake" class="w-4 h-4"></i> Foundation
+                <i data-lucide="heart-handshake" class="w-5 h-5"></i> Foundation
               </a>
             </div>
           </div>
@@ -274,40 +277,40 @@
                 href="./services/mutual-funds.html"
                 class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="layers" class="w-5 h-5"></i> Mutual Funds
+                <i data-lucide="chart-pie" class="w-5 h-5"></i> Mutual Funds
               </a>
               <a
                 href="./services/retirement-planning.html"
                 class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="calendar-check" class="w-5 h-5"></i> Retirement
+                <i data-lucide="backpack" class="w-5 h-5"></i> Retirement
                 Planning
               </a>
               <a
                 href="./services/tax-planning.html"
                 class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="file-text" class="w-5 h-5"></i> Tax Planning
+                <i data-lucide="calculator" class="w-5 h-5"></i> Tax Planning
               </a>
               <a
                 href="./services/insurance-planning.html"
                 class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="shield-check" class="w-5 h-5"></i> Insurance
+                <i data-lucide="umbrella" class="w-5 h-5"></i> Insurance
                 Planning
               </a>
               <a
                 href="./services/education-savings.html"
                 class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                <i data-lucide="piggy-bank" class="w-5 h-5"></i>
                 Education Savings
               </a>
               <a
                 href="./services/legacy-planning.html"
                 class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="archive" class="w-5 h-5"></i> Legacy Planning
+                <i data-lucide="hand-coins" class="w-5 h-5"></i> Legacy Planning
               </a>
             </div>
           </div>
@@ -317,7 +320,7 @@
             <button
               class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
             >
-              Calculator <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              Calculators <i data-lucide="chevron-down" class="w-4 h-4"></i>
             </button>
             <div
               class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
@@ -356,29 +359,28 @@
               class="flex items-center gap-1 text-white hover:text-primary transition cursor-pointer"
             >
               Financial Literacy
-              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              <i data-lucide="chevron-down" class="w-5 h-5"></i>
             </button>
             <div
               class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
             >
               <a
-                href="../video-lessons.html"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
-              >
-                <i data-lucide="play-circle" class="w-5 h-5"></i> Video Lessons
-              </a>
-              <a
                 href="../financial-literacy.html"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-primary hover:text-white"
               >
-                <i data-lucide="book-open" class="w-5 h-5"></i> Financial
-                Literacy
+                <i data-lucide="book-open" class="w-5 h-5"></i> Basics
               </a>
               <a
                 href="../workshops.html"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+                class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
               >
-                <i data-lucide="presentation" class="w-5 h-5"></i> Workshop
+                <i data-lucide="presentation" class="w-5 h-5"></i> Workshops
+              </a>
+              <a
+                href="../video-lessons.html"
+                class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+              >
+                <i data-lucide="play-circle" class="w-5 h-5"></i> Video Lessons
               </a>
             </div>
           </div>
@@ -387,7 +389,7 @@
           <a
             href="../nri-corner.html"
             class="text-white hover:text-primary transition"
-            >NRI Corner</a
+            >NRI Hub</a
           >
           <a
             href="./contact-us.html"
@@ -403,8 +405,8 @@
 
         <!-- CTA Button -->
         <a
-          href="../financial-assessment.html"
-          class="hidden md:inline-flex items-center border border-transparent bg-primary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+          href="./financial-assessment.html"
+          class="hidden md:inline-flex items-center border border-transparent bg-primary text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
         >
           Get Free Assessment
           <span
@@ -506,7 +508,7 @@
 
           <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
             <a
-              href="./about-us.html"
+              href="../about-us.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
             >
               <i data-lucide="building-2" class="w-4 h-4"></i> About Us
@@ -544,7 +546,7 @@
               href="../foundation.html"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-lg"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white rounded-lg"
             >
               <i data-lucide="heart-handshake" class="w-4 h-4"></i> Foundation
             </a>
@@ -571,41 +573,37 @@
               href="./services/mutual-funds.html"
               class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
             >
-              <i data-lucide="layers" class="w-4 h-4"></i> Mutual Funds
+              <i data-lucide="chart-pie" class="w-4 h-4"></i> Mutual Funds
             </a>
             <a
               href="./services/retirement-planning.html"
               class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
             >
-              <i data-lucide="calendar-check" class="w-4 h-4"></i> Retirement
-              Planning
+              <i data-lucide="backpack" class="w-4 h-4"></i> Retirement Planning
             </a>
             <a
               href="./services/tax-planning.html"
               class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
             >
-              <i data-lucide="file-text" class="w-4 h-4"></i> Tax Planning
+              <i data-lucide="calculator" class="w-4 h-4"></i> Tax Planning
             </a>
             <a
               href="./services/insurance-planning.html"
               class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
             >
-              <i data-lucide="shield-check" class="w-4 h-4"></i> Insurance
-              Planning
+              <i data-lucide="umbrella" class="w-4 h-4"></i> Insurance Planning
             </a>
             <a
               href="./services/education-savings.html"
               class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
             >
-              <i data-lucide="graduation-cap" class="w-4 h-4"></i> Education
-              Savings
+              <i data-lucide="piggy-bank" class="w-4 h-4"></i> Education Savings
             </a>
-
             <a
               href="./services/legacy-planning.html"
               class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary hover:text-white transition"
             >
-              <i data-lucide="archive" class="w-4 h-4"></i> Legacy Planning
+              <i data-lucide="hand-coins" class="w-4 h-4"></i> Legacy Planning
             </a>
           </div>
         </details>
@@ -625,26 +623,26 @@
           </summary>
           <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
             <a
-              href="./calculators/sip-calculator.html"
+              href="../calculators/sip-calculator.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
             >
               <i data-lucide="calculator" class="w-4 h-4"></i> SIP Calculator
             </a>
             <a
-              href="./calculators/lump-sump-calculator.html"
+              href="../calculators/lump-sump-calculator.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
             >
               <i data-lucide="percent" class="w-4 h-4"></i> Lump Sum
             </a>
 
             <a
-              href="./calculators/swp-calculator.html"
+              href="../calculators/swp-calculator.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
             >
               <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
             </a>
             <a
-              href="./calculators/inflation-calculator.html"
+              href="../calculators/inflation-calculator.html"
               class="flex items-center gap-3 px-4 py-2 hover:bg-primary hover:text-white rounded-lg cursor-pointer"
             >
               <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
@@ -669,22 +667,22 @@
           </summary>
           <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
             <a
-              href="../video-lessons.html"
-              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
-            >
-              <i data-lucide="play-circle" class="w-4 h-4"></i> Video Lessons
-            </a>
-            <a
               href="../financial-literacy.html"
               class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-primary hover:text-white"
             >
-              <i data-lucide="book-open" class="w-4 h-4"></i> Financial Literacy
+              <i data-lucide="book-open" class="w-4 h-4"></i> Basics
             </a>
             <a
               href="../workshops.html"
               class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
             >
-              <i data-lucide="presentation" class="w-4 h-4"></i> Workshop
+              <i data-lucide="presentation" class="w-4 h-4"></i> Workshops
+            </a>
+            <a
+              href="../video-lessons.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-primary hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="play-circle" class="w-4 h-4"></i> Video Lessons
             </a>
           </div>
         </details>
@@ -694,10 +692,10 @@
           href="../nri-corner.html"
           class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
         >
-          <i data-lucide="globe" class="w-4 h-4"></i> NRI Corner
+          <i data-lucide="globe" class="w-4 h-4"></i> NRI Hub
         </a>
         <a
-          href="./contact-us.html"
+          href="../contact-us.html"
           class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
         >
           <i data-lucide="phone-call" class="w-4 h-4"></i> Contact Us
@@ -713,8 +711,19 @@
       <!-- Mobile CTA button at bottom -->
       <div class="p-6">
         <a
+          href="https://app.chimulkar.com/login"
+          class="inline-flex items-center group bg-transparent hover:bg-primary border border-black hover:border-primary mb-6 text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition"
+        >
+          Log in or Create Account
+          <span
+            class="bg-black text-white group-hover:bg-white group-hover:text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+        <a
           href="../financial-assessment.html"
-          class="inline-flex items-center bg-primary text-secondary pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:bg-secondary hover:text-white"
+          class="inline-flex items-center bg-primary text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:bg-secondary hover:text-white"
         >
           Get Free Assessment
           <span
@@ -1624,27 +1633,9 @@
     <!-- FOOTER SECTION - Company information and links -->
     <!-- =================================================================== -->
     <footer class="w-full bg-white border-t border-gray-200 lg:mb-0">
-      <!-- Top Nav Links -->
-      <div
-        class="max-w-7xl hidden mx-auto px-6 py-6 flex flex-wrap justify-center md:justify-between gap-6 text-sm text-blueeborder-bluee"
-      >
-        <a href="/about" class="hover:text-primary transition">About Us</a>
-        <a href="/services" class="hover:text-primary transition">Services</a>
-        <a href="/calculators" class="hover:text-primary transition"
-          >Calculators</a
-        >
-        <a href="/financial-literacy" class="hover:text-primary transition"
-          >Financial Literacy</a
-        >
-        <a href="/nri-corner" class="hover:text-primary transition"
-          >NRI Corner</a
-        >
-        <a href="/contact" class="hover:text-primary transition">Contact Us</a>
-      </div>
-
       <!-- Middle Section -->
       <div
-        class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+        class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
       >
         <!-- Left: Info -->
         <div class="space-y-4">
@@ -1654,108 +1645,110 @@
             rel="noopener"
             class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
           >
-            <i data-lucide="map-pin" class="w-5 h-5 text-primary"></i> Our
-            Office
+            <i data-lucide="map-pin" class="w-5 h-5 text-primary"></i>
+            <span>Our Office</span>
           </a>
+
           <a
-            href="mailto:chimulkarfinancialservices@gmail.com"
+            href="mailto:invest@chimulkar.com"
             class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
           >
             <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
-            chimulkarfinancialservices@gmail.com
+            <span>invest@chimulkar.com</span>
           </a>
+
           <a
             href="tel:+918208031927"
             class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
           >
             <i data-lucide="phone" class="w-5 h-5 text-primary"></i>
-            +91 82080 31927
+            <span>+91 82080 31927</span>
           </a>
         </div>
 
         <!-- Center: Logo -->
-        <div class="flex flex-col items-center">
-          <img
-            src="./assets/Logo.svg"
-            alt="Chimulkar Financial Services"
-            class="w-40 h-auto mb-4"
-          />
-          <p class="text-gray-800 text-sm">Chimulkar Financial Services</p>
+        <div class="flex items-center justify-center">
+          <a href="/" aria-label="Go to Home">
+            <img
+              src="../assets/Logo.svg"
+              alt="Chimulkar Financial Services"
+              class="w-40 h-auto"
+            />
+          </a>
         </div>
 
         <!-- Right: Reviews & Social -->
         <div class="flex flex-col items-center md:items-end space-y-4">
-          <p class="text-gray-800">10+ Five-Star Google Reviews</p>
-          <div class="flex gap-1">
-            <i
-              data-lucide="star"
-              class="w-5 h-5 fill-yellow-400 text-yellow-400"
-            ></i>
-            <i
-              data-lucide="star"
-              class="w-5 h-5 fill-yellow-400 text-yellow-400"
-            ></i>
-            <i
-              data-lucide="star"
-              class="w-5 h-5 fill-yellow-400 text-yellow-400"
-            ></i>
-            <i
-              data-lucide="star"
-              class="w-5 h-5 fill-yellow-400 text-yellow-400"
-            ></i>
-            <i
-              data-lucide="star"
-              class="w-5 h-5 fill-yellow-400 text-yellow-400"
-            ></i>
-          </div>
+          <p class="text-gray-800">© 2025 Chimulkar Financial Services</p>
+          <p class="text-gray-800">Follow us on</p>
+
           <div class="flex gap-4">
             <a
-              href="https://www.instagram.com/chimulkarfinancialservices?utm_source=ig_web_button_share_sheet&igsh=MWZxMnFsZTY4OHNmeg=="
+              href="https://www.instagram.com/chimulkarfinancialservices"
               target="_blank"
+              rel="noopener noreferrer"
               aria-label="Instagram"
-              class="bg-yellow-100 rounded-full p-2 hover:bg-yellow-200 transition"
+              class="bg-primary rounded-full p-2 hover:bg-[#fcaf1b]/80 transition"
             >
-              <i data-lucide="instagram" class="w-5 h-5 text-gray-800"></i>
+              <i data-lucide="instagram" class="w-5 h-5 text-black"></i>
             </a>
+
             <a
               href="https://www.youtube.com/@ChimulkarFinancialServices"
               target="_blank"
-              aria-label="YouTube"
               rel="noopener noreferrer"
-              class="bg-yellow-100 rounded-full p-2 hover:bg-yellow-200 transition"
+              aria-label="YouTube"
+              class="bg-primary rounded-full p-2 hover:bg-[#fcaf1b]/80 transition"
             >
-              <i data-lucide="youtube" class="w-5 h-5 text-gray-800"></i>
+              <i data-lucide="youtube" class="w-5 h-5 text-black"></i>
             </a>
           </div>
         </div>
       </div>
 
       <!-- Bottom Bar -->
-      <div class="bg-[#161f48] text-gray-100 text-xs text-center py-4">
+      <div class="bg-[#161f48] text-gray-100 text-xs py-4">
         <div
-          class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2"
+          class="max-w-7xl mx-auto px-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6 text-center md:text-left"
         >
-          <p>© 2026 Chimulkar Financial Services</p>
-          <div class="flex gap-6">
-            <a href="../Regulatory-Disclosure.html" class="hover:underline">
-              Disclosure</a
-            >
-            <a href="../Terms&Conditions.html" class="hover:underline"
-              >Terms & Conditions</a
-            >
-            <a href="../Privacy-policy.html" class="hover:underline"
-              >Privacy Policy</a
-            >
-            <a href="../sitemap.html" class="hover:underline">Sitemap</a>
-          </div>
+          <!-- Left -->
           <p class="text-gray-400">
-            Developed & Maintained by
+            Designed by
+            <a
+              href="https://www.instagram.com/atc.work?igsh=NjZuY24wN3Bodjhr"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-white hover:underline"
+            >
+              ~All Things Creative
+            </a>
+          </p>
+
+          <!-- Center Links -->
+          <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            <a href="../Regulatory-Disclosure.html" class="hover:underline">
+              Disclosure
+            </a>
+            <a href="../Terms&Conditions.html" class="hover:underline">
+              Terms & Conditions
+            </a>
+            <a href="../Privacy-policy.html" class="hover:underline">
+              Privacy Policy
+            </a>
+            <a href="../sitemap.html" class="hover:underline"> Sitemap </a>
+          </div>
+
+          <!-- Right -->
+          <p class="text-gray-400">
+            Developed &amp; Maintained by
             <a
               href="https://imnirajdev.vercel.app/"
               target="_blank"
+              rel="noopener noreferrer"
               class="text-white hover:underline"
-              >~Niraj Paswan</a
             >
+              ~Niraj Paswan
+            </a>
           </p>
         </div>
       </div>
