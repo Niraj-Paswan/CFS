@@ -405,7 +405,7 @@
         <!-- CTA Button -->
         <a
           href="./financial-assessment.html"
-          class="hidden md:inline-flex items-center border border-transparent bg-primary text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+          class="hidden md:inline-flex items-center border font-semibold border-transparent font-semibold bg-primary text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
         >
           Get Free Assessment
           <span
@@ -427,19 +427,41 @@
 
     <!-- Announcement Bar - Positioned below navbar -->
     <div
-      class="fixed top-[72px] w-full h-12 bg-strokes z-40 flex items-center justify-center px-4 text-sm"
+      class="fixed top-[72px] w-full h-12 bg-strokes z-40 flex items-center justify-center px-4 text-sm gap-6"
     >
       <a
-        href="../financial-assessment.html"
-        class="flex items-center font-semibold text-black hover:underline"
+        href="https://app.chimulkar.com/login"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden group lg:inline-flex items-center gap-2 font-semibold text-black hover:underline"
       >
-        Get a no cost, no commitment assessment
+        <span>Login or Create a New Account</span>
+
+        <span
+          class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform duration-200 group-hover:translate-x-1"
+        >
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </span>
       </a>
+
       <a
         href="../about-us.html"
-        class="hidden lg:inline-flex font-semibold items-center text-white mr-2"
+        class="hidden group lg:inline-flex items-center gap-2 font-semibold text-white hover:underline"
       >
-        <span class="text-black mx-2">|</span> Celebrating 40 Years of Trust
+        <span>Celebrating 40+ Years of Trust</span>
+
+        <span
+          class="bg-bluee text-white rounded-full p-1.5 flex items-center justify-center transition-transform duration-200 group-hover:translate-x-1"
+        >
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </span>
+      </a>
+
+      <a
+        href="../financial-assessment.html"
+        class="group inline-flex lg:hidden items-center gap-2 font-semibold text-black hover:underline"
+      >
+        <span>Get a no cost, no commitment assessment</span>
       </a>
     </div>
 
@@ -460,7 +482,7 @@
       <div class="p-6 flex flex-col gap-4">
         <!-- Mobile menu header with logo and close button -->
         <div class="flex justify-between items-center mb-4">
-          <img src="../assets/Logo.svg" class="h-10" alt="Logo" />
+          <img src="../assets/logo.png" class="h-10" alt="Logo" />
           <button
             id="closeMenu"
             class="p-2 bg-gray-50 text-secondary border border-gray-300 rounded-full hover:bg-gray-100 hover:cursor-pointer"
@@ -712,7 +734,7 @@
       <div class="p-6">
         <a
           href="https://app.chimulkar.com/login"
-          class="inline-flex items-center group bg-transparent hover:bg-primary border border-black hover:border-primary mb-6 text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition"
+          class="inline-flex items-center group bg-transparent font-semibold hover:bg-primary border border-black hover:border-primary mb-6 text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition"
         >
           Log in or Create Account
           <span
@@ -723,7 +745,7 @@
         </a>
         <a
           href="../financial-assessment.html"
-          class="inline-flex items-center bg-primary text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:bg-secondary hover:text-white"
+          class="inline-flex items-center bg-primary font-semibold text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:bg-secondary hover:text-white"
         >
           Get Free Assessment
           <span
@@ -778,9 +800,10 @@
           control of your money and build a secure future.
         </p>
 
-        <a
-          href="#"
-          class="flex w-fit items-center font-semibold border border-transparent bg-primary text-black pl-5 pr-3 py-2 lg:py-2.5 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+        <button
+          type="button"
+          id="openModalBtn"
+          class="flex w-fit items-center cursor-pointer font-semibold border border-transparent font-semibold bg-primary text-black pl-5 pr-3 py-2 lg:py-2.5 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
         >
           Book a Workshop
           <span
@@ -788,7 +811,165 @@
           >
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </span>
-        </a>
+        </button>
+
+        <!-- Modal Overlay -->
+        <div
+          id="modalOverlay"
+          class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-exit"
+        >
+          <!-- Backdrop with blur -->
+          <div
+            id="modalBackdrop"
+            class="absolute inset-0 bg-black/40 backdrop-blur-sm modal-backdrop"
+          ></div>
+
+          <!-- Modal Card -->
+          <div
+            id="modalCard"
+            class="relative z-10 w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden modal-content"
+          >
+            <!-- Header -->
+            <div
+              class="flex items-center justify-between px-6 py-4 border-b border-[#4c4c4c] bg-[#262626]"
+            >
+              <h2 class="text-lg font-semibold text-white">Book a Workshop</h2>
+
+              <!-- Close Button -->
+              <button
+                id="closeModalBtn"
+                aria-label="Close modal"
+                class="w-9 h-9 flex items-center cursor-pointer justify-center rounded-full text-gray-400 hover:text-gray-300 hover:bg-[#4c4c4c] transition-all duration-200"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Content Container -->
+            <div class="relative h-[70vh] bg-white overflow-hidden">
+              <!-- Loading Skeleton -->
+              <div
+                id="loadingSkeleton"
+                class="absolute inset-0 bg-white p-6 space-y-4"
+              >
+                <div class="skeleton-pulse h-12 bg-gray-200 rounded-lg"></div>
+                <div class="space-y-3">
+                  <div
+                    class="skeleton-pulse h-4 bg-gray-200 rounded w-3/4"
+                  ></div>
+                  <div
+                    class="skeleton-pulse h-4 bg-gray-200 rounded w-2/3"
+                  ></div>
+                  <div
+                    class="skeleton-pulse h-4 bg-gray-200 rounded w-5/6"
+                  ></div>
+                </div>
+                <div
+                  class="skeleton-pulse h-40 bg-gray-200 rounded-lg mt-6"
+                ></div>
+                <div class="space-y-3">
+                  <div
+                    class="skeleton-pulse h-4 bg-gray-200 rounded w-4/5"
+                  ></div>
+                  <div
+                    class="skeleton-pulse h-4 bg-gray-200 rounded w-3/5"
+                  ></div>
+                </div>
+              </div>
+
+              <!-- Iframe Container -->
+              <!-- Iframe Container -->
+              <div
+                class="w-full h-full overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"
+              >
+                <iframe
+                  id="bookingIframe"
+                  src="https://cal.id/pranavchimulkar/workshop-enquiry?layout=month_view"
+                  class="w-full h-full border-none"
+                  loading="lazy"
+                  title="Schedule a call with us"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          const openBtn = document.getElementById("openModalBtn");
+          const modal = document.getElementById("modalOverlay");
+          const modalCard = document.getElementById("modalCard");
+          const backdrop = document.getElementById("modalBackdrop");
+          const closeBtn = document.getElementById("closeModalBtn");
+          const iframe = document.getElementById("bookingIframe");
+          const loadingSkeleton = document.getElementById("loadingSkeleton");
+
+          // Handle iframe loading
+          iframe.addEventListener("load", () => {
+            loadingSkeleton.style.opacity = "0";
+            loadingSkeleton.style.pointerEvents = "none";
+            iframe.classList.remove("loading");
+            iframe.classList.add("loaded");
+          });
+
+          function openModal() {
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            document.body.classList.add("overflow-hidden");
+
+            // Trigger animation with requestAnimationFrame
+            requestAnimationFrame(() => {
+              modal.classList.remove("modal-exit");
+              modal.classList.add("modal-enter");
+            });
+          }
+
+          function closeModal() {
+            modal.classList.add("modal-exit");
+            modal.classList.remove("modal-enter");
+
+            setTimeout(() => {
+              modal.classList.add("hidden");
+              modal.classList.remove("flex");
+              document.body.classList.remove("overflow-hidden");
+
+              // Reset skeleton for next open
+              loadingSkeleton.style.opacity = "1";
+              loadingSkeleton.style.pointerEvents = "auto";
+              iframe.classList.add("loading");
+              iframe.classList.remove("loaded");
+            }, 300);
+          }
+
+          // Event listeners
+          openBtn.addEventListener("click", openModal);
+          closeBtn.addEventListener("click", closeModal);
+
+          // Close on backdrop click
+          modal.addEventListener("click", (e) => {
+            if (e.target === modal || e.target === backdrop) {
+              closeModal();
+            }
+          });
+
+          // Close on Escape key
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+              closeModal();
+            }
+          });
+        </script>
       </div>
     </section>
 
@@ -906,7 +1087,7 @@
           </p>
           <a
             href="#"
-            class="w-fit inline-flex mt-8 items-center justify-center border border-transparent bg-primary hover:bg-secondary hover:border-secondary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition-transform hover:opacity-90 mx-auto lg:mx-0"
+            class="w-fit inline-flex mt-8 items-center justify-center border border-transparent font-semibold bg-primary hover:bg-secondary hover:border-secondary text-white pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition-transform hover:opacity-90 mx-auto lg:mx-0"
             data-aos="zoom-in"
             data-aos-duration="800"
             data-aos-delay="300"
@@ -1224,9 +1405,11 @@
         </p>
 
         <!-- Button -->
-        <a
-          href="#"
-          class="flex w-fit items-center font-semibold border border-transparent bg-primary text-black pl-5 pr-3 py-2 lg:py-2.5 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+        <button
+          type="button"
+          id="openModalBtn"
+          onclick="openModal()"
+          class="flex w-fit items-center font-semibold border border-transparent font-semibold bg-primary text-black pl-5 pr-3 py-2 lg:py-2.5 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
           data-aos="zoom-in"
           data-aos-delay="400"
         >
@@ -1236,7 +1419,7 @@
           >
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </span>
-        </a>
+        </button>
       </div>
     </section>
 
@@ -1633,7 +1816,7 @@
     <!-- =================================================================== -->
     <!-- FOOTER SECTION - Company information and links -->
     <!-- =================================================================== -->
-    <footer class="w-full bg-white border-t border-gray-200 lg:mb-0">
+    <footer class="w-full bg-secondary border-t border-gray-200 mb-12 lg:mb-0">
       <!-- Middle Section -->
       <div
         class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
@@ -1644,7 +1827,7 @@
             href="https://www.google.com/maps/dir/?api=1&destination=15.4038977,74.0086659"
             target="_blank"
             rel="noopener"
-            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+            class="flex items-center justify-center md:justify-start gap-2 text-white"
           >
             <i data-lucide="map-pin" class="w-5 h-5 text-primary"></i>
             <span>Our Office</span>
@@ -1652,7 +1835,7 @@
 
           <a
             href="mailto:invest@chimulkar.com"
-            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+            class="flex items-center justify-center md:justify-start gap-2 text-white"
           >
             <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
             <span>invest@chimulkar.com</span>
@@ -1660,7 +1843,7 @@
 
           <a
             href="tel:+918208031927"
-            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+            class="flex items-center justify-center md:justify-start gap-2 text-white"
           >
             <i data-lucide="phone" class="w-5 h-5 text-primary"></i>
             <span>+91 82080 31927</span>
@@ -1671,7 +1854,7 @@
         <div class="flex items-center justify-center">
           <a href="/" aria-label="Go to Home">
             <img
-              src="../assets/Logo.svg"
+              src="../assets/CFS TRANSPARENT.png"
               alt="Chimulkar Financial Services"
               class="w-40 h-auto"
             />
@@ -1680,8 +1863,8 @@
 
         <!-- Right: Reviews & Social -->
         <div class="flex flex-col items-center md:items-end space-y-4">
-          <p class="text-gray-800">© 2025 Chimulkar Financial Services</p>
-          <p class="text-gray-800">Follow us on</p>
+          <p class="text-white">© 2026 Chimulkar Financial Services</p>
+          <p class="text-white">Follow us on</p>
 
           <div class="flex gap-4">
             <a
@@ -1689,7 +1872,7 @@
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              class="bg-primary rounded-full p-2 hover:bg-primary/10 transition"
+              class="bg-primary rounded-full p-2 hover:bg-primary/80 transition"
             >
               <i data-lucide="instagram" class="w-5 h-5 text-black"></i>
             </a>
@@ -1699,7 +1882,7 @@
               target="_blank"
               rel="noopener noreferrer"
               aria-label="YouTube"
-              class="bg-primary rounded-full p-2 hover:bg-primary/10 transition"
+              class="bg-primary rounded-full p-2 hover:bg-primary/80 transition"
             >
               <i data-lucide="youtube" class="w-5 h-5 text-black"></i>
             </a>
@@ -1708,7 +1891,7 @@
       </div>
 
       <!-- Bottom Bar -->
-      <div class="bg-[#161f48] text-gray-100 text-xs py-4">
+      <div class="bg-black text-gray-100 text-xs py-4">
         <div
           class="max-w-7xl mx-auto px-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6 text-center md:text-left"
         >
@@ -1741,7 +1924,7 @@
 
           <!-- Right -->
           <p class="text-gray-400">
-            Developed &amp; Maintained by
+            Developed by
             <a
               href="https://imnirajdev.vercel.app/"
               target="_blank"
