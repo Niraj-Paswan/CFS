@@ -254,7 +254,7 @@
         <!-- Call-to-Action Button - Desktop only -->
         <a
           href="#"
-          class="hidden md:inline-flex items-center border border-transparent bg-lightred text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+          class="hidden md:inline-flex items-center font-semibold border border-transparent bg-lightred text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
         >
           Join the Movement
           <span
@@ -303,7 +303,7 @@
         <!-- Mobile navigation links -->
         <a
           href="#about-us"
-          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100/10 cursor-pointer"
         >
           About Us
         </a>
@@ -311,26 +311,26 @@
         <!-- Additional mobile navigation links -->
         <a
           href="#impcat-areas"
-          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100/10 cursor-pointer"
         >
           Impact Areas
         </a>
         <a
           href="#leadership"
-          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100/10 cursor-pointer"
         >
           Leadership
         </a>
         <a
           href="#social"
-          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100/10 cursor-pointer"
         >
           Social Channels
         </a>
 
         <a
           href="#contact-us"
-          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100/10 cursor-pointer"
         >
           Contact Us
         </a>
@@ -340,7 +340,7 @@
       <div class="p-6">
         <a
           href="#"
-          class="inline-flex items-center border border-transparent bg-lightred text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+          class="inline-flex items-center border font-semibold border-transparent bg-lightred text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
         >
           Join the Movement
           <span
@@ -396,7 +396,7 @@
 
           <a
             href="#"
-            class="inline-flex mt-6 items-center bg-white text-reds px-6 py-3 rounded-full text-sm gap-3 transition hover:opacity-90"
+            class="inline-flex mt-6 font-semibold items-center bg-white text-reds px-6 py-3 rounded-full text-sm gap-3 transition hover:opacity-90"
             data-aos="zoom-in"
             data-aos-delay="300"
           >
@@ -797,7 +797,7 @@
           <!-- Stat 2 -->
           <a
             href="#"
-            class="flex-1 flex flex-col items-center justify-center bg-white px-16 py-6 rounded-4xl w-64 md:w-auto"
+            class="hidden flex-1 flex flex-col items-center justify-center bg-white px-16 py-6 rounded-4xl w-64 md:w-auto"
             data-aos="zoom-in"
             data-aos-delay="100"
           >
@@ -987,29 +987,9 @@
     <!-- FOOTER SECTION - Company information and links -->
     <!-- =================================================================== -->
     <footer class="w-full bg-reds text-white border-t border-gray-200">
-      <!-- Top Nav Links -->
-      <div
-        class="max-w-7xl mx-auto px-6 py-6 flex flex-wrap justify-center md:justify-between gap-6 text-sm text-white"
-      >
-        <a href="#about-us" class="hover:text-lightred transition">About Us</a>
-        <a href="#impcat-areas" class="hover:text-lightred transition"
-          >Impact Areas</a
-        >
-        <a href="#leadership" class="hover:text-lightred transition"
-          >Leadership</a
-        >
-        <a href="#social" class="hover:text-lightred transition"
-          >Social Channels</a
-        >
-
-        <a href="#contact-us" class="hover:text-lightred transition"
-          >Contact Us</a
-        >
-      </div>
-
       <!-- Middle Section -->
       <div
-        class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+        class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
       >
         <!-- Left: Info -->
         <div class="space-y-4">
@@ -1019,112 +999,114 @@
             rel="noopener"
             class="flex items-center justify-center md:justify-start gap-2 text-white"
           >
-            <i data-lucide="map-pin" class="w-5 h-5 text-lightred"></i> Our
-            Office
+            <i data-lucide="map-pin" class="w-5 h-5 text-lightred"></i>
+            <span>Our Office</span>
           </a>
+
           <a
             href="mailto:invest@chimulkar.com"
             class="flex items-center justify-center md:justify-start gap-2 text-white"
           >
             <i data-lucide="mail" class="w-5 h-5 text-lightred"></i>
-            invest@chimulkar.com
+            <span>invest@chimulkar.com</span>
           </a>
+
           <a
             href="tel:+918208031927"
             class="flex items-center justify-center md:justify-start gap-2 text-white"
           >
             <i data-lucide="phone" class="w-5 h-5 text-lightred"></i>
-            +91 82080 31927
+            <span>+91 82080 31927</span>
           </a>
         </div>
 
         <!-- Center: Logo -->
-        <div class="flex flex-col items-center">
-          <img
-            src="./assets/foundation-logo.png"
-            alt="Chimulkar Financial Services"
-            class="w-40 h-auto mb-4"
-          />
+        <div class="flex items-center justify-center">
+          <a href="/" aria-label="Go to Home">
+            <img
+              src="../assets/foundation-logo.png"
+              alt="Chimulkar Financial Services"
+              class="w-40 h-auto"
+            />
+          </a>
         </div>
 
         <!-- Right: Reviews & Social -->
         <div class="flex flex-col items-center md:items-end space-y-4">
-          <p class="text-white">10+ Five-Star Google Reviews</p>
-          <div class="flex gap-1">
-            <i
-              data-lucide="star"
-              class="w-5 h-5 fill-yellow-400 text-yellow-400"
-            ></i>
-            <i
-              data-lucide="star"
-              class="w-5 h-5 fill-yellow-400 text-yellow-400"
-            ></i>
-            <i
-              data-lucide="star"
-              class="w-5 h-5 fill-yellow-400 text-yellow-400"
-            ></i>
-            <i
-              data-lucide="star"
-              class="w-5 h-5 fill-yellow-400 text-yellow-400"
-            ></i>
-            <i
-              data-lucide="star"
-              class="w-5 h-5 fill-yellow-400 text-yellow-400"
-            ></i>
-          </div>
+          <p class="text-white">© 2026 Chimulkar Foundation</p>
+          <p class="text-white">Follow us on</p>
+
           <div class="flex gap-4">
             <a
-              href="https://www.instagram.com/chimulkarfinancialservices?utm_source=ig_web_button_share_sheet&igsh=MWZxMnFsZTY4OHNmeg=="
+              href="https://www.instagram.com/chimulkarfinancialservices"
               target="_blank"
+              rel="noopener noreferrer"
               aria-label="Instagram"
-              class="bg-yellow-100 rounded-full p-2 hover:bg-yellow-200 transition"
+              class="bg-lightred rounded-full p-2 hover:bg-lightred/80 transition"
             >
-              <i data-lucide="instagram" class="w-5 h-5 text-gray-800"></i>
+              <i data-lucide="instagram" class="w-5 h-5 text-black"></i>
             </a>
+
             <a
               href="https://www.youtube.com/@ChimulkarFinancialServices"
               target="_blank"
-              aria-label="YouTube"
               rel="noopener noreferrer"
-              class="bg-yellow-100 rounded-full p-2 hover:bg-yellow-200 transition"
+              aria-label="YouTube"
+              class="bg-lightred rounded-full p-2 hover:bg-lightred/80 transition"
             >
-              <i data-lucide="youtube" class="w-5 h-5 text-gray-800"></i>
+              <i data-lucide="youtube" class="w-5 h-5 text-black"></i>
             </a>
           </div>
         </div>
       </div>
 
       <!-- Bottom Bar -->
-      <div class="bg-darkcrimson text-gray-100 text-xs text-center py-4">
+      <div class="bg-black text-gray-100 text-xs py-4">
         <div
-          class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2"
+          class="max-w-7xl mx-auto px-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6 text-center md:text-left"
         >
-          <p>© 2025 - 2026 Chimulkar Foundation: Legacy Forward</p>
-          <div class="flex gap-6">
-            <a href="../Regulatory-Disclosure.html" class="hover:underline">
-              Disclosure</a
-            >
-            <a href="../Terms&Conditions.html" class="hover:underline"
-              >Terms & Conditions</a
-            >
-            <a href="../Privacy-policy.html" class="hover:underline"
-              >Privacy Policy</a
-            >
-            <a href="../sitemap.html" class="hover:underline">Sitemap</a>
-          </div>
+          <!-- Left -->
           <p class="text-gray-400">
-            Developed & Maintained by
+            Designed by
+            <a
+              href="https://www.instagram.com/atc.work?igsh=NjZuY24wN3Bodjhr"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-white hover:underline"
+            >
+              ~All Things Creative
+            </a>
+          </p>
+
+          <!-- Center Links -->
+          <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            <a href="../Regulatory-Disclosure.html" class="hover:underline">
+              Disclosure
+            </a>
+            <a href="../Terms&Conditions.html" class="hover:underline">
+              Terms & Conditions
+            </a>
+            <a href="../Privacy-policy.html" class="hover:underline">
+              Privacy Policy
+            </a>
+            <a href="../sitemap.html" class="hover:underline"> Sitemap </a>
+          </div>
+
+          <!-- Right -->
+          <p class="text-gray-400">
+            Developed by
             <a
               href="https://imnirajdev.vercel.app/"
               target="_blank"
+              rel="noopener noreferrer"
               class="text-white hover:underline"
-              >~Niraj Paswan</a
             >
+              ~Niraj Paswan
+            </a>
           </p>
         </div>
       </div>
     </footer>
-
     <!-- =================================================================== -->
     <!-- EXTERNAL LIBRARIES AND SCRIPTS -->
     <!-- =================================================================== -->
