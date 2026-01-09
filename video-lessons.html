@@ -490,7 +490,7 @@
         <!-- CTA Button -->
         <a
           href="./financial-assessment.html"
-          class="hidden md:inline-flex items-center border border-transparent bg-primary text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
+          class="hidden md:inline-flex items-center border border-transparent font-semibold bg-primary text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-primary"
         >
           Get Free Assessment
           <span
@@ -545,7 +545,7 @@
       <div class="p-6 flex flex-col gap-4">
         <!-- Mobile menu header with logo and close button -->
         <div class="flex justify-between items-center mb-4">
-          <img src="./assets/Logo.svg" class="h-10" alt="Logo" />
+          <img src="./assets/logo.png" class="h-10" alt="Logo" />
           <button
             id="closeMenu"
             class="p-2 bg-gray-50 text-secondary border border-gray-300 rounded-full hover:bg-gray-100 hover:cursor-pointer"
@@ -796,7 +796,7 @@
       <div class="p-6">
         <a
           href="https://app.chimulkar.com/login"
-          class="inline-flex items-center group bg-transparent hover:bg-primary border border-black hover:border-primary mb-6 text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition"
+          class="inline-flex items-center group font-semibold bg-transparent hover:bg-primary border border-black hover:border-primary mb-6 text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition"
         >
           Log in or Create Account
           <span
@@ -807,7 +807,7 @@
         </a>
         <a
           href="../financial-assessment.html"
-          class="inline-flex items-center bg-primary text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:bg-secondary hover:text-white"
+          class="inline-flex items-center bg-primary font-semibold text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:bg-secondary hover:text-white"
         >
           Get Free Assessment
           <span
@@ -2283,7 +2283,7 @@
           return 0; // Default to the first video
         }
 
-        // Load video by index
+        // <CHANGE> Load video by index with proper category collapse/expand
         function loadIndex(index, autoplay = true) {
           const videoData = videoList[index];
           if (!videoData) return;
@@ -2298,19 +2298,48 @@
           currentIndex = index;
           updateSelected(videoData.key);
 
-          // Expand the appropriate category in sidebar
+          // <CHANGE> Collapse all category groups first
+          document.querySelectorAll(".category-group").forEach((group) => {
+            const subcategories = group.querySelector(".subcategories");
+            const chevron =
+              group.querySelector(".chevron-icon") ||
+              group.querySelector(
+                '.category-header i[data-lucide="chevron-down"]'
+              ) ||
+              group.querySelector(
+                '.category-header svg[data-lucide="chevron-down"]'
+              );
+
+            if (subcategories) {
+              subcategories.classList.add("hidden");
+            }
+            if (chevron) {
+              chevron.classList.remove("rotated");
+            }
+          });
+
+          // <CHANGE> Then expand only the category for the current video
           const categoryKey = videoData.key.split("-")[0];
           const categoryGroup = document.querySelector(
             `[data-category="${categoryKey}"]`
           );
+
           if (categoryGroup) {
             const subcategories = categoryGroup.querySelector(".subcategories");
-            const chevron = categoryGroup.querySelector(
-              '.category-header i[data-lucide="chevron-down"]'
-            );
+            const chevron =
+              categoryGroup.querySelector(".chevron-icon") ||
+              categoryGroup.querySelector(
+                '.category-header i[data-lucide="chevron-down"]'
+              ) ||
+              categoryGroup.querySelector(
+                '.category-header svg[data-lucide="chevron-down"]'
+              );
+
             if (subcategories && subcategories.classList.contains("hidden")) {
               subcategories.classList.remove("hidden");
-              chevron.style.transform = "rotate(180deg)";
+            }
+            if (chevron) {
+              chevron.classList.add("rotated");
             }
           }
 
@@ -2393,11 +2422,11 @@
 
           const text = `Watch this video lesson for a clear and structured explanation of an important financial concept.
 
-          Title: *${currentVideo.title}*
+Title: *${currentVideo.title}*
 
-          Category: *${currentVideo.category}*
+Category: *${currentVideo.category}*
 
-          Watch here:`;
+Watch here:`;
 
           window.open(
             `https://wa.me/?text=${encodeURIComponent(text + " " + shareUrl)}`,
@@ -2413,14 +2442,14 @@
 
           const body = `Watch this video lesson for a clear and structured explanation of an important financial concept.
 
-          Title: ${currentVideo.title}
-          Category: ${currentVideo.category}
+Title: ${currentVideo.title}
+Category: ${currentVideo.category}
 
-          Watch the video here:
-          ${shareUrl}
+Watch the video here:
+${shareUrl}
 
-          Regards Chimulkar Financial Services,
-          `;
+Regards Chimulkar Financial Services,
+`;
 
           window.open(
             `mailto:?subject=${encodeURIComponent(
@@ -2428,6 +2457,156 @@
             )}&body=${encodeURIComponent(body)}`,
             "_blank"
           );
+        }
+
+        // Helper function to toggle category dropdowns
+        function toggleCategoryDropdown(categoryGroupElement) {
+          const subcategories =
+            categoryGroupElement.querySelector(".subcategories");
+          const chevron =
+            categoryGroupElement.querySelector(".chevron-icon") ||
+            categoryGroupElement.querySelector(
+              '.category-header i[data-lucide="chevron-down"]'
+            ) ||
+            categoryGroupElement.querySelector(
+              '.category-header svg[data-lucide="chevron-down"]'
+            );
+
+          const isOpen = !subcategories.classList.contains("hidden");
+
+          // Close all other dropdowns
+          document.querySelectorAll(".category-group").forEach((group) => {
+            if (group === categoryGroupElement) return;
+            const otherSubs = group.querySelector(".subcategories");
+            const otherChevron = group.querySelector(".chevron-icon");
+
+            if (otherSubs) {
+              otherSubs.classList.add("hidden");
+            }
+            if (otherChevron) {
+              otherChevron.classList.remove("rotated");
+            }
+          });
+
+          // Toggle current dropdown
+          if (isOpen) {
+            subcategories.classList.add("hidden");
+            if (chevron) chevron.classList.remove("rotated");
+          } else {
+            subcategories.classList.remove("hidden");
+            if (chevron) chevron.classList.add("rotated");
+          }
+        }
+
+        // Helper function to show subcategory chips
+        function showSubcategoryChips(category) {
+          const subChipsContainer =
+            document.getElementById("subChipsContainer");
+          const subcategories = subcategoryMapping[category];
+
+          if (!subcategories) {
+            document.getElementById("subChips")?.classList.add("hidden");
+            return;
+          }
+
+          // Clear existing chips
+          subChipsContainer.innerHTML = "";
+
+          // Add subcategory chips
+          subcategories.forEach((sub) => {
+            const chip = document.createElement("button");
+            chip.className =
+              "flex-shrink-0 px-3 py-1.5 rounded-full border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition text-xs font-medium";
+            chip.setAttribute("data-key", sub.key);
+            chip.textContent = sub.title;
+
+            chip.addEventListener("click", () => {
+              const idx = videoList.findIndex((v) => v.key === sub.key);
+              if (idx >= 0) loadIndex(idx);
+            });
+
+            subChipsContainer.appendChild(chip);
+          });
+
+          document.getElementById("subChips")?.classList.remove("hidden");
+          currentCategory = category;
+        }
+
+        // Update selected state for chips and sidebar
+        function updateSelected(key) {
+          // Update sidebar subcategory selection
+          document.querySelectorAll("[data-key]").forEach((el) => {
+            const isSelected = el.dataset.key === key;
+            el.classList.toggle("selected", isSelected);
+
+            const parentCategoryGroup = el.closest(".category-group");
+            const parentSubcategories =
+              parentCategoryGroup?.querySelector(".subcategories");
+            const isSubcategoryItem =
+              parentSubcategories && parentSubcategories.contains(el);
+
+            if (isSelected) {
+              el.classList.remove(
+                "bg-white",
+                "bg-gray-25",
+                "border-gray-300",
+                "border-gray-200"
+              );
+              el.classList.add("bg-[#2D61C9]", "border-transparent");
+            } else {
+              el.classList.remove("bg-[#2D61C9]", "border-transparent");
+              if (isSubcategoryItem) {
+                el.classList.add("bg-gray-25", "border-gray-200");
+              } else {
+                el.classList.add("bg-white", "border-gray-300");
+              }
+            }
+
+            const textEl = el.querySelector("span");
+            if (textEl) {
+              if (isSelected) {
+                textEl.classList.remove("text-black", "text-gray-700");
+                textEl.classList.add("text-white");
+              } else {
+                textEl.classList.remove("text-white");
+                if (isSubcategoryItem) {
+                  textEl.classList.add("text-gray-700");
+                } else {
+                  textEl.classList.add("text-black");
+                }
+              }
+            }
+          });
+
+          // Update mobile subcategory chips
+          document
+            .querySelectorAll("#subChipsContainer [data-key]")
+            .forEach((chip) => {
+              const isSelected = chip.dataset.key === key;
+              if (isSelected) {
+                chip.classList.remove(
+                  "bg-white",
+                  "text-gray-700",
+                  "border-gray-300"
+                );
+                chip.classList.add(
+                  "bg-[#2D61C9]",
+                  "text-white",
+                  "border-transparent"
+                );
+              } else {
+                chip.classList.remove(
+                  "bg-[#2D61C9]",
+                  "text-white",
+                  "border-transparent"
+                );
+                chip.classList.add(
+                  "bg-white",
+                  "text-gray-700",
+                  "border-gray-300"
+                );
+              }
+            });
         }
 
         // Sidebar category headers (toggle dropdown)
@@ -2486,42 +2665,54 @@
         });
 
         // Next/Prev handlers
-        nextBtn.addEventListener("click", () => {
-          const next = (currentIndex + 1) % videoList.length;
-          loadIndex(next);
-        });
+        if (nextBtn) {
+          nextBtn.addEventListener("click", () => {
+            const next = (currentIndex + 1) % videoList.length;
+            loadIndex(next);
+          });
+        }
 
-        prevBtn.addEventListener("click", () => {
-          const prev = (currentIndex - 1 + videoList.length) % videoList.length;
-          loadIndex(prev);
-        });
+        if (prevBtn) {
+          prevBtn.addEventListener("click", () => {
+            const prev =
+              (currentIndex - 1 + videoList.length) % videoList.length;
+            loadIndex(prev);
+          });
+        }
 
         // Share modal event listeners
-        shareBtn.addEventListener("click", showShareModal);
-        linkBtn.addEventListener("click", showShareModal);
-        closeModal.addEventListener("click", hideShareModal);
-        shareModal.addEventListener("click", (e) => {
-          if (e.target === shareModal) hideShareModal();
-        });
+        if (shareBtn) shareBtn.addEventListener("click", showShareModal);
+        if (linkBtn) linkBtn.addEventListener("click", showShareModal);
+        if (closeModal) closeModal.addEventListener("click", hideShareModal);
+        if (shareModal) {
+          shareModal.addEventListener("click", (e) => {
+            if (e.target === shareModal) hideShareModal();
+          });
+        }
 
         // Copy and share event listeners
-        copyLinkBtn.addEventListener("click", copyToClipboard);
-        document
-          .getElementById("shareWhatsApp")
-          .addEventListener("click", shareViaWhatsApp);
-        document
-          .getElementById("shareEmail")
-          .addEventListener("click", shareViaEmail);
+        if (copyLinkBtn) copyLinkBtn.addEventListener("click", copyToClipboard);
+        if (document.getElementById("shareWhatsApp")) {
+          document
+            .getElementById("shareWhatsApp")
+            .addEventListener("click", shareViaWhatsApp);
+        }
+        if (document.getElementById("shareEmail")) {
+          document
+            .getElementById("shareEmail")
+            .addEventListener("click", shareViaEmail);
+        }
 
         // Keyboard support
         document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape" && !shareModal.classList.contains("hidden")) {
+          if (
+            e.key === "Escape" &&
+            shareModal &&
+            !shareModal.classList.contains("hidden")
+          ) {
             hideShareModal();
           }
         });
-
-        // Initialize first video on load
-        // loadIndex(getInitialVideoData(), false); // Original line removed for updated logic
 
         // Updated initialization function to check URL parameters first
         function initializeFromURL() {
@@ -2529,14 +2720,12 @@
           const videoKey = urlParams.get("video");
 
           if (videoKey) {
-            // Find the video index by key
             const videoIndex = videoList.findIndex((v) => v.key === videoKey);
             if (videoIndex !== -1) {
               loadIndex(videoIndex, false);
               return;
             }
           }
-          // Fallback to first video if no valid key found
           loadIndex(0, false);
         }
 
@@ -2552,210 +2741,8 @@
               loadIndex(videoIndex, false);
             }
           } else {
-            // If no state, fallback to default or first video
             initializeFromURL();
           }
-        });
-
-        // Helper function to toggle category dropdowns
-        function toggleCategoryDropdown(categoryGroupElement) {
-          const subcategories =
-            categoryGroupElement.querySelector(".subcategories");
-          const chevron =
-            categoryGroupElement.querySelector(".chevron-icon") || // Check for chevron-icon first
-            categoryGroupElement.querySelector(
-              '.category-header i[data-lucide="chevron-down"]'
-            ) || // Fallback for direct icon
-            categoryGroupElement.querySelector(
-              '.category-header svg[data-lucide="chevron-down"]'
-            ); // Fallback for SVG
-
-          const isOpen = !subcategories.classList.contains("hidden");
-
-          // Close all other dropdowns, except the current one if it's already open
-          document.querySelectorAll(".category-group").forEach((group) => {
-            if (group === categoryGroupElement) return;
-            group.querySelector(".subcategories")?.classList.add("hidden");
-            const otherChevron = group.querySelector(".chevron-icon");
-            if (otherChevron) {
-              otherChevron.classList.remove("rotated");
-            }
-          });
-
-          // Toggle current dropdown
-          if (isOpen) {
-            subcategories.classList.add("hidden");
-            if (chevron) chevron.classList.remove("rotated");
-          } else {
-            subcategories.classList.remove("hidden");
-            if (chevron) chevron.classList.add("rotated");
-          }
-        }
-
-        // Helper function to show subcategory chips
-        function showSubcategoryChips(category) {
-          const subChipsContainer =
-            document.getElementById("subChipsContainer");
-          const subcategories = subcategoryMapping[category];
-
-          if (!subcategories) {
-            document.getElementById("subChips")?.classList.add("hidden");
-            return;
-          }
-
-          // Clear existing chips
-          subChipsContainer.innerHTML = "";
-
-          // Add subcategory chips
-          subcategories.forEach((sub) => {
-            const chip = document.createElement("button");
-            chip.className =
-              "flex-shrink-0 px-3 py-1.5 rounded-full border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition text-xs font-medium";
-            chip.setAttribute("data-key", sub.key);
-            chip.textContent = sub.title;
-
-            chip.addEventListener("click", () => {
-              const idx = videoList.findIndex((v) => v.key === sub.key);
-              if (idx >= 0) loadIndex(idx);
-            });
-
-            subChipsContainer.appendChild(chip);
-          });
-
-          document.getElementById("subChips")?.classList.remove("hidden");
-          currentCategory = category;
-        }
-
-        // Update selected state for chips and sidebar
-        function updateSelected(key) {
-          // Update sidebar subcategory selection
-          document.querySelectorAll("[data-key]").forEach((el) => {
-            const isSelected = el.dataset.key === key;
-            el.classList.toggle("selected", isSelected);
-
-            // --- Adjust styling based on selection ---
-            const parentCategoryGroup = el.closest(".category-group");
-            const parentSubcategories =
-              parentCategoryGroup?.querySelector(".subcategories");
-            const isSubcategoryItem =
-              parentSubcategories && parentSubcategories.contains(el);
-
-            if (isSelected) {
-              el.classList.remove(
-                "bg-white",
-                "bg-gray-25",
-                "border-gray-300",
-                "border-gray-200"
-              );
-              el.classList.add("bg-[#2D61C9]", "border-transparent");
-            } else {
-              // Reset to default styles
-              el.classList.remove("bg-[#2D61C9]", "border-transparent");
-              if (isSubcategoryItem) {
-                el.classList.add("bg-gray-25", "border-gray-200");
-              } else {
-                el.classList.add("bg-white", "border-gray-300");
-              }
-            }
-
-            // --- Adjust text color ---
-            const textEl = el.querySelector("span");
-            if (textEl) {
-              if (isSelected) {
-                textEl.classList.remove("text-black", "text-gray-700");
-                textEl.classList.add("text-white");
-              } else {
-                textEl.classList.remove("text-white");
-                if (isSubcategoryItem) {
-                  textEl.classList.add("text-gray-700");
-                } else {
-                  textEl.classList.add("text-black");
-                }
-              }
-            }
-          });
-
-          // Update mobile subcategory chips
-          document
-            .querySelectorAll("#subChipsContainer [data-key]")
-            .forEach((chip) => {
-              const isSelected = chip.dataset.key === key;
-              if (isSelected) {
-                chip.classList.remove(
-                  "bg-white",
-                  "text-gray-700",
-                  "border-gray-300"
-                );
-                chip.classList.add(
-                  "bg-[#2D61C9]",
-                  "text-white",
-                  "border-transparent"
-                );
-              } else {
-                chip.classList.remove(
-                  "bg-[#2D61C9]",
-                  "text-white",
-                  "border-transparent"
-                );
-                chip.classList.add(
-                  "bg-white",
-                  "text-gray-700",
-                  "border-gray-300"
-                );
-              }
-            });
-        }
-
-        // Helper function to toggle category dropdowns - Refined
-        document.querySelectorAll(".category-header").forEach((header) => {
-          header.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const categoryGroup = header.closest(".category-group");
-            toggleCategoryDropdown(categoryGroup);
-          });
-        });
-
-        // Event listeners for subcategory items in the sidebar
-        document.querySelectorAll(".subcategories [data-key]").forEach((el) => {
-          el.addEventListener("click", () => {
-            const key = el.dataset.key;
-            const idx = videoList.findIndex((v) => v.key === key);
-            if (idx >= 0) {
-              loadIndex(idx);
-              // Optionally close the mobile menu if it's open
-              if (window.innerWidth < 1024) {
-                closeMobileMenu();
-              }
-            }
-          });
-        });
-
-        // Event listeners for category chips (mobile view)
-        document.querySelectorAll(".category-chip").forEach((chip) => {
-          chip.addEventListener("click", () => {
-            const category = chip.dataset.category;
-            showSubcategoryChips(category);
-
-            // Update category chip selection
-            document.querySelectorAll(".category-chip").forEach((c) => {
-              const isSelected = c.dataset.category === category;
-              if (isSelected) {
-                c.classList.remove("bg-white", "border-gray-300");
-                c.classList.add("bg-[#2D61C9]", "border-transparent");
-                c.querySelectorAll("span, i").forEach((el) => {
-                  el.classList.remove("text-black");
-                  el.classList.add("text-white");
-                });
-              } else {
-                c.classList.remove("bg-[#2D61C9]", "border-transparent");
-                c.classList.add("bg-white", "border-gray-300");
-                c.querySelectorAll("span, i").forEach((el) => {
-                  el.classList.remove("text-white");
-                  el.classList.add("text-black");
-                });
-              }
-            });
-          });
         });
 
         // Initialize first video on load based on URL or default
@@ -2766,7 +2753,7 @@
     <!-- =================================================================== -->
     <!-- FOOTER SECTION - Company information and links -->
     <!-- =================================================================== -->
-    <footer class="w-full bg-white border-t border-gray-200 lg:mb-0">
+    <footer class="w-full bg-secondary border-t border-gray-200 mb-12 lg:mb-0">
       <!-- Middle Section -->
       <div
         class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
@@ -2777,7 +2764,7 @@
             href="https://www.google.com/maps/dir/?api=1&destination=15.4038977,74.0086659"
             target="_blank"
             rel="noopener"
-            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+            class="flex items-center justify-center md:justify-start gap-2 text-white"
           >
             <i data-lucide="map-pin" class="w-5 h-5 text-primary"></i>
             <span>Our Office</span>
@@ -2785,7 +2772,7 @@
 
           <a
             href="mailto:invest@chimulkar.com"
-            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+            class="flex items-center justify-center md:justify-start gap-2 text-white"
           >
             <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
             <span>invest@chimulkar.com</span>
@@ -2793,7 +2780,7 @@
 
           <a
             href="tel:+918208031927"
-            class="flex items-center justify-center md:justify-start gap-2 text-gray-800"
+            class="flex items-center justify-center md:justify-start gap-2 text-white"
           >
             <i data-lucide="phone" class="w-5 h-5 text-primary"></i>
             <span>+91 82080 31927</span>
@@ -2804,7 +2791,7 @@
         <div class="flex items-center justify-center">
           <a href="/" aria-label="Go to Home">
             <img
-              src="../assets/Logo.svg"
+              src="../assets/CFS TRANSPARENT.png"
               alt="Chimulkar Financial Services"
               class="w-40 h-auto"
             />
@@ -2813,8 +2800,8 @@
 
         <!-- Right: Reviews & Social -->
         <div class="flex flex-col items-center md:items-end space-y-4">
-          <p class="text-gray-800">© 2025 Chimulkar Financial Services</p>
-          <p class="text-gray-800">Follow us on</p>
+          <p class="text-white">© 2026 Chimulkar Financial Services</p>
+          <p class="text-white">Follow us on</p>
 
           <div class="flex gap-4">
             <a
@@ -2822,7 +2809,7 @@
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              class="bg-primary rounded-full p-2 hover:bg-primary/10 transition"
+              class="bg-primary rounded-full p-2 hover:bg-primary/80 transition"
             >
               <i data-lucide="instagram" class="w-5 h-5 text-black"></i>
             </a>
@@ -2832,7 +2819,7 @@
               target="_blank"
               rel="noopener noreferrer"
               aria-label="YouTube"
-              class="bg-primary rounded-full p-2 hover:bg-primary/10 transition"
+              class="bg-primary rounded-full p-2 hover:bg-primary/80 transition"
             >
               <i data-lucide="youtube" class="w-5 h-5 text-black"></i>
             </a>
@@ -2841,7 +2828,7 @@
       </div>
 
       <!-- Bottom Bar -->
-      <div class="bg-[#161f48] text-gray-100 text-xs py-4">
+      <div class="bg-black text-gray-100 text-xs py-4">
         <div
           class="max-w-7xl mx-auto px-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6 text-center md:text-left"
         >
@@ -2874,7 +2861,7 @@
 
           <!-- Right -->
           <p class="text-gray-400">
-            Developed &amp; Maintained by
+            Developed by
             <a
               href="https://imnirajdev.vercel.app/"
               target="_blank"
