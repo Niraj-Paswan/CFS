@@ -121,6 +121,36 @@
       });
     </script>
 
+    <script>
+      /* Disable right-click */
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+
+      /* Block common DevTools shortcuts */
+      document.addEventListener("keydown", function (e) {
+        if (
+          e.key === "F12" ||
+          (e.ctrlKey && e.shiftKey && ["I", "C", "J"].includes(e.key)) ||
+          (e.ctrlKey && e.key === "U")
+        ) {
+          e.preventDefault();
+          return false;
+        }
+      });
+
+      /* Detect DevTools open and blank page */
+      setInterval(() => {
+        const devtoolsOpen =
+          window.outerWidth - window.innerWidth > 160 ||
+          window.outerHeight - window.innerHeight > 160;
+
+        if (devtoolsOpen) {
+          document.body.innerHTML = "";
+        }
+      }, 1000);
+    </script>
+
     <!-- Style of the Loader -->
     <style>
       /* Fullscreen loader wrapper */
