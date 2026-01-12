@@ -1679,7 +1679,7 @@
     <!-- CLIENT VIDEO CAROUSEL SECTION - Scrollable testimonial videos -->
     <!-- =================================================================== -->
     <section class="bg-[#0d1a2d] py-20 px-6 text-white relative">
-      <div class="max-w-7xl mx-auto px-6 relative">
+      <div class="max-w-7xl mx-auto px-1 lg:px-6 relative">
         <!-- Left Navigation Arrow -->
         <button
           onclick="scrollCarousel(-1)"
@@ -1858,55 +1858,49 @@
     <!-- =================================================================== -->
 
     <style>
-      /* Custom scrollbar styling */
+      /* ================================
+     Custom Scrollbar Styling
+     ================================ */
+
+      .custom-scrollbar {
+        scroll-behavior: smooth;
+        scrollbar-width: thin; /* Firefox */
+        scrollbar-color: #3b82f6 #f1f5f9;
+      }
+
       .custom-scrollbar::-webkit-scrollbar {
         height: 8px;
       }
 
       .custom-scrollbar::-webkit-scrollbar-track {
         background: #f1f5f9;
-        border-radius: 10px;
+        border-radius: 24px;
       }
 
       .custom-scrollbar::-webkit-scrollbar-thumb {
         background: linear-gradient(90deg, #3b82f6, #1d4ed8);
         border-radius: 10px;
-        transition: background 0.3s ease;
       }
 
-      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(90deg, #2563eb, #1e40af);
-      }
+      /* ================================
+     Service Card – Always Visible
+     ================================ */
 
-      /* Firefox scrollbar */
-      .custom-scrollbar {
-        scrollbar-width: thin;
-        scrollbar-color: #3b82f6 #f1f5f9;
-      }
-
-      /* Smooth scroll behavior */
-      .custom-scrollbar {
-        scroll-behavior: smooth;
-      }
-
-      /* Card hover animations */
       .service-card {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .service-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
           0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      /* Icon animations */
+      /* ================================
+     Service Icon – Always Visible
+     ================================ */
+
       .service-icon {
-        transition: transform 0.3s ease;
-      }
-
-      .service-card:hover .service-icon {
         transform: scale(1.1);
+        transition: transform 0.3s ease;
       }
     </style>
 
@@ -2392,7 +2386,7 @@
 
       <!-- Right Side - Founder Information -->
       <div
-        class="w-full md:w-1/2 pr-0 lg:pr-24 flex flex-col justify-center items-center lg:items-start text-start lg:text-left"
+        class="w-full md:w-1/2 pr-0 lg:pr-24 flex flex-col justify-center items-start lg:items-start text-start lg:text-left"
       >
         <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4 lg:mb-12">
           40 Years of <span class="text-strokes">Trust</span>
