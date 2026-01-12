@@ -601,6 +601,12 @@
   .ml-6 {
     margin-left: calc(var(--spacing) * 6);
   }
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
   .block {
     display: block;
   }
@@ -949,9 +955,6 @@
   .max-w-full {
     max-width: 100%;
   }
-  .max-w-lg {
-    max-width: var(--container-lg);
-  }
   .max-w-max {
     max-width: max-content;
   }
@@ -972,6 +975,9 @@
   }
   .min-w-\[15rem\] {
     min-width: 15rem;
+  }
+  .min-w-\[280px\] {
+    min-width: 280px;
   }
   .min-w-\[320px\] {
     min-width: 320px;
@@ -1306,6 +1312,11 @@
   }
   .self-center {
     align-self: center;
+  }
+  .truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .overflow-hidden {
     overflow: hidden;
@@ -1902,6 +1913,9 @@
   .p-16 {
     padding: calc(var(--spacing) * 16);
   }
+  .px-1 {
+    padding-inline: calc(var(--spacing) * 1);
+  }
   .px-2 {
     padding-inline: calc(var(--spacing) * 2);
   }
@@ -2015,6 +2029,9 @@
   }
   .pb-8 {
     padding-bottom: calc(var(--spacing) * 8);
+  }
+  .pb-10 {
+    padding-bottom: calc(var(--spacing) * 10);
   }
   .pl-1\.5 {
     padding-left: calc(var(--spacing) * 1.5);
@@ -3164,6 +3181,11 @@
       width: 85%;
     }
   }
+  .sm\:w-auto {
+    @media (width >= 40rem) {
+      width: auto;
+    }
+  }
   .sm\:grid-cols-2 {
     @media (width >= 40rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3238,6 +3260,11 @@
   .sm\:p-8 {
     @media (width >= 40rem) {
       padding: calc(var(--spacing) * 8);
+    }
+  }
+  .sm\:px-0 {
+    @media (width >= 40rem) {
+      padding-inline: calc(var(--spacing) * 0);
     }
   }
   .sm\:px-6 {
