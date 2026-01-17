@@ -394,34 +394,37 @@
               </div>
             </div>
 
-            <!-- Target Amount -->
-            <div>
-              <div class="flex items-start justify-between mb-3">
-                <label class="text-lg text-start font-medium text-gray-700"
-                  >Target Amount</label
-                >
-                <div class="input-value-box w-40">
-                  <span class="text-gray-500">₹</span>
-                  <input type="text" id="targetAmountInput" value="50,00,000" />
-                </div>
-              </div>
-              <input
-                type="range"
-                id="targetAmountSlider"
-                min="100000"
-                max="100000000"
-                value="5000000"
-                step="100000"
-                class="custom-slider w-full"
-              />
-              <div class="flex justify-between text-xs text-gray-500 mt-2">
-                <span>₹1L</span>
-                <span>₹1Cr</span>
-              </div>
-            </div>
-
             <!-- TARGET MODE SECTIONS -->
             <div id="targetSection" class="hidden space-y-6">
+              <!-- Target Amount -->
+              <div>
+                <div class="flex items-start justify-between mb-3">
+                  <label class="text-lg text-start font-medium text-gray-700"
+                    >Target Amount</label
+                  >
+                  <div class="input-value-box w-40">
+                    <span class="text-gray-500">₹</span>
+                    <input
+                      type="text"
+                      id="targetAmountInput"
+                      value="50,00,000"
+                    />
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="targetAmountSlider"
+                  min="100000"
+                  max="100000000"
+                  value="5000000"
+                  step="100000"
+                  class="custom-slider w-full"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>₹1L</span>
+                  <span>₹1Cr</span>
+                </div>
+              </div>
               <!-- Investment Type Toggle (Between Lumpsum and Monthly) -->
               <div class="flex items-start justify-start space-x-6 pb-4">
                 <div class="flex items-center space-x-3">
@@ -757,7 +760,7 @@
                 <span
                   id="totalValue"
                   class="value"
-                  style="color: #161f48; font-size: 1rem; font-weight: 700"
+                  style="color: #161f48; font-size: 1rem"
                   >₹0</span
                 >
               </div>
@@ -767,7 +770,7 @@
                 <span class="label">Growth percentage</span>
                 <span
                   id="growthPercentage"
-                  class="value text-lg font-bold bg-[#161f48]/10 rounded-full px-4 py-1"
+                  class="value text-lg font-semibold bg-[#161f48]/10 rounded-full px-4 py-1"
                   >0%</span
                 >
               </div>
