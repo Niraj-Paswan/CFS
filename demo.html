@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIP + Lumpsum Calculator - CFS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="shortcut icon"
+      href="../assets/favicon.png"
+      type="image/x-icon"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include html2canvas library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.min.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        lucide.createIcons();
+      });
+    </script>
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .custom-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 6px;
+        border-radius: 3px;
+        background: #e5e7eb;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      .custom-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fcaf1b;
+        cursor: grab;
+        border: none;
+        box-shadow: 0 2px 6px rgba(252, 175, 27, 0.4);
+      }
+
+      .custom-slider::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fcaf1b;
+        cursor: grab;
+        border: none;
+        box-shadow: 0 2px 6px rgba(252, 175, 27, 0.4);
+      }
+
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 48px;
+        height: 28px;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #e5e7eb;
+        transition: all 0.3s ease;
+        border-radius: 28px;
+      }
+
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: all 0.3s ease;
+        border-radius: 50%;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      }
+
+      input:checked + .toggle-slider {
+        background-color: #161f48;
+      }
+
+      input:checked + .toggle-slider:before {
+        transform: translateX(20px);
+      }
+
+      .input-value-box {
+        background-color: #f3f4f6;
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-weight: 600;
+        color: #1f2937;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .input-value-box input {
+        background: none;
+        border: none;
+        outline: none;
+        width: 100%;
+        font-weight: 600;
+        color: #1f2937;
+        text-align: right;
+        padding: 0;
+      }
+
+      .result-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #f3f4f6;
+      }
+
+      .result-item:last-child {
+        border-bottom: none;
+      }
+
+      .result-item .label {
+        font-weight: 500;
+        color: #4b5563;
+      }
+
+      .result-item .value {
+        font-weight: 600;
+        color: #1f2937;
+      }
+
+      .chart-legend-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 8px;
+      }
+
+      .disabled-input {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-100 flex items-center justify-center min-h-screen flex-col py-8"
+  >
+    <div
+      class="max-w-6xl w-full flex justify-center items-center text-center flex-col mt-8 p-4"
+    >
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-2xl lg:text-4xl font-semibold text-black mb-3">
+          SIP <span class="text-[#fcaf1b]">+</span> Lumpsum
+          <span class="text-[#fcaf1b]">Calculator</span>
+        </h1>
+        <p class="text-gray-500 text-base lg:text-lg">
+          Plan your investment with SIP, Lumpsum, or both combined.
+        </p>
+      </div>
+
+      <!-- Calculator Container -->
+      <div
+        id="calculatorContainer"
+        class="max-w-6xl w-full bg-white p-4 rounded-3xl border border-gray-300 overflow-hidden"
+      >
+        <!-- Mode Toggle -->
+        <div class="flex justify-center p-2 mt-1">
+          <div class="inline-flex bg-gray-100 rounded-lg p-1">
+            <button
+              id="investmentModeBtn"
+              class="px-5 py-2 text-base font-medium rounded-md transition-colors duration-200 bg-white text-black shadow-base"
+            >
+              Investment Amount
+            </button>
+            <button
+              id="targetModeBtn"
+              class="px-5 py-2 text-base font-medium rounded-md transition-colors duration-200 text-black hover:bg-gray-200"
+            >
+              Target Amount
+            </button>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 p-8">
+          <!-- Left Side - Input Controls -->
+          <div class="space-y-8">
+            <!-- INVESTMENT MODE SECTIONS -->
+            <div id="investmentSection" class="space-y-6">
+              <!-- Lumpsum Investment -->
+              <div id="investmentLumpsumSection">
+                <div class="flex items-start justify-between mb-3">
+                  <label class="text-lg text-start font-medium text-gray-700"
+                    >Lumpsum Investment</label
+                  >
+                  <div class="input-value-box w-40">
+                    <span class="text-gray-500">₹</span>
+                    <input
+                      type="text"
+                      id="investmentLumpsumInput"
+                      value="50,000"
+                    />
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="investmentLumpsumSlider"
+                  min="500"
+                  max="5000000"
+                  value="50000"
+                  step="500"
+                  class="custom-slider w-full"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>₹500</span>
+                  <span>₹50L</span>
+                </div>
+              </div>
+
+              <!-- Monthly Investment -->
+              <div id="investmentMonthlySection">
+                <div class="flex items-start justify-between mb-3">
+                  <label class="text-lg text-start font-medium text-gray-700"
+                    >Monthly Investment</label
+                  >
+                  <div class="input-value-box w-40">
+                    <span class="text-gray-500">₹</span>
+                    <input
+                      type="text"
+                      id="investmentMonthlyInput"
+                      value="25,000"
+                    />
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="investmentMonthlySlider"
+                  min="500"
+                  max="1000000"
+                  value="25000"
+                  step="500"
+                  class="custom-slider w-full"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>₹500</span>
+                  <span>₹10L</span>
+                </div>
+              </div>
+
+              <!-- Expected Return Rate -->
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <label class="text-lg text-start font-medium text-gray-700"
+                    >Expected return rate (p.a)</label
+                  >
+                  <div class="input-value-box w-32">
+                    <input
+                      type="number"
+                      id="investmentReturnInput"
+                      value="12"
+                      min="1"
+                      max="30"
+                      step="0.1"
+                    />
+                    <span class="text-gray-500">%</span>
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="investmentReturnSlider"
+                  min="1"
+                  max="30"
+                  value="12"
+                  step="0.1"
+                  class="custom-slider w-full"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>1%</span>
+                  <span>30%</span>
+                </div>
+              </div>
+
+              <!-- Time Period -->
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <label class="text-lg font-medium text-gray-700"
+                    >Time period</label
+                  >
+                  <div class="input-value-box w-32">
+                    <input
+                      type="number"
+                      id="investmentTimeInput"
+                      value="10"
+                      min="1"
+                      max="50"
+                      step="1"
+                    />
+                    <span class="text-gray-500">Y</span>
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="investmentTimeSlider"
+                  min="1"
+                  max="50"
+                  value="10"
+                  step="1"
+                  class="custom-slider w-full"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>1Y</span>
+                  <span>50Y</span>
+                </div>
+              </div>
+
+              <!-- Annual Step-up -->
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <label class="text-lg font-medium text-gray-700"
+                    >Annual Step-up</label
+                  >
+                  <div class="flex items-center space-x-2">
+                    <span class="text-sm text-gray-600">No</span>
+                    <label class="toggle-switch">
+                      <input type="checkbox" id="stepUpToggle" />
+                      <span class="toggle-slider"></span>
+                    </label>
+                    <span class="text-sm text-gray-600">Yes</span>
+                  </div>
+                </div>
+                <div
+                  id="stepUpControls"
+                  class="hidden transition-all duration-300"
+                >
+                  <div class="flex items-center justify-end mt-2">
+                    <div class="input-value-box w-32">
+                      <input
+                        type="number"
+                        id="stepUpInput"
+                        value="5"
+                        min="0"
+                        max="20"
+                        step="0.1"
+                      />
+                      <span class="text-gray-500">%</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    id="stepUpSlider"
+                    min="0"
+                    max="20"
+                    value="5"
+                    step="0.1"
+                    class="custom-slider w-full mt-4"
+                  />
+                  <div class="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>0%</span>
+                    <span>20%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Target Amount -->
+            <div>
+              <div class="flex items-start justify-between mb-3">
+                <label class="text-lg text-start font-medium text-gray-700"
+                  >Target Amount</label
+                >
+                <div class="input-value-box w-40">
+                  <span class="text-gray-500">₹</span>
+                  <input type="text" id="targetAmountInput" value="50,00,000" />
+                </div>
+              </div>
+              <input
+                type="range"
+                id="targetAmountSlider"
+                min="100000"
+                max="100000000"
+                value="5000000"
+                step="100000"
+                class="custom-slider w-full"
+              />
+              <div class="flex justify-between text-xs text-gray-500 mt-2">
+                <span>₹1L</span>
+                <span>₹1Cr</span>
+              </div>
+            </div>
+
+            <!-- TARGET MODE SECTIONS -->
+            <div id="targetSection" class="hidden space-y-6">
+              <!-- Investment Type Toggle (Between Lumpsum and Monthly) -->
+              <div class="flex items-start justify-start space-x-6 pb-4">
+                <div class="flex items-center space-x-3">
+                  <span class="text-base font-medium text-gray-700"
+                    >Lumpsum Investment</span
+                  >
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="investmentTypeToggle" />
+                    <span class="toggle-slider"></span>
+                  </label>
+                  <span class="text-base font-medium text-gray-700"
+                    >Monthly Investment</span
+                  >
+                </div>
+              </div>
+
+              <!-- Lumpsum Investment Section -->
+              <div id="targetLumpsumSection">
+                <div class="flex items-start justify-between mb-3">
+                  <label class="text-lg text-start font-medium text-gray-700"
+                    >Lumpsum Investment</label
+                  >
+                  <div class="input-value-box w-40">
+                    <span class="text-gray-500">₹</span>
+                    <input type="text" id="targetLumpsumInput" value="50,000" />
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="targetLumpsumSlider"
+                  min="500"
+                  max="5000000"
+                  value="50000"
+                  step="500"
+                  class="custom-slider w-full"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>₹500</span>
+                  <span>₹50L</span>
+                </div>
+              </div>
+
+              <!-- Monthly Investment Section -->
+              <div id="targetMonthlySection" class="hidden">
+                <div class="flex items-start justify-between mb-3">
+                  <label class="text-lg text-start font-medium text-gray-700"
+                    >Monthly Investment</label
+                  >
+                  <div class="input-value-box w-40">
+                    <span class="text-gray-500">₹</span>
+                    <input type="text" id="targetMonthlyInput" value="25,000" />
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="targetMonthlySlider"
+                  min="500"
+                  max="1000000"
+                  value="25000"
+                  step="500"
+                  class="custom-slider w-full"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>₹500</span>
+                  <span>₹10L</span>
+                </div>
+              </div>
+
+              <!-- Expected Return Rate (Target) -->
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <label class="text-lg text-start font-medium text-gray-700"
+                    >Expected return rate (p.a)</label
+                  >
+                  <div class="input-value-box w-32">
+                    <input
+                      type="number"
+                      id="targetReturnInput"
+                      value="12"
+                      min="1"
+                      max="30"
+                      step="0.1"
+                    />
+                    <span class="text-gray-500">%</span>
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="targetReturnSlider"
+                  min="1"
+                  max="30"
+                  value="12"
+                  step="0.1"
+                  class="custom-slider w-full"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>1%</span>
+                  <span>30%</span>
+                </div>
+              </div>
+
+              <!-- Time Period (Target) -->
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <label class="text-lg font-medium text-gray-700"
+                    >Time period</label
+                  >
+                  <div class="input-value-box w-32">
+                    <input
+                      type="number"
+                      id="targetTimeInput"
+                      value="10"
+                      min="1"
+                      max="50"
+                      step="1"
+                    />
+                    <span class="text-gray-500">Y</span>
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="targetTimeSlider"
+                  min="1"
+                  max="50"
+                  value="10"
+                  step="1"
+                  class="custom-slider w-full"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>1Y</span>
+                  <span>50Y</span>
+                </div>
+              </div>
+
+              <!-- Annual SIP Top-up -->
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <label class="text-lg font-medium text-gray-700"
+                    >Annual SIP top up</label
+                  >
+                  <div class="flex items-center space-x-2">
+                    <span class="text-sm text-gray-600">No</span>
+                    <label class="toggle-switch">
+                      <input type="checkbox" id="topUpToggle" />
+                      <span class="toggle-slider"></span>
+                    </label>
+                    <span class="text-sm text-gray-600">Yes</span>
+                  </div>
+                </div>
+                <div
+                  id="topUpControls"
+                  class="hidden transition-all duration-300"
+                >
+                  <div class="flex items-center justify-end mt-2">
+                    <div class="input-value-box w-32">
+                      <input
+                        type="number"
+                        id="topUpInput"
+                        value="5"
+                        min="0"
+                        max="50"
+                        step="0.1"
+                      />
+                      <span class="text-gray-500">%</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    id="topUpSlider"
+                    min="0"
+                    max="50"
+                    value="5"
+                    step="0.1"
+                    class="custom-slider w-full mt-4"
+                  />
+                  <div class="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>0%</span>
+                    <span>50%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Expected Inflation -->
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <label class="text-lg font-medium text-gray-700"
+                    >Expected Inflation (p.a)</label
+                  >
+                  <div class="flex items-center space-x-2">
+                    <span class="text-sm text-gray-600">No</span>
+                    <label class="toggle-switch">
+                      <input type="checkbox" id="inflationToggle" />
+                      <span class="toggle-slider"></span>
+                    </label>
+                    <span class="text-sm text-gray-600">Yes</span>
+                  </div>
+                </div>
+                <div
+                  id="inflationControls"
+                  class="hidden transition-all duration-300"
+                >
+                  <div class="flex items-center justify-end mt-2">
+                    <div class="input-value-box w-32">
+                      <input
+                        type="number"
+                        id="inflationInput"
+                        value="5"
+                        min="0"
+                        max="15"
+                        step="0.1"
+                      />
+                      <span class="text-gray-500">%</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    id="inflationSlider"
+                    min="0"
+                    max="15"
+                    value="5"
+                    step="0.1"
+                    class="custom-slider w-full mt-4"
+                  />
+                  <div class="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>0%</span>
+                    <span>15%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h1
+              id="openDisclaimer"
+              class="text-sm text-blue-600 hover:underline hover:cursor-pointer text-start"
+            >
+              View Disclaimer
+            </h1>
+          </div>
+
+          <!-- Lucide Icons -->
+          <!-- Lucide Icons -->
+
+          <!-- Right Side - Results and Chart -->
+          <div class="space-y-8">
+            <!-- Chart -->
+            <div class="flex justify-center items-center h-64">
+              <div class="relative w-64 h-64">
+                <canvas id="sipChart"></canvas>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="text-center">
+                    <div class="text-sm text-gray-500">Total Value</div>
+                    <div
+                      id="totalValueCenter"
+                      class="text-xl font-semibold text-gray-800"
+                    >
+                      ₹0.00 L
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Chart Legend -->
+            <div class="flex justify-center space-x-6 text-sm text-gray-600">
+              <div>
+                <span class="chart-legend-dot bg-gray-300"></span>
+                <span>Invested amount</span>
+              </div>
+              <div>
+                <span
+                  class="chart-legend-dot"
+                  style="background-color: #161f48"
+                ></span>
+                <span>Est. returns</span>
+              </div>
+            </div>
+
+            <!-- Results -->
+            <div class="space-y-2">
+              <!-- Required SIP/Lumpsum (Target Mode Only) -->
+              <div id="requiredAmountItem" class="hidden result-item">
+                <span class="label" id="requiredLabel"
+                  >Est. monthly SIP required</span
+                >
+                <span
+                  id="requiredAmount"
+                  class="value"
+                  style="color: #161f48; font-size: 1rem"
+                  >0</span
+                >
+              </div>
+
+              <!-- Target (Inflation Adjusted) -->
+              <div id="inflationAdjustedTargetItem" class="hidden result-item">
+                <span class="label" style="color: #161f48"
+                  >Target amount (inflation adjusted)</span
+                >
+                <span
+                  id="inflationAdjustedTarget"
+                  class="value"
+                  style="color: #161f48; font-size: 1rem"
+                  >₹0</span
+                >
+              </div>
+
+              <!-- Invested Amount -->
+              <div class="result-item">
+                <span class="label" id="investedLabel"
+                  >Invested amount in 10 years</span
+                >
+                <span
+                  id="investedAmount"
+                  class="value"
+                  style="color: #161f48; font-size: 1rem"
+                  >₹0</span
+                >
+              </div>
+
+              <!-- Est. Returns -->
+              <div class="result-item">
+                <span class="label">Est. returns</span>
+                <span
+                  id="estimatedReturns"
+                  class="value"
+                  style="color: #161f48; font-size: 1rem"
+                  >₹0</span
+                >
+              </div>
+
+              <!-- Total Value -->
+              <div class="result-item">
+                <span class="label">Total Value</span>
+                <span
+                  id="totalValue"
+                  class="value"
+                  style="color: #161f48; font-size: 1rem; font-weight: 700"
+                  >₹0</span
+                >
+              </div>
+
+              <!-- Growth Percentage -->
+              <div class="result-item">
+                <span class="label">Growth percentage</span>
+                <span
+                  id="growthPercentage"
+                  class="value text-lg font-bold bg-[#161f48]/10 rounded-full px-4 py-1"
+                  >0%</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="p-8 border-t border-gray-200">
+          <div class="flex flex-wrap gap-4 justify-center">
+            <button
+              id="emailPlanBtn"
+              onclick="sendEmailPlan()"
+              class="flex items-center gap-2 text-sm lg:text-base px-4 lg:px-6 py-2 lg:py-3 rounded-full text-black border border-gray-300 hover:bg-gray-100 transition-colors cursor-pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="24"
+                height="24"
+                viewBox="0 0 48 48"
+              >
+                <path
+                  fill="#4caf50"
+                  d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"
+                ></path>
+                <path
+                  fill="#1e88e5"
+                  d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"
+                ></path>
+                <polygon
+                  fill="#e53935"
+                  points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"
+                ></polygon>
+                <path
+                  fill="#c62828"
+                  d="M3,12.298V16.2l10,7.5V11.2L9.876,8.859C9.132,8.301,8.228,8,7.298,8h0C4.924,8,3,9.924,3,12.298z"
+                ></path>
+                <path
+                  fill="#fbc02d"
+                  d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341C38.868,8.301,39.772,8,40.702,8h0 C43.076,8,45,9.924,45,12.298z"
+                ></path>
+              </svg>
+              Email Plan
+            </button>
+            <button
+              id="whatsappBtn"
+              onclick="sendWhatsAppPlan()"
+              class="flex items-center gap-2 text-base px-6 py-3 rounded-full text-black border border-gray-300 hover:bg-gray-100 transition-colors cursor-pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="24"
+                height="24"
+                viewBox="0 0 48 48"
+              >
+                <path
+                  fill="#fff"
+                  d="M4.9,43.3l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24 c0,10.5-8.5,19-19,19c0,0,0,0,0,0h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3z"
+                ></path>
+                <path
+                  fill="#fff"
+                  d="M4.9,43.8c-0.1,0-0.3-0.1-0.4-0.1c-0.1-0.1-0.2-0.3-0.1-0.5L7,33.5c-1.6-2.9-2.5-6.2-2.5-9.6 C4.5,13.2,13.3,4.5,24,4.5c5.2,0,10.1,2,13.8,5.7c3.7,3.7,5.7,8.6,5.7,13.8c0,10.7-8.7,19.5-19.5,19.5c-3.2,0-6.3-0.8-9.1-2.3 L5,43.8C5,43.8,4.9,43.8,4.9,43.8z"
+                ></path>
+                <path
+                  fill="#cfd8dc"
+                  d="M24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24c0,10.5-8.5,19-19,19h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3 l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5 M24,43L24,43L24,43 M24,43L24,43L24,43 M24,4L24,4C13,4,4,13,4,24 c0,3.4,0.8,6.7,2.5,9.6L3.9,43c-0.1,0.3,0,0.7,0.3,1c0.2,0.2,0.4,0.3,0.7,0.3c0.1,0,0.2,0,0.3,0l9.7-2.5c2.8,1.5,6,2.2,9.2,2.2 c11,0,20-9,20-20c0-5.3-2.1-10.4-5.8-14.1C34.4,6.1,29.4,4,24,4L24,4z"
+                ></path>
+                <path
+                  fill="#40c351"
+                  d="M35.2,12.8c-3-3-6.9-4.6-11.2-4.6C15.3,8.2,8.2,15.3,8.2,24c0,3,0.8,5.9,2.4,8.4L11,33l-1.6,5.8l6-1.6l0.6,0.3 c2.4,1.4,5.2,2.2,8,2.2h0c8.7,0,15.8-7.1,15.8-15.8C39.8,19.8,38.2,15.8,35.2,12.8z"
+                ></path>
+                <path
+                  fill="#fff"
+                  fill-rule="evenodd"
+                  d="M19.3,16c-0.4-0.8-0.7-0.8-1.1-0.8c-0.3,0-0.6,0-0.9,0s-0.8,0.1-1.3,0.6c-0.4,0.5-1.7,1.6-1.7,4 s1.7,4.6,1.9,4.9s3.3,5.3,8.1,7.2c4,1.6,4.8,1.3,5.7,1.2c0.9-0.1,2.8-1.1,3.2-2.3c0.4-1.1,0.4-2.1,0.3-2.3c-0.1-0.2-0.4-0.3-0.9-0.6 s-2.8-1.4-3.2-1.5c-0.4-0.2-0.8-0.2-1.1,0.2c-0.3,0.5-1.2,1.5-1.5,1.9c-0.3,0.3-0.6,0.4-1,0.1c-0.5-0.2-2-0.7-3.8-2.4 c-1.4-1.3-2.4-2.8-2.6-3.3c-0.3-0.5,0-0.7,0.2-1c0.2-0.2,0.5-0.6,0.7-0.8c0.2-0.3,0.3-0.5,0.5-0.8c0.2-0.3,0.1-0.6,0-0.8 C20.6,19.3,19.7,17,19.3,16z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              WhatsApp
+            </button>
+            <button
+              onclick="downloadCalculatorImage()"
+              id="downloadImageBtn"
+              class="flex items-center gap-2 text-base px-6 py-3 rounded-full text-black border border-gray-300 hover:bg-gray-100 transition-colors cursor-pointer"
+            >
+              <i data-lucide="download" class="w-5 h-5"></i>
+              Download Image
+            </button>
+            <a
+              href="../index.html#consultation"
+              class="inline-flex items-center bg-[#fcaf1b] text-black hover:text-white pl-5 pr-3 py-3 rounded-full text-base gap-3 group transition hover:bg-[#161f48]"
+            >
+              Start Investing
+              <span
+                class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+              >
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disclaimer Modal -->
+    <!-- Modal -->
+    <div
+      id="disclaimerModal"
+      class="fixed inset-0 p-4 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300"
+    >
+      <div
+        class="bg-white rounded-2xl shadow-lg max-w-4xl w-full p-8 relative transform transition-transform duration-300 scale-95"
+        id="modalContent"
+      >
+        <!-- Close Button -->
+        <button
+          id="closeDisclaimer"
+          class="absolute top-3 right-3 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200 group"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="gray"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-x-icon lucide-x"
+          >
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+
+        <!-- Title -->
+        <h2 class="text-lg text-center font-semibold mb-4 text-blue-700">
+          Disclaimer ⚠️
+        </h2>
+
+        <!-- Content -->
+        <p class="text-sm text-gray-700 leading-relaxed text-start">
+          These Calculators alone are not sufficient and shouldn't be used for
+          development or implementation of an investment strategy. The examples
+          do not purport to represent the performance of any security or
+          investments. The recipient is advised to consult his or her
+          advisor/tax consultant prior to arriving at any investment decision.
+          Mutual Funds do not have a fixed rate of return and it is not possible
+          to predict the rate of return. Past performance may or may not be
+          sustained in future and is not a guarantee of any future returns.
+          Mutual Fund Investments are subject to market risks, read all scheme
+          related documents carefully.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      let lastCalculatedInvestment = 0;
+      let lastCalculatedReturns = 0;
+      let lastCalculatedTotal = 0;
+      let lastCalculatedGrowthPercentage = 0;
+      let lastCalculatedInflationAdjustedTarget = 0;
+      let lastCalculatedRequiredSIP = 0;
+      let isTargetMode = false;
+      // Format number to Indian format
+      // Format number to Indian format WITH Rupee symbol
+      function formatIndianNumber(num) {
+        if (isNaN(num)) return "₹0";
+
+        if (num >= 10000000) {
+          return "₹" + (num / 10000000).toFixed(2) + " Crore";
+        } else if (num >= 100000) {
+          return "₹" + (num / 100000).toFixed(2) + " Lakhs";
+        } else {
+          return "₹" + num.toLocaleString("en-IN");
+        }
+      }
+
+      // Parse Indian format to number
+      function parseIndianNumber(str) {
+        str = str.toString().replace(/,/g, "").trim();
+        if (str.includes("Cr")) {
+          return parseFloat(str) * 10000000;
+        } else if (str.includes("L")) {
+          return parseFloat(str) * 100000;
+        }
+        return parseFloat(str) || 0;
+      }
+
+      let chart = null;
+
+      // Mode switching
+      document
+        .getElementById("investmentModeBtn")
+        .addEventListener("click", () => {
+          document
+            .getElementById("investmentSection")
+            .classList.remove("hidden");
+          document.getElementById("targetSection").classList.add("hidden");
+          document
+            .getElementById("investmentModeBtn")
+            .classList.add("bg-white", "shadow-base");
+          document
+            .getElementById("targetModeBtn")
+            .classList.remove("bg-white", "shadow-base");
+          calculate();
+        });
+
+      document.getElementById("targetModeBtn").addEventListener("click", () => {
+        document.getElementById("investmentSection").classList.add("hidden");
+        document.getElementById("targetSection").classList.remove("hidden");
+        document
+          .getElementById("targetModeBtn")
+          .classList.add("bg-white", "shadow-base");
+        document
+          .getElementById("investmentModeBtn")
+          .classList.remove("bg-white", "shadow-base");
+        calculate();
+      });
+
+      // Investment Type Toggle (Lumpsum vs SIP in Target Mode)
+      document
+        .getElementById("investmentTypeToggle")
+        .addEventListener("change", (e) => {
+          const isLumpsum = !e.target.checked;
+          document
+            .getElementById("targetLumpsumSection")
+            .classList.toggle("hidden", !isLumpsum);
+          document
+            .getElementById("targetMonthlySection")
+            .classList.toggle("hidden", isLumpsum);
+          calculate();
+        });
+
+      // Step-up Toggle
+      document
+        .getElementById("stepUpToggle")
+        .addEventListener("change", (e) => {
+          const controls = document.getElementById("stepUpControls");
+          if (e.target.checked) {
+            controls.classList.remove("hidden");
+          } else {
+            controls.classList.add("hidden");
+          }
+          calculate();
+        });
+
+      // Top-up Toggle
+      document.getElementById("topUpToggle").addEventListener("change", (e) => {
+        const controls = document.getElementById("topUpControls");
+        if (e.target.checked) {
+          controls.classList.remove("hidden");
+        } else {
+          controls.classList.add("hidden");
+        }
+        calculate();
+      });
+
+      // Inflation Toggle
+      document
+        .getElementById("inflationToggle")
+        .addEventListener("change", (e) => {
+          const controls = document.getElementById("inflationControls");
+          if (e.target.checked) {
+            controls.classList.remove("hidden");
+          } else {
+            controls.classList.add("hidden");
+          }
+          calculate();
+        });
+
+      // Disclaimer
+      document
+        .getElementById("openDisclaimer")
+        .addEventListener("click", () => {
+          document.getElementById("disclaimerModal").classList.remove("hidden");
+        });
+
+      document
+        .getElementById("closeDisclaimer")
+        .addEventListener("click", () => {
+          document.getElementById("disclaimerModal").classList.add("hidden");
+        });
+
+      // Sync inputs and sliders - Investment Mode
+      ["Lumpsum", "Monthly", "Return", "Time", "StepUp"].forEach((field) => {
+        const inputId =
+          field === "Return"
+            ? "investmentReturnInput"
+            : field === "Time"
+            ? "investmentTimeInput"
+            : field === "StepUp"
+            ? "stepUpInput"
+            : "investment" + field + "Input";
+        const sliderId =
+          field === "Return"
+            ? "investmentReturnSlider"
+            : field === "Time"
+            ? "investmentTimeSlider"
+            : field === "StepUp"
+            ? "stepUpSlider"
+            : "investment" + field + "Slider";
+
+        const inputEl = document.getElementById(inputId);
+        const sliderEl = document.getElementById(sliderId);
+
+        if (inputEl && sliderEl) {
+          inputEl.addEventListener("input", () => {
+            let value = parseIndianNumber(inputEl.value);
+            sliderEl.value = value;
+            calculate();
+          });
+
+          sliderEl.addEventListener("input", () => {
+            const value = parseInt(sliderEl.value);
+            if (field === "Return" || field === "Time" || field === "StepUp") {
+              inputEl.value = sliderEl.value;
+            } else {
+              inputEl.value = value.toLocaleString("en-IN");
+            }
+            calculate();
+          });
+        }
+      });
+
+      // Sync inputs and sliders - Target Mode
+      ["Lumpsum", "Monthly", "Amount", "Return", "Time"].forEach((field) => {
+        const inputId = "target" + field + "Input";
+        const sliderId = "target" + field + "Slider";
+
+        const inputEl = document.getElementById(inputId);
+        const sliderEl = document.getElementById(sliderId);
+
+        if (inputEl && sliderEl) {
+          inputEl.addEventListener("input", () => {
+            let value = parseIndianNumber(inputEl.value);
+            sliderEl.value = value;
+            calculate();
+          });
+
+          sliderEl.addEventListener("input", () => {
+            const value = parseInt(sliderEl.value);
+            if (field === "Return" || field === "Time") {
+              inputEl.value = sliderEl.value;
+            } else {
+              inputEl.value = value.toLocaleString("en-IN");
+            }
+            calculate();
+          });
+        }
+      });
+
+      // Target Mode Top-up and Inflation
+      ["TopUp", "Inflation"].forEach((field) => {
+        const inputId = field.toLowerCase() + "Input";
+        const sliderId = field.toLowerCase() + "Slider";
+
+        const inputEl = document.getElementById(inputId);
+        const sliderEl = document.getElementById(sliderId);
+
+        if (inputEl && sliderEl) {
+          inputEl.addEventListener("input", () => {
+            sliderEl.value = inputEl.value;
+            calculate();
+          });
+
+          sliderEl.addEventListener("input", () => {
+            inputEl.value = sliderEl.value;
+            calculate();
+          });
+        }
+      });
+
+      // Main calculation function
+      function calculate() {
+        const isTargetMode = !document
+          .getElementById("targetSection")
+          .classList.contains("hidden");
+
+        if (isTargetMode) {
+          calculateTargetMode();
+        } else {
+          calculateInvestmentMode();
+        }
+      }
+
+      // Investment Mode Calculation
+      function calculateInvestmentMode() {
+        const lumpsum = parseIndianNumber(
+          document.getElementById("investmentLumpsumInput").value
+        );
+        const monthlySIP = parseIndianNumber(
+          document.getElementById("investmentMonthlyInput").value
+        );
+        const rate =
+          parseFloat(document.getElementById("investmentReturnInput").value) /
+          100 /
+          12;
+        const years = parseInt(
+          document.getElementById("investmentTimeInput").value
+        );
+        const months = years * 12;
+        const hasStepUp = document.getElementById("stepUpToggle").checked;
+        const stepUpRate = hasStepUp
+          ? parseFloat(document.getElementById("stepUpInput").value) / 100
+          : 0;
+
+        let totalInvested = lumpsum;
+        let totalValue = lumpsum * Math.pow(1 + rate, months);
+
+        // SIP Calculation with step-up
+        let currentSIP = monthlySIP;
+        for (let year = 0; year < years; year++) {
+          for (let month = 0; month < 12; month++) {
+            const monthsRemaining = months - (year * 12 + month);
+            totalValue += currentSIP * Math.pow(1 + rate, monthsRemaining - 1);
+            totalInvested += currentSIP;
+          }
+          if (hasStepUp) {
+            currentSIP *= 1 + stepUpRate;
+          }
+        }
+
+        const returns = totalValue - totalInvested;
+        const growthPercentage =
+          totalInvested > 0 ? (returns / totalInvested) * 100 : 0;
+
+        updateResults(
+          totalValue,
+          totalInvested,
+          returns,
+          growthPercentage,
+          years,
+          false,
+          null,
+          null
+        );
+      }
+
+      // Target Mode Calculation
+      function calculateTargetMode() {
+        const isLumpsum = !document.getElementById("investmentTypeToggle")
+          .checked;
+        const target = parseIndianNumber(
+          document.getElementById("targetAmountInput").value
+        );
+        const rate =
+          parseFloat(document.getElementById("targetReturnInput").value) /
+          100 /
+          12;
+        const years = parseInt(
+          document.getElementById("targetTimeInput").value
+        );
+        const months = years * 12;
+        const hasInflation = document.getElementById("inflationToggle").checked;
+        const inflationRate = hasInflation
+          ? parseFloat(document.getElementById("inflationInput").value) / 100
+          : 0;
+        const hasTopUp = document.getElementById("topUpToggle").checked;
+        const topUpRate = hasTopUp
+          ? parseFloat(document.getElementById("topUpInput").value) / 100
+          : 0;
+
+        // Adjust target for inflation
+        const inflationAdjustedTarget =
+          target * Math.pow(1 + inflationRate, years);
+        document
+          .getElementById("inflationAdjustedTargetItem")
+          .classList.toggle("hidden", !hasInflation);
+        if (hasInflation) {
+          document.getElementById("inflationAdjustedTarget").textContent =
+            formatIndianNumber(inflationAdjustedTarget);
+        }
+
+        let requiredAmount, totalInvested, totalValue, returns;
+
+        if (isLumpsum) {
+          // Lumpsum: Calculate future value and check if it reaches target
+          const lumpsumAmount = parseIndianNumber(
+            document.getElementById("targetLumpsumInput").value
+          );
+          totalInvested = lumpsumAmount;
+          totalValue = lumpsumAmount * Math.pow(1 + rate, months);
+          requiredAmount = lumpsumAmount;
+          returns = totalValue - totalInvested;
+
+          document.getElementById("requiredLabel").textContent =
+            "Lumpsum Investment Required";
+        } else {
+          // SIP: Calculate required monthly SIP to reach target
+          const baseMonthly = parseIndianNumber(
+            document.getElementById("targetMonthlyInput").value
+          );
+
+          // If user has provided a value, calculate what's achievable
+          let currentSIP = baseMonthly;
+          let totalInvestedTemp = 0;
+          let totalValueTemp = 0;
+
+          for (let year = 0; year < years; year++) {
+            for (let month = 0; month < 12; month++) {
+              const monthsRemaining = months - (year * 12 + month);
+              totalValueTemp +=
+                currentSIP * Math.pow(1 + rate, monthsRemaining - 1);
+              totalInvestedTemp += currentSIP;
+            }
+            if (hasTopUp) {
+              currentSIP *= 1 + topUpRate;
+            }
+          }
+
+          totalInvested = totalInvestedTemp;
+          totalValue = totalValueTemp;
+          requiredAmount = baseMonthly;
+          returns = totalValue - totalInvested;
+
+          document.getElementById("requiredLabel").textContent =
+            "Est. monthly SIP required";
+        }
+
+        const growthPercentage =
+          totalInvested > 0 ? (returns / totalInvested) * 100 : 0;
+
+        // Show required amount
+        document
+          .getElementById("requiredAmountItem")
+          .classList.remove("hidden");
+        document.getElementById("requiredAmount").textContent = isLumpsum
+          ? formatIndianNumber(requiredAmount)
+          : "" + formatIndianNumber(requiredAmount);
+
+        updateResults(
+          totalValue,
+          totalInvested,
+          returns,
+          growthPercentage,
+          years,
+          true,
+          hasInflation ? inflationAdjustedTarget : null
+        );
+      }
+
+      // Update results display
+      function updateResults(
+        totalValue,
+        totalInvested,
+        returns,
+        growthPercentage,
+        years,
+        isTargetMode,
+        inflationAdjustedTarget
+      ) {
+        // Store calculated values for email and WhatsApp sharing
+        lastCalculatedInvestment = totalInvested;
+        lastCalculatedReturns = returns;
+        lastCalculatedTotal = totalValue;
+        lastCalculatedGrowthPercentage = growthPercentage;
+        lastCalculatedInflationAdjustedTarget = inflationAdjustedTarget || 0;
+
+        document.getElementById(
+          "investedLabel"
+        ).textContent = `Invested amount in ${years} years`;
+        document.getElementById("investedAmount").textContent =
+          formatIndianNumber(totalInvested);
+        document.getElementById("estimatedReturns").textContent =
+          formatIndianNumber(returns);
+        document.getElementById("totalValue").textContent =
+          formatIndianNumber(totalValue);
+        document.getElementById("growthPercentage").textContent =
+          growthPercentage.toFixed(2) + "%";
+        document.getElementById("totalValueCenter").textContent =
+          formatIndianNumber(totalValue);
+
+        // Update chart
+        updateChart(totalInvested, returns);
+      }
+
+      // Update chart
+      function updateChart(invested, returns) {
+        const ctx = document.getElementById("sipChart").getContext("2d");
+
+        if (chart) {
+          chart.data.datasets[0].data = [invested, returns];
+          chart.update();
+        } else {
+          chart = new Chart(ctx, {
+            type: "doughnut",
+            data: {
+              labels: ["Invested", "Returns"],
+              datasets: [
+                {
+                  data: [invested, returns],
+                  backgroundColor: ["#d1d5db", "#161f48"],
+                  borderColor: ["#d1d5db", "#161f48"],
+                  borderWidth: 0,
+                  cutout: "80%",
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: true,
+              plugins: {
+                legend: {
+                  display: false,
+                },
+              },
+            },
+          });
+        }
+      }
+
+      // Initial calculation
+      calculate();
+
+      function sendEmailPlan() {
+        const subject = encodeURIComponent("My SIP Calculator Plan");
+        let body = `My SIP Calculation Plan\n\n`;
+
+        const isTarget = !document
+          .getElementById("targetSection")
+          .classList.contains("hidden");
+
+        if (isTarget) {
+          body += `Mode: Target Amount\n`;
+          const target = parseIndianNumber(
+            document.getElementById("targetAmountInput").value
+          );
+          body += `Target Amount: ${formatIndianNumber(target)}\n`;
+
+          if (document.getElementById("inflationToggle").checked) {
+            const inflationRate = parseFloat(
+              document.getElementById("inflationInput").value
+            );
+            body += `Inflation Rate: ${inflationRate}%\n`;
+            body += `Inflation Adjusted Target: ${formatIndianNumber(
+              lastCalculatedInflationAdjustedTarget
+            )}\n`;
+          }
+
+          body += `Expected Return: ${
+            document.getElementById("targetReturnInput").value
+          }%\n`;
+          body += `Time Period: ${
+            document.getElementById("targetTimeInput").value
+          } Years\n`;
+
+          if (document.getElementById("topUpToggle").checked) {
+            body += `Annual Top-up: ${
+              document.getElementById("topUpInput").value
+            }%\n`;
+          }
+        } else {
+          body += `Mode: Monthly SIP Investment\n`;
+
+          const monthly = parseIndianNumber(
+            document.getElementById("investmentMonthlyInput").value
+          );
+          const lumpsum = parseIndianNumber(
+            document.getElementById("investmentLumpsumInput").value
+          );
+
+          if (lumpsum > 0) {
+            body += `Initial Lumpsum: ${formatIndianNumber(lumpsum)}\n`;
+          }
+
+          body += `Monthly SIP: ${formatIndianNumber(monthly)}\n`;
+          body += `Expected Return: ${
+            document.getElementById("investmentReturnInput").value
+          }%\n`;
+          body += `Time Period: ${
+            document.getElementById("investmentTimeInput").value
+          } Years\n`;
+
+          if (document.getElementById("stepUpToggle").checked) {
+            body += `Annual Step-up: ${
+              document.getElementById("stepUpInput").value
+            }%\n`;
+          }
+        }
+
+        body += `\nResults\n`;
+        body += `Total Invested: ${formatIndianNumber(
+          lastCalculatedInvestment
+        )}\n`;
+        body += `Estimated Returns: ${formatIndianNumber(
+          lastCalculatedReturns
+        )}\n`;
+        body += `Total Value: ${formatIndianNumber(lastCalculatedTotal)}\n`;
+        body += `Growth: ${lastCalculatedGrowthPercentage.toFixed(2)}%\n\n`;
+
+        body += `Calculated using Chimulkar Financial Services SIP Calculator\n`;
+        body += `${window.location.href}`;
+
+        window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
+          body
+        )}`;
+      }
+      function sendWhatsAppPlan() {
+        let message = `My SIP Calculation Plan\n\n`;
+
+        const isTarget = !document
+          .getElementById("targetSection")
+          .classList.contains("hidden");
+
+        if (isTarget) {
+          message += `Mode: Target Amount\n`;
+          const target = parseIndianNumber(
+            document.getElementById("targetAmountInput").value
+          );
+          message += `Target Amount: ${formatIndianNumber(target)}\n`;
+
+          if (document.getElementById("inflationToggle").checked) {
+            message += `Inflation Rate: ${
+              document.getElementById("inflationInput").value
+            }%\n`;
+            message += `Inflation Adjusted Target: ${formatIndianNumber(
+              lastCalculatedInflationAdjustedTarget
+            )}\n`;
+          }
+
+          message += `Expected Return: ${
+            document.getElementById("targetReturnInput").value
+          }%\n`;
+          message += `Time Period: ${
+            document.getElementById("targetTimeInput").value
+          } Years\n`;
+
+          if (document.getElementById("topUpToggle").checked) {
+            message += `Annual Top-up: ${
+              document.getElementById("topUpInput").value
+            }%\n`;
+          }
+        } else {
+          message += `Mode: Monthly SIP Investment\n`;
+
+          const monthly = parseIndianNumber(
+            document.getElementById("investmentMonthlyInput").value
+          );
+          const lumpsum = parseIndianNumber(
+            document.getElementById("investmentLumpsumInput").value
+          );
+
+          if (lumpsum > 0) {
+            message += `Initial Lumpsum: ${formatIndianNumber(lumpsum)}\n`;
+          }
+
+          message += `Monthly SIP: ${formatIndianNumber(monthly)}\n`;
+          message += `Expected Return: ${
+            document.getElementById("investmentReturnInput").value
+          }%\n`;
+          message += `Time Period: ${
+            document.getElementById("investmentTimeInput").value
+          } Years\n`;
+
+          if (document.getElementById("stepUpToggle").checked) {
+            message += `Annual Step-up: ${
+              document.getElementById("stepUpInput").value
+            }%\n`;
+          }
+        }
+
+        message += `\nResults\n`;
+        message += `Total Invested: ${formatIndianNumber(
+          lastCalculatedInvestment
+        )}\n`;
+        message += `Returns: ${formatIndianNumber(lastCalculatedReturns)}\n`;
+        message += `Total Value: ${formatIndianNumber(lastCalculatedTotal)}\n`;
+        message += `Growth: ${lastCalculatedGrowthPercentage.toFixed(2)}%\n\n`;
+
+        message += `Calculated using Chimulkar Financial Services SIP Calculator\n`;
+        message += `${window.location.href}`;
+
+        window.open(
+          `https://wa.me/?text=${encodeURIComponent(message)}`,
+          "_blank"
+        );
+      }
+
+      function downloadCalculatorImage() {
+        const calculatorContainer = document.getElementById(
+          "calculatorContainer"
+        );
+
+        if (!calculatorContainer) {
+          alert("Calculator container not found");
+          return;
+        }
+
+        html2canvas(calculatorContainer, {
+          scale: window.devicePixelRatio || 2,
+          useCORS: true,
+          allowTaint: false,
+          backgroundColor: "#ffffff",
+        })
+          .then((canvas) => {
+            canvas.toBlob(function (blob) {
+              const url = URL.createObjectURL(blob);
+              const link = document.createElement("a");
+              link.href = url;
+              link.download = "sip_calculator.png";
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              URL.revokeObjectURL(url);
+            });
+          })
+          .catch((err) => {
+            console.error(err);
+            alert("Unable to download image. Check console.");
+          });
+      }
+
+      // Setup event listeners
+      function setupEventListeners() {
+        // Mode toggle
+        document
+          .getElementById("investmentModeBtn")
+          .addEventListener("click", () => toggleMode(false));
+        document
+          .getElementById("targetModeBtn")
+          .addEventListener("click", () => toggleMode(true));
+        // Action Buttons
+        document
+          .getElementById("emailPlanBtn")
+          .addEventListener("click", sendEmailPlan);
+        document
+          .getElementById("whatsappBtn")
+          .addEventListener("click", sendWhatsAppPlan);
+        document
+          .getElementById("downloadImageBtn")
+          .addEventListener("click", downloadCalculatorImage); // Updated event listener
+        // Input and Slider sync
+        const inputs = [
+          { id: "amount", slider: "amountSlider", input: "amountInput" },
+          { id: "return", slider: "returnSlider", input: "returnInput" },
+          { id: "time", slider: "timeSlider", input: "timeInput" },
+          { id: "stepUp", slider: "stepUpSlider", input: "stepUpInput" },
+          {
+            id: "inflation",
+            slider: "inflationSlider",
+            input: "inflationInput",
+          },
+        ];
+        inputs.forEach((item) => {
+          const slider = document.getElementById(item.slider);
+          const input = document.getElementById(item.input);
+          if (item.id === "amount") {
+            // Special handling for amount input
+            input.addEventListener("input", function () {
+              let parsedValue = parseIndianFormattedNumber(this.value);
+              slider.value = parsedValue;
+              this.value = formatNumberWithIndianCommas(parsedValue);
+              isTargetMode ? calculateRequiredSIP() : calculateSIP();
+            });
+            slider.addEventListener("input", function () {
+              input.value = formatNumberWithIndianCommas(
+                parseFloat(this.value)
+              );
+              isTargetMode ? calculateRequiredSIP() : calculateSIP();
+            });
+          } else {
+            // Standard handling for other number inputs
+            input.addEventListener("input", function () {
+              slider.value = this.value;
+              isTargetMode ? calculateRequiredSIP() : calculateSIP();
+            });
+            slider.addEventListener("input", function () {
+              input.value = this.value;
+              isTargetMode ? calculateRequiredSIP() : calculateSIP();
+            });
+          }
+        });
+        // Step-up toggle
+        const stepUpToggle = document.getElementById("stepUpToggle");
+        const stepUpControls = document.getElementById("stepUpControls");
+        stepUpToggle.addEventListener("change", function () {
+          if (this.checked) {
+            stepUpControls.classList.remove(
+              "hidden",
+              "opacity-50",
+              "pointer-events-none"
+            );
+          } else {
+            stepUpControls.classList.add(
+              "hidden",
+              "opacity-50",
+              "pointer-events-none"
+            );
+          }
+          if (!isTargetMode) calculateSIP(); // Only recalculate if in investment mode
+        });
+        // Inflation toggle
+        const inflationToggle = document.getElementById("inflationToggle");
+        const inflationControls = document.getElementById("inflationControls");
+        inflationToggle.addEventListener("change", function () {
+          if (this.checked) {
+            inflationControls.classList.remove(
+              "hidden",
+              "opacity-50",
+              "pointer-events-none"
+            );
+          } else {
+            inflationControls.classList.add(
+              "hidden",
+              "opacity-50",
+              "pointer-events-none"
+            );
+          }
+          if (isTargetMode) calculateRequiredSIP(); // Only recalculate if in target mode
+        });
+
+        // Listen for changes on the time input/slider to update the label for "Est. Total amount invested in (X) years"
+        document
+          .getElementById("timeInput")
+          .addEventListener("input", function () {
+            document.getElementById("timePeriodLabel").textContent = this.value;
+            if (isTargetMode) calculateRequiredSIP(); // Recalculate if in target mode to update the value
+          });
+        document
+          .getElementById("timeSlider")
+          .addEventListener("input", function () {
+            document.getElementById("timeInput").value = this.value; // Sync input with slider
+            document.getElementById("timePeriodLabel").textContent = this.value;
+            if (isTargetMode) calculateRequiredSIP(); // Recalculate if in target mode to update the value
+          });
+      }
+    </script>
+  </body>
+</html>
