@@ -426,18 +426,26 @@
                 </div>
               </div>
               <!-- Investment Type Toggle (Between Lumpsum and Monthly) -->
-              <div class="flex items-start justify-start space-x-6 pb-4">
-                <div class="flex items-center space-x-3">
-                  <span class="text-base font-medium text-gray-700"
-                    >Lumpsum Investment</span
-                  >
-                  <label class="toggle-switch">
-                    <input type="checkbox" id="investmentTypeToggle" />
-                    <span class="toggle-slider"></span>
-                  </label>
-                  <span class="text-base font-medium text-gray-700"
-                    >Monthly Investment</span
-                  >
+              <div class="text-start space-x-6 mb-12">
+                <!-- Top Heading (same style as "I know my") -->
+                <p class="text-lg text-gray-700 mb-4">I know my</p>
+
+                <!-- Toggle Buttons -->
+                <div class="flex items-start justify-start space-x-6">
+                  <div class="flex items-center space-x-3">
+                    <span class="text-base font-medium text-gray-700">
+                      Lumpsum Investment
+                    </span>
+
+                    <label class="toggle-switch">
+                      <input type="checkbox" id="investmentTypeToggle" />
+                      <span class="toggle-slider"></span>
+                    </label>
+
+                    <span class="text-base font-medium text-gray-700">
+                      Monthly Investment
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -939,6 +947,7 @@
       let lastCalculatedGrowthPercentage = 0;
       let lastCalculatedInflationAdjustedTarget = 0;
       let lastCalculatedRequiredSIP = 0;
+      let lastCalculatedRequiredLumpsum = 0;
       let isTargetMode = false;
 
       // Format number to Indian format WITH Rupee symbol
@@ -999,7 +1008,7 @@
         calculate();
       });
 
-      // Investment Type Toggle (Lumpsum vs SIP in Target Mode)
+      // Investment Type Toggle (Lumpsum fixed vs SIP fixed in Target Mode)
       document
         .getElementById("investmentTypeToggle")
         .addEventListener("change", (e) => {
@@ -1013,7 +1022,7 @@
           calculate();
         });
 
-      // Step-up Toggle
+      // Step-up Toggle (for Investment Mode only)
       document
         .getElementById("stepUpToggle")
         .addEventListener("change", (e) => {
@@ -1026,7 +1035,7 @@
           calculate();
         });
 
-      // Top-up Toggle
+      // Top-up Toggle (for Target Mode SIP calculations)
       document.getElementById("topUpToggle").addEventListener("change", (e) => {
         const controls = document.getElementById("topUpControls");
         if (e.target.checked) {
@@ -1104,7 +1113,7 @@
         }
       });
 
-      // Sync inputs and sliders - Target Mode
+      // Sync inputs and sliders - Target Mode (Lumpsum and Monthly inputs for fixed values)
       ["Lumpsum", "Monthly", "Amount", "Return", "Time"].forEach((field) => {
         const inputId = "target" + field + "Input";
         const sliderId = "target" + field + "Slider";
@@ -1161,7 +1170,7 @@
         }
       }
 
-      // <CHANGE> FIXED: Investment Mode - Lumpsum uses annual compounding, SIP uses monthly loop
+      // Investment Mode - Lumpsum uses annual compounding, SIP uses monthly loop
       function calculateInvestmentMode() {
         const lumpsum = parseIndianNumber(
           document.getElementById("investmentLumpsumInput").value
@@ -1191,13 +1200,13 @@
         let totalValue = 0;
         let totalInvestment = 0;
 
-        // <CHANGE> Lumpsum: Use annual compounding formula - Math.pow(1 + rate/100, years)
+        // Lumpsum: Use annual compounding formula
         if (lumpsum > 0) {
           totalValue = lumpsum * Math.pow(1 + annualReturn / 100, years);
           totalInvestment = lumpsum;
         }
 
-        // <CHANGE> SIP: Use monthly compounding with loop-based method
+        // SIP: Use monthly compounding with loop-based method
         if (monthlySIP > 0) {
           const monthlyReturn = annualReturn / 100 / 12;
           const months = years * 12;
@@ -1236,10 +1245,8 @@
         );
       }
 
-      // <CHANGE> FIXED: Target Mode - Lumpsum uses annual compounding, SIP uses monthly formula
+      // <CHANGE> REFACTORED: Target Mode - Gap-filling logic with inflation-adjusted target
       function calculateTargetMode() {
-        const isLumpsum = !document.getElementById("investmentTypeToggle")
-          .checked;
         const targetAmount = parseIndianNumber(
           document.getElementById("targetAmountInput").value
         );
@@ -1254,19 +1261,18 @@
           return;
         }
 
-        // If years is zero, return zero
+        // If years is zero, return target as is
         if (years === 0) {
           updateResults(targetAmount, 0, targetAmount, 0, years, true, 0);
           return;
         }
 
-        // Inflation settings
+        // <CHANGE> STEP 1: Apply inflation to get final target
         const hasInflation = document.getElementById("inflationToggle").checked;
         const inflationRate = hasInflation
           ? parseFloat(document.getElementById("inflationInput").value) || 0
           : 0;
 
-        // <CHANGE> Calculate inflation-adjusted target
         const inflationAdjustedTarget = hasInflation
           ? targetAmount * Math.pow(1 + inflationRate / 100, years)
           : targetAmount;
@@ -1279,86 +1285,183 @@
             formatIndianNumber(inflationAdjustedTarget);
         }
 
-        const finalTarget = hasInflation
-          ? inflationAdjustedTarget
-          : targetAmount;
+        const finalTarget = inflationAdjustedTarget;
 
-        let requiredAmount, totalInvested, totalValue, returns;
+        // <CHANGE> STEP 2: Determine if Lumpsum or SIP is fixed
+        const isLumpsum = !document.getElementById("investmentTypeToggle")
+          .checked;
+
+        const monthlyReturn = annualReturn / 100 / 12;
+        const months = years * 12;
+
+        let requiredAmount = 0;
+        let lumpsumFV = 0;
+        let sipFV = 0;
+        let totalInvested = 0;
+        let totalValue = 0;
+        let returns = 0;
 
         if (isLumpsum) {
-          // <CHANGE> LUMPSUM MODE: Use annual compounding inverse formula
-          if (annualReturn === 0) {
-            requiredAmount = finalTarget;
-          } else {
-            requiredAmount =
-              finalTarget / Math.pow(1 + annualReturn / 100, years);
+          // <CHANGE> LUMPSUM IS FIXED: Calculate required SIP to fill the gap
+          const fixedLumpsum = parseIndianNumber(
+            document.getElementById("targetLumpsumInput").value
+          );
+
+          if (fixedLumpsum === 0) {
+            updateResults(
+              0,
+              0,
+              0,
+              0,
+              years,
+              true,
+              hasInflation ? inflationAdjustedTarget : null
+            );
+            return;
           }
-          totalInvested = requiredAmount;
-          totalValue = finalTarget;
-          returns = totalValue - totalInvested;
 
-          document.getElementById("requiredLabel").textContent =
-            "Required Lumpsum Amount";
-        } else {
-          // <CHANGE> SIP MODE: Calculate required monthly SIP using monthly compounding
-          const monthlyReturn = annualReturn / 100 / 12;
-          const months = years * 12;
+          // Calculate future value of fixed lumpsum
+          lumpsumFV = fixedLumpsum * Math.pow(1 + annualReturn / 100, years);
 
+          // Remaining target to be filled by SIP
+          const remainingTarget = finalTarget - lumpsumFV;
+
+          // Calculate required SIP to fill the remaining target
           const hasTopUp = document.getElementById("topUpToggle").checked;
           const topUpPercentage = hasTopUp
             ? parseFloat(document.getElementById("topUpInput").value) || 0
             : 0;
 
-          if (monthlyReturn === 0) {
-            // Simple division if return is 0
-            requiredAmount = finalTarget / months;
-          } else if (hasTopUp && topUpPercentage > 0) {
-            // SIP with annual top-up: Use binary search
-            requiredAmount = calculateRequiredSIPWithTopUp(
-              finalTarget,
-              monthlyReturn,
-              months,
-              topUpPercentage / 100
-            );
+          if (remainingTarget <= 0) {
+            // Lumpsum alone exceeds target
+            requiredAmount = 0;
+            totalValue = finalTarget;
+            totalInvested = fixedLumpsum;
+            returns = totalValue - totalInvested;
           } else {
-            // Standard SIP formula: SIP = Target / [((1 + rate)^months - 1) / rate]
-            const fv = Math.pow(1 + monthlyReturn, months);
-            requiredAmount = (finalTarget * monthlyReturn) / (fv - 1);
+            // Calculate required SIP
+            if (monthlyReturn === 0) {
+              requiredAmount = remainingTarget / months;
+            } else if (hasTopUp && topUpPercentage > 0) {
+              requiredAmount = calculateRequiredSIPWithTopUp(
+                remainingTarget,
+                monthlyReturn,
+                months,
+                topUpPercentage / 100
+              );
+            } else {
+              const fv = Math.pow(1 + monthlyReturn, months);
+              requiredAmount = (remainingTarget * monthlyReturn) / (fv - 1);
+            }
+
+            // Verify by calculating what the SIP will actually grow to
+            let sipFutureValue = 0;
+            let totalSIPInvested = 0;
+            let currentMonthlyAmount = requiredAmount;
+
+            for (let month = 1; month <= months; month++) {
+              sipFutureValue =
+                (sipFutureValue + currentMonthlyAmount) * (1 + monthlyReturn);
+              totalSIPInvested += currentMonthlyAmount;
+
+              if (hasTopUp && month % 12 === 0) {
+                currentMonthlyAmount *= 1 + topUpPercentage / 100;
+              }
+            }
+
+            sipFV = sipFutureValue;
+            totalValue = lumpsumFV + sipFutureValue;
+            totalInvested = fixedLumpsum + totalSIPInvested;
+            returns = totalValue - totalInvested;
           }
 
-          // <CHANGE> Calculate what this required SIP will actually grow to
-          let totalValueTemp = 0;
-          let totalInvestedTemp = 0;
-          let currentMonthlyAmount = requiredAmount;
+          document.getElementById("requiredLabel").textContent =
+            "Required Monthly SIP";
+          document
+            .getElementById("requiredAmountItem")
+            .classList.remove("hidden");
+          document.getElementById("requiredAmount").textContent =
+            formatIndianNumber(requiredAmount);
+          lastCalculatedRequiredSIP = requiredAmount;
+        } else {
+          // <CHANGE> SIP IS FIXED: Calculate required Lumpsum to fill the gap
+          const fixedSIP = parseIndianNumber(
+            document.getElementById("targetMonthlyInput").value
+          );
+
+          if (fixedSIP === 0) {
+            updateResults(
+              0,
+              0,
+              0,
+              0,
+              years,
+              true,
+              hasInflation ? inflationAdjustedTarget : null
+            );
+            return;
+          }
+
+          // Calculate future value of fixed SIP
+          const hasTopUp = document.getElementById("topUpToggle").checked;
+          const topUpPercentage = hasTopUp
+            ? parseFloat(document.getElementById("topUpInput").value) || 0
+            : 0;
+
+          let totalSIPValue = 0;
+          let totalSIPInvested = 0;
+          let currentMonthlyAmount = fixedSIP;
 
           for (let month = 1; month <= months; month++) {
-            totalValueTemp =
-              (totalValueTemp + currentMonthlyAmount) * (1 + monthlyReturn);
-            totalInvestedTemp += currentMonthlyAmount;
+            totalSIPValue =
+              (totalSIPValue + currentMonthlyAmount) * (1 + monthlyReturn);
+            totalSIPInvested += currentMonthlyAmount;
 
             if (hasTopUp && month % 12 === 0) {
               currentMonthlyAmount *= 1 + topUpPercentage / 100;
             }
           }
 
-          totalInvested = totalInvestedTemp;
-          totalValue = totalValueTemp;
-          returns = totalValue - totalInvested;
+          sipFV = totalSIPValue;
+
+          // Remaining target to be filled by Lumpsum
+          const remainingTarget = finalTarget - totalSIPValue;
+
+          // Calculate required Lumpsum to fill the remaining target
+          if (remainingTarget <= 0) {
+            // SIP alone exceeds target
+            requiredAmount = 0;
+            totalValue = finalTarget;
+            totalInvested = totalSIPInvested;
+            returns = totalValue - totalInvested;
+          } else {
+            // Calculate required Lumpsum
+            if (annualReturn === 0) {
+              requiredAmount = remainingTarget;
+            } else {
+              requiredAmount =
+                remainingTarget / Math.pow(1 + annualReturn / 100, years);
+            }
+
+            lumpsumFV =
+              requiredAmount * Math.pow(1 + annualReturn / 100, years);
+            totalValue = lumpsumFV + sipFV;
+            totalInvested = requiredAmount + totalSIPInvested;
+            returns = totalValue - totalInvested;
+          }
 
           document.getElementById("requiredLabel").textContent =
-            "Required Monthly SIP";
+            "Required Lumpsum Amount";
+          document
+            .getElementById("requiredAmountItem")
+            .classList.remove("hidden");
+          document.getElementById("requiredAmount").textContent =
+            formatIndianNumber(requiredAmount);
+          lastCalculatedRequiredLumpsum = requiredAmount;
         }
 
         const growthPercentage =
           totalInvested > 0 ? (returns / totalInvested) * 100 : 0;
-
-        // Show required amount
-        document
-          .getElementById("requiredAmountItem")
-          .classList.remove("hidden");
-        document.getElementById("requiredAmount").textContent =
-          formatIndianNumber(requiredAmount);
-        lastCalculatedRequiredSIP = requiredAmount;
 
         updateResults(
           totalValue,
@@ -1507,10 +1610,34 @@
             document.getElementById("targetTimeInput").value
           } Years\n`;
 
-          if (document.getElementById("topUpToggle").checked) {
-            body += `Annual Top-up: ${
-              document.getElementById("topUpInput").value
-            }%\n`;
+          const isLumpsum = !document.getElementById("investmentTypeToggle")
+            .checked;
+          if (isLumpsum) {
+            const fixedLumpsum = parseIndianNumber(
+              document.getElementById("targetLumpsumInput").value
+            );
+            body += `Fixed Lumpsum: ${formatIndianNumber(fixedLumpsum)}\n`;
+            body += `Required Monthly SIP: ${formatIndianNumber(
+              lastCalculatedRequiredSIP
+            )}\n`;
+            if (document.getElementById("topUpToggle").checked) {
+              body += `Annual Top-up: ${
+                document.getElementById("topUpInput").value
+              }%\n`;
+            }
+          } else {
+            const fixedSIP = parseIndianNumber(
+              document.getElementById("targetMonthlyInput").value
+            );
+            body += `Fixed Monthly SIP: ${formatIndianNumber(fixedSIP)}\n`;
+            body += `Required Lumpsum: ${formatIndianNumber(
+              lastCalculatedRequiredLumpsum
+            )}\n`;
+            if (document.getElementById("topUpToggle").checked) {
+              body += `Annual Top-up: ${
+                document.getElementById("topUpInput").value
+              }%\n`;
+            }
           }
         } else {
           body += `Mode: Monthly SIP Investment\n`;
@@ -1583,10 +1710,34 @@
             document.getElementById("targetTimeInput").value
           } Years\n`;
 
-          if (document.getElementById("topUpToggle").checked) {
-            message += `Annual Top-up: ${
-              document.getElementById("topUpInput").value
-            }%\n`;
+          const isLumpsum = !document.getElementById("investmentTypeToggle")
+            .checked;
+          if (isLumpsum) {
+            const fixedLumpsum = parseIndianNumber(
+              document.getElementById("targetLumpsumInput").value
+            );
+            message += `Fixed Lumpsum: ${formatIndianNumber(fixedLumpsum)}\n`;
+            message += `Required Monthly SIP: ${formatIndianNumber(
+              lastCalculatedRequiredSIP
+            )}\n`;
+            if (document.getElementById("topUpToggle").checked) {
+              message += `Annual Top-up: ${
+                document.getElementById("topUpInput").value
+              }%\n`;
+            }
+          } else {
+            const fixedSIP = parseIndianNumber(
+              document.getElementById("targetMonthlyInput").value
+            );
+            message += `Fixed Monthly SIP: ${formatIndianNumber(fixedSIP)}\n`;
+            message += `Required Lumpsum: ${formatIndianNumber(
+              lastCalculatedRequiredLumpsum
+            )}\n`;
+            if (document.getElementById("topUpToggle").checked) {
+              message += `Annual Top-up: ${
+                document.getElementById("topUpInput").value
+              }%\n`;
+            }
           }
         } else {
           message += `Mode: Monthly SIP Investment\n`;
