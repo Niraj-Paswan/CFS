@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -977,7 +977,7 @@
 
       let chart = null;
 
-      // Mode switching
+      // Mode switching - HIDE inflation adjusted target when switching to Investment Mode
       document
         .getElementById("investmentModeBtn")
         .addEventListener("click", () => {
@@ -992,6 +992,10 @@
             .getElementById("targetModeBtn")
             .classList.remove("bg-white", "shadow-base");
           isTargetMode = false;
+          // Hide inflation adjusted target in Investment Mode
+          document
+            .getElementById("inflationAdjustedTargetItem")
+            .classList.add("hidden");
           calculate();
         });
 
@@ -1046,13 +1050,18 @@
         calculate();
       });
 
-      // Inflation Toggle
+      // Inflation Toggle - ONLY show if in Target Mode
       document
         .getElementById("inflationToggle")
         .addEventListener("change", (e) => {
           const controls = document.getElementById("inflationControls");
-          if (e.target.checked) {
-            controls.classList.remove("hidden");
+          // Only show/hide in Target Mode
+          if (isTargetMode) {
+            if (e.target.checked) {
+              controls.classList.remove("hidden");
+            } else {
+              controls.classList.add("hidden");
+            }
           } else {
             controls.classList.add("hidden");
           }
@@ -1078,18 +1087,18 @@
           field === "Return"
             ? "investmentReturnInput"
             : field === "Time"
-            ? "investmentTimeInput"
-            : field === "StepUp"
-            ? "stepUpInput"
-            : "investment" + field + "Input";
+              ? "investmentTimeInput"
+              : field === "StepUp"
+                ? "stepUpInput"
+                : "investment" + field + "Input";
         const sliderId =
           field === "Return"
             ? "investmentReturnSlider"
             : field === "Time"
-            ? "investmentTimeSlider"
-            : field === "StepUp"
-            ? "stepUpSlider"
-            : "investment" + field + "Slider";
+              ? "investmentTimeSlider"
+              : field === "StepUp"
+                ? "stepUpSlider"
+                : "investment" + field + "Slider";
 
         const inputEl = document.getElementById(inputId);
         const sliderEl = document.getElementById(sliderId);
@@ -1173,10 +1182,10 @@
       // Investment Mode - Lumpsum uses annual compounding, SIP uses monthly loop
       function calculateInvestmentMode() {
         const lumpsum = parseIndianNumber(
-          document.getElementById("investmentLumpsumInput").value
+          document.getElementById("investmentLumpsumInput").value,
         );
         const monthlySIP = parseIndianNumber(
-          document.getElementById("investmentMonthlyInput").value
+          document.getElementById("investmentMonthlyInput").value,
         );
         const annualReturn =
           parseFloat(document.getElementById("investmentReturnInput").value) ||
@@ -1241,14 +1250,14 @@
           growthPercentage,
           years,
           false,
-          null
+          null,
         );
       }
 
-      // <CHANGE> REFACTORED: Target Mode - Gap-filling logic with inflation-adjusted target
+      // TARGET MODE - Full gap-filling logic with inflation-adjusted target
       function calculateTargetMode() {
         const targetAmount = parseIndianNumber(
-          document.getElementById("targetAmountInput").value
+          document.getElementById("targetAmountInput").value,
         );
         const annualReturn =
           parseFloat(document.getElementById("targetReturnInput").value) || 0;
@@ -1267,7 +1276,7 @@
           return;
         }
 
-        // <CHANGE> STEP 1: Apply inflation to get final target
+        // STEP 1: Apply inflation to get final target
         const hasInflation = document.getElementById("inflationToggle").checked;
         const inflationRate = hasInflation
           ? parseFloat(document.getElementById("inflationInput").value) || 0
@@ -1277,6 +1286,7 @@
           ? targetAmount * Math.pow(1 + inflationRate / 100, years)
           : targetAmount;
 
+        // ONLY show inflation adjusted target in Target Mode when inflation is enabled
         document
           .getElementById("inflationAdjustedTargetItem")
           .classList.toggle("hidden", !hasInflation);
@@ -1287,7 +1297,7 @@
 
         const finalTarget = inflationAdjustedTarget;
 
-        // <CHANGE> STEP 2: Determine if Lumpsum or SIP is fixed
+        // STEP 2: Determine if Lumpsum or SIP is fixed
         const isLumpsum = !document.getElementById("investmentTypeToggle")
           .checked;
 
@@ -1302,9 +1312,9 @@
         let returns = 0;
 
         if (isLumpsum) {
-          // <CHANGE> LUMPSUM IS FIXED: Calculate required SIP to fill the gap
+          // LUMPSUM IS FIXED: Calculate required SIP to fill the gap
           const fixedLumpsum = parseIndianNumber(
-            document.getElementById("targetLumpsumInput").value
+            document.getElementById("targetLumpsumInput").value,
           );
 
           if (fixedLumpsum === 0) {
@@ -1315,7 +1325,7 @@
               0,
               years,
               true,
-              hasInflation ? inflationAdjustedTarget : null
+              hasInflation ? inflationAdjustedTarget : null,
             );
             return;
           }
@@ -1347,7 +1357,7 @@
                 remainingTarget,
                 monthlyReturn,
                 months,
-                topUpPercentage / 100
+                topUpPercentage / 100,
               );
             } else {
               const fv = Math.pow(1 + monthlyReturn, months);
@@ -1384,9 +1394,9 @@
             formatIndianNumber(requiredAmount);
           lastCalculatedRequiredSIP = requiredAmount;
         } else {
-          // <CHANGE> SIP IS FIXED: Calculate required Lumpsum to fill the gap
+          // SIP IS FIXED: Calculate required Lumpsum to fill the gap
           const fixedSIP = parseIndianNumber(
-            document.getElementById("targetMonthlyInput").value
+            document.getElementById("targetMonthlyInput").value,
           );
 
           if (fixedSIP === 0) {
@@ -1397,7 +1407,7 @@
               0,
               years,
               true,
-              hasInflation ? inflationAdjustedTarget : null
+              hasInflation ? inflationAdjustedTarget : null,
             );
             return;
           }
@@ -1470,16 +1480,16 @@
           growthPercentage,
           years,
           true,
-          hasInflation ? inflationAdjustedTarget : null
+          hasInflation ? inflationAdjustedTarget : null,
         );
       }
 
-      // <CHANGE> Helper function: Binary search for required SIP with annual top-up
+      // Helper function: Binary search for required SIP with annual top-up
       function calculateRequiredSIPWithTopUp(
         target,
         monthlyRate,
         months,
-        topUpRate
+        topUpRate,
       ) {
         let low = 0;
         let high = target;
@@ -1518,7 +1528,7 @@
         growthPercentage,
         years,
         isTargetMode,
-        inflationAdjustedTarget
+        inflationAdjustedTarget,
       ) {
         lastCalculatedInvestment = totalInvested;
         lastCalculatedReturns = returns;
@@ -1526,9 +1536,8 @@
         lastCalculatedGrowthPercentage = growthPercentage;
         lastCalculatedInflationAdjustedTarget = inflationAdjustedTarget || 0;
 
-        document.getElementById(
-          "investedLabel"
-        ).textContent = `Total Invested in ${years} years`;
+        document.getElementById("investedLabel").textContent =
+          `Total Invested in ${years} years`;
         document.getElementById("investedAmount").textContent =
           formatIndianNumber(totalInvested);
         document.getElementById("estimatedReturns").textContent =
@@ -1589,17 +1598,17 @@
         if (isTargetMode) {
           body += `Mode: Target Amount\n`;
           const target = parseIndianNumber(
-            document.getElementById("targetAmountInput").value
+            document.getElementById("targetAmountInput").value,
           );
           body += `Target Amount: ${formatIndianNumber(target)}\n`;
 
           if (document.getElementById("inflationToggle").checked) {
             const inflationRate = parseFloat(
-              document.getElementById("inflationInput").value
+              document.getElementById("inflationInput").value,
             );
             body += `Inflation Rate: ${inflationRate}%\n`;
             body += `Inflation Adjusted Target: ${formatIndianNumber(
-              lastCalculatedInflationAdjustedTarget
+              lastCalculatedInflationAdjustedTarget,
             )}\n`;
           }
 
@@ -1614,11 +1623,11 @@
             .checked;
           if (isLumpsum) {
             const fixedLumpsum = parseIndianNumber(
-              document.getElementById("targetLumpsumInput").value
+              document.getElementById("targetLumpsumInput").value,
             );
             body += `Fixed Lumpsum: ${formatIndianNumber(fixedLumpsum)}\n`;
             body += `Required Monthly SIP: ${formatIndianNumber(
-              lastCalculatedRequiredSIP
+              lastCalculatedRequiredSIP,
             )}\n`;
             if (document.getElementById("topUpToggle").checked) {
               body += `Annual Top-up: ${
@@ -1627,11 +1636,11 @@
             }
           } else {
             const fixedSIP = parseIndianNumber(
-              document.getElementById("targetMonthlyInput").value
+              document.getElementById("targetMonthlyInput").value,
             );
             body += `Fixed Monthly SIP: ${formatIndianNumber(fixedSIP)}\n`;
             body += `Required Lumpsum: ${formatIndianNumber(
-              lastCalculatedRequiredLumpsum
+              lastCalculatedRequiredLumpsum,
             )}\n`;
             if (document.getElementById("topUpToggle").checked) {
               body += `Annual Top-up: ${
@@ -1642,10 +1651,10 @@
         } else {
           body += `Mode: Monthly SIP Investment\n`;
           const monthly = parseIndianNumber(
-            document.getElementById("investmentMonthlyInput").value
+            document.getElementById("investmentMonthlyInput").value,
           );
           const lumpsum = parseIndianNumber(
-            document.getElementById("investmentLumpsumInput").value
+            document.getElementById("investmentLumpsumInput").value,
           );
 
           if (lumpsum > 0) {
@@ -1669,10 +1678,10 @@
 
         body += `\nResults\n`;
         body += `Total Invested: ${formatIndianNumber(
-          lastCalculatedInvestment
+          lastCalculatedInvestment,
         )}\n`;
         body += `Estimated Returns: ${formatIndianNumber(
-          lastCalculatedReturns
+          lastCalculatedReturns,
         )}\n`;
         body += `Total Value: ${formatIndianNumber(lastCalculatedTotal)}\n`;
         body += `Growth: ${lastCalculatedGrowthPercentage.toFixed(2)}%\n\n`;
@@ -1680,7 +1689,7 @@
         body += `${window.location.href}`;
 
         window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
-          body
+          body,
         )}`;
       }
 
@@ -1688,104 +1697,116 @@
         let message = `My SIP Calculation Plan\n\n`;
 
         if (isTargetMode) {
-          message += `Mode: Target Amount\n`;
+          message += `Mode: *Target Amount*\n`;
+
           const target = parseIndianNumber(
-            document.getElementById("targetAmountInput").value
+            document.getElementById("targetAmountInput").value,
           );
-          message += `Target Amount: ${formatIndianNumber(target)}\n`;
+          message += `Target Amount: *${formatIndianNumber(target)}*\n`;
 
           if (document.getElementById("inflationToggle").checked) {
-            message += `Inflation Rate: ${
+            message += `Inflation Rate: *${
               document.getElementById("inflationInput").value
-            }%\n`;
-            message += `Inflation Adjusted Target: ${formatIndianNumber(
-              lastCalculatedInflationAdjustedTarget
-            )}\n`;
+            }%*\n`;
+            message += `Inflation Adjusted Target: *${formatIndianNumber(
+              lastCalculatedInflationAdjustedTarget,
+            )}*\n`;
           }
 
-          message += `Expected Return: ${
+          message += `Expected Return: *${
             document.getElementById("targetReturnInput").value
-          }%\n`;
-          message += `Time Period: ${
+          }%*\n`;
+          message += `Time Period: *${
             document.getElementById("targetTimeInput").value
-          } Years\n`;
+          } Years*\n`;
 
           const isLumpsum = !document.getElementById("investmentTypeToggle")
             .checked;
+
           if (isLumpsum) {
             const fixedLumpsum = parseIndianNumber(
-              document.getElementById("targetLumpsumInput").value
+              document.getElementById("targetLumpsumInput").value,
             );
-            message += `Fixed Lumpsum: ${formatIndianNumber(fixedLumpsum)}\n`;
-            message += `Required Monthly SIP: ${formatIndianNumber(
-              lastCalculatedRequiredSIP
-            )}\n`;
+            message += `Fixed Lumpsum: *${formatIndianNumber(fixedLumpsum)}*\n`;
+            message += `Required Monthly SIP: *${formatIndianNumber(
+              lastCalculatedRequiredSIP,
+            )}*\n`;
+
             if (document.getElementById("topUpToggle").checked) {
-              message += `Annual Top-up: ${
+              message += `Annual Top-up: *${
                 document.getElementById("topUpInput").value
-              }%\n`;
+              }%*\n`;
             }
           } else {
             const fixedSIP = parseIndianNumber(
-              document.getElementById("targetMonthlyInput").value
+              document.getElementById("targetMonthlyInput").value,
             );
-            message += `Fixed Monthly SIP: ${formatIndianNumber(fixedSIP)}\n`;
-            message += `Required Lumpsum: ${formatIndianNumber(
-              lastCalculatedRequiredLumpsum
-            )}\n`;
+            message += `Fixed Monthly SIP: *${formatIndianNumber(fixedSIP)}*\n`;
+            message += `Required Lumpsum: *${formatIndianNumber(
+              lastCalculatedRequiredLumpsum,
+            )}*\n`;
+
             if (document.getElementById("topUpToggle").checked) {
-              message += `Annual Top-up: ${
+              message += `Annual Top-up: *${
                 document.getElementById("topUpInput").value
-              }%\n`;
+              }%*\n`;
             }
           }
         } else {
-          message += `Mode: Monthly SIP Investment\n`;
+          message += `Mode: *Investment Amount*\n`;
+
           const monthly = parseIndianNumber(
-            document.getElementById("investmentMonthlyInput").value
+            document.getElementById("investmentMonthlyInput").value,
           );
           const lumpsum = parseIndianNumber(
-            document.getElementById("investmentLumpsumInput").value
+            document.getElementById("investmentLumpsumInput").value,
           );
 
           if (lumpsum > 0) {
-            message += `Initial Lumpsum: ${formatIndianNumber(lumpsum)}\n`;
+            message += `Initial Lumpsum: *${formatIndianNumber(lumpsum)}*\n`;
           }
 
-          message += `Monthly SIP: ${formatIndianNumber(monthly)}\n`;
-          message += `Expected Return: ${
+          message += `Monthly SIP: *${formatIndianNumber(monthly)}*\n`;
+          message += `Expected Return: *${
             document.getElementById("investmentReturnInput").value
-          }%\n`;
-          message += `Time Period: ${
+          }%*\n`;
+          message += `Time Period: *${
             document.getElementById("investmentTimeInput").value
-          } Years\n`;
+          } Years*\n`;
 
           if (document.getElementById("stepUpToggle").checked) {
-            message += `Annual Step-up: ${
+            message += `Annual Step-up: *${
               document.getElementById("stepUpInput").value
-            }%\n`;
+            }%*\n`;
           }
         }
 
-        message += `\nResults\n`;
-        message += `Total Invested: ${formatIndianNumber(
-          lastCalculatedInvestment
-        )}\n`;
-        message += `Returns: ${formatIndianNumber(lastCalculatedReturns)}\n`;
-        message += `Total Value: ${formatIndianNumber(lastCalculatedTotal)}\n`;
-        message += `Growth: ${lastCalculatedGrowthPercentage.toFixed(2)}%\n\n`;
-        message += `Calculated using SIP Calculator\n`;
-        message += `${window.location.href}`;
+        // RESULTS
+        message += `\n--- Results ---\n`;
+        message += `Total Invested: *${formatIndianNumber(
+          lastCalculatedInvestment,
+        )}*\n`;
+        message += `Estimated Returns: *${formatIndianNumber(
+          lastCalculatedReturns,
+        )}*\n`;
+        message += `Total Value: *${formatIndianNumber(
+          lastCalculatedTotal,
+        )}*\n`;
+        message += `Growth: *${lastCalculatedGrowthPercentage.toFixed(2)}%*\n\n`;
+
+        // FOOTER
+        message += `Calculated using Chimulkar Financial Services SIP Calculator.\n`;
+        message += `Calculate yours now at ${window.location.href}`;
 
         window.open(
           `https://wa.me/?text=${encodeURIComponent(message)}`,
-          "_blank"
+          "_blank",
         );
       }
 
       function downloadCalculatorImage() {
         const calculatorContainer = document.getElementById(
-          "calculatorContainer"
+          "calculatorContainer",
         );
 
         if (!calculatorContainer) {
