@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inflation Calculator - CFS</title>
+    <title>Inflation Calculator - Chimulkar Financial Services</title>
     <link
       rel="shortcut icon"
       href="../assets/favicon.png"
@@ -2129,7 +2129,7 @@
                     100
                   ).toFixed(1);
                   return `${context.label}: ${formatCurrency(
-                    context.parsed
+                    context.parsed,
                   )} (${percentage}%)`;
                 },
               },
@@ -2169,13 +2169,13 @@
       // Calculate Inflation Impact Cost and generate yearly data
       function calculateInflation() {
         const currentCost = parseIndianFormattedNumber(
-          document.getElementById("currentCostInput").value
+          document.getElementById("currentCostInput").value,
         );
         const timePeriod = parseInt(
-          document.getElementById("timePeriodInput").value
+          document.getElementById("timePeriodInput").value,
         );
         const inflationRate = parseFloat(
-          document.getElementById("inflationRateInput").value
+          document.getElementById("inflationRateInput").value,
         );
 
         // Generate yearly data
@@ -2203,7 +2203,7 @@
           inflationImpact,
           timePeriod,
           inflationRate,
-          annualIncrease
+          annualIncrease,
         );
         updateChart();
         updateProgressBar(currentCost, futureCost, inflationImpact);
@@ -2278,7 +2278,7 @@
         inflationImpact,
         timePeriod,
         inflationRate,
-        annualIncrease
+        annualIncrease,
       ) {
         document.getElementById("displayCurrentCost").textContent =
           formatCurrency(currentCost);
@@ -2297,35 +2297,35 @@
       // Email and WhatsApp functions (same as before)
       function sendEmailPlan() {
         const subject = encodeURIComponent(
-          "My Inflation Impact Cost Calculator Results"
+          "My Inflation Impact Cost Calculator Results",
         );
         let body = `Hello,\n\nHere are my inflation calculation results:\n\n`;
 
         body += `Current Cost: ${formatCurrency(lastCalculatedCurrentCost)}\n`;
         body += `Time Period: ${lastCalculatedTimePeriod} Years\n`;
         body += `Expected Inflation Rate: ${lastCalculatedInflationRate.toFixed(
-          1
+          1,
         )}%\n\n`;
 
         body += `--- Results ---\n`;
         body += `Future Cost: ${formatCurrency(lastCalculatedFutureCost)}\n`;
         body += `Total Inflation Impact Cost: ${formatCurrency(
-          lastCalculatedInflationImpact
+          lastCalculatedInflationImpact,
         )}\n\n`;
 
         body += `This means that what costs ${formatCurrency(
-          lastCalculatedCurrentCost
+          lastCalculatedCurrentCost,
         )} today will cost ${formatCurrency(
-          lastCalculatedFutureCost
+          lastCalculatedFutureCost,
         )} after ${lastCalculatedTimePeriod} years with ${lastCalculatedInflationRate.toFixed(
-          1
+          1,
         )}% annual inflation.\n\n`;
 
         body += `Calculated using Chimulkar Financial Services Inflation Impact Cost Calculator.\n`;
         body += `Calculate yours now at ${window.location.href}`;
 
         window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
-          body
+          body,
         )}`;
       }
 
@@ -2333,27 +2333,27 @@
         let message = `My Inflation Impact Cost Calculation Results:\n\n`;
 
         message += `Current Cost: *${formatCurrency(
-          lastCalculatedCurrentCost
+          lastCalculatedCurrentCost,
         )}*\n`;
         message += `Time Period: *${lastCalculatedTimePeriod} Years*\n`;
         message += `Expected Inflation Rate: *${lastCalculatedInflationRate.toFixed(
-          1
+          1,
         )}%*\n\n`;
 
         message += `--- Results ---\n`;
         message += `Future Cost: *${formatCurrency(
-          lastCalculatedFutureCost
+          lastCalculatedFutureCost,
         )}*\n`;
         message += `Total Inflation Impact Cost: *${formatCurrency(
-          lastCalculatedInflationImpact
+          lastCalculatedInflationImpact,
         )}*\n\n`;
 
         message += `This means that what costs *${formatCurrency(
-          lastCalculatedCurrentCost
+          lastCalculatedCurrentCost,
         )}* today will cost *${formatCurrency(
-          lastCalculatedFutureCost
+          lastCalculatedFutureCost,
         )}* after *${lastCalculatedTimePeriod} years* with *${lastCalculatedInflationRate.toFixed(
-          1
+          1,
         )}%* annual inflation.\n\n`;
 
         message += `Calculated using Chimulkar Financial Services Inflation Impact Cost Calculator.\n`;
@@ -2361,13 +2361,13 @@
 
         window.open(
           `https://wa.me/?text=${encodeURIComponent(message)}`,
-          "_blank"
+          "_blank",
         );
       }
 
       function downloadCalculatorImage() {
         const calculatorContainer = document.getElementById(
-          "calculatorContainer"
+          "calculatorContainer",
         );
 
         html2canvas(calculatorContainer, {
@@ -2447,7 +2447,7 @@
 
             slider.addEventListener("input", function () {
               input.value = formatNumberWithIndianCommas(
-                parseFloat(this.value)
+                parseFloat(this.value),
               );
               calculateInflation();
             });

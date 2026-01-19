@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lumpsum Calculator - CFS</title>
+    <title>Lumpsum Calculator - Chimulkar Financial Services</title>
     <link
       rel="shortcut icon"
       href="../assets/favicon.png"
@@ -2029,7 +2029,7 @@
         total,
         growth,
         inflationAdjustedTarget = 0,
-        requiredLumpsum = 0
+        requiredLumpsum = 0,
       ) {
         // Update main values
         document.getElementById("expectedGrowth").textContent =
@@ -2041,10 +2041,10 @@
 
         // Get result item elements
         const requiredLumpsumItem = document.getElementById(
-          "requiredLumpsumItem"
+          "requiredLumpsumItem",
         );
         const inflationAdjustedTargetItem = document.getElementById(
-          "inflationAdjustedTargetItem"
+          "inflationAdjustedTargetItem",
         );
         const investedAmountItem =
           document.getElementById("investedAmountItem");
@@ -2052,7 +2052,7 @@
           document.getElementById("expectedGrowthItem");
         const totalValueItem = document.getElementById("totalValueItem");
         const growthPercentageItem = document.getElementById(
-          "growthPercentageItem"
+          "growthPercentageItem",
         );
         const inflationToggle = document.getElementById("inflationToggle");
 
@@ -2066,7 +2066,7 @@
           if (inflationToggle.checked) {
             inflationAdjustedTargetItem.classList.remove("hidden");
             document.getElementById(
-              "inflationAdjustedTargetValue"
+              "inflationAdjustedTargetValue",
             ).textContent = formatCurrency(inflationAdjustedTarget);
             totalValueItem.classList.add("hidden"); // Hide total value if inflation adjusted target is shown
           } else {
@@ -2115,10 +2115,10 @@
       // Calculate required Lumpsum (Target Mode)
       function calculateRequiredLumpsumInvestment() {
         const targetAmount = parseIndianFormattedNumber(
-          document.getElementById("amountInput").value
+          document.getElementById("amountInput").value,
         );
         const annualReturn = parseFloat(
-          document.getElementById("returnInput").value
+          document.getElementById("returnInput").value,
         );
         const years = parseInt(document.getElementById("timeInput").value);
         const inflationEnabled =
@@ -2157,17 +2157,17 @@
           inflationAdjustedTarget, // Total value is the inflation adjusted target
           0, // Growth percentage is not shown in target mode
           inflationAdjustedTarget, // Pass inflation adjusted target
-          requiredLumpsum // Pass required lumpsum
+          requiredLumpsum, // Pass required lumpsum
         );
       }
 
       // Calculate Lumpsum (Lumpsum Investment Mode)
       function calculateLumpsumInvestment() {
         const lumpsumInvestment = parseIndianFormattedNumber(
-          document.getElementById("amountInput").value
+          document.getElementById("amountInput").value,
         );
         const annualReturn = parseFloat(
-          document.getElementById("returnInput").value
+          document.getElementById("returnInput").value,
         );
         const years = parseInt(document.getElementById("timeInput").value);
 
@@ -2185,7 +2185,7 @@
           futureValue,
           growthPercentage,
           0, // No inflation adjusted target in lumpsum mode
-          0 // No required lumpsum in lumpsum mode
+          0, // No required lumpsum in lumpsum mode
         );
       }
 
@@ -2196,7 +2196,7 @@
         const targetBtn = document.getElementById("targetModeBtn");
 
         const inflationToggleSection = document.getElementById(
-          "inflationToggleSection"
+          "inflationToggleSection",
         );
         const inflationToggle = document.getElementById("inflationToggle");
         const inflationControls = document.getElementById("inflationControls");
@@ -2215,7 +2215,7 @@
         inflationControls.classList.add(
           "hidden",
           "opacity-50",
-          "pointer-events-none"
+          "pointer-events-none",
         );
 
         if (targetMode) {
@@ -2291,8 +2291,8 @@
           body += `Mode: Target Amount\n`;
           body += `Target Amount: ${formatCurrency(
             parseIndianFormattedNumber(
-              document.getElementById("amountInput").value
-            )
+              document.getElementById("amountInput").value,
+            ),
           )}\n`;
 
           const inflationEnabled =
@@ -2300,21 +2300,21 @@
 
           if (inflationEnabled) {
             body += `Expected Inflation: ${lastExpectedInflation.toFixed(
-              1
+              1,
             )}%\n`;
             body += `Target amount (inflation adjusted): ${formatCurrency(
-              lastCalculatedInflationAdjustedTarget
+              lastCalculatedInflationAdjustedTarget,
             )}\n`;
           } else {
             body += `Expected Inflation: Not considered\n`;
           }
 
           body += `Est. Lumpsum amount invested: ${formatCurrency(
-            lastCalculatedRequiredLumpsum
+            lastCalculatedRequiredLumpsum,
           )}\n`;
 
           body += `Estimated returns: ${formatCurrency(
-            lastCalculatedReturns
+            lastCalculatedReturns,
           )}\n`;
 
           if (!inflationEnabled) {
@@ -2323,14 +2323,14 @@
         } else {
           body += `Mode: Lumpsum Investment\n`;
           body += `Lumpsum Investment: ${formatCurrency(
-            lastCalculatedInvestment
+            lastCalculatedInvestment,
           )}\n`;
           body += `Estimated returns: ${formatCurrency(
-            lastCalculatedReturns
+            lastCalculatedReturns,
           )}\n`;
           body += `Total value: ${formatCurrency(lastCalculatedTotal)}\n`;
           body += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(
-            1
+            1,
           )}%\n\n`;
         }
 
@@ -2338,7 +2338,7 @@
         body += `Calculate yours now at ${window.location.href}`;
 
         window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
-          body
+          body,
         )}`;
       }
 
@@ -2359,8 +2359,8 @@
           message += `Mode: *Target Amount*\n`;
           message += `Target Amount: *${formatCurrency(
             parseIndianFormattedNumber(
-              document.getElementById("amountInput").value
-            )
+              document.getElementById("amountInput").value,
+            ),
           )}*\n`;
 
           const inflationEnabled =
@@ -2368,39 +2368,39 @@
 
           if (inflationEnabled) {
             message += `Expected Inflation: *${lastExpectedInflation.toFixed(
-              1
+              1,
             )}%*\n`;
             message += `Target amount (inflation adjusted): *${formatCurrency(
-              lastCalculatedInflationAdjustedTarget
+              lastCalculatedInflationAdjustedTarget,
             )}*\n`;
           } else {
             message += `Expected Inflation: *Not considered*\n`;
           }
 
           message += `Est. Lumpsum amount invested: *${formatCurrency(
-            lastCalculatedRequiredLumpsum
+            lastCalculatedRequiredLumpsum,
           )}*\n`;
 
           message += `Estimated returns: *${formatCurrency(
-            lastCalculatedReturns
+            lastCalculatedReturns,
           )}*\n`;
 
           if (!inflationEnabled) {
             message += `Total value: *${formatCurrency(
-              lastCalculatedTotal
+              lastCalculatedTotal,
             )}*\n\n`;
           }
         } else {
           message += `Mode: *Lumpsum Investment*\n`;
           message += `Lumpsum Investment: *${formatCurrency(
-            lastCalculatedInvestment
+            lastCalculatedInvestment,
           )}*\n`;
           message += `Estimated returns: *${formatCurrency(
-            lastCalculatedReturns
+            lastCalculatedReturns,
           )}*\n`;
           message += `Total value: *${formatCurrency(lastCalculatedTotal)}*\n`;
           message += `Growth Percentage: *${lastCalculatedGrowthPercentage.toFixed(
-            1
+            1,
           )}%*\n\n`;
         }
 
@@ -2409,14 +2409,14 @@
 
         window.open(
           `https://wa.me/?text=${encodeURIComponent(message)}`,
-          "_blank"
+          "_blank",
         );
       }
 
       // Function to download a screenshot of the calculator
       function downloadCalculatorImage() {
         const calculatorElement = document.getElementById(
-          "calculatorContainer"
+          "calculatorContainer",
         );
         html2canvas(calculatorElement, {
           scale: 2,
@@ -2453,13 +2453,13 @@
             inflationControls.classList.remove(
               "hidden",
               "opacity-50",
-              "pointer-events-none"
+              "pointer-events-none",
             );
           } else {
             inflationControls.classList.add(
               "hidden",
               "opacity-50",
-              "pointer-events-none"
+              "pointer-events-none",
             );
           }
           if (isTargetMode) {
@@ -2502,7 +2502,7 @@
             });
             slider.addEventListener("input", function () {
               input.value = formatNumberWithIndianCommas(
-                parseFloat(this.value)
+                parseFloat(this.value),
               );
               isTargetMode
                 ? calculateRequiredLumpsumInvestment()

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SWP Calculator - CFS</title>
+    <title>SWP Calculator - Chimulkar Financial Services</title>
     <link
       rel="shortcut icon"
       href="../assets/favicon.png"
@@ -2110,17 +2110,17 @@
       // Calculate SWP
       function calculateSWP() {
         const initialInvestment = parseIndianFormattedNumber(
-          document.getElementById("investmentInput").value
+          document.getElementById("investmentInput").value,
         );
         const withdrawalAmount = parseIndianFormattedNumber(
-          document.getElementById("withdrawalInput").value
+          document.getElementById("withdrawalInput").value,
         );
         const annualReturn = parseFloat(
-          document.getElementById("returnInput").value
+          document.getElementById("returnInput").value,
         );
         const years = parseInt(document.getElementById("timeInput").value);
         const inflationRate = parseFloat(
-          document.getElementById("inflationInput").value
+          document.getElementById("inflationInput").value,
         );
 
         // Convert to monthly values
@@ -2199,10 +2199,10 @@
         document.getElementById("initialInvestmentResult").textContent =
           formatCurrency(results.initialInvestment);
         document.getElementById("totalWithdrawn").textContent = formatCurrency(
-          results.totalWithdrawn
+          results.totalWithdrawn,
         );
         document.getElementById("finalBalance").textContent = formatCurrency(
-          results.finalBalance
+          results.finalBalance,
         );
         document.getElementById("finalBalanceCenter").textContent =
           formatCurrency(results.finalBalance);
@@ -2230,7 +2230,7 @@
         const yearlyBtn = document.getElementById("yearlyModeBtn");
         const withdrawalLabel = document.getElementById("withdrawalLabel");
         const withdrawalPeriodLabel = document.getElementById(
-          "withdrawalPeriodLabel"
+          "withdrawalPeriodLabel",
         );
         const withdrawalInput = document.getElementById("withdrawalInput");
         const withdrawalSlider = document.getElementById("withdrawalSlider");
@@ -2276,7 +2276,7 @@
       function toggleInflation() {
         inflationEnabled = document.getElementById("inflationToggle").checked;
         const inflationRateSection = document.getElementById(
-          "inflationRateSection"
+          "inflationRateSection",
         );
 
         if (inflationEnabled) {
@@ -2295,12 +2295,12 @@
 
         body += `Mode: ${isMonthlyMode ? "Monthly" : "Yearly"} SWP\n`;
         body += `Initial Investment: ${formatCurrency(
-          lastCalculatedResults.initialInvestment
+          lastCalculatedResults.initialInvestment,
         )}\n`;
         body += `${
           isMonthlyMode ? "Monthly" : "Yearly"
         } Withdrawal: ${formatCurrency(
-          lastCalculatedResults.withdrawalAmount
+          lastCalculatedResults.withdrawalAmount,
         )}\n`;
         body += `Expected Return Rate: ${
           document.getElementById("returnInput").value
@@ -2317,13 +2317,13 @@
 
         body += `\n--- Results ---\n`;
         body += `Initial Investment: ${formatCurrency(
-          lastCalculatedResults.initialInvestment
+          lastCalculatedResults.initialInvestment,
         )}\n`;
         body += `Total Withdrawn: ${formatCurrency(
-          lastCalculatedResults.totalWithdrawn
+          lastCalculatedResults.totalWithdrawn,
         )}\n`;
         body += `Final Balance: ${formatCurrency(
-          lastCalculatedResults.finalBalance
+          lastCalculatedResults.finalBalance,
         )}\n`;
         body += `Sustainability: ${lastCalculatedResults.sustainability}\n\n`;
 
@@ -2331,7 +2331,7 @@
         body += `Calculate yours now at ${window.location.href}`;
 
         window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
-          body
+          body,
         )}`;
       }
 
@@ -2341,12 +2341,12 @@
 
         message += `Mode: *${isMonthlyMode ? "Monthly" : "Yearly"} SWP*\n`;
         message += `Initial Investment: *${formatCurrency(
-          lastCalculatedResults.initialInvestment
+          lastCalculatedResults.initialInvestment,
         )}*\n`;
         message += `${
           isMonthlyMode ? "Monthly" : "Yearly"
         } Withdrawal: *${formatCurrency(
-          lastCalculatedResults.withdrawalAmount
+          lastCalculatedResults.withdrawalAmount,
         )}*\n`;
         message += `Expected Return Rate: *${
           document.getElementById("returnInput").value
@@ -2363,13 +2363,13 @@
 
         message += `\n--- Results ---\n`;
         message += `Initial Investment: *${formatCurrency(
-          lastCalculatedResults.initialInvestment
+          lastCalculatedResults.initialInvestment,
         )}*\n`;
         message += `Total Withdrawn: *${formatCurrency(
-          lastCalculatedResults.totalWithdrawn
+          lastCalculatedResults.totalWithdrawn,
         )}*\n`;
         message += `Final Balance: *${formatCurrency(
-          lastCalculatedResults.finalBalance
+          lastCalculatedResults.finalBalance,
         )}*\n`;
         message += `Sustainability: *${lastCalculatedResults.sustainability}*\n\n`;
 
@@ -2378,14 +2378,14 @@
 
         window.open(
           `https://wa.me/?text=${encodeURIComponent(message)}`,
-          "_blank"
+          "_blank",
         );
       }
 
       // Function to download calculator image
       function downloadCalculatorImage() {
         const calculatorElement = document.getElementById(
-          "calculatorContainer"
+          "calculatorContainer",
         );
         html2canvas(calculatorElement, {
           scale: 2,
@@ -2468,7 +2468,7 @@
 
             slider.addEventListener("input", function () {
               input.value = formatNumberWithIndianCommas(
-                parseFloat(this.value)
+                parseFloat(this.value),
               );
               calculateSWP();
             });
