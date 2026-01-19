@@ -175,10 +175,10 @@
     </style>
   </head>
   <body
-    class="bg-gray-100 flex items-center justify-center min-h-screen flex-col py-8"
+    class="bg-gray-100 flex items-center justify-center min-h-screen flex-col mt-16"
   >
     <div
-      class="max-w-6xl w-full flex justify-center items-center text-center flex-col mt-8 p-4"
+      class="max-w-6xl w-full flex justify-center items-center text-center flex-col mt-16 p-4"
     >
       <!-- Header -->
       <div class="text-center mb-8">
@@ -887,6 +887,1369 @@
       </div>
     </div>
 
+    <!-- =================================================================== -->
+    <!-- NAVIGATION HEADER - Fixed position with dropdown menus -->
+    <!-- =================================================================== -->
+    <header class="bg-[#161f48] shadow-sm fixed w-full top-0 z-50">
+      <!-- Logo -->
+      <div
+        class="mx-6 lg:mx-12 px-2 py-3 flex items-center justify-between relative"
+      >
+        <!-- Logo -->
+        <div class="flex items-center gap-2">
+          <a href="/" aria-label="Go to Home">
+            <img
+              src="../assets/CFS TRANSPARENT.png"
+              class="h-12 w-auto"
+              alt="Chimulkar Financial Services Logo"
+            />
+          </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex gap-10 text-[16px] font-medium items-center">
+          <!-- About Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-[#fcaf1b] transition cursor-pointer"
+            >
+              About <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute top-full left-0 mt-3 text-sm bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="../about-us.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+              >
+                <i data-lucide="building-2" class="w-5 h-5"></i> About Us
+              </a>
+
+              <!-- Nested Team Dropdown -->
+              <div class="relative group/team">
+                <button
+                  class="flex items-center justify-between w-full gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+                >
+                  <span class="flex items-center gap-3">
+                    <i data-lucide="users" class="w-5 h-5"></i> Our Team
+                  </span>
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+                <div
+                  class="absolute top-0 left-full ml-2 bg-white rounded-2xl p-2 min-w-[12rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover/team:opacity-100 group-hover/team:visible transition-all duration-200"
+                >
+                  <a
+                    href="../teams/Prashant-Chimulkar.html"
+                    class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+                  >
+                    <i data-lucide="user" class="w-5 h-5"></i> Prashant
+                  </a>
+                  <a
+                    href="../teams/Pranav-Chimulkar.html"
+                    class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+                  >
+                    <i data-lucide="user" class="w-5 h-5"></i> Pranav
+                  </a>
+                </div>
+              </div>
+
+              <a
+                href="../foundation.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+              >
+                <i data-lucide="heart-handshake" class="w-5 h-5"></i> Foundation
+              </a>
+            </div>
+          </div>
+
+          <!-- Services Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-[#fcaf1b] transition cursor-pointer"
+            >
+              Services <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="../services/mutual-funds.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+              >
+                <i data-lucide="chart-pie" class="w-5 h-5"></i> Mutual Funds
+              </a>
+              <a
+                href="../services/retirement-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+              >
+                <i data-lucide="backpack" class="w-5 h-5"></i> Retirement
+                Planning
+              </a>
+              <a
+                href="../services/tax-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+              >
+                <i data-lucide="calculator" class="w-5 h-5"></i> Tax Planning
+              </a>
+              <a
+                href="../services/insurance-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+              >
+                <i data-lucide="umbrella" class="w-5 h-5"></i> Insurance
+                Planning
+              </a>
+              <a
+                href="../services/education-savings.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+              >
+                <i data-lucide="piggy-bank" class="w-5 h-5"></i>
+                Education Savings
+              </a>
+              <a
+                href="../services/legacy-planning.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+              >
+                <i data-lucide="hand-coins" class="w-5 h-5"></i> Legacy Planning
+              </a>
+            </div>
+          </div>
+
+          <!-- Calculator Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-[#fcaf1b] transition cursor-pointer"
+            >
+              Calculators <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="../calculators/sip-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+              >
+                <i data-lucide="calculator" class="w-5 h-5"></i> SIP Calculator
+              </a>
+              <a
+                href="../calculators/lump-sump-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+              >
+                <i data-lucide="percent" class="w-5 h-5"></i> Lump Sum
+              </a>
+              <a
+                href="../calculators/swp-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+              >
+                <i data-lucide="activity" class="w-5 h-5"></i> SWP Calculator
+              </a>
+              <a
+                href="../calculators/inflation-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+              >
+                <i data-lucide="trending-up" class="w-5 h-5"></i> Inflation
+                Calculator
+              </a>
+            </div>
+          </div>
+
+          <!-- Financial Literacy Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-white hover:text-[#fcaf1b] transition cursor-pointer"
+            >
+              Financial Literacy
+              <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div
+              class="absolute text-sm top-full left-0 mt-3 bg-white rounded-2xl p-2 min-w-[15rem] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            >
+              <a
+                href="../financial-literacy.html"
+                class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+              >
+                <i data-lucide="book-open" class="w-5 h-5"></i> Basics
+              </a>
+              <a
+                href="../workshops.html"
+                class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white cursor-pointer rounded-lg"
+              >
+                <i data-lucide="presentation" class="w-5 h-5"></i> Workshops
+              </a>
+              <a
+                href="../video-lessons.html"
+                class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white cursor-pointer rounded-lg"
+              >
+                <i data-lucide="play-circle" class="w-5 h-5"></i> Video Lessons
+              </a>
+            </div>
+          </div>
+
+          <!-- Simple links -->
+          <a
+            href="../nri-corner.html"
+            class="text-white hover:text-[#fcaf1b] transition"
+            >NRI Hub</a
+          >
+          <a
+            href="../contact-us.html"
+            class="text-white hover:text-[#fcaf1b] transition"
+            >Contact Us</a
+          >
+          <a
+            href="../refer-us.html"
+            class="text-white hover:text-[#fcaf1b] transition"
+            >Refer Us</a
+          >
+        </nav>
+
+        <!-- CTA Button -->
+        <a
+          href="../financial-assessment.html"
+          class="hidden md:inline-flex font-semibold items-center border border-transparent bg-[#fcaf1b] text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:opacity-90 hover:border-[#fcaf1b]"
+        >
+          Get Free Assessment
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="menuToggle"
+          class="md:hidden p-2 bg-gray-50 border border-gray-300 rounded-full hover:bg-gray-100"
+        >
+          <i data-lucide="align-right" class="w-6 h-6 text-[#161f48]"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Announcement Bar - Positioned below navbar -->
+    <!-- <div
+      class="fixed top-[72px] w-full h-12 bg-[#161f48] z-40 flex items-center justify-center px-4 text-sm"
+    >
+      <a href="#" class="flex items-center text-[#fcaf1b] hover:underline">
+        Get a no cost, no commitment assessment
+        <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+      </a>
+      <a href="#" class="hidden lg:inline-flex items-center text-white mr-2">
+        <span class="text-[#fcaf1b] mx-2">|</span> Celebrating 40 Years of Trust
+      </a>
+    </div> -->
+
+    <!-- Mobile Menu Backdrop - Dark overlay when mobile menu is open -->
+    <div
+      id="backdrop"
+      class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 hidden opacity-0 transition"
+    ></div>
+
+    <!-- =================================================================== -->
+    <!-- MOBILE NAVIGATION MENU - Slide-in from right -->
+    <!-- =================================================================== -->
+    <div
+      id="mobileMenu"
+      class="md:hidden fixed top-0 right-0 h-full max-w-xs bg-white shadow-xl transform translate-x-full transition duration-300 z-50 flex flex-col justify-between overflow-y-auto"
+    >
+      <!-- Mobile menu content -->
+      <div class="p-6 flex flex-col gap-4">
+        <!-- Mobile menu header with logo and close button -->
+        <div class="flex justify-between items-center mb-4">
+          <img src="../assets/logo.png" class="h-10" alt="Logo" />
+          <button
+            id="closeMenu"
+            class="p-2 bg-gray-50 text-[#161f48] border border-gray-300 rounded-full hover:bg-gray-100 hover:cursor-pointer"
+          >
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <!-- Mobile navigation links -->
+
+        <!-- Mobile About Us Accordion -->
+        <!-- About Us (mobile accordion) -->
+
+        <style>
+          /* hide default marker */
+          summary {
+            list-style: none;
+          }
+          summary::-webkit-details-marker {
+            display: none;
+          }
+
+          /* rotate only the chevron inside the SAME details > summary */
+          details > summary .chev {
+            transition: transform 0.2s ease;
+            display: inline-flex;
+          }
+          details[open] > summary .chev {
+            transform: rotate(180deg);
+          }
+        </style>
+
+        <details>
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="info" class="w-4 h-4"></i> About
+            </span>
+            <span class="chev"
+              ><i data-lucide="chevron-down" class="w-4 h-4"></i
+            ></span>
+          </summary>
+
+          <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+            <a
+              href="../about-us.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-lg"
+            >
+              <i data-lucide="building-2" class="w-4 h-4"></i> About Us
+            </a>
+
+            <!-- Nested team -->
+            <details>
+              <summary
+                class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white cursor-pointer"
+              >
+                <span class="flex items-center gap-2">
+                  <i data-lucide="users" class="w-4 h-4"></i> Our Team
+                </span>
+                <span class="chev"
+                  ><i data-lucide="chevron-down" class="w-4 h-4"></i
+                ></span>
+              </summary>
+
+              <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+                <a
+                  href="../teams/Prashant-Chimulkar.html"
+                  class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-lg"
+                >
+                  <i data-lucide="user" class="w-4 h-4"></i> Prashant
+                </a>
+                <a
+                  href="../teams/Pranav-Chimulkar.html"
+                  class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-lg"
+                >
+                  <i data-lucide="user" class="w-4 h-4"></i> Pranav
+                </a>
+              </div>
+            </details>
+            <a
+              href="../foundation.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-lg"
+            >
+              <i data-lucide="heart-handshake" class="w-4 h-4"></i> Foundation
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Services Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="briefcase" class="w-4 h-4"></i> Services
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+
+          <!-- Sub-links -->
+          <div class="pl-6 flex flex-col gap-2 mt-2 text-sm">
+            <a
+              href="../services/mutual-funds.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white transition"
+            >
+              <i data-lucide="chart-pie" class="w-4 h-4"></i> Mutual Funds
+            </a>
+            <a
+              href="../services/retirement-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white transition"
+            >
+              <i data-lucide="backpack" class="w-4 h-4"></i> Retirement Planning
+            </a>
+            <a
+              href="../services/tax-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white transition"
+            >
+              <i data-lucide="calculator" class="w-4 h-4"></i> Tax Planning
+            </a>
+            <a
+              href="../services/insurance-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white transition"
+            >
+              <i data-lucide="umbrella" class="w-4 h-4"></i> Insurance Planning
+            </a>
+            <a
+              href="../services/education-savings.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white transition"
+            >
+              <i data-lucide="piggy-bank" class="w-4 h-4"></i> Education Savings
+            </a>
+
+            <a
+              href="../services/legacy-planning.html"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white transition"
+            >
+              <i data-lucide="hand-coins" class="w-4 h-4"></i> Legacy Planning
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Calculator Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="circle-divide" class="w-4 h-4"></i> Calculators
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+          <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
+            <a
+              href="../calculators/sip-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="calculator" class="w-4 h-4"></i> SIP Calculator
+            </a>
+            <a
+              href="../calculators/lump-sump-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="percent" class="w-4 h-4"></i> Lump Sum
+            </a>
+
+            <a
+              href="../calculators/swp-calculator.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="activity" class="w-4 h-4"></i> SWP Calculator
+            </a>
+            <a
+              href="../calculators/inflation-calculator.html"
+              class="flex items-center gap-3 px-4 py-2 hover:bg-[#fcaf1b] hover:text-white rounded-lg cursor-pointer"
+            >
+              <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
+              Calculator
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Financial Literacy Accordion -->
+        <details class="group">
+          <summary
+            class="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <span class="flex items-center gap-2">
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i> Financial
+              Literacy
+            </span>
+            <i
+              data-lucide="chevron-down"
+              class="w-4 h-4 transition-transform group-open:rotate-180"
+            ></i>
+          </summary>
+          <div class="pl-6 flex flex-col gap-4 mt-2 text-sm">
+            <a
+              href="../financial-literacy.html"
+              class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+            >
+              <i data-lucide="book-open" class="w-4 h-4"></i> Basics
+            </a>
+            <a
+              href="../workshops.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="presentation" class="w-4 h-4"></i> Workshops
+            </a>
+            <a
+              href="../video-lessons.html"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-[#fcaf1b] hover:text-white cursor-pointer rounded-lg"
+            >
+              <i data-lucide="play-circle" class="w-4 h-4"></i> Video Lessons
+            </a>
+          </div>
+        </details>
+
+        <!-- Additional mobile navigation links -->
+        <a
+          href="../nri-corner.html"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="globe" class="w-4 h-4"></i> NRI Hub
+        </a>
+        <a
+          href="../contact-us.html"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="phone-call" class="w-4 h-4"></i> Contact Us
+        </a>
+        <a
+          href="../refer-us.html"
+          class="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        >
+          <i data-lucide="heart-handshake" class="w-4 h-4"></i> Refer Us
+        </a>
+      </div>
+
+      <!-- Mobile CTA button at bottom -->
+      <div class="p-6">
+        <a
+          href="https://app.chimulkar.com/login"
+          class="inline-flex items-center group font-semibold bg-transparent hover:bg-[#fcaf1b] border border-black hover:border-[#fcaf1b] mb-6 text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition"
+        >
+          Log in or Create Account
+          <span
+            class="bg-black text-white group-hover:bg-white group-hover:text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+        <a
+          href="../financial-assessment.html"
+          class="inline-flex items-center bg-[#fcaf1b] font-semibold text-black pl-5 pr-3 py-2 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white"
+        >
+          Get Free Assessment
+          <span
+            class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <section
+      class="w-full mx-auto max-w-[1110px] mt-8 p-5 lg:p-0 text-sm lg:text-base"
+    >
+      <h2 class="text-lg font-semibold mb-2">
+        About the SIP + Lumpsum Calculator
+      </h2>
+
+      <p class="mb-4">
+        The SIP + Lumpsum Calculator is a versatile tool designed for investors
+        who want to combine the discipline of monthly savings with the power of
+        an initial one-time investment. Many investors start their journey with
+        a "seed" amount (Lumpsum) and then continue to grow it through a
+        Systematic Investment Plan (SIP). This calculator provides a
+        comprehensive projection of your combined wealth, helping you visualize
+        how these two investment methods work in tandem to accelerate your
+        corpus building.
+      </p>
+
+      <h3 class="text-lg font-semibold mb-2">How to Use This Calculator</h3>
+      <p class="mb-4">
+        Our calculator offers two distinct modes to help you plan your hybrid
+        investment strategy effectively.
+      </p>
+
+      <p class="font-semibold mb-1">
+        Mode 1: Combined Growth (To calculate your corpus)
+      </p>
+      <p class="mb-2">
+        Use this mode when you already have a set amount to invest and want to
+        see the potential future result of your combined efforts.
+      </p>
+      <ul class="list-disc ml-6 mb-4 space-y-1">
+        <li>
+          <span class="font-semibold">Initial Lumpsum:</span> Enter the one-time
+          amount you plan to invest at the very beginning.
+        </li>
+        <li>
+          <span class="font-semibold">Monthly SIP Amount:</span> Enter the
+          amount you intend to contribute every month.
+        </li>
+        <li>
+          <span class="font-semibold">Expected Rate of Return:</span> Input the
+          average annual return you anticipate (e.g., $12\%$ for diversified
+          equity funds).
+        </li>
+        <li>
+          <span class="font-semibold">Time Period:</span>
+          Specify the total number of years you plan to stay invested.
+        </li>
+      </ul>
+      <p class="mb-4">
+        The calculator will display the estimated final corpus, showing you the
+        individual contribution of both your Lumpsum and your SIP.
+      </p>
+
+      <p class="font-semibold mb-1">
+        Mode 2: Goal Achievement (Find Your Monthly SIP or Initial Lumpsum) Goal
+        Achievement (Find Your Monthly SIP or Initial Lumpsum)
+      </p>
+      <p class="mb-2">
+        Use this mode if you have a fixed initial lumpsum available today and
+        want to calculate the monthly SIP needed to reach a specific target. Or
+        alternatively, if you know exactly how much you can afford to save
+        monthly and want to find the one-time "seed" investment required today
+        to hit your goal.
+      </p>
+      <ul class="list-disc ml-6 mb-4 space-y-1">
+        <li>
+          <span class="font-semibold">Choose if you know:</span> Your Initial
+          Lumpsum or Monthly SIP Amount and enter the amount.
+        </li>
+        <li>
+          <span class="font-semibold">Target Amount:</span>
+          Enter the total corpus you wish to accumulate.
+        </li>
+        <li>
+          <span class="font-semibold">Annual SIP Top-up (Optional):</span> Enter
+          a percentage by which you plan to increase your SIP every year to keep
+          up with income growth.
+        </li>
+        <li>
+          <span class="font-semibold">Revise for Inflation (Optional):</span>
+          Input an inflation rate to adjust your target amount to its future
+          value.
+        </li>
+      </ul>
+      <p class="mb-4 hidden">
+        The calculator returns the monthly SIP required to hit your target.
+      </p>
+
+      <h3 class="text-lg font-semibold mb-2">
+        Formulas Used in the Calculator
+      </h3>
+      <p class="mb-4">
+        The calculator integrates the Future Value of a Lumpsum and the Future
+        Value of an Ordinary Annuity (SIP).
+      </p>
+
+      <p class="font-semibold mb-1">For Combined Corpus ($A$):</p>
+      <p class="mb-4">
+        The final amount is the sum of the Lumpsum growth and the SIP growth:
+      </p>
+
+      <div
+        class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4"
+      >
+        <p>
+          <strong class="font-semibold"
+            >The final amount is the sum of the Lumpsum growth and the SIP
+            growth:
+          </strong>
+        </p>
+        $$A = [P \times (1 + i)^n] + [S \times \frac{(1 + i)^n - 1}{i} \times (1
+        + i)]$$
+
+        <p><strong class="font-semibold">Where:</strong></p>
+        $$A = P \times (1+g) \times \frac{ (1+i)^n - (1+g)^n }{ (1+i) - (1+g)
+        }$$
+
+        <p><strong class="font-semibold">Where:</strong></p>
+        <ul>
+          <li>\(A\) = Final Corpus</li>
+          <li>\(P\) = Initial Lumpsum</li>
+          <li>\(S\) = Monthly SIP Amount</li>
+          <li>\(i\) = Monthly Interest Rate (Annual Rate / 12 / 100)</li>
+          <li>\(n\) = Total number of months</li>
+        </ul>
+      </div>
+
+      <p class="font-semibold mb-1 hidden">For Target Amount Mode:</p>
+      <p class="mb-4 hidden">
+        The required monthly SIP amount (P) is calculated by rearranging the
+        future value formula:
+      </p>
+
+      <div
+        class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4 hidden"
+      >
+        <p><strong class="font-semibold">Main formula:</strong></p>
+        $$\mathbf{P} = \frac{\mathbf{A}}{i} \times \left( (1+i)^n - 1 \right)
+        \times (1+i)$$
+
+        <p>
+          <strong class="font-medium"
+            >Where the target amount (\(\mathbf{A}\)) is also adjusted for
+            inflation, if that option is used:</strong
+          >
+        </p>
+        $$\text{Inflation-adjusted Target Amount} = \text{Target Amount} \times
+        (1 + \text{inflation rate})^{\text{time period}}$$
+      </div>
+
+      <div class="text-sm lg:text-base text-black leading-relaxed space-y-6">
+        <p>
+          <span class="font-semibold">Case 1: The Power of Combined Growth</span
+          ><br />
+          Rahul has <span class="font-semibold">₹5 Lakhs</span> in savings and
+          decides to invest it for his retirement over the next
+          <span class="font-semibold">20 years</span>. To accelerate wealth
+          creation, he also commits to a monthly SIP of
+          <span class="font-semibold">₹10,000</span> and plans to increase it by
+          <span class="font-semibold">10% every year</span>. He expects an
+          average <span class="font-semibold">annual return of 12%</span>.
+          <br /><br />
+          <span class="font-semibold">Initial Lumpsum:</span> ₹5,00,000<br />
+          <span class="font-semibold">Monthly SIP:</span> ₹10,000<br />
+          <span class="font-semibold">SIP Top-up:</span> 10%<br />
+          <span class="font-semibold">Time Period:</span> 20 Years<br />
+          <span class="font-semibold">Expected Return:</span> 12%<br /><br />
+          According to the calculator, Rahul’s initial ₹5 Lakhs grows to
+          approximately
+          <span class="font-semibold">₹48.23 Lakhs</span>, while his monthly SIP
+          contributes another <span class="font-semibold">₹1.99 Crores</span>.
+          His total estimated corpus reaches
+          <span class="font-semibold">₹2.47 Crores</span>. This case highlights
+          how combining a one-time investment with disciplined SIP contributions
+          can significantly amplify long-term wealth.
+        </p>
+
+        <p>
+          <span class="font-semibold">Case 2: Finding the Required SIP</span
+          ><br />
+          Vikram wants to save
+          <span class="font-semibold">₹1 Crore</span> for his child’s education
+          in <span class="font-semibold">15 years</span>. He has a one-time
+          bonus of <span class="font-semibold">₹10 Lakhs</span> to invest today
+          and expects an
+          <span class="font-semibold">annual return of 12%</span>. <br /><br />
+          <span class="font-semibold">Initial Lumpsum:</span> ₹10,00,000<br />
+          <span class="font-semibold">Target Amount:</span> ₹1,00,00,000<br />
+          <span class="font-semibold">Time Period:</span> 15 Years<br />
+          <span class="font-semibold">Expected Rate of Return:</span>
+          12%<br /><br />
+          The calculator shows that Vikram’s ₹10 Lakhs will grow to
+          approximately
+          <span class="font-semibold">₹54.7 Lakhs</span>. To bridge the
+          remaining gap, he needs to start a monthly SIP of around
+          <span class="font-semibold">₹9,068</span>.
+        </p>
+
+        <p>
+          <span class="font-semibold">Case 3: Finding the Required Lumpsum</span
+          ><br />
+          Ananya can afford a monthly SIP of
+          <span class="font-semibold">₹20,000</span> for her retirement over the
+          next <span class="font-semibold">20 years</span> and plans to increase
+          it by <span class="font-semibold">10% annually</span>. She targets a
+          corpus of <span class="font-semibold">₹2 Crores</span> in today’s
+          value and adjusts it for
+          <span class="font-semibold">6% inflation</span> to maintain her
+          lifestyle. She expects an
+          <span class="font-semibold">annual return of 12%</span>. <br /><br />
+          <span class="font-semibold">Monthly SIP:</span> ₹20,000<br />
+          <span class="font-semibold">SIP Top-up:</span> 10%<br />
+          <span class="font-semibold">Time Period:</span> 20 Years<br />
+          <span class="font-semibold">Target Amount (Current Value):</span>
+          ₹2,00,00,000<br />
+          <span class="font-semibold">Inflation Adjustment:</span> 6%<br />
+          <span class="font-semibold">Expected Rate of Return:</span>
+          12%<br /><br />
+          The calculator first adjusts the target for inflation, making the
+          future required corpus approximately
+          <span class="font-semibold">₹6.41 Crores</span>. After evaluating the
+          growth of her SIP, it determines that Ananya needs an initial lumpsum
+          investment of about
+          <span class="font-semibold">₹25.26 Lakhs</span> today to meet her
+          inflation-adjusted retirement goal.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section
+      id="faq"
+      class="mb-2 bg-transparent p-5 max-w-[1150px] mx-auto py-10 lg:py-24"
+    >
+      <div class="text-start mb-8">
+        <h2 class="text-base font-semibold leading-tight text-black">
+          Top 10 Commonly Asked Questions
+        </h2>
+      </div>
+
+      <div
+        class="bg-white text-black border border-gray-300 rounded-2xl divide-y divide-gray-200"
+      >
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What is an SIP?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              An SIP, or Systematic Investment Plan, is a method of investing in
+              mutual funds where you invest a fixed amount of money at regular
+              intervals (usually monthly). It is similar to a recurring deposit
+              but for mutual funds, offering the benefits of compounding and
+              rupee cost averaging.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Are SIPs similar to mutual funds
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              SIP is a method of investing, while a mutual fund is the
+              investment product itself. You use an SIP to invest in a mutual
+              fund. Think of it this way: an SIP is the discipline, and a mutual
+              fund is the vehicle.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How much can I invest in an SIP?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              You can start an SIP with as little as ₹500 per month with most
+              mutual funds. There is generally no upper limit, allowing you to
+              invest any amount that fits your financial capacity.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Can I modify my SIP amount?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes, you could increase or decrease your SIP amount anytime as per
+              your need or financial situation.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Can I pause my investments in an SIP?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              Yes, you can pause your SIP for a specific period. This is useful
+              if you are facing a temporary cash crunch. After the pause period,
+              the SIP will automatically resume.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What happens if I miss an SIP?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              If an SIP installment fails (e.g., due to insufficient funds in
+              your bank account), the fund house will not charge you a penalty.
+              However, your bank may charge you a fee for a failed transaction.
+              The SIP installment for that month will simply be skipped, and the
+              plan will continue as scheduled for the subsequent months.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              What is the difference between this SIP calculator and a lump sum
+              calculator?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              A lump sum calculator calculates the growth of a single, one-time
+              investment. This SIP calculator, on the other hand, calculates the
+              growth of a series of regular investments over time, which is more
+              practical for most investors building wealth gradually.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 8 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Why is the "annual step-up" feature important?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              The annual step-up feature helps you account for an increase in
+              your earning potential over time. By increasing your SIP amount
+              each year, you can significantly accelerate your wealth creation
+              and reach your financial goals much faster.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 9 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              How does the "impact of inflation" feature work?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              This feature adjusts your target amount to its future value,
+              considering the eroding effect of inflation. For example, if you
+              need ₹10 Lakh in 10 years and inflation is 5%, you will actually
+              need a much larger amount to have the same purchasing power. This
+              feature helps you set a more realistic and effective investment
+              goal.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 10 -->
+        <div class="faq-item">
+          <button
+            class="faq-question cursor-pointer w-full px-8 py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors duration-200"
+          >
+            <span class="text-base font-medium text-black pr-4">
+              Is the calculated return guaranteed?
+            </span>
+            <svg
+              class="faq-icon w-6 h-6 text-gray-500 hover:text-gray-800 transform transition-transform duration-300 flex-shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </button>
+          <div
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed text-sm">
+              No. The calculated values are estimates based on your provided
+              inputs for the expected rate of return. Mutual fund investments
+              are subject to market risks, and the actual returns may vary. This
+              calculator is a planning tool and should not be considered a
+              guarantee of returns.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        faqItems.forEach((item) => {
+          const question = item.querySelector(".faq-question");
+          const answer = item.querySelector(".faq-answer");
+          const icon = item.querySelector(".faq-icon");
+
+          question.addEventListener("click", function () {
+            const isOpen =
+              answer.style.maxHeight && answer.style.maxHeight !== "0px";
+
+            // Close all other FAQ items
+            faqItems.forEach((otherItem) => {
+              if (otherItem !== item) {
+                const otherAnswer = otherItem.querySelector(".faq-answer");
+                const otherIcon = otherItem.querySelector(".faq-icon");
+                otherAnswer.style.maxHeight = "0px";
+                otherIcon.style.transform = "rotate(0deg)";
+              }
+            });
+
+            // Toggle current item
+            if (isOpen) {
+              answer.style.maxHeight = "0px";
+              icon.style.transform = "rotate(0deg)";
+            } else {
+              answer.style.maxHeight = answer.scrollHeight + "px";
+              icon.style.transform = "rotate(45deg)";
+            }
+          });
+        });
+      });
+    </script>
+
+    <section class="py-10 px-5 max-w-8xl mx-auto text-center">
+      <h2 class="text-xl font-semibold mb-8 text-black">
+        Explore More Popular Calculators
+      </h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-6">
+        <a
+          href="./lump-sump-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black px-5 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="percent"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          Lump Sump Calculator
+        </a>
+        <a
+          href="./swp-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black pl-5 pr-3 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="activity"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          SWP Calculator
+        </a>
+        <a
+          href="./inflation-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black pl-5 pr-3 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="trending-up"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          Inflation Calculator
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER SECTION - Company information and links -->
+    <!-- =================================================================== -->
+    <footer class="w-full bg-[#161f48] border-t border-gray-200">
+      <!-- Middle Section -->
+      <div
+        class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+      >
+        <!-- Left: Info -->
+        <div class="space-y-4">
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=15.4038977,74.0086659"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center justify-center md:justify-start gap-2 text-white"
+          >
+            <i data-lucide="map-pin" class="w-5 h-5 text-[#fcaf1b]"></i>
+            <span>Our Office</span>
+          </a>
+
+          <a
+            href="mailto:invest@chimulkar.com"
+            class="flex items-center justify-center md:justify-start gap-2 text-white"
+          >
+            <i data-lucide="mail" class="w-5 h-5 text-[#fcaf1b]"></i>
+            <span>invest@chimulkar.com</span>
+          </a>
+
+          <a
+            href="tel:+918208031927"
+            class="flex items-center justify-center md:justify-start gap-2 text-white"
+          >
+            <i data-lucide="phone" class="w-5 h-5 text-[#fcaf1b]"></i>
+            <span>+91 82080 31927</span>
+          </a>
+        </div>
+
+        <!-- Center: Logo -->
+        <div class="flex items-center justify-center">
+          <a href="/" aria-label="Go to Home">
+            <img
+              src="../assets/CFS TRANSPARENT.png"
+              alt="Chimulkar Financial Services"
+              class="w-40 h-auto"
+            />
+          </a>
+        </div>
+
+        <!-- Right: Reviews & Social -->
+        <div class="flex flex-col items-center md:items-end space-y-4">
+          <p class="text-white">© 2026 Chimulkar Financial Services</p>
+          <p class="text-white">Follow us on</p>
+
+          <div class="flex gap-4">
+            <a
+              href="https://www.instagram.com/chimulkarfinancialservices"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              class="bg-[#fcaf1b] rounded-full p-2 hover:bg-[#fcaf1b]/80 transition"
+            >
+              <i data-lucide="instagram" class="w-5 h-5 text-black"></i>
+            </a>
+
+            <a
+              href="https://www.youtube.com/@ChimulkarFinancialServices"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+              class="bg-[#fcaf1b] rounded-full p-2 hover:bg-[#fcaf1b]/80 transition"
+            >
+              <i data-lucide="youtube" class="w-5 h-5 text-black"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="bg-black text-gray-100 text-xs py-4">
+        <div
+          class="max-w-7xl mx-auto px-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6 text-center md:text-left"
+        >
+          <!-- Left -->
+          <p class="text-gray-400">
+            Designed by
+            <a
+              href="https://www.instagram.com/atc.work?igsh=NjZuY24wN3Bodjhr"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-white hover:underline"
+            >
+              ~All Things Creative
+            </a>
+          </p>
+
+          <!-- Center Links -->
+          <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            <a href="../Regulatory-Disclosure.html" class="hover:underline">
+              Disclosure
+            </a>
+            <a href="../Terms&Conditions.html" class="hover:underline">
+              Terms & Conditions
+            </a>
+            <a href="../Privacy-policy.html" class="hover:underline">
+              Privacy Policy
+            </a>
+            <a href="../sitemap.html" class="hover:underline"> Sitemap </a>
+          </div>
+
+          <!-- Right -->
+          <p class="text-gray-400">
+            Developed by
+            <a
+              href="https://imnirajdev.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-white hover:underline"
+            >
+              ~Niraj Paswan
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // ===================================================================
+      // MOBILE MENU FUNCTIONALITY
+      // ===================================================================
+
+      // Get mobile menu elements
+      const mobileMenuToggle = document.getElementById("menuToggle");
+      const mobileMenuClose = document.getElementById("closeMenu");
+      const mobileMenuPanel = document.getElementById("mobileMenu");
+      const mobileMenuBackdrop = document.getElementById("backdrop");
+
+      // Open mobile menu function
+      function openMobileMenu() {
+        mobileMenuPanel.classList.remove("translate-x-full");
+        mobileMenuBackdrop.classList.remove("hidden");
+        setTimeout(() => mobileMenuBackdrop.classList.remove("opacity-0"), 10);
+      }
+
+      // Close mobile menu function
+      function closeMobileMenu() {
+        mobileMenuPanel.classList.add("translate-x-full");
+        mobileMenuBackdrop.classList.add("opacity-0");
+        setTimeout(() => mobileMenuBackdrop.classList.add("hidden"), 300);
+      }
+
+      // Event listeners for mobile menu
+      mobileMenuToggle.addEventListener("click", openMobileMenu);
+      mobileMenuClose.addEventListener("click", closeMobileMenu);
+      mobileMenuBackdrop.addEventListener("click", closeMobileMenu);
+
+      // ===================================================================
+      // HERO VIDEO POPUP FUNCTIONALITY
+      // ===================================================================
+
+      // Get video popup elements
+      const heroPlayButton = document.getElementById("openPopup");
+      const heroCloseButton = document.getElementById("closePopup");
+      const heroVideoPopup = document.getElementById("videoPopup");
+      const heroYoutubeFrame = document.getElementById("youtubeFrame");
+    </script>
+
     <!-- Disclaimer Modal -->
     <!-- Modal -->
     <div
@@ -1178,82 +2541,6 @@
           calculateInvestmentMode();
         }
       }
-
-      // Investment Mode - Lumpsum uses annual compounding, SIP uses monthly loop
-      function calculateInvestmentMode() {
-        const lumpsum = parseIndianNumber(
-          document.getElementById("investmentLumpsumInput").value,
-        );
-        const monthlySIP = parseIndianNumber(
-          document.getElementById("investmentMonthlyInput").value,
-        );
-        const annualReturn =
-          parseFloat(document.getElementById("investmentReturnInput").value) ||
-          0;
-        const years =
-          parseInt(document.getElementById("investmentTimeInput").value) || 0;
-
-        // If both lumpsum and SIP are zero, return zero results
-        if (lumpsum === 0 && monthlySIP === 0) {
-          updateResults(0, 0, 0, 0, years, false, null);
-          return;
-        }
-
-        // If years is zero, no growth
-        if (years === 0) {
-          const totalInvested = lumpsum + monthlySIP;
-          updateResults(totalInvested, 0, totalInvested, 0, years, false, null);
-          return;
-        }
-
-        let totalValue = 0;
-        let totalInvestment = 0;
-
-        // Lumpsum: Use annual compounding formula
-        if (lumpsum > 0) {
-          totalValue = lumpsum * Math.pow(1 + annualReturn / 100, years);
-          totalInvestment = lumpsum;
-        }
-
-        // SIP: Use monthly compounding with loop-based method
-        if (monthlySIP > 0) {
-          const monthlyReturn = annualReturn / 100 / 12;
-          const months = years * 12;
-
-          // Step-up settings
-          const hasStepUp = document.getElementById("stepUpToggle").checked;
-          const stepUpPercentage = hasStepUp
-            ? parseFloat(document.getElementById("stepUpInput").value) || 0
-            : 0;
-
-          let currentMonthlyAmount = monthlySIP;
-          for (let month = 1; month <= months; month++) {
-            totalValue =
-              (totalValue + currentMonthlyAmount) * (1 + monthlyReturn);
-            totalInvestment += currentMonthlyAmount;
-
-            // Apply step-up yearly (every 12 months)
-            if (hasStepUp && month % 12 === 0) {
-              currentMonthlyAmount *= 1 + stepUpPercentage / 100;
-            }
-          }
-        }
-
-        const returns = totalValue - totalInvestment;
-        const growthPercentage =
-          totalInvestment > 0 ? (returns / totalInvestment) * 100 : 0;
-
-        updateResults(
-          totalValue,
-          totalInvestment,
-          returns,
-          growthPercentage,
-          years,
-          false,
-          null,
-        );
-      }
-
       // TARGET MODE - Full gap-filling logic with inflation-adjusted target
       function calculateTargetMode() {
         const targetAmount = parseIndianNumber(
@@ -1484,7 +2771,102 @@
         );
       }
 
-      // Helper function: Binary search for required SIP with annual top-up
+      // Investment Mode - Lumpsum uses annual compounding, SIP uses monthly loop
+      function calculateInvestmentMode() {
+        const lumpsum = parseIndianNumber(
+          document.getElementById("investmentLumpsumInput").value,
+        );
+        const monthlySIP = parseIndianNumber(
+          document.getElementById("investmentMonthlyInput").value,
+        );
+        const annualReturn =
+          parseFloat(document.getElementById("investmentReturnInput").value) ||
+          0;
+        const years =
+          parseInt(document.getElementById("investmentTimeInput").value) || 0;
+
+        // If both lumpsum and SIP are zero
+        if (lumpsum === 0 && monthlySIP === 0) {
+          updateResults(0, 0, 0, 0, years, false, null);
+          return;
+        }
+
+        // If years is zero
+        if (years === 0) {
+          const totalInvested = lumpsum + monthlySIP;
+          updateResults(totalInvested, totalInvested, 0, 0, years, false, null);
+          return;
+        }
+
+        let totalInvestment = 0;
+
+        // -------------------------
+        // 1️⃣ LUMPSUM CALCULATION
+        // -------------------------
+        let lumpsumFutureValue = 0;
+
+        if (lumpsum > 0) {
+          lumpsumFutureValue =
+            lumpsum * Math.pow(1 + annualReturn / 100, years);
+          totalInvestment += lumpsum;
+        }
+
+        // -------------------------
+        // 2️⃣ SIP CALCULATION (FIXED)
+        // -------------------------
+        let sipFutureValue = 0;
+
+        if (monthlySIP > 0) {
+          const monthlyReturn = annualReturn / 100 / 12;
+          const months = years * 12;
+
+          const hasStepUp = document.getElementById("stepUpToggle").checked;
+          const stepUpPercentage = hasStepUp
+            ? parseFloat(document.getElementById("stepUpInput").value) || 0
+            : 0;
+
+          let currentMonthlyAmount = monthlySIP;
+          let sipInvested = 0;
+
+          for (let month = 1; month <= months; month++) {
+            // Grow SIP corpus only
+            sipFutureValue =
+              (sipFutureValue + currentMonthlyAmount) * (1 + monthlyReturn);
+
+            sipInvested += currentMonthlyAmount;
+
+            // Apply annual step-up once every 12 months
+            if (hasStepUp && month % 12 === 0) {
+              currentMonthlyAmount *= 1 + stepUpPercentage / 100;
+            }
+          }
+
+          totalInvestment += sipInvested;
+        }
+
+        // -------------------------
+        // 3️⃣ FINAL COMBINATION
+        // -------------------------
+        const totalValue = lumpsumFutureValue + sipFutureValue;
+        const returns = totalValue - totalInvestment;
+        const growthPercentage =
+          totalInvestment > 0 ? (returns / totalInvestment) * 100 : 0;
+
+        updateResults(
+          totalValue,
+          totalInvestment,
+          returns,
+          growthPercentage,
+          years,
+          false,
+          null,
+        );
+      }
+
+      // --------------------------------------------------
+      // Helper function: Binary search for required SIP
+      // (FIXED – SIP only, no portfolio mixing)
+      // --------------------------------------------------
       function calculateRequiredSIPWithTopUp(
         target,
         monthlyRate,
@@ -1497,6 +2879,7 @@
 
         for (let iteration = 0; iteration < 100; iteration++) {
           const mid = (low + high) / 2;
+
           let futureValue = 0;
           let currentSIP = mid;
 
@@ -1520,7 +2903,9 @@
         return requiredSIP;
       }
 
+      // --------------------------------------------------
       // Update results display
+      // --------------------------------------------------
       function updateResults(
         totalValue,
         totalInvested,
@@ -1549,11 +2934,12 @@
         document.getElementById("totalValueCenter").textContent =
           formatIndianNumber(totalValue);
 
-        // Update chart
         updateChart(totalInvested, returns);
       }
 
+      // --------------------------------------------------
       // Update chart
+      // --------------------------------------------------
       function updateChart(invested, returns) {
         const ctx = document.getElementById("sipChart").getContext("2d");
 
