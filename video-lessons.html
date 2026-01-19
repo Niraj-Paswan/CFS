@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -47,7 +47,9 @@
     </style>
     <style>
       .navigation-panel {
-        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        transition:
+          transform 0.3s ease-in-out,
+          opacity 0.3s ease-in-out;
       }
 
       .navigation-panel.hidden-mobile {
@@ -63,7 +65,9 @@
       .category-content {
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+        transition:
+          max-height 0.4s ease-in-out,
+          opacity 0.3s ease-in-out;
         opacity: 0;
       }
 
@@ -157,7 +161,7 @@
         const animate = setInterval(() => {
           visualProgress += Math.max(
             0.4,
-            (targetProgress - visualProgress) * 0.1
+            (targetProgress - visualProgress) * 0.1,
           );
 
           visualProgress = Math.min(visualProgress, 100);
@@ -433,6 +437,12 @@
               >
                 <i data-lucide="trending-up" class="w-5 h-5"></i> Inflation
                 Calculator
+              </a>
+              <a
+                href="../calculators/lumpsum+sip-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="merge" class="w-5 h-5"></i> Lumpsum + SIP
               </a>
             </div>
           </div>
@@ -731,6 +741,12 @@
             >
               <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
               Calculator
+            </a>
+            <a
+              href="../calculators/lumpsum+sip-calculator.html"
+              class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+            >
+              <i data-lucide="merge" class="w-4 h-4"></i> Lumpsum + SIP
             </a>
           </div>
         </details>
@@ -1788,7 +1804,7 @@
         lessonItems.forEach((item) => {
           item.addEventListener("click", function () {
             lessonItems.forEach((i) =>
-              i.classList.remove("bg-[#2D61C9]", "border-[#2D61C9]")
+              i.classList.remove("bg-[#2D61C9]", "border-[#2D61C9]"),
             );
 
             this.classList.add("bg-[#2D61C9]", "border-[#2D61C9]");
@@ -2304,10 +2320,10 @@
             const chevron =
               group.querySelector(".chevron-icon") ||
               group.querySelector(
-                '.category-header i[data-lucide="chevron-down"]'
+                '.category-header i[data-lucide="chevron-down"]',
               ) ||
               group.querySelector(
-                '.category-header svg[data-lucide="chevron-down"]'
+                '.category-header svg[data-lucide="chevron-down"]',
               );
 
             if (subcategories) {
@@ -2321,7 +2337,7 @@
           // <CHANGE> Then expand only the category for the current video
           const categoryKey = videoData.key.split("-")[0];
           const categoryGroup = document.querySelector(
-            `[data-category="${categoryKey}"]`
+            `[data-category="${categoryKey}"]`,
           );
 
           if (categoryGroup) {
@@ -2329,10 +2345,10 @@
             const chevron =
               categoryGroup.querySelector(".chevron-icon") ||
               categoryGroup.querySelector(
-                '.category-header i[data-lucide="chevron-down"]'
+                '.category-header i[data-lucide="chevron-down"]',
               ) ||
               categoryGroup.querySelector(
-                '.category-header svg[data-lucide="chevron-down"]'
+                '.category-header svg[data-lucide="chevron-down"]',
               );
 
             if (subcategories && subcategories.classList.contains("hidden")) {
@@ -2361,7 +2377,7 @@
         function generateShareLink(videoData) {
           const baseUrl = window.location.origin + window.location.pathname;
           return `${baseUrl}?video=${videoData.key}&title=${encodeURIComponent(
-            videoData.title
+            videoData.title,
           )}`;
         }
 
@@ -2430,7 +2446,7 @@ Watch here:`;
 
           window.open(
             `https://wa.me/?text=${encodeURIComponent(text + " " + shareUrl)}`,
-            "_blank"
+            "_blank",
           );
         }
 
@@ -2453,9 +2469,9 @@ Regards Chimulkar Financial Services,
 
           window.open(
             `mailto:?subject=${encodeURIComponent(
-              subject
+              subject,
             )}&body=${encodeURIComponent(body)}`,
-            "_blank"
+            "_blank",
           );
         }
 
@@ -2466,10 +2482,10 @@ Regards Chimulkar Financial Services,
           const chevron =
             categoryGroupElement.querySelector(".chevron-icon") ||
             categoryGroupElement.querySelector(
-              '.category-header i[data-lucide="chevron-down"]'
+              '.category-header i[data-lucide="chevron-down"]',
             ) ||
             categoryGroupElement.querySelector(
-              '.category-header svg[data-lucide="chevron-down"]'
+              '.category-header svg[data-lucide="chevron-down"]',
             );
 
           const isOpen = !subcategories.classList.contains("hidden");
@@ -2550,7 +2566,7 @@ Regards Chimulkar Financial Services,
                 "bg-white",
                 "bg-gray-25",
                 "border-gray-300",
-                "border-gray-200"
+                "border-gray-200",
               );
               el.classList.add("bg-[#2D61C9]", "border-transparent");
             } else {
@@ -2587,23 +2603,23 @@ Regards Chimulkar Financial Services,
                 chip.classList.remove(
                   "bg-white",
                   "text-gray-700",
-                  "border-gray-300"
+                  "border-gray-300",
                 );
                 chip.classList.add(
                   "bg-[#2D61C9]",
                   "text-white",
-                  "border-transparent"
+                  "border-transparent",
                 );
               } else {
                 chip.classList.remove(
                   "bg-[#2D61C9]",
                   "text-white",
-                  "border-transparent"
+                  "border-transparent",
                 );
                 chip.classList.add(
                   "bg-white",
                   "text-gray-700",
-                  "border-gray-300"
+                  "border-gray-300",
                 );
               }
             });
@@ -2735,7 +2751,7 @@ Regards Chimulkar Financial Services,
         window.addEventListener("popstate", (event) => {
           if (event.state && event.state.video) {
             const videoIndex = videoList.findIndex(
-              (v) => v.key === event.state.video
+              (v) => v.key === event.state.video,
             );
             if (videoIndex !== -1) {
               loadIndex(videoIndex, false);

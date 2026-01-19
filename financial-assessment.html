@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -75,7 +75,7 @@
         const animate = setInterval(() => {
           visualProgress += Math.max(
             0.4,
-            (targetProgress - visualProgress) * 0.1
+            (targetProgress - visualProgress) * 0.1,
           );
 
           visualProgress = Math.min(visualProgress, 100);
@@ -617,6 +617,12 @@
                 <i data-lucide="trending-up" class="w-5 h-5"></i> Inflation
                 Calculator
               </a>
+              <a
+                href="../calculators/lumpsum+sip-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="merge" class="w-5 h-5"></i> Lumpsum + SIP
+              </a>
             </div>
           </div>
 
@@ -915,6 +921,12 @@
             >
               <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
               Calculator
+            </a>
+            <a
+              href="../calculators/lumpsum+sip-calculator.html"
+              class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+            >
+              <i data-lucide="merge" class="w-4 h-4"></i> Lumpsum + SIP
             </a>
           </div>
         </details>
@@ -1522,7 +1534,7 @@
               "bg-white",
               "bg-[#5e8dec]",
               "border-gray-300",
-              "border-[#5e8dec]"
+              "border-[#5e8dec]",
             );
             dot.classList.add("bg-[#2d61c9]", "border-[#2d61c9]");
           } else {
@@ -1530,7 +1542,7 @@
               "bg-[#2d61c9]",
               "bg-[#5e8dec]",
               "border-[#2d61c9]",
-              "border-[#5e8dec]"
+              "border-[#5e8dec]",
             );
             dot.classList.add("bg-white", "border-gray-300");
           }
@@ -1561,8 +1573,8 @@
         <button onclick="selectOption(this, '${
           opt.label
         }')" class="option-btn p-2.5 border border-gray-300 rounded-full text-left hover:border-blue-500 transition-all flex items-center gap-2.5 cursor-pointer ${
-              isSelected ? "selected" : ""
-            }" data-label="${opt.label}">
+          isSelected ? "selected" : ""
+        }" data-label="${opt.label}">
           <span class="flex-shrink-0 w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center font-bold text-base option-label text-gray-900 ${
             isSelected ? "bg-[#2d61c9] text-black border-[#2d61c9]" : ""
           }">${opt.label}</span>
@@ -1587,7 +1599,7 @@
           const selectedLabel = selections[step];
           const stepData = surveyData[step];
           const option = stepData.options.find(
-            (opt) => opt.label === selectedLabel
+            (opt) => opt.label === selectedLabel,
           );
           if (option) totalScore += option.points;
         }
@@ -1823,7 +1835,7 @@
             const stepData = surveyData[step];
             const selectedLabel = selections[step];
             const option = stepData.options.find(
-              (opt) => opt.label === selectedLabel
+              (opt) => opt.label === selectedLabel,
             );
 
             return `
@@ -1860,7 +1872,7 @@
         inputs.forEach((id) => {
           document.getElementById(id).addEventListener("input", () => {
             nextBtn.disabled = !inputs.every(
-              (i) => document.getElementById(i).value.trim() !== ""
+              (i) => document.getElementById(i).value.trim() !== "",
             );
           });
         });
@@ -1875,7 +1887,7 @@
               category: categoryTitle,
               responses: selections,
               timestamp: new Date().toISOString(),
-            })
+            }),
           );
         });
       }
@@ -1910,7 +1922,7 @@
         selections[currentStep] = label;
         const stepData = surveyData[currentStep];
         const selectedOptionData = stepData.options.find(
-          (opt) => opt.label === label
+          (opt) => opt.label === label,
         );
 
         Response_summary[`Question_${currentStep}`] = {
@@ -1938,7 +1950,7 @@
               const selectedLabel = selections[step];
               const stepData = surveyData[step];
               const option = stepData.options.find(
-                (opt) => opt.label === selectedLabel
+                (opt) => opt.label === selectedLabel,
               );
               if (option) {
                 totalScore += option.points;
@@ -1967,12 +1979,12 @@
             localStorage.removeItem("surveyResults");
             localStorage.setItem(
               "surveyResults",
-              JSON.stringify(surveyResults)
+              JSON.stringify(surveyResults),
             );
             console.log("[v0] Survey submitted and saved:", surveyResults);
 
             alert(
-              `Thank you, ${name}! Your ${categoryTitle} profile with a score of ${totalScore}/100 has been saved. Your rewards will be sent to ${email} and ${mobile}.`
+              `Thank you, ${name}! Your ${categoryTitle} profile with a score of ${totalScore}/100 has been saved. Your rewards will be sent to ${email} and ${mobile}.`,
             );
           }
           return;

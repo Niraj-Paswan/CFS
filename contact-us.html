@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -72,7 +72,7 @@
         const animate = setInterval(() => {
           visualProgress += Math.max(
             0.4,
-            (targetProgress - visualProgress) * 0.1
+            (targetProgress - visualProgress) * 0.1,
           );
 
           visualProgress = Math.min(visualProgress, 100);
@@ -348,6 +348,12 @@
               >
                 <i data-lucide="trending-up" class="w-5 h-5"></i> Inflation
                 Calculator
+              </a>
+              <a
+                href="../calculators/lumpsum+sip-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="merge" class="w-5 h-5"></i> Lumpsum + SIP
               </a>
             </div>
           </div>
@@ -646,6 +652,12 @@
             >
               <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
               Calculator
+            </a>
+            <a
+              href="../calculators/lumpsum+sip-calculator.html"
+              class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+            >
+              <i data-lucide="merge" class="w-4 h-4"></i> Lumpsum + SIP
             </a>
           </div>
         </details>
@@ -2820,17 +2832,17 @@
               (input) => {
                 const inputGroup = input.closest(".input-group");
                 input.addEventListener("focus", () =>
-                  inputGroup.classList.add("focused")
+                  inputGroup.classList.add("focused"),
                 );
                 input.addEventListener("blur", () => {
                   inputGroup.classList.remove("focused");
                   inputGroup.classList.toggle(
                     "has-value",
-                    input.value.trim() !== ""
+                    input.value.trim() !== "",
                   );
                 });
                 if (input.value.trim()) inputGroup.classList.add("has-value");
-              }
+              },
             );
           }
 
@@ -2839,7 +2851,7 @@
             DOM.interestOptions.forEach((option) => {
               option.addEventListener("click", () => {
                 DOM.interestOptions.forEach((opt) =>
-                  opt.classList.remove("border-[#fcaf1b]", "bg-[#fcaf1b]/10")
+                  opt.classList.remove("border-[#fcaf1b]", "bg-[#fcaf1b]/10"),
                 );
                 option.classList.remove("border-[#161f48]/50");
                 option.classList.add("border-[#fcaf1b]", "bg-[#fcaf1b]/10");
@@ -2853,13 +2865,13 @@
           // ===== MODAL HANDLERS SETUP =====
           function setupModalHandlers() {
             DOM.openModalBtn.addEventListener("click", () =>
-              DOM.modal.classList.remove("hidden")
+              DOM.modal.classList.remove("hidden"),
             );
             DOM.closeModalBtn.addEventListener("click", () =>
-              DOM.modal.classList.add("hidden")
+              DOM.modal.classList.add("hidden"),
             );
             DOM.confirmModalBtn.addEventListener("click", () =>
-              DOM.modal.classList.add("hidden")
+              DOM.modal.classList.add("hidden"),
             );
             DOM.modal.addEventListener("click", (e) => {
               if (e.target === DOM.modal) DOM.modal.classList.add("hidden");
@@ -2898,7 +2910,7 @@
             DOM.steps.forEach((step, index) => {
               step.classList.toggle(
                 "active",
-                index === FORM_CONFIG.currentStep - 1
+                index === FORM_CONFIG.currentStep - 1,
               );
             });
             const progressWidth =
@@ -2921,21 +2933,21 @@
                 isValid = validateField(
                   "fullName",
                   DOM.fullName.value,
-                  DOM.nameStatus
+                  DOM.nameStatus,
                 );
                 break;
               case 2:
                 isValid = validateField(
                   "phoneNumber",
                   DOM.phoneNumber.value,
-                  DOM.phoneStatus
+                  DOM.phoneStatus,
                 );
                 break;
               case 3:
                 isValid = validateField(
                   "emailAddress",
                   DOM.emailAddress.value,
-                  DOM.emailStatus
+                  DOM.emailStatus,
                 );
                 break;
               case 4:
@@ -2956,7 +2968,7 @@
             updateValidationStatus(
               statusElement,
               isValid,
-              `${getValidationMessage(fieldName)}`
+              `${getValidationMessage(fieldName)}`,
             );
             return isValid;
           }
@@ -2994,14 +3006,14 @@
                 "bg-gradient-to-r",
                 "from-[#fcaf1b]",
                 "to-[#e09915]",
-                "text-[#161f48]"
+                "text-[#161f48]",
               );
             } else {
               DOM.nextBtn.classList.remove(
                 "bg-gradient-to-r",
                 "from-[#fcaf1b]",
                 "to-[#e09915]",
-                "text-[#161f48]"
+                "text-[#161f48]",
               );
               DOM.nextBtn.classList.add("bg-[#161f48]/50", "text-gray-400");
             }
@@ -3040,7 +3052,7 @@
           // ===== SEND CONSULTATION BOOKING EMAIL =====
           async function sendConsultationBookingEmail() {
             const bookingId = `#CONS-${new Date().getFullYear()}-${String(
-              Math.floor(Math.random() * 1000)
+              Math.floor(Math.random() * 1000),
             ).padStart(3, "0")}`;
 
             showLoadingState();
@@ -3050,7 +3062,7 @@
               email: FORM_CONFIG.formData.emailAddress,
               phone: FORM_CONFIG.formData.phoneNumber,
               interest: formatInterestText(
-                FORM_CONFIG.formData.selectedInterest
+                FORM_CONFIG.formData.selectedInterest,
               ),
               booking_id: bookingId,
               to_email: "chimulkarfinancialservices@gmail.com",
@@ -3063,7 +3075,7 @@
               const response = await emailjs.send(
                 EMAILJS_CONFIG.serviceId,
                 EMAILJS_CONFIG.templateId,
-                templateParams
+                templateParams,
               );
               console.log("Email sent successfully:", response);
               DOM.bookingId.textContent = bookingId;
@@ -3074,7 +3086,7 @@
               console.error("Failed to send email:", error);
               hideLoadingState();
               showErrorMessage(
-                "Failed to send confirmation email. Please try again."
+                "Failed to send confirmation email. Please try again.",
               );
               return { success: false, error };
             }
@@ -3168,7 +3180,7 @@
             if (!result.success) return;
             console.log(
               "Consultation booked successfully with ID:",
-              result.bookingId
+              result.bookingId,
             );
           }
 

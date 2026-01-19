@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -84,7 +84,7 @@
         const animate = setInterval(() => {
           visualProgress += Math.max(
             0.4,
-            (targetProgress - visualProgress) * 0.1
+            (targetProgress - visualProgress) * 0.1,
           );
 
           visualProgress = Math.min(visualProgress, 100);
@@ -361,6 +361,12 @@
               >
                 <i data-lucide="trending-up" class="w-5 h-5"></i> Inflation
                 Calculator
+              </a>
+              <a
+                href="../calculators/lumpsum+sip-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+              >
+                <i data-lucide="merge" class="w-5 h-5"></i> Lumpsum + SIP
               </a>
             </div>
           </div>
@@ -681,6 +687,12 @@
             >
               <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
               Calculator
+            </a>
+            <a
+              href="../calculators/lumpsum+sip-calculator.html"
+              class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary hover:text-white"
+            >
+              <i data-lucide="merge" class="w-4 h-4"></i> Lumpsum + SIP
             </a>
           </div>
         </details>
@@ -1037,12 +1049,10 @@
 
           const encoded = encodeURIComponent(message);
 
-          document.getElementById(
-            "whatsapp-link"
-          ).href = `https://wa.me/?text=${encoded}`;
-          document.getElementById(
-            "email-link"
-          ).href = `mailto:?subject=Financial Guidance&body=${encoded}`;
+          document.getElementById("whatsapp-link").href =
+            `https://wa.me/?text=${encoded}`;
+          document.getElementById("email-link").href =
+            `mailto:?subject=Financial Guidance&body=${encoded}`;
           document.getElementById("sms-link").href = `sms:?&body=${encoded}`;
         </script>
       </div>
@@ -1203,12 +1213,10 @@
       const encodedMsg = encodeURIComponent(defaultMessage);
 
       // Update links dynamically
-      document.getElementById(
-        "whatsapp-link"
-      ).href = `https://wa.me/?text=${encodedMsg}`;
-      document.getElementById(
-        "email-link"
-      ).href = `mailto:?subject=Financial Guidance&body=${encodedMsg}`;
+      document.getElementById("whatsapp-link").href =
+        `https://wa.me/?text=${encodedMsg}`;
+      document.getElementById("email-link").href =
+        `mailto:?subject=Financial Guidance&body=${encodedMsg}`;
       document.getElementById("sms-link").href = `sms:?&body=${encodedMsg}`;
     </script>
 
