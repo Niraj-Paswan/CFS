@@ -22,7 +22,6 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
-      /* Custom Slider Styles */
       .custom-slider {
         -webkit-appearance: none;
         appearance: none;
@@ -57,7 +56,6 @@
         box-shadow: 0 2px 6px rgba(252, 175, 27, 0.4);
         transition: all 0.2s ease;
       }
-      /* Input field styling */
       .input-value-box {
         background-color: #f3f4f6;
         border-radius: 8px;
@@ -82,7 +80,6 @@
         text-align: right;
         padding: 0;
       }
-      /* Result item styling */
       .result-item {
         display: flex;
         justify-content: space-between;
@@ -101,7 +98,6 @@
         font-weight: 600;
         color: #1f2937;
       }
-      /* Chart legend dots */
       .chart-legend-dot {
         width: 10px;
         height: 10px;
@@ -109,7 +105,6 @@
         display: inline-block;
         margin-right: 8px;
       }
-      /* Chart tabs */
       .chart-tab {
         padding: 8px 16px;
         border-radius: 8px;
@@ -126,7 +121,6 @@
       .chart-tab:not(.active):hover {
         background-color: #f3f4f6;
       }
-      /* Progress bar styling */
       .progress-container {
         background-color: #f3f4f6;
         border-radius: 12px;
@@ -144,6 +138,29 @@
         font-weight: 600;
         font-size: 12px;
         transition: width 0.8s ease;
+      }
+      .mode-toggle {
+        display: inline-flex;
+        background-color: #f3f4f6;
+        border-radius: 8px;
+        padding: 4px;
+        gap: 0;
+      }
+      .mode-toggle button {
+        padding: 8px 20px;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 16px;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+        background: transparent;
+        color: #6b7280;
+      }
+      .mode-toggle button.active {
+        background-color: white;
+        color: #1f2937;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
       }
     </style>
   </head>
@@ -166,11 +183,27 @@
             results easily.
           </p>
         </div>
+
         <div
           id="calculatorContainer"
           class="max-w-6xl w-full bg-white p-0 lg:p-4 rounded-3xl border border-gray-300 overflow-hidden"
         >
-          <div class="grid lg:grid-cols-2 gap-6 sm:gap-8 p-4 sm:p-8">
+          <!-- Mode Toggle -->
+          <div
+            class="flex justify-center p-2 text-lg mb-6 border-b border-gray-100 w-full"
+          >
+            <div class="mode-toggle text-lg">
+              <button id="forwardModeBtn" class="active text-lg">
+                Forward Mode
+              </button>
+              <button id="reverseModeBtn" class="text-lg">Reverse Mode</button>
+            </div>
+          </div>
+          <!-- FORWARD MODE -->
+          <div
+            id="forwardModeSection"
+            class="grid lg:grid-cols-2 gap-6 sm:gap-8 p-4 sm:p-8"
+          >
             <!-- Left Side - Input Controls -->
             <div class="space-y-6 sm:space-y-8">
               <!-- Current Cost -->
@@ -304,92 +337,12 @@
                   </div>
                 </div>
               </div>
-              <!-- Trigger Text -->
               <h1
                 id="openDisclaimer"
                 class="text-sm text-blue-600 hover:underline hover:cursor-pointer text-start"
               >
                 View Disclaimer
               </h1>
-
-              <!-- Modal -->
-              <div
-                id="disclaimerModal"
-                class="fixed inset-0 p-4 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300"
-              >
-                <div
-                  class="bg-white rounded-2xl shadow-lg max-w-4xl w-full p-8 relative transform transition-transform duration-300 scale-95"
-                  id="modalContent"
-                >
-                  <!-- Close Button -->
-                  <button
-                    id="closeDisclaimer"
-                    class="absolute top-3 right-3 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200 group"
-                  >
-                    <i
-                      data-lucide="x"
-                      class="text-gray-600 w-4 h-4 group-hover:rotate-90 transition-transform duration-300"
-                    ></i>
-                  </button>
-
-                  <!-- Title -->
-                  <h2 class="text-lg font-semibold mb-4 text-blue-700">
-                    Disclaimer ⚠️
-                  </h2>
-
-                  <!-- Content -->
-                  <p class="text-sm text-gray-700 leading-relaxed text-start">
-                    These Calculators alone are not sufficient and shouldn't be
-                    used for development or implementation of an investment
-                    strategy. The examples do not purport to represent the
-                    performance of any security or investments. The recipient is
-                    advised to consult his or her advisor/tax consultant prior
-                    to arriving at any investment decision. Mutual Funds do not
-                    have a fixed rate of return and it is not possible to
-                    predict the rate of return. Past performance may or may not
-                    be sustained in future and is not a guarantee of any future
-                    returns. Mutual Fund Investments are subject to market
-                    risks, read all scheme related documents carefully.
-                  </p>
-                </div>
-              </div>
-
-              <script>
-                const openBtn = document.getElementById("openDisclaimer");
-                const closeBtn = document.getElementById("closeDisclaimer");
-                const modal = document.getElementById("disclaimerModal");
-                const modalContent = document.getElementById("modalContent");
-
-                openBtn.addEventListener("click", () => {
-                  modal.classList.remove("hidden");
-                  setTimeout(() => {
-                    modal.classList.add("opacity-100");
-                    modalContent.classList.remove("scale-95");
-                    modalContent.classList.add("scale-100");
-                  }, 10);
-                });
-
-                const closeModal = () => {
-                  modalContent.classList.remove("scale-100");
-                  modalContent.classList.add("scale-95");
-                  modal.classList.remove("opacity-100");
-                  setTimeout(() => {
-                    modal.classList.add("hidden");
-                  }, 300);
-                };
-
-                closeBtn.addEventListener("click", closeModal);
-
-                modal.addEventListener("click", (e) => {
-                  if (e.target === modal) closeModal();
-                });
-              </script>
-
-              <!-- Lucide Icons -->
-              <script src="https://unpkg.com/lucide@latest"></script>
-              <script>
-                lucide.createIcons();
-              </script>
             </div>
 
             <!-- Right Side - Charts and Results -->
@@ -501,6 +454,291 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <!-- REVERSE MODE -->
+          <div
+            id="reverseModeSection"
+            class="hidden grid lg:grid-cols-2 gap-6 sm:gap-8 p-4 sm:p-8"
+          >
+            <!-- Left Side - Input Controls -->
+            <div class="space-y-6 sm:space-y-8">
+              <!-- Future Value -->
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <label class="text-base sm:text-lg font-medium text-gray-700"
+                    >Future Value</label
+                  >
+                  <div class="input-value-box w-32 sm:w-40">
+                    <span class="text-gray-500">₹</span>
+                    <input
+                      type="text"
+                      id="futureValueInput"
+                      value="1,00,000"
+                      min="1000"
+                      max="10000000"
+                      step="1000"
+                    />
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="futureValueSlider"
+                  min="1000"
+                  max="10000000"
+                  value="100000"
+                  step="1000"
+                  class="custom-slider w-full mt-4"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>₹1K</span>
+                  <span>₹1Cr</span>
+                </div>
+              </div>
+
+              <!-- Time Period (Reverse) -->
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <label class="text-base sm:text-lg font-medium text-gray-700"
+                    >Time Period</label
+                  >
+                  <div class="input-value-box w-28 sm:w-32">
+                    <input
+                      type="number"
+                      id="reverseTimePeriodInput"
+                      value="10"
+                      min="1"
+                      max="50"
+                    />
+                    <span class="text-gray-500">Y</span>
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="reverseTimePeriodSlider"
+                  min="1"
+                  max="50"
+                  value="10"
+                  class="custom-slider w-full mt-4"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>1Y</span>
+                  <span>50Y</span>
+                </div>
+              </div>
+
+              <!-- Expected Rate of Inflation (Reverse) -->
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <label
+                    class="text-base text-start sm:text-lg font-medium text-gray-700"
+                    >Expected Rate of Inflation (p.a)</label
+                  >
+                  <div class="input-value-box w-28 sm:w-32">
+                    <input
+                      type="number"
+                      id="reverseInflationRateInput"
+                      value="6"
+                      min="0"
+                      max="20"
+                      step="0.1"
+                    />
+                    <span class="text-gray-500">%</span>
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="reverseInflationRateSlider"
+                  min="0"
+                  max="20"
+                  value="6"
+                  step="0.1"
+                  class="custom-slider w-full mt-4"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>0%</span>
+                  <span>20%</span>
+                </div>
+              </div>
+
+              <!-- Present Value Visualization -->
+              <div class="bg-gray-50 rounded-xl p-4 sm:p-6">
+                <h3
+                  class="text-base sm:text-lg font-semibold text-gray-800 mb-4"
+                >
+                  Present Value Calculation
+                </h3>
+                <div class="space-y-3">
+                  <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">Future Value</span>
+                    <span class="font-semibold" id="reverseFutureValueDisplay"
+                      >₹1.79 L</span
+                    >
+                  </div>
+                  <div class="progress-container rounded-full">
+                    <div
+                      class="progress-bar py-4 rounded-full"
+                      id="reverseProgressBar"
+                      style="
+                        width: 56%;
+                        background: linear-gradient(
+                          90deg,
+                          #161f48 0%,
+                          #fcaf1b 100%
+                        );
+                      "
+                    >
+                      -44% Value
+                    </div>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">Present Value</span>
+                    <span
+                      class="font-semibold text-green-600"
+                      id="reversePresentValueDisplay"
+                      >₹1.00 L</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <h1
+                id="openDisclaimer2"
+                class="text-sm text-blue-600 hover:underline hover:cursor-pointer text-start"
+              >
+                View Disclaimer
+              </h1>
+            </div>
+
+            <!-- Right Side - Charts and Results (Reverse) -->
+            <div class="space-y-4 sm:space-y-6">
+              <!-- Chart Container -->
+              <div
+                class="bg-gray-50 rounded-xl p-2 sm:p-4 relative h-72 w-full"
+              >
+                <canvas id="reverseChart"></canvas>
+              </div>
+
+              <!-- Chart Legend (Reverse) -->
+              <div
+                id="reverseChartLegend"
+                class="flex flex-wrap justify-center space-x-4 sm:space-x-6 text-xs sm:text-sm text-gray-600"
+              >
+                <div>
+                  <span
+                    class="chart-legend-dot"
+                    style="background-color: #161f48"
+                  ></span>
+                  <span>Present Value</span>
+                </div>
+                <div>
+                  <span
+                    class="chart-legend-dot"
+                    style="background-color: #fcaf1b"
+                  ></span>
+                  <span>Value Loss</span>
+                </div>
+                <div>
+                  <span class="chart-legend-dot bg-gray-400"></span>
+                  <span>Future Value</span>
+                </div>
+              </div>
+
+              <!-- Results (Reverse) -->
+              <div
+                class="bg-white border border-gray-200 rounded-xl p-4 sm:p-6"
+              >
+                <h3
+                  class="text-base sm:text-lg font-semibold text-gray-800 mb-4"
+                >
+                  Calculation Results
+                </h3>
+                <div class="space-y-2">
+                  <div class="result-item">
+                    <span class="label">Future Value</span>
+                    <span id="reverseFutureValue" class="value">₹1.79 L</span>
+                  </div>
+                  <div class="result-item">
+                    <span class="label">Time Period</span>
+                    <span id="reverseTimePeriod" class="value">10 Years</span>
+                  </div>
+                  <div class="result-item">
+                    <span class="label">Inflation Rate</span>
+                    <span id="reverseInflationRate" class="value">6.0%</span>
+                  </div>
+                  <div class="result-item">
+                    <span class="label">Present Value</span>
+                    <span
+                      id="presentValue"
+                      class="value text-base sm:text-lg font-bold"
+                      style="color: #161f48"
+                      >₹1.00 L</span
+                    >
+                  </div>
+                  <div class="result-item">
+                    <span class="label">Total Value Loss</span>
+                    <span
+                      id="valueLoss"
+                      class="value text-base sm:text-lg font-bold"
+                      style="color: #fcaf1b"
+                      >₹79,085</span
+                    >
+                  </div>
+                  <div class="result-item">
+                    <span class="label">Loss Percentage</span>
+                    <span
+                      id="lossPercentage"
+                      class="value font-semibold text-red-600"
+                      >44%</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal -->
+          <div
+            id="disclaimerModal"
+            class="fixed inset-0 p-4 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300"
+          >
+            <div
+              class="bg-white rounded-2xl shadow-lg max-w-4xl w-full p-8 relative transform transition-transform duration-300 scale-95"
+              id="modalContent"
+            >
+              <button
+                id="closeDisclaimer"
+                class="absolute top-3 right-3 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200 group"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+
+              <h2 class="text-lg font-semibold mb-4 text-blue-700">
+                Disclaimer
+              </h2>
+              <p class="text-sm text-gray-700 leading-relaxed text-start">
+                These Calculators alone are not sufficient and shouldn't be used
+                for development or implementation of an investment strategy. The
+                examples do not purport to represent the performance of any
+                security or investments. The recipient is advised to consult his
+                or her advisor/tax consultant prior to arriving at any
+                investment decision. Mutual Funds do not have a fixed rate of
+                return and it is not possible to predict the rate of return.
+                Past performance may or may not be sustained in future and is
+                not a guarantee of any future returns. Mutual Fund Investments
+                are subject to market risks, read all scheme related documents
+                carefully.
+              </p>
             </div>
           </div>
 
@@ -783,6 +1021,12 @@
               >
                 <i data-lucide="trending-up" class="w-5 h-5"></i> Inflation
                 Calculator
+              </a>
+              <a
+                href="../calculators/lumpsum+sip-calculator.html"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#fcaf1b] hover:text-white"
+              >
+                <i data-lucide="merge" class="w-5 h-5"></i> Lumpsum + SIP
               </a>
             </div>
           </div>
@@ -1837,10 +2081,11 @@
       mobileMenuBackdrop.addEventListener("click", closeMobileMenu);
     </script>
     <script>
-      let chart;
+      let chart, reverseChart;
       let currentChartType = "timeline";
+      let isReverseMode = false;
 
-      // Global variables to store latest calculated results
+      // Global variables for Forward Mode
       let lastCalculatedCurrentCost = 0;
       let lastCalculatedFutureCost = 0;
       let lastCalculatedInflationImpact = 0;
@@ -1848,307 +2093,132 @@
       let lastCalculatedInflationRate = 0;
       let yearlyData = [];
 
-      // Initialize chart
-      function initChart() {
-        const canvas = document.getElementById("mainChart");
-        const ctx = canvas.getContext("2d");
+      // Global variables for Reverse Mode
+      let lastCalculatedFutureValue = 0;
+      let lastCalculatedPresentValue = 0;
+      let lastCalculatedValueLoss = 0;
 
-        // Destroy existing chart if it exists
-        if (chart) {
-          chart.destroy();
-        }
-
-        chart = new Chart(ctx, {
-          type: "line",
-          data: getTimelineChartData(),
-          options: {
-            responsive: true,
-            maintainAspectRatio: false, // Important for flexible height
-            plugins: {
-              legend: {
-                display: false,
-              },
-              tooltip: {
-                backgroundColor: "rgba(0, 0, 0, 0.8)",
-                titleColor: "white",
-                bodyColor: "white",
-                borderColor: "#161f48",
-                borderWidth: 1,
-                callbacks: {
-                  label: function (context) {
-                    return `Value: ${formatCurrency(context.parsed.y)}`;
-                  },
-                },
-              },
-            },
-            scales: {
-              y: {
-                beginAtZero: true,
-                grid: {
-                  color: "rgba(0, 0, 0, 0.1)",
-                },
-                ticks: {
-                  callback: function (value) {
-                    return formatCurrency(value);
-                  },
-                  font: {
-                    size: 12,
-                    weight: "500",
-                  },
-                  color: "#6b7280",
-                },
-              },
-              x: {
-                grid: {
-                  display: false,
-                },
-                ticks: {
-                  font: {
-                    size: 12,
-                    weight: "500",
-                  },
-                  color: "#6b7280",
-                },
-              },
-            },
-            animation: {
-              duration: 1000,
-              easing: "easeOutQuart",
-            },
-          },
+      // Mode switching
+      document
+        .getElementById("forwardModeBtn")
+        .addEventListener("click", () => {
+          isReverseMode = false;
+          document
+            .getElementById("forwardModeSection")
+            .classList.remove("hidden");
+          document.getElementById("reverseModeSection").classList.add("hidden");
+          document.getElementById("forwardModeBtn").classList.add("active");
+          document.getElementById("reverseModeBtn").classList.remove("active");
+          calculateInflation();
         });
-      }
 
-      // Get timeline chart data
-      function getTimelineChartData() {
-        const labels = yearlyData.map((item) => `Year ${item.year}`);
-        return {
-          labels: labels,
-          datasets: [
-            {
-              label: "Value Over Time",
-              data: yearlyData.map((item) => item.value),
-              borderColor: "#161f48",
-              backgroundColor: "rgba(22, 31, 72, 0.1)",
-              borderWidth: 3,
-              fill: true,
-              tension: 0.4,
-              pointBackgroundColor: "#161f48",
-              pointBorderColor: "#ffffff",
-              pointBorderWidth: 2,
-              pointRadius: 6,
-              pointHoverRadius: 8,
-            },
-          ],
-        };
-      }
+      document
+        .getElementById("reverseModeBtn")
+        .addEventListener("click", () => {
+          isReverseMode = true;
+          document
+            .getElementById("reverseModeSection")
+            .classList.remove("hidden");
+          document.getElementById("forwardModeSection").classList.add("hidden");
+          document.getElementById("reverseModeBtn").classList.add("active");
+          document.getElementById("forwardModeBtn").classList.remove("active");
+          calculateReverse();
+        });
 
-      // Get comparison chart data
-      function getComparisonChartData() {
-        return {
-          labels: ["Current Cost", "Future Cost", "Inflation Impact Cost"],
-          datasets: [
-            {
-              label: "Amount",
-              data: [
-                lastCalculatedCurrentCost,
-                lastCalculatedFutureCost,
-                lastCalculatedInflationImpact,
-              ],
-              backgroundColor: [
-                "rgba(156, 163, 175, 0.8)", // Gray for current
-                "rgba(22, 31, 72, 0.8)", // Dark blue for future
-                "rgba(252, 175, 27, 0.8)", // Orange for impact
-              ],
-              borderColor: ["#9ca3af", "#161f48", "#fcaf1b"],
-              borderWidth: 2,
-              borderRadius: 8,
-              borderSkipped: false,
-            },
-          ],
-        };
-      }
+      // Disclaimer modals
+      document
+        .getElementById("openDisclaimer")
+        .addEventListener("click", () => {
+          document.getElementById("disclaimerModal").classList.remove("hidden");
+        });
 
-      // Get breakdown chart data (doughnut)
-      function getBreakdownChartData() {
-        return {
-          labels: ["Original Value", "Inflation Impact Cost"],
-          datasets: [
-            {
-              data: [lastCalculatedCurrentCost, lastCalculatedInflationImpact],
-              backgroundColor: ["#9ca3af", "#fcaf1b"],
-              borderColor: "white",
-              borderWidth: 3,
-              cutout: "60%",
-            },
-          ],
-        };
-      }
+      document
+        .getElementById("openDisclaimer2")
+        .addEventListener("click", () => {
+          document.getElementById("disclaimerModal").classList.remove("hidden");
+        });
 
-      // Chart options for different types
-      function getTimelineChartOptions() {
-        return {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false,
-            },
-            tooltip: {
-              backgroundColor: "rgba(0, 0, 0, 0.8)",
-              titleColor: "white",
-              bodyColor: "white",
-              borderColor: "#161f48",
-              borderWidth: 1,
-              callbacks: {
-                label: function (context) {
-                  return `Value: ${formatCurrency(context.parsed.y)}`;
-                },
-              },
-            },
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              grid: {
-                color: "rgba(0, 0, 0, 0.1)",
-              },
-              ticks: {
-                callback: function (value) {
-                  return formatCurrency(value);
-                },
-                font: {
-                  size: 12,
-                  weight: "500",
-                },
-                color: "#6b7280",
-              },
-            },
-            x: {
-              grid: {
-                display: false,
-              },
-              ticks: {
-                font: {
-                  size: 12,
-                  weight: "500",
-                },
-                color: "#6b7280",
-              },
-            },
-          },
-          animation: {
-            duration: 1000,
-            easing: "easeOutQuart",
-          },
-        };
-      }
+      document
+        .getElementById("closeDisclaimer")
+        .addEventListener("click", () => {
+          document.getElementById("disclaimerModal").classList.add("hidden");
+        });
 
-      function getComparisonChartOptions() {
-        return {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false,
-            },
-            tooltip: {
-              backgroundColor: "rgba(0, 0, 0, 0.8)",
-              titleColor: "white",
-              bodyColor: "white",
-              callbacks: {
-                label: function (context) {
-                  return formatCurrency(context.parsed.y);
-                },
-              },
-            },
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              grid: {
-                color: "rgba(0, 0, 0, 0.1)",
-              },
-              ticks: {
-                callback: function (value) {
-                  return formatCurrency(value);
-                },
-                font: {
-                  size: 12,
-                  weight: "500",
-                },
-                color: "#6b7280",
-              },
-            },
-            x: {
-              grid: {
-                display: false,
-              },
-              ticks: {
-                font: {
-                  size: 12,
-                  weight: "500",
-                },
-                color: "#6b7280",
-              },
-            },
-          },
-          animation: {
-            duration: 800,
-            easing: "easeOutQuart",
-          },
-        };
-      }
+      document
+        .getElementById("disclaimerModal")
+        .addEventListener("click", (e) => {
+          if (e.target.id === "disclaimerModal") {
+            document.getElementById("disclaimerModal").classList.add("hidden");
+          }
+        });
 
-      function getBreakdownChartOptions() {
-        return {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: "bottom",
-              labels: {
-                padding: 20,
-                font: {
-                  size: 12,
-                  weight: "500",
-                },
-                color: "#6b7280",
-              },
-            },
-            tooltip: {
-              backgroundColor: "rgba(0, 0, 0, 0.8)",
-              titleColor: "white",
-              bodyColor: "white",
-              callbacks: {
-                label: function (context) {
-                  const percentage = (
-                    (context.parsed /
-                      (lastCalculatedCurrentCost +
-                        lastCalculatedInflationImpact)) *
-                    100
-                  ).toFixed(1);
-                  return `${context.label}: ${formatCurrency(
-                    context.parsed,
-                  )} (${percentage}%)`;
-                },
-              },
-            },
-          },
-          animation: {
-            animateRotate: true,
-            duration: 1000,
-            easing: "easeOutQuart",
-          },
-        };
-      }
+      // Sync inputs and sliders - FORWARD MODE
+      ["currentCost", "timePeriod", "inflationRate"].forEach((field) => {
+        const inputId = field + "Input";
+        const sliderId = field + "Slider";
+        const inputEl = document.getElementById(inputId);
+        const sliderEl = document.getElementById(sliderId);
 
-      // Format number to Indian currency format
+        if (inputEl && sliderEl) {
+          inputEl.addEventListener("input", () => {
+            let value = parseIndianFormattedNumber(inputEl.value);
+            sliderEl.value = value;
+            calculateInflation();
+          });
+
+          sliderEl.addEventListener("input", () => {
+            const value = parseInt(sliderEl.value);
+            if (field === "timePeriod" || field === "inflationRate") {
+              inputEl.value = sliderEl.value;
+            } else {
+              inputEl.value = formatNumberWithIndianCommas(value);
+            }
+            calculateInflation();
+          });
+        }
+      });
+
+      // Sync inputs and sliders - REVERSE MODE
+      ["futureValue", "reverseTimePeriod", "reverseInflationRate"].forEach(
+        (field) => {
+          const inputId = field + "Input";
+          const sliderId = field + "Slider";
+          const inputEl = document.getElementById(inputId);
+          const sliderEl = document.getElementById(sliderId);
+
+          if (inputEl && sliderEl) {
+            inputEl.addEventListener("input", () => {
+              let value = parseIndianFormattedNumber(inputEl.value);
+              sliderEl.value = value;
+              calculateReverse();
+            });
+
+            sliderEl.addEventListener("input", () => {
+              const value = parseInt(sliderEl.value);
+              if (
+                field === "reverseTimePeriod" ||
+                field === "reverseInflationRate"
+              ) {
+                inputEl.value = sliderEl.value;
+              } else {
+                inputEl.value = formatNumberWithIndianCommas(value);
+              }
+              calculateReverse();
+            });
+          }
+        },
+      );
+
+      // Format functions
       function formatCurrency(amount) {
         if (amount >= 10000000) {
-          return "₹" + (amount / 10000000).toFixed(2) + " Crores";
+          return (
+            "₹" + (amount / 10000000).toFixed(2).replace(".", ",") + " Crores"
+          );
         } else if (amount >= 100000) {
-          return "₹" + (amount / 100000).toFixed(2) + " Lakhs";
+          return (
+            "₹" + (amount / 100000).toFixed(2).replace(".", ",") + " Lakhs"
+          );
         } else {
           return "₹" + Math.round(amount).toLocaleString("en-IN");
         }
@@ -2166,7 +2236,7 @@
         return parseFloat(str.replace(/[^0-9.]/g, ""));
       }
 
-      // Calculate Inflation Impact Cost and generate yearly data
+      // FORWARD MODE CALCULATION
       function calculateInflation() {
         const currentCost = parseIndianFormattedNumber(
           document.getElementById("currentCostInput").value,
@@ -2178,7 +2248,6 @@
           document.getElementById("inflationRateInput").value,
         );
 
-        // Generate yearly data
         yearlyData = [];
         for (let year = 0; year <= timePeriod; year++) {
           const value = currentCost * Math.pow(1 + inflationRate / 100, year);
@@ -2190,14 +2259,13 @@
         const inflationImpact = futureCost - currentCost;
         const annualIncrease = inflationImpact / timePeriod;
 
-        // Store values for sharing
         lastCalculatedCurrentCost = currentCost;
         lastCalculatedFutureCost = futureCost;
         lastCalculatedInflationImpact = inflationImpact;
         lastCalculatedTimePeriod = timePeriod;
         lastCalculatedInflationRate = inflationRate;
 
-        updateResults(
+        updateForwardResults(
           currentCost,
           futureCost,
           inflationImpact,
@@ -2205,74 +2273,52 @@
           inflationRate,
           annualIncrease,
         );
-        updateChart();
+        updateForwardChart();
         updateProgressBar(currentCost, futureCost, inflationImpact);
       }
 
-      // Update progress bar
-      function updateProgressBar(currentCost, futureCost, inflationImpact) {
-        const impactPercentage = (inflationImpact / currentCost) * 100;
-        const progressWidth = Math.min(impactPercentage, 100);
+      // REVERSE MODE CALCULATION
+      function calculateReverse() {
+        const futureValue = parseIndianFormattedNumber(
+          document.getElementById("futureValueInput").value,
+        );
+        const timePeriod = parseInt(
+          document.getElementById("reverseTimePeriodInput").value,
+        );
+        const inflationRate = parseFloat(
+          document.getElementById("reverseInflationRateInput").value,
+        );
 
-        document.getElementById("progressCurrentValue").textContent =
-          formatCurrency(currentCost);
-        document.getElementById("progressFutureValue").textContent =
-          formatCurrency(futureCost);
+        const presentValue =
+          futureValue / Math.pow(1 + inflationRate / 100, timePeriod);
+        const valueLoss = futureValue - presentValue;
+        const lossPercentage = (valueLoss / futureValue) * 100;
 
-        const progressBar = document.getElementById("inflationProgressBar");
-        progressBar.style.width = progressWidth + "%";
-        progressBar.textContent = `+${impactPercentage.toFixed(0)}% Impact`;
+        lastCalculatedFutureValue = futureValue;
+        lastCalculatedPresentValue = presentValue;
+        lastCalculatedValueLoss = valueLoss;
+        lastCalculatedTimePeriod = timePeriod;
+        lastCalculatedInflationRate = inflationRate;
+
+        updateReverseResults(
+          futureValue,
+          presentValue,
+          valueLoss,
+          timePeriod,
+          inflationRate,
+          lossPercentage,
+        );
+        updateReverseChart(presentValue, futureValue, valueLoss);
+        updateReverseProgressBar(
+          futureValue,
+          presentValue,
+          valueLoss,
+          lossPercentage,
+        );
       }
 
-      // Update chart based on current type
-      function updateChart() {
-        let newData, newOptions, newType;
-
-        switch (currentChartType) {
-          case "timeline":
-            newData = getTimelineChartData();
-            newOptions = getTimelineChartOptions(); // Use the full options function
-            newType = "line";
-            break;
-          case "comparison":
-            newData = getComparisonChartData();
-            newOptions = getComparisonChartOptions(); // Use the full options function
-            newType = "bar";
-            break;
-          case "breakdown":
-            newData = getBreakdownChartData();
-            newOptions = getBreakdownChartOptions(); // Use the full options function
-            newType = "doughnut";
-            break;
-        }
-
-        if (chart) {
-          chart.destroy();
-        }
-
-        const ctx = document.getElementById("mainChart").getContext("2d");
-        chart = new Chart(ctx, {
-          type: newType,
-          data: newData,
-          options: newOptions,
-        });
-      }
-
-      // Switch chart type
-      function switchChart(type) {
-        currentChartType = type;
-
-        // Update tab appearance
-        document.querySelectorAll(".chart-tab").forEach((tab) => {
-          tab.classList.remove("active");
-        });
-        document.getElementById(type + "Tab").classList.add("active");
-
-        updateChart();
-      }
-
-      // Update results
-      function updateResults(
+      // Update Forward Mode Results
+      function updateForwardResults(
         currentCost,
         futureCost,
         inflationImpact,
@@ -2294,186 +2340,254 @@
           formatCurrency(annualIncrease);
       }
 
-      // Email and WhatsApp functions (same as before)
-      function sendEmailPlan() {
-        const subject = encodeURIComponent(
-          "My Inflation Impact Cost Calculator Results",
-        );
-        let body = `Hello,\n\nHere are my inflation calculation results:\n\n`;
-
-        body += `Current Cost: ${formatCurrency(lastCalculatedCurrentCost)}\n`;
-        body += `Time Period: ${lastCalculatedTimePeriod} Years\n`;
-        body += `Expected Inflation Rate: ${lastCalculatedInflationRate.toFixed(
-          1,
-        )}%\n\n`;
-
-        body += `--- Results ---\n`;
-        body += `Future Cost: ${formatCurrency(lastCalculatedFutureCost)}\n`;
-        body += `Total Inflation Impact Cost: ${formatCurrency(
-          lastCalculatedInflationImpact,
-        )}\n\n`;
-
-        body += `This means that what costs ${formatCurrency(
-          lastCalculatedCurrentCost,
-        )} today will cost ${formatCurrency(
-          lastCalculatedFutureCost,
-        )} after ${lastCalculatedTimePeriod} years with ${lastCalculatedInflationRate.toFixed(
-          1,
-        )}% annual inflation.\n\n`;
-
-        body += `Calculated using Chimulkar Financial Services Inflation Impact Cost Calculator.\n`;
-        body += `Calculate yours now at ${window.location.href}`;
-
-        window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
-          body,
-        )}`;
+      // Update Reverse Mode Results
+      function updateReverseResults(
+        futureValue,
+        presentValue,
+        valueLoss,
+        timePeriod,
+        inflationRate,
+        lossPercentage,
+      ) {
+        document.getElementById("reverseFutureValue").textContent =
+          formatCurrency(futureValue);
+        document.getElementById("reverseTimePeriod").textContent =
+          timePeriod + " Years";
+        document.getElementById("reverseInflationRate").textContent =
+          inflationRate.toFixed(1) + "%";
+        document.getElementById("presentValue").textContent =
+          formatCurrency(presentValue);
+        document.getElementById("valueLoss").textContent =
+          formatCurrency(valueLoss);
+        document.getElementById("lossPercentage").textContent =
+          lossPercentage.toFixed(1) + "%";
       }
 
-      function sendWhatsAppPlan() {
-        let message = `My Inflation Impact Cost Calculation Results:\n\n`;
+      // Update progress bars
+      function updateProgressBar(currentCost, futureCost, inflationImpact) {
+        const impactPercentage = (inflationImpact / currentCost) * 100;
+        const progressWidth = Math.min(impactPercentage, 100);
+        document.getElementById("progressCurrentValue").textContent =
+          formatCurrency(currentCost);
+        document.getElementById("progressFutureValue").textContent =
+          formatCurrency(futureCost);
+        const progressBar = document.getElementById("inflationProgressBar");
+        progressBar.style.width = progressWidth + "%";
+        progressBar.textContent = `+${impactPercentage.toFixed(0)}% Impact`;
+      }
 
-        message += `Current Cost: *${formatCurrency(
-          lastCalculatedCurrentCost,
-        )}*\n`;
-        message += `Time Period: *${lastCalculatedTimePeriod} Years*\n`;
-        message += `Expected Inflation Rate: *${lastCalculatedInflationRate.toFixed(
-          1,
-        )}%*\n\n`;
+      function updateReverseProgressBar(
+        futureValue,
+        presentValue,
+        valueLoss,
+        lossPercentage,
+      ) {
+        const progressWidth = Math.min(lossPercentage, 100);
+        document.getElementById("reverseFutureValueDisplay").textContent =
+          formatCurrency(futureValue);
+        document.getElementById("reversePresentValueDisplay").textContent =
+          formatCurrency(presentValue);
+        const progressBar = document.getElementById("reverseProgressBar");
+        progressBar.style.width = progressWidth + "%";
+        progressBar.textContent = `-${lossPercentage.toFixed(0)}% Value`;
+      }
 
-        message += `--- Results ---\n`;
-        message += `Future Cost: *${formatCurrency(
-          lastCalculatedFutureCost,
-        )}*\n`;
-        message += `Total Inflation Impact Cost: *${formatCurrency(
-          lastCalculatedInflationImpact,
-        )}*\n\n`;
+      // Update Forward Chart
+      function updateForwardChart() {
+        let newType, newData, newOptions;
+        switch (currentChartType) {
+          case "timeline":
+            newType = "line";
+            newData = {
+              labels: yearlyData.map((item) => `Year ${item.year}`),
+              datasets: [
+                {
+                  label: "Value Over Time",
+                  data: yearlyData.map((item) => item.value),
+                  borderColor: "#161f48",
+                  backgroundColor: "rgba(22, 31, 72, 0.1)",
+                  borderWidth: 3,
+                  fill: true,
+                  tension: 0.4,
+                  pointBackgroundColor: "#161f48",
+                  pointBorderColor: "#ffffff",
+                  pointBorderWidth: 2,
+                  pointRadius: 6,
+                },
+              ],
+            };
+            break;
+          case "comparison":
+            newType = "bar";
+            newData = {
+              labels: ["Current Cost", "Future Cost", "Inflation Impact Cost"],
+              datasets: [
+                {
+                  label: "Amount",
+                  data: [
+                    lastCalculatedCurrentCost,
+                    lastCalculatedFutureCost,
+                    lastCalculatedInflationImpact,
+                  ],
+                  backgroundColor: [
+                    "rgba(156, 163, 175, 0.8)",
+                    "rgba(22, 31, 72, 0.8)",
+                    "rgba(252, 175, 27, 0.8)",
+                  ],
+                  borderColor: ["#9ca3af", "#161f48", "#fcaf1b"],
+                  borderWidth: 2,
+                  borderRadius: 8,
+                },
+              ],
+            };
+            break;
+        }
 
-        message += `This means that what costs *${formatCurrency(
-          lastCalculatedCurrentCost,
-        )}* today will cost *${formatCurrency(
-          lastCalculatedFutureCost,
-        )}* after *${lastCalculatedTimePeriod} years* with *${lastCalculatedInflationRate.toFixed(
-          1,
-        )}%* annual inflation.\n\n`;
+        if (chart) chart.destroy();
+        const ctx = document.getElementById("mainChart").getContext("2d");
+        chart = new Chart(ctx, {
+          type: newType,
+          data: newData,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: { beginAtZero: true, grid: { color: "rgba(0, 0, 0, 0.1)" } },
+            },
+          },
+        });
+      }
 
+      // Update Reverse Chart
+      function updateReverseChart(presentValue, futureValue, valueLoss) {
+        if (reverseChart) reverseChart.destroy();
+        const ctx = document.getElementById("reverseChart").getContext("2d");
+        reverseChart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: ["Present Value", "Value Loss", "Future Value"],
+            datasets: [
+              {
+                label: "Amount",
+                data: [presentValue, valueLoss, futureValue],
+                backgroundColor: [
+                  "rgba(22, 31, 72, 0.8)",
+                  "rgba(252, 175, 27, 0.8)",
+                  "rgba(156, 163, 175, 0.8)",
+                ],
+                borderColor: ["#161f48", "#fcaf1b", "#9ca3af"],
+                borderWidth: 2,
+                borderRadius: 8,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: { beginAtZero: true, grid: { color: "rgba(0, 0, 0, 0.1)" } },
+            },
+          },
+        });
+      }
+
+      // Chart tab switching
+      document.querySelectorAll(".chart-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          currentChartType = tab.dataset.chart;
+          document
+            .querySelectorAll(".chart-tab")
+            .forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+          updateForwardChart();
+        });
+      });
+
+      // Email function
+      document.getElementById("emailPlanBtn").addEventListener("click", () => {
+        const subject = encodeURIComponent("My Inflation Calculation Results");
+        const currentUrl = window.location.href; // LIVE URL
+
+        let body = `Hello,\n\nHere are my inflation calculation results:\n\n`;
+
+        if (isReverseMode) {
+          body += `Mode: Reverse Mode\n\n`;
+          body += `Future Value: ${formatCurrency(lastCalculatedFutureValue)}\n`;
+          body += `Time Period: ${lastCalculatedTimePeriod} Years\n`;
+          body += `Expected Inflation Rate: ${lastCalculatedInflatedRate?.toFixed?.(1) ?? lastCalculatedInflationRate.toFixed(1)}%\n\n`;
+          body += `--- Results ---\n`;
+          body += `Present Value: ${formatCurrency(lastCalculatedPresentValue)}\n`;
+          body += `Total Value Loss: ${formatCurrency(lastCalculatedValueLoss)}\n\n`;
+        } else {
+          body += `Mode: Forward Mode\n\n`;
+          body += `Current Cost: ${formatCurrency(lastCalculatedCurrentCost)}\n`;
+          body += `Time Period: ${lastCalculatedTimePeriod} Years\n`;
+          body += `Expected Inflation Rate: ${lastCalculatedInflationRate.toFixed(1)}%\n\n`;
+          body += `--- Results ---\n`;
+          body += `Future Cost: ${formatCurrency(lastCalculatedFutureCost)}\n`;
+          body += `Total Inflation Impact Cost: ${formatCurrency(lastCalculatedInflationImpact)}\n\n`;
+        }
+
+        // Footer with LIVE URL
+        body += `Calculated using Chimulkar Financial Services Inflation Impact Cost Calculator.\n`;
+        body += `Calculate yours now at ${currentUrl}`;
+
+        window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(body)}`;
+      });
+
+      // WhatsApp function
+      document.getElementById("whatsappBtn").addEventListener("click", () => {
+        const currentUrl = window.location.href; // gets the live page URL
+
+        let message = `My Inflation Calculation results\n\n`;
+
+        if (isReverseMode) {
+          message += `Mode: *Reverse Mode*\n\n`;
+          message += `---Results---\n`;
+          message += `Future Value: *${formatCurrency(lastCalculatedFutureValue)}*\n`;
+          message += `Time Period: *${lastCalculatedTimePeriod} Years*\n`;
+          message += `Inflation Rate: *${lastCalculatedInflationRate.toFixed(1)}%*\n\n`;
+          message += `Present Value: *${formatCurrency(lastCalculatedPresentValue)}*\n`;
+          message += `Value Loss: *${formatCurrency(lastCalculatedValueLoss)}*\n\n`;
+        } else {
+          message += `Mode: *Forward Mode*\n\n`;
+          message += `---Results---\n`;
+          message += `Current Cost: *${formatCurrency(lastCalculatedCurrentCost)}*\n`;
+          message += `Time Period: *${lastCalculatedTimePeriod} Years*\n`;
+          message += `Inflation Rate: *${lastCalculatedInflationRate.toFixed(1)}%*\n\n`;
+          message += `Future Cost: *${formatCurrency(lastCalculatedFutureCost)}*\n`;
+          message += `Impact Cost: *${formatCurrency(lastCalculatedInflationImpact)}*\n\n`;
+        }
+
+        // Footer with LIVE URL
         message += `Calculated using Chimulkar Financial Services Inflation Impact Cost Calculator.\n`;
-        message += `Calculate yours now at ${window.location.href}`;
+        message += `Calculate yours now at ${currentUrl}`;
 
         window.open(
           `https://wa.me/?text=${encodeURIComponent(message)}`,
           "_blank",
         );
-      }
-
-      function downloadCalculatorImage() {
-        const calculatorContainer = document.getElementById(
-          "calculatorContainer",
-        );
-
-        html2canvas(calculatorContainer, {
-          scale: 2,
-          useCORS: true,
-          logging: false,
-        })
-          .then((canvas) => {
-            const image = canvas.toDataURL("image/png");
-            const link = document.createElement("a");
-            link.href = image;
-            link.download = "enhanced_inflation_calculator_results.png";
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-          })
-          .catch((error) => {
-            console.error("Error capturing calculator image:", error);
-            alert("Failed to capture image. Please try again.");
-          });
-      }
-
-      // Setup event listeners
-      function setupEventListeners() {
-        // Chart type switchers
-        document
-          .getElementById("timelineTab")
-          .addEventListener("click", () => switchChart("timeline"));
-        document
-          .getElementById("comparisonTab")
-          .addEventListener("click", () => switchChart("comparison"));
-        document
-          .getElementById("breakdownTab")
-          .addEventListener("click", () => switchChart("breakdown"));
-
-        // Action Buttons
-        document
-          .getElementById("emailPlanBtn")
-          .addEventListener("click", sendEmailPlan);
-        document
-          .getElementById("whatsappBtn")
-          .addEventListener("click", sendWhatsAppPlan);
-        document
-          .getElementById("downloadImageBtn")
-          .addEventListener("click", downloadCalculatorImage);
-
-        // Input and Slider sync
-        const inputs = [
-          {
-            slider: "currentCostSlider",
-            input: "currentCostInput",
-            type: "currency",
-          },
-          {
-            slider: "timePeriodSlider",
-            input: "timePeriodInput",
-            type: "number",
-          },
-          {
-            slider: "inflationRateSlider",
-            input: "inflationRateInput",
-            type: "number",
-          },
-        ];
-
-        inputs.forEach((item) => {
-          const slider = document.getElementById(item.slider);
-          const input = document.getElementById(item.input);
-
-          if (item.type === "currency") {
-            input.addEventListener("input", function () {
-              let parsedValue = parseIndianFormattedNumber(this.value);
-              slider.value = parsedValue;
-              this.value = formatNumberWithIndianCommas(parsedValue);
-              calculateInflation();
-            });
-
-            slider.addEventListener("input", function () {
-              input.value = formatNumberWithIndianCommas(
-                parseFloat(this.value),
-              );
-              calculateInflation();
-            });
-          } else {
-            input.addEventListener("input", function () {
-              slider.value = this.value;
-              calculateInflation();
-            });
-
-            slider.addEventListener("input", function () {
-              input.value = this.value;
-              calculateInflation();
-            });
-          }
-        });
-      }
-
-      // Initialize everything on load
-      window.addEventListener("load", function () {
-        // Small delay to ensure DOM is fully ready
-        setTimeout(() => {
-          calculateInflation(); // Calculate first to generate data
-          initChart();
-          setupEventListeners();
-        }, 100);
       });
+
+      // Download image function
+      document
+        .getElementById("downloadImageBtn")
+        .addEventListener("click", () => {
+          const container = document.getElementById("calculatorContainer");
+          html2canvas(container, { backgroundColor: "#ffffff" }).then(
+            (canvas) => {
+              const link = document.createElement("a");
+              link.href = canvas.toDataURL();
+              link.download = "inflation-calculator.png";
+              link.click();
+            },
+          );
+        });
+
+      // Initialize
+      calculateInflation();
     </script>
   </body>
 </html>
