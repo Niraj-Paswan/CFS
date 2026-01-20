@@ -1036,15 +1036,15 @@
       function formatCurrency(amount) {
         if (amount >= 10000000) {
           return (
-            "₹" + (amount / 10000000).toFixed(2).replace(".", ",") + " Crores"
+            "₹" + (amount / 10000000).toFixed(2).replace(".", ".") + " Crores"
           );
         } else if (amount >= 100000) {
           return (
-            "₹" + (amount / 100000).toFixed(2).replace(".", ",") + " Lakhs"
+            "₹" + (amount / 100000).toFixed(2).replace(".", ".") + " Lakhs"
           );
         } else if (amount >= 1000) {
           return (
-            "₹" + (amount / 1000).toFixed(2).replace(".", ",") + " Thousand"
+            "₹" + (amount / 1000).toFixed(2).replace(".", ".") + " Thousand"
           );
         } else {
           return "₹" + Math.round(amount).toLocaleString("en-IN");
