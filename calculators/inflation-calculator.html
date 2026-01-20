@@ -1412,47 +1412,84 @@
     <section
       class="w-full mx-auto max-w-[1110px] mt-8 p-5 lg:p-0 text-sm lg:text-base"
     >
-      <h2 class="text-lg font-semibold mb-2">
-        About the Future Value / Inflation Calculator
-      </h2>
+      <h2 class="text-lg font-semibold mb-2">About the Inflation Calculator</h2>
 
       <p class="mb-4">
-        This Future Value / Inflation Impact Calculator will help you in
-        understanding how inflation affects your money and how much you'll need
-        to save for tomorrow's goals. While your savings may grow, so do prices.
-        This calculator helps you see the future cost of your financial goals by
-        factoring in inflation, so you can set smarter, more realistic financial
-        targets.
+        Inflation is the "silent thief" of personal finance, gradually eroding
+        the purchasing power of your hard-earned money. What costs ₹100 today
+        will inevitably cost more in the future. To build a truly resilient
+        financial plan, you must account for this price rise. Our Inflation
+        Calculator helps you visualize the real-world value of your money,
+        allowing you to plan for future expenses or understand how much today’s
+        wealth is worth in the context of the past.
       </p>
 
       <h3 class="text-lg font-semibold mb-2">How to Use This Calculator</h3>
+      <p class="mb-4">
+        This tool operates in two distinct modes to help you navigate the impact
+        of rising costs on your financial goals.
+      </p>
+      <p class="font-semibold mb-1">
+        Mode 1: Forward Inflation (Calculate Future Value)
+      </p>
+      <p class="mb-2">
+        Use this mode to find out how much a specific lifestyle, product, or
+        service will cost in the years to come. This is essential for
+        goal-setting.
+      </p>
       <ul class="list-disc ml-6 mb-4 space-y-1 text-black">
         <li>
-          <span class="font-semibold">Present Amount:</span> Enter the current
-          value of the financial goal or expense you want to calculate (e.g.,
-          the cost of a car or your child's education today).
+          <span class="font-semibold">Present Value (Current Cost):</span> Enter
+          the amount the item or lifestyle costs today.
         </li>
         <li>
-          <span class="font-semibold">Expected Inflation Rate:</span> Input the
-          average annual inflation rate you anticipate (e.g., 6%).
+          <span class="font-semibold">Inflation Rate:</span> Input the expected
+          annual price rise (e.g., 6% for general expenses or 10% for
+          education/healthcare).
         </li>
         <li>
           <span class="font-semibold">Time Period:</span> Specify the number of
-          years until you need to reach this goal.
+          years into the future you are looking.
         </li>
         <li>
-          The calculator will show you the estimated future cost of that goal,
-          giving you a clear target to aim for.
+          <span class="font-semibold">The Result:</span> The calculator will
+          show you the Future Value, telling you exactly how much money you will
+          need then to maintain the same standard of living you have now.
+        </li>
+      </ul>
+      <p class="font-semibold mb-1">
+        Mode 2: Reverse Inflation (Calculate Present Value)
+      </p>
+      <p class="mb-2">
+        Use this mode to understand the "purchasing power" of a future sum in
+        today’s terms. This helps put large future targets into a perspective
+        you can understand now.
+      </p>
+      <ul class="list-disc ml-6 mb-4 space-y-1 text-black">
+        <li>
+          <span class="font-semibold">Future Value (Target Amount):</span> Enter
+          the amount you expect to have or need in the future (e.g., a ₹5 Crore
+          retirement corpus).
+        </li>
+        <li>
+          <span class="font-semibold">Inflation Rate:</span> Input the
+          anticipated annual inflation rate. Time Period: Specify the number of
+          years until you reach that amount.
+        </li>
+        <li>
+          <span class="font-semibold">The Result:</span> The calculator will
+          show you the Present Value, revealing what that large future sum is
+          actually "worth" in today's market.
         </li>
       </ul>
 
       <h3 class="text-lg font-semibold mb-2">Formula Used in the Calculator</h3>
       <p class="mb-4">
-        Our calculator uses standard financial formulas to provide accurate
-        projections.
+        The calculator uses the standard time-value of money formula, applying
+        the logic of compound interest to rising costs.
       </p>
 
-      <p class="font-semibold mb-1">For Future Value with Inflation Mode:</p>
+      <p class="font-semibold mb-1">For Forward Calculation (Future Value):</p>
       <p class="mb-4">
         The future value (FV) is calculated using the compound interest formula:
       </p>
@@ -1463,41 +1500,85 @@
       <div
         class="bg-gray-200/50 p-4 rounded-xl mt-4 text-sm overflow-x-auto mb-4"
       >
-        <p><strong class="font-semibold">Main formula:</strong></p>
-        $$\mathbf{FV} = \mathbf{P} \times (1 + i)^{t}$$
+        <p>
+          <strong class="font-semibold"
+            >Forward Calculation (Future Value):</strong
+          >
+        </p>
+        $$FV = PV \times (1 + r)^n$$
+        <strong class="font-semibold">
+          For Reverse Calculation (Present Value):
+        </strong>
+        $$PV = \frac{FV}{(1 + r)^n}$$
 
-        <p><strong class="font-medium">Where:</strong></p>
+        <p class="mb-2 font-semibold">
+          <strong class="font-medium">Where:</strong>
+        </p>
         <ul>
           <li>\(\mathbf{FV}\) = Future Value</li>
-          <li>\(\mathbf{P}\) = Present Amount</li>
-          <li>\(i\) = Expected Inflation Rate</li>
-          <li>\(t\) = Time Period in years</li>
+          <li>\(\mathbf{PV}\) = Present Value(Current Value)</li>
+          <li>\(r\) = Annual Inflation Rate</li>
+          <li>\(n\) = Number of Years</li>
         </ul>
       </div>
 
       <h3 class="text-lg font-semibold mb-2">
-        Case Study: Future Value with Inflation
+        Case 1: Planning for Future Costs (Forward Mode)
       </h3>
       <div class="text-sm lg:text-base text-black leading-relaxed space-y-4">
         <p>
-          Manish, 23, who’s just started his first job wants to buy a car that
-          costs <span class="font-semibold">₹10 lakhs</span> today. He plans to
-          buy it in 5 years, around the time he gets married and expects the
-          average inflation rate for cars to be
-          <span class="font-semibold">6% per year</span>.
+          Karan plans to send his daughter for higher education in
+          <span class="font-semibold">15 years</span>. The course currently
+          costs <span class="font-semibold">₹20 lakhs</span>. To ensure he saves
+          enough, he needs to account for education inflation, which he
+          estimates at <span class="font-semibold">10% per year</span>.
         </p>
+
         <ul class="list-disc ml-6 space-y-1">
-          <li><span class="font-semibold">Present Amount:</span> ₹10,00,000</li>
+          <li><span class="font-semibold">Current Cost:</span> ₹20,00,000</li>
+          <li>
+            <span class="font-semibold">Expected Inflation Rate:</span> 10%
+          </li>
+          <li><span class="font-semibold">Time Period:</span> 15 years</li>
+        </ul>
+
+        <p>
+          According to the calculator, the same course that costs ₹20 lakhs
+          today will cost approximately
+          <span class="font-semibold">₹83.54 lakhs</span> in 15 years. This
+          shows that Karan’s actual savings target is nearly
+          <span class="font-semibold">four times</span> the current cost,
+          helping him plan more realistically for his daughter’s education.
+        </p>
+      </div>
+      <h3 class="text-lg font-semibold mb-2 mt-4">
+        Case 2: The Reality Check (Reverse Mode)
+      </h3>
+      <div class="text-sm lg:text-base text-black leading-relaxed space-y-4">
+        <p>
+          Aditi is reviewing her retirement plan and sees a target of
+          <span class="font-semibold">₹3 Crores</span> in
+          <span class="font-semibold">20 years</span>. She wants to understand
+          what that amount is worth in today’s terms, assuming an average
+          inflation rate of <span class="font-semibold">6% per year</span>.
+        </p>
+
+        <ul class="list-disc ml-6 space-y-1">
+          <li>
+            <span class="font-semibold">Future Corpus:</span> ₹3,00,00,000
+          </li>
           <li>
             <span class="font-semibold">Expected Inflation Rate:</span> 6%
           </li>
-          <li><span class="font-semibold">Time Period:</span> 5 years</li>
+          <li><span class="font-semibold">Time Period:</span> 20 years</li>
         </ul>
+
         <p>
-          According to our calculator, the car that costs ₹10 lakhs today will
-          cost approximately <span class="font-semibold">₹13.38 lakhs</span> in
-          5 years i.e. an increase of approximately 34%. This calculation gives
-          him a realistic financial target to plan for.
+          According to the calculator, a retirement corpus of ₹3 Crores after 20
+          years will have the purchasing power of only
+          <span class="font-semibold">₹93.54 Lakhs</span> today. This insight
+          helps Aditi realize that she may need to increase her savings to
+          secure the retirement lifestyle she truly envisions.
         </p>
       </div>
     </section>
@@ -1893,7 +1974,7 @@
         Explore More Popular Calculators
       </h2>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-2 lg:gap-6">
         <a
           href="./sip-calculator.html"
           class="inline-flex items-center justify-center bg-white text-black pl-5 pr-3 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
@@ -1924,6 +2005,16 @@
             class="w-5 h-5 text-black group-hover:text-white"
           ></i>
           Lump Sump Calculator
+        </a>
+        <a
+          href="./lumpsum+sip-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black pl-5 pr-4 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="merge"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          Lumpsum + SIP Calculator
         </a>
       </div>
     </section>
@@ -2213,11 +2304,11 @@
       function formatCurrency(amount) {
         if (amount >= 10000000) {
           return (
-            "₹" + (amount / 10000000).toFixed(2).replace(".", ",") + " Crores"
+            "₹" + (amount / 10000000).toFixed(2).replace(".", ".") + " Crores"
           );
         } else if (amount >= 100000) {
           return (
-            "₹" + (amount / 100000).toFixed(2).replace(".", ",") + " Lakhs"
+            "₹" + (amount / 100000).toFixed(2).replace(".", ".") + " Lakhs"
           );
         } else {
           return "₹" + Math.round(amount).toLocaleString("en-IN");

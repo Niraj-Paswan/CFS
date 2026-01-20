@@ -172,183 +172,383 @@
             with ease.
           </p>
         </div>
+
         <div
           id="calculatorContainer"
           class="max-w-6xl w-full bg-white p-4 rounded-3xl border border-gray-300 overflow-hidden"
         >
-          <!-- Mode Toggle (Monthly vs Yearly) -->
+          <!-- Mode Toggle -->
           <div class="flex justify-center p-2 mt-1 border-b border-gray-100">
             <div class="inline-flex bg-gray-100 rounded-lg p-1">
               <button
                 id="monthlyModeBtn"
                 class="px-5 py-2 text-base font-medium rounded-md transition-colors duration-200 bg-white text-gray-800 shadow-base cursor-pointer"
               >
-                Monthly SWP
+                Portfolio Value
               </button>
               <button
                 id="yearlyModeBtn"
                 class="px-5 py-2 text-base font-medium rounded-md transition-colors duration-200 text-gray-600 hover:bg-gray-200 cursor-pointer"
               >
-                Yearly SWP
+                Monthly Withdrawal
               </button>
             </div>
           </div>
-          <div class="grid lg:grid-cols-2 gap-8 p-8 text-start">
-            <!-- Left Side - Input Controls -->
-            <div class="space-y-8">
-              <!-- Initial Investment -->
-              <div>
-                <div class="flex items-center justify-between mb-3 text-start">
-                  <label class="text-lg font-medium text-gray-700"
-                    >Portfolio Value</label
-                  >
-                  <div class="input-value-box w-40">
-                    <span class="text-gray-500">₹</span>
-                    <input
-                      type="text"
-                      id="investmentInput"
-                      value="10,00,000"
-                      min="50000"
-                      max="100000000"
-                      step="1000"
-                    />
-                  </div>
-                </div>
-                <input
-                  type="range"
-                  id="investmentSlider"
-                  min="50000"
-                  max="100000000"
-                  value="1000000"
-                  step="1000"
-                  class="custom-slider w-full mt-4"
-                />
-                <div class="flex justify-between text-xs text-gray-500 mt-2">
-                  <span>₹50K</span>
-                  <span>₹10Cr</span>
-                </div>
-              </div>
 
-              <!-- Withdrawal Amount -->
-              <div>
-                <div class="flex items-center justify-between mb-3">
-                  <label
-                    id="withdrawalLabel"
-                    class="text-lg font-medium text-gray-700"
-                    >Monthly Withdrawal</label
+          <!-- Tab 1: Portfolio Value Mode -->
+          <div id="portfolioTab" class="tab-content">
+            <div class="grid lg:grid-cols-2 gap-8 p-8 text-start">
+              <!-- Left Side - Input Controls -->
+              <div class="space-y-8">
+                <!-- Initial Investment -->
+                <div>
+                  <div
+                    class="flex items-center justify-between mb-3 text-start"
                   >
-                  <div class="input-value-box w-40">
-                    <span class="text-gray-500">₹</span>
-                    <input
-                      type="text"
-                      id="withdrawalInput"
-                      value="10,000"
-                      min="1000"
-                      max="1000000"
-                      step="100"
-                    />
-                  </div>
-                </div>
-                <input
-                  type="range"
-                  id="withdrawalSlider"
-                  min="1000"
-                  max="1000000"
-                  value="10000"
-                  step="100"
-                  class="custom-slider w-full mt-4"
-                />
-                <div class="flex justify-between text-xs text-gray-500 mt-2">
-                  <span id="withdrawalMinLabel">₹1K</span>
-                  <span id="withdrawalMaxLabel">₹10L</span>
-                </div>
-              </div>
-
-              <!-- Expected Return Rate -->
-              <div>
-                <div class="flex items-start justify-between mb-3">
-                  <label class="text-lg text-start font-medium text-gray-700"
-                    >Expected return rate (p.a)</label
-                  >
-                  <div class="input-value-box w-32">
-                    <input
-                      type="number"
-                      id="returnInput"
-                      value="12"
-                      min="1"
-                      max="30"
-                      step="0.1"
-                    />
-                    <span class="text-gray-500">%</span>
-                  </div>
-                </div>
-                <input
-                  type="range"
-                  id="returnSlider"
-                  min="1"
-                  max="30"
-                  value="12"
-                  step="0.1"
-                  class="custom-slider w-full mt-4"
-                />
-                <div class="flex justify-between text-xs text-gray-500 mt-2">
-                  <span>1%</span>
-                  <span>30%</span>
-                </div>
-              </div>
-
-              <!-- Withdrawal Period -->
-              <div>
-                <div class="flex items-center justify-between mb-3">
-                  <label class="text-lg font-medium text-gray-700"
-                    >Withdrawal Period</label
-                  >
-                  <div class="input-value-box w-32">
-                    <input
-                      type="number"
-                      id="timeInput"
-                      value="10"
-                      min="1"
-                      max="50"
-                    />
-                    <span class="text-gray-500">Y</span>
-                  </div>
-                </div>
-                <input
-                  type="range"
-                  id="timeSlider"
-                  min="1"
-                  max="50"
-                  value="10"
-                  class="custom-slider w-full mt-4"
-                />
-                <div class="flex justify-between text-xs text-gray-500 mt-2">
-                  <span>1Y</span>
-                  <span>50Y</span>
-                </div>
-              </div>
-
-              <!-- Inflation Adjustment -->
-              <div id="inflationSection">
-                <div class="flex items-center justify-between mb-6">
-                  <label class="text-lg font-medium text-gray-700"
-                    >Adjust for inflation</label
-                  >
-                  <label class="toggle-switch">
-                    <input type="checkbox" id="inflationToggle" />
-                    <span class="toggle-slider"></span>
-                  </label>
-                </div>
-
-                <div id="inflationRateSection" style="display: none">
-                  <div class="flex items-center justify-between mb-3">
                     <label class="text-lg font-medium text-gray-700"
-                      >Expected inflation rate (p.a)</label
+                      >Portfolio Value</label
+                    >
+                    <div class="input-value-box w-40">
+                      <span class="text-gray-500">₹</span>
+                      <input
+                        type="text"
+                        id="investmentInput"
+                        value="10,00,000"
+                        min="50000"
+                        max="100000000"
+                        step="1000"
+                      />
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    id="investmentSlider"
+                    min="50000"
+                    max="100000000"
+                    value="1000000"
+                    step="1000"
+                    class="custom-slider w-full mt-4"
+                  />
+                  <div class="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>₹50K</span>
+                    <span>₹10Cr</span>
+                  </div>
+                </div>
+
+                <!-- Withdrawal Amount -->
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <label
+                      id="withdrawalLabel"
+                      class="text-lg font-medium text-gray-700"
+                      >Monthly Withdrawal</label
+                    >
+                    <div class="input-value-box w-40">
+                      <span class="text-gray-500">₹</span>
+                      <input
+                        type="text"
+                        id="withdrawalInput"
+                        value="10,000"
+                        min="1000"
+                        max="1000000"
+                        step="100"
+                      />
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    id="withdrawalSlider"
+                    min="1000"
+                    max="1000000"
+                    value="10000"
+                    step="100"
+                    class="custom-slider w-full mt-4"
+                  />
+                  <div class="flex justify-between text-xs text-gray-500 mt-2">
+                    <span id="withdrawalMinLabel">₹1K</span>
+                    <span id="withdrawalMaxLabel">₹10L</span>
+                  </div>
+                </div>
+
+                <!-- Expected Return Rate -->
+                <div>
+                  <div class="flex items-start justify-between mb-3">
+                    <label class="text-lg text-start font-medium text-gray-700"
+                      >Expected return rate (p.a)</label
                     >
                     <div class="input-value-box w-32">
                       <input
                         type="number"
-                        id="inflationInput"
+                        id="returnInput"
+                        value="12"
+                        min="1"
+                        max="30"
+                        step="0.1"
+                      />
+                      <span class="text-gray-500">%</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    id="returnSlider"
+                    min="1"
+                    max="30"
+                    value="12"
+                    step="0.1"
+                    class="custom-slider w-full mt-4"
+                  />
+                  <div class="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>1%</span>
+                    <span>30%</span>
+                  </div>
+                </div>
+
+                <!-- Withdrawal Period -->
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <label class="text-lg font-medium text-gray-700"
+                      >Withdrawal Period</label
+                    >
+                    <div class="input-value-box w-32">
+                      <input
+                        type="number"
+                        id="timeInput"
+                        value="10"
+                        min="1"
+                        max="50"
+                      />
+                      <span class="text-gray-500">Y</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    id="timeSlider"
+                    min="1"
+                    max="50"
+                    value="10"
+                    class="custom-slider w-full mt-4"
+                  />
+                  <div class="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>1Y</span>
+                    <span>50Y</span>
+                  </div>
+                </div>
+
+                <!-- Inflation Adjustment -->
+                <div id="inflationSection">
+                  <div class="flex items-center justify-between mb-6">
+                    <label class="text-lg font-medium text-gray-700">
+                      Adjust for inflation
+                    </label>
+
+                    <div class="flex items-center space-x-2">
+                      <span class="text-sm text-gray-600">No</span>
+                      <label class="toggle-switch">
+                        <input type="checkbox" id="inflationToggle" />
+                        <span class="toggle-slider"></span>
+                      </label>
+                      <span class="text-sm text-gray-600">Yes</span>
+                    </div>
+                  </div>
+
+                  <div id="inflationRateSection" style="display: none">
+                    <div class="flex items-center justify-between mb-3">
+                      <label class="text-lg font-medium text-gray-700"
+                        >Expected inflation rate (p.a)</label
+                      >
+                      <div class="input-value-box w-32">
+                        <input
+                          type="number"
+                          id="inflationInput"
+                          value="6"
+                          min="0"
+                          max="15"
+                          step="0.1"
+                        />
+                        <span class="text-gray-500">%</span>
+                      </div>
+                    </div>
+                    <input
+                      type="range"
+                      id="inflationSlider"
+                      min="0"
+                      max="15"
+                      value="6"
+                      step="0.1"
+                      class="custom-slider w-full mt-4"
+                    />
+                    <div
+                      class="flex justify-between text-xs text-gray-500 mt-2"
+                    >
+                      <span>0%</span>
+                      <span>15%</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Disclaimer -->
+                <h1
+                  id="openDisclaimer"
+                  class="text-sm text-blue-600 hover:underline hover:cursor-pointer text-start"
+                >
+                  View Disclaimer
+                </h1>
+              </div>
+
+              <!-- Right Side - Results and Chart -->
+              <div class="space-y-8">
+                <!-- Chart -->
+                <div class="flex justify-center items-center h-64">
+                  <div class="relative w-64 h-64">
+                    <canvas id="swpChart"></canvas>
+                    <div
+                      class="absolute inset-0 flex items-center justify-center"
+                    >
+                      <div class="text-center">
+                        <div class="text-sm text-gray-500">Final Balance</div>
+                        <div
+                          id="finalBalanceCenter"
+                          class="text-xl font-semibold text-gray-800"
+                        >
+                          ₹0
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Chart Legend -->
+                <div
+                  class="flex justify-center space-x-6 text-sm text-gray-600"
+                >
+                  <div>
+                    <span class="chart-legend-dot bg-gray-300"></span>
+                    <span>Total Withdrawn</span>
+                  </div>
+                  <div>
+                    <span
+                      class="chart-legend-dot"
+                      style="background-color: #161f48"
+                    ></span>
+                    <span>Remaining Balance</span>
+                  </div>
+                </div>
+
+                <!-- Results -->
+                <div class="space-y-2">
+                  <div class="result-item">
+                    <span class="label">Initial Investment</span>
+                    <span id="initialInvestmentResult" class="value"
+                      >₹10.00 L</span
+                    >
+                  </div>
+                  <div class="result-item">
+                    <span class="label">Total Withdrawn</span>
+                    <span id="totalWithdrawn" class="value">₹12.00 L</span>
+                  </div>
+                  <div class="result-item">
+                    <span class="label">Final Balance</span>
+                    <span id="finalBalance" class="value text-lg font-bold"
+                      >₹8.50 L</span
+                    >
+                  </div>
+                  <div class="result-item">
+                    <span class="label" id="withdrawalPeriodLabel"
+                      >Monthly Withdrawal</span
+                    >
+                    <span
+                      id="withdrawalAmount"
+                      class="value text-lg font-bold"
+                      style="color: #161f48"
+                      >₹10,000</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2: Monthly Withdrawal Mode -->
+          <div id="withdrawalTab" class="tab-content hidden">
+            <div class="grid lg:grid-cols-2 gap-8 p-8 text-start">
+              <!-- Left Side - Input Controls -->
+              <div class="space-y-8">
+                <!-- Monthly Withdrawal in today's terms -->
+                <div>
+                  <div
+                    class="flex items-center justify-between mb-3 text-start"
+                  >
+                    <label class="text-lg font-medium text-gray-700"
+                      >Monthly Withdrawal in today’s terms</label
+                    >
+                    <div class="input-value-box w-40">
+                      <span class="text-gray-500">₹</span>
+                      <input
+                        type="text"
+                        id="monthlyWithdrawInput"
+                        value="25,000"
+                        min="1000"
+                        max="1000000"
+                        step="100"
+                      />
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    id="monthlyWithdrawSlider"
+                    min="1000"
+                    max="1000000"
+                    value="25000"
+                    step="100"
+                    class="custom-slider w-full mt-4"
+                  />
+                  <div class="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>₹1K</span>
+                    <span>₹10L</span>
+                  </div>
+                </div>
+
+                <!-- Time to start withdrawals -->
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <label class="text-lg font-medium text-gray-700"
+                      >Time to start withdrawals
+                    </label>
+                    <div class="input-value-box w-32">
+                      <input
+                        type="number"
+                        id="startYearsInput"
+                        value="5"
+                        min="0"
+                        max="50"
+                      />
+                      <span class="text-gray-500">Y</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    id="startYearsSlider"
+                    min="0"
+                    max="50"
+                    value="5"
+                    class="custom-slider w-full mt-4"
+                  />
+                  <div class="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>0Y</span>
+                    <span>50Y</span>
+                  </div>
+                </div>
+
+                <!-- Expected Inflation -->
+                <div>
+                  <div class="flex items-start justify-between mb-3">
+                    <label class="text-lg text-start font-medium text-gray-700"
+                      >Expected Inflation (p.a)</label
+                    >
+                    <div class="input-value-box w-32">
+                      <input
+                        type="number"
+                        id="inflationRateInput"
                         value="6"
                         min="0"
                         max="15"
@@ -359,7 +559,7 @@
                   </div>
                   <input
                     type="range"
-                    id="inflationSlider"
+                    id="inflationRateSlider"
                     min="0"
                     max="15"
                     value="6"
@@ -371,170 +571,200 @@
                     <span>15%</span>
                   </div>
                 </div>
-              </div>
 
-              <!-- Trigger Text -->
-              <h1
-                id="openDisclaimer"
-                class="text-sm text-blue-600 hover:underline hover:cursor-pointer text-start"
-              >
-                View Disclaimer
-              </h1>
-
-              <!-- Modal -->
-              <div
-                id="disclaimerModal"
-                class="fixed inset-0 p-4 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300"
-              >
-                <div
-                  class="bg-white rounded-2xl shadow-lg max-w-4xl w-full p-8 relative transform transition-transform duration-300 scale-95"
-                  id="modalContent"
-                >
-                  <!-- Close Button -->
-                  <button
-                    id="closeDisclaimer"
-                    class="absolute top-3 right-3 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200 group"
-                  >
-                    <i
-                      data-lucide="x"
-                      class="text-gray-600 w-4 h-4 group-hover:rotate-90 transition-transform duration-300"
-                    ></i>
-                  </button>
-
-                  <!-- Title -->
-                  <h2 class="text-lg font-semibold mb-4 text-blue-700">
-                    Disclaimer ⚠️
-                  </h2>
-
-                  <!-- Content -->
-                  <p class="text-sm text-gray-700 leading-relaxed text-start">
-                    These Calculators alone are not sufficient and shouldn't be
-                    used for development or implementation of an investment
-                    strategy. The examples do not purport to represent the
-                    performance of any security or investments. The recipient is
-                    advised to consult his or her advisor/tax consultant prior
-                    to arriving at any investment decision. Mutual Funds do not
-                    have a fixed rate of return and it is not possible to
-                    predict the rate of return. Past performance may or may not
-                    be sustained in future and is not a guarantee of any future
-                    returns. Mutual Fund Investments are subject to market
-                    risks, read all scheme related documents carefully.
-                  </p>
+                <!-- Years of withdrawal -->
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <label class="text-lg font-medium text-gray-700"
+                      >Years of withdrawal</label
+                    >
+                    <div class="input-value-box w-32">
+                      <input
+                        type="number"
+                        id="withdrawYearsInput"
+                        value="20"
+                        min="1"
+                        max="100"
+                      />
+                      <span class="text-gray-500">Y</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    id="withdrawYearsSlider"
+                    min="1"
+                    max="100"
+                    value="20"
+                    class="custom-slider w-full mt-4"
+                  />
+                  <div class="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>1Y</span>
+                    <span>100Y</span>
+                  </div>
                 </div>
+
+                <!-- Est. Portfolio growth rate -->
+                <div>
+                  <div class="flex items-start justify-between mb-3">
+                    <label class="text-lg text-start font-medium text-gray-700"
+                      >Est. Portfolio growth rate (p.a)</label
+                    >
+                    <div class="input-value-box w-32">
+                      <input
+                        type="number"
+                        id="growthRateInput"
+                        value="10"
+                        min="1"
+                        max="30"
+                        step="0.1"
+                      />
+                      <span class="text-gray-500">%</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    id="growthRateSlider"
+                    min="1"
+                    max="30"
+                    value="10"
+                    step="0.1"
+                    class="custom-slider w-full mt-4"
+                  />
+                  <div class="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>1%</span>
+                    <span>30%</span>
+                  </div>
+                </div>
+
+                <!-- Leave behind corpus -->
+                <div>
+                  <div class="flex items-center justify-between mb-6">
+                    <label class="text-lg font-medium text-gray-700">
+                      Leave behind a corpus
+                    </label>
+
+                    <div class="flex items-center space-x-2">
+                      <span class="text-sm text-gray-600">No</span>
+                      <label class="toggle-switch">
+                        <input type="checkbox" id="corpusToggle" />
+                        <span class="toggle-slider"></span>
+                      </label>
+                      <span class="text-sm text-gray-600">Yes</span>
+                    </div>
+                  </div>
+
+                  <div id="corpusAmountSection" style="display: none">
+                    <div class="flex items-center justify-between mb-3">
+                      <label class="text-lg font-medium text-gray-700"
+                        >Corpus amount</label
+                      >
+                      <div class="input-value-box w-40">
+                        <span class="text-gray-500">₹</span>
+                        <input
+                          type="text"
+                          id="corpusAmountInput"
+                          value="10,00,000"
+                          min="0"
+                          max="100000000"
+                          step="10000"
+                        />
+                      </div>
+                    </div>
+                    <input
+                      type="range"
+                      id="corpusAmountSlider"
+                      min="0"
+                      max="100000000"
+                      value="1000000"
+                      step="10000"
+                      class="custom-slider w-full mt-4"
+                    />
+                    <div
+                      class="flex justify-between text-xs text-gray-500 mt-2"
+                    >
+                      <span>₹0</span>
+                      <span>₹10Cr</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Disclaimer -->
+                <h1
+                  id="openDisclaimer2"
+                  class="text-sm text-blue-600 hover:underline hover:cursor-pointer text-start"
+                >
+                  View Disclaimer
+                </h1>
               </div>
 
-              <script>
-                const openBtn = document.getElementById("openDisclaimer");
-                const closeBtn = document.getElementById("closeDisclaimer");
-                const modal = document.getElementById("disclaimerModal");
-                const modalContent = document.getElementById("modalContent");
-
-                openBtn.addEventListener("click", () => {
-                  modal.classList.remove("hidden");
-                  setTimeout(() => {
-                    modal.classList.add("opacity-100");
-                    modalContent.classList.remove("scale-95");
-                    modalContent.classList.add("scale-100");
-                  }, 10);
-                });
-
-                const closeModal = () => {
-                  modalContent.classList.remove("scale-100");
-                  modalContent.classList.add("scale-95");
-                  modal.classList.remove("opacity-100");
-                  setTimeout(() => {
-                    modal.classList.add("hidden");
-                  }, 300);
-                };
-
-                closeBtn.addEventListener("click", closeModal);
-
-                modal.addEventListener("click", (e) => {
-                  if (e.target === modal) closeModal();
-                });
-              </script>
-
-              <!-- Lucide Icons -->
-              <script src="https://unpkg.com/lucide@latest"></script>
-              <script>
-                lucide.createIcons();
-              </script>
-            </div>
-
-            <!-- Right Side - Results and Chart -->
-            <div class="space-y-8">
-              <!-- Chart -->
-              <div class="flex justify-center items-center h-64">
-                <div class="relative w-64 h-64">
-                  <canvas id="swpChart"></canvas>
-                  <div
-                    class="absolute inset-0 flex items-center justify-center"
-                  >
-                    <div class="text-center">
-                      <div class="text-sm text-gray-500">Final Balance</div>
-                      <div
-                        id="finalBalanceCenter"
-                        class="text-xl font-semibold text-gray-800"
-                      >
-                        ₹0
+              <!-- Right Side - Chart and Results -->
+              <div class="space-y-8">
+                <!-- Chart -->
+                <div class="flex justify-center items-center h-64">
+                  <div class="relative w-64 h-64">
+                    <canvas id="swpChart2"></canvas>
+                    <div
+                      class="absolute inset-0 flex items-center justify-center"
+                    >
+                      <div class="text-center">
+                        <div class="text-sm text-gray-500">
+                          Required Portfolio
+                        </div>
+                        <div
+                          id="requiredPortfolioCenter"
+                          class="text-xl font-semibold text-gray-800"
+                        >
+                          ₹0
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Chart Legend -->
-              <div class="flex justify-center space-x-6 text-sm text-gray-600">
-                <div>
-                  <span class="chart-legend-dot bg-gray-300"></span>
-                  <span>Total Withdrawn</span>
+                <!-- Chart Legend -->
+                <div
+                  class="flex justify-center space-x-6 text-sm text-gray-600"
+                >
+                  <div>
+                    <span class="chart-legend-dot bg-gray-300"></span>
+                    <span>Total Withdrawn</span>
+                  </div>
+                  <div>
+                    <span
+                      class="chart-legend-dot"
+                      style="background-color: #161f48"
+                    ></span>
+                    <span>Final Portfolio Value</span>
+                  </div>
                 </div>
-                <div>
-                  <span
-                    class="chart-legend-dot"
-                    style="background-color: #161f48"
-                  ></span>
-                  <span>Remaining Balance</span>
-                </div>
-              </div>
 
-              <!-- Results -->
-              <div class="space-y-2">
-                <div class="result-item">
-                  <span class="label">Initial Investment</span>
-                  <span id="initialInvestmentResult" class="value"
-                    >₹10.00 L</span
-                  >
-                </div>
-                <div class="result-item">
-                  <span class="label">Total Withdrawn</span>
-                  <span id="totalWithdrawn" class="value">₹12.00 L</span>
-                </div>
-                <div class="result-item">
-                  <span class="label">Final Balance</span>
-                  <span id="finalBalance" class="value text-lg font-bold"
-                    >₹8.50 L</span
-                  >
-                </div>
-                <div class="result-item">
-                  <span class="label" id="withdrawalPeriodLabel"
-                    >Monthly Withdrawal</span
-                  >
-                  <span
-                    id="withdrawalAmount"
-                    class="value text-lg font-bold"
-                    style="color: #161f48"
-                    >₹10,000</span
-                  >
-                </div>
-                <div class="result-item hidden">
-                  <span class="label">Sustainability</span>
-                  <span
-                    id="sustainability"
-                    class="value text-lg font-bold"
-                    style="color: #fcaf1b"
-                    >Sustainable</span
-                  >
+                <!-- Results -->
+                <div class="space-y-2">
+                  <div class="result-item">
+                    <span class="label"
+                      >Future value of monthly withdrawal in
+                      <span id="yearsLabel1">20</span> yrs</span
+                    >
+                    <span id="futureWithdrawalValue" class="value">₹0</span>
+                  </div>
+                  <div class="result-item">
+                    <span class="label"
+                      >Final portfolio value after
+                      <span id="yearsLabel2">20</span> yrs of withdrawal</span
+                    >
+                    <span id="finalPortfolioValue" class="value">₹0</span>
+                  </div>
+                  <div class="result-item">
+                    <span class="label"
+                      >Total Portfolio value required to start SWP</span
+                    >
+                    <span
+                      id="requiredPortfolioValue"
+                      class="value text-lg font-bold"
+                      style="color: #fcaf1b"
+                      >₹0</span
+                    >
+                  </div>
                 </div>
               </div>
             </div>
@@ -629,9 +859,9 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7,10 12,15 17,10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7,10 12,15 17,10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
                 </svg>
                 Download Image
               </button>
@@ -659,6 +889,39 @@
                 </span>
               </a>
             </div>
+          </div>
+        </div>
+
+        <!-- Disclaimer Modal -->
+        <div
+          id="disclaimerModal"
+          class="fixed inset-0 p-4 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300"
+        >
+          <div
+            class="bg-white rounded-2xl shadow-lg max-w-4xl w-full p-8 relative transform transition-transform duration-300 scale-95"
+            id="modalContent"
+          >
+            <button
+              id="closeDisclaimer"
+              class="absolute top-3 right-3 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200"
+            >
+              ✕
+            </button>
+            <h2 class="text-lg font-semibold mb-4 text-blue-700">
+              Disclaimer ⚠️
+            </h2>
+            <p class="text-sm text-gray-700 leading-relaxed text-start">
+              These Calculators alone are not sufficient and shouldn't be used
+              for development or implementation of an investment strategy. The
+              examples do not purport to represent the performance of any
+              security or investments. The recipient is advised to consult his
+              or her advisor/tax consultant prior to arriving at any investment
+              decision. Mutual Funds do not have a fixed rate of return and it
+              is not possible to predict the rate of return. Past performance
+              may or may not be sustained in future and is not a guarantee of
+              any future returns. Mutual Fund Investments are subject to market
+              risks, read all scheme related documents carefully.
+            </p>
           </div>
         </div>
       </div>
@@ -1229,45 +1492,134 @@
       </h2>
 
       <p class="mb-4">
-        This SWP Calculator is the best tool for planning a steady income stream
-        from your investments. An SWP, or Systematic Withdrawal Plan, allows you
-        to withdraw a fixed amount of money from your mutual fund investments at
-        regular intervals. It's the perfect solution for retirees or anyone
-        seeking a consistent income from a one-time lumpsum investment or a
-        corpus built over a long time with SIP investments, all while allowing
-        the remaining portfolio to potentially grow. Use this calculator to see
-        how long your investments can last and how much of your principal will
-        remain.
+        A Systematic Withdrawal Plan (SWP) is the strategic inverse of an SIP.
+        While an SIP is designed to build a corpus, an SWP is designed to
+        <span class="font-semibold">monetize</span> it. This tool is essential
+        for retirees, freelancers, or anyone looking to create a "self-made
+        salary" from their accumulated investments. It allows you to withdraw a
+        fixed amount at regular intervals while the remaining balance continues
+        to stay invested and grow.
+      </p>
+      <p class="mb-4">
+        Our SWP Calculator helps you determine how long your money will last or
+        exactly how much you need to save before you can "switch off" your
+        professional income, with a special feature to account for the rising
+        cost of living.
       </p>
 
       <h3 class="text-lg font-semibold mb-2">How to Use This Calculator</h3>
-      <ul class="list-disc ml-6 mb-4 space-y-1 text-black">
+      <p class="mb-4">
+        This calculator features two distinct modes to help you engineer a
+        sustainable income stream that stands the test of time.
+      </p>
+
+      <p class="font-semibold mb-1">
+        Mode 1: Portfolio Sustainability (Final Balance Mode)
+      </p>
+      <p class="mb-2">
+        Use this mode to see the future value of your portfolio after making
+        regular withdrawals.
+      </p>
+      <ul class="list-disc ml-6 mb-4 space-y-1">
         <li>
-          <span class="font-semibold">Portfolio Value:</span> Enter the current
-          lumpsum amount or the total value of your existing investment
-          portfolio from which you wish to start your SWP.
+          <span class="font-semibold">Initial Investment:</span> Enter the total
+          corpus you currently have.
         </li>
         <li>
-          <span class="font-semibold">Monthly Withdrawal:</span> Input the fixed
-          amount you wish to withdraw every month.
+          <span class="font-semibold">Monthly Withdrawal:</span> Input the
+          amount you wish to receive as a "salary" each month today.
         </li>
         <li>
           <span class="font-semibold">Expected Rate of Return:</span> Enter the
-          average annual return you anticipate on your investment (e.g., 8-10%
-          for balanced funds).
+          annual return you anticipate on the remaining balance.
         </li>
         <li>
-          <span class="font-semibold">Time Period:</span> Specify the total
-          number of years you plan to make withdrawals.
+          <span class="font-semibold">Inflation Adjustment (Optional):</span>
+          Enter the expected inflation rate (e.g. 6%) to see how your portfolio
+          behaves if you increase your withdrawal amount every year to maintain
+          your lifestyle.
         </li>
         <li>
-          After entering these details, the calculator will provide a detailed
-          breakdown, showing you the total amount withdrawn and the estimated
-          value of your remaining investment corpus.
+          <span class="font-semibold">Time Period:</span>
+          Specify how many years you plan to continue these withdrawals.
+        </li>
+        <li>
+          <span class="font-semibold">The Result:</span>
+          The calculator shows your Estimated Final Balance, helping you
+          visualize if your corpus is growing, staying stable, or being
+          depleted.
         </li>
       </ul>
+      <p class="mb-4 hidden">
+        The calculator will display the estimated final corpus, showing you the
+        individual contribution of both your Lumpsum and your SIP.
+      </p>
 
-      <h3 class="text-lg font-semibold mb-2">Formula Used in the Calculator</h3>
+      <p class="font-semibold mb-1">
+        Mode 2: Goal Calculation (Required Corpus Mode)
+      </p>
+      <p class="mb-2">
+        Use this mode to find the exact "nest egg" required to support your
+        desired lifestyle.
+      </p>
+      <ul class="list-disc ml-6 mb-4 space-y-1">
+        <li>
+          <span class="font-semibold">Target Monthly Withdrawal:</span> Enter
+          the monthly amount you need today.
+        </li>
+        <li>
+          <span class="font-semibold">Inflation Adjustment (Optional): </span>
+          Input the expected inflation rate to ensure your "salary" grows as
+          prices rise over the years.
+        </li>
+        <li>
+          <span class="font-semibold">Expected Rate of Return:</span> Input the
+          anticipated annual return on your investment.
+        </li>
+        <li>
+          <span class="font-semibold">Withdrawal Duration:</span>
+          Specify how many years you need this income to last.
+        </li>
+        <li>
+          <span class="font-semibold">The Result:</span>
+          The calculator reveals the Required Portfolio Value you must
+          accumulate before you can safely begin your withdrawals.
+        </li>
+      </ul>
+      <p class="mb-4 hidden">
+        The calculator returns the monthly SIP required to hit your target.
+      </p>
+
+      <div class="text-sm lg:text-base text-black leading-relaxed space-y-4">
+        <h3 class="font-semibold text-base lg:text-lg">
+          The Impact of Inflation on Withdrawals
+        </h3>
+
+        <p>
+          Standard SWPs often ignore the fact that ₹50,000 today will not buy
+          the same groceries in 10 years. By using the
+          <span class="font-semibold">Inflation Adjustment</span>
+          feature, the calculator automatically increases your withdrawal amount
+          by the inflation percentage annually.
+        </p>
+
+        <ul class="list-disc ml-6 space-y-1">
+          <li>
+            <span class="font-semibold">Without Inflation:</span>
+            Your withdrawal stays fixed (e.g., ₹50,000 every month for 20
+            years).
+          </li>
+          <li>
+            <span class="font-semibold">With Inflation:</span>
+            Your withdrawal starts at ₹50,000 but grows (e.g., ₹53,000 in year
+            two, ₹56,180 in year three) to preserve your purchasing power.
+          </li>
+        </ul>
+      </div>
+
+      <h3 class="text-lg font-semibold mb-2 mt-4">
+        Formula Used in the Calculator
+      </h3>
       <p class="mb-4">
         Our calculator uses a standard financial formula to determine the value
         of your remaining corpus after a series of periodic withdrawals.
@@ -1303,33 +1655,78 @@
         the reduction of the corpus due to your withdrawals.
       </p>
 
-      <h3 class="text-lg font-semibold mb-2">
-        Case Study: A Practical Example of SWP in Action
-      </h3>
+      <div class="text-sm lg:text-base text-black leading-relaxed space-y-4">
+        <h3 class="text-lg font-semibold">
+          Case 1: The Inflation-Adjusted Retirement (Mode 1)
+        </h3>
 
-      <p class="mb-4">
-        Mr. Kamat, a 60-year-old retiree, has a portfolio value of ₹1 Crore. He
-        wants to generate a steady monthly income of ₹60,000 to cover his living
-        expenses in retirement. He keeps his portfolio invested in moderately
-        conservative/balanced funds while expecting an average annual return of
-        9%. He plans to continue this withdrawal for the next 10 years.
-      </p>
+        <p>
+          Sunil retires with a corpus of
+          <span class="font-semibold">₹2 Crores</span>. He begins by withdrawing
+          <span class="font-semibold">₹1 Lakh per month</span>. While he expects
+          an annual return of <span class="font-semibold">8%</span>, he
+          understands that rising prices will impact his expenses, so he factors
+          in an inflation rate of <span class="font-semibold">6%</span>.
+        </p>
 
-      <ul class="list-disc list-inside mb-6 font-medium">
-        <li>
-          <span class="font-semibold">Portfolio Value (Current):</span>
-          ₹1,00,00,000
-        </li>
-        <li>
-          <span class="font-semibold">Withdrawal Amount:</span> ₹60,000 per
-          month
-        </li>
-        <li>
-          <span class="font-semibold">Expected Rate of Return:</span> 9% per
-          annum
-        </li>
-        <li><span class="font-semibold">Time Period:</span> 10 years</li>
-      </ul>
+        <ul class="list-disc ml-6 space-y-1">
+          <li>
+            <span class="font-semibold">Initial Corpus:</span> ₹2,00,00,000
+          </li>
+          <li>
+            <span class="font-semibold">Initial Monthly Withdrawal:</span>
+            ₹1,00,000
+          </li>
+          <li><span class="font-semibold">Expected Return:</span> 8%</li>
+          <li><span class="font-semibold">Inflation:</span> 6%</li>
+          <li><span class="font-semibold">Time Period:</span> 25 years</li>
+        </ul>
+
+        <p>
+          The calculator shows that since Sunil’s withdrawals increase every
+          year to keep pace with inflation, his retirement corpus is depleted
+          more aggressively than in a fixed withdrawal plan. This insight helps
+          him realize that he may need a slightly higher starting corpus or a
+          more balanced return strategy to sustain his retirement comfortably.
+        </p>
+      </div>
+
+      <div
+        class="text-sm lg:text-base text-black leading-relaxed space-y-4 mt-4"
+      >
+        <h3 class="text-lg font-semibold">
+          Case 2: Planning Your “Freedom Number” (Mode 2)
+        </h3>
+
+        <p>
+          Aditi wants to retire comfortably and needs a monthly income of
+          <span class="font-semibold">₹1.5 Lakhs</span> in today’s value. She
+          wants this income to last for
+          <span class="font-semibold">30 years</span>. While she expects an
+          annual return of <span class="font-semibold">9%</span>, she also wants
+          her withdrawals to keep pace with an inflation rate of
+          <span class="font-semibold">6%</span>.
+        </p>
+
+        <ul class="list-disc ml-6 space-y-1">
+          <li>
+            <span class="font-semibold">Target Monthly Withdrawal:</span>
+            ₹1,50,000
+          </li>
+          <li><span class="font-semibold">Expected Return:</span> 9%</li>
+          <li><span class="font-semibold">Inflation Rate:</span> 6%</li>
+          <li><span class="font-semibold">Duration:</span> 30 years</li>
+        </ul>
+
+        <p>
+          The calculator reveals that Aditi requires a retirement portfolio of
+          approximately
+          <span class="font-semibold">₹4.15 Crores</span> to sustain her desired
+          lifestyle. Without factoring in inflation, she might have assumed that
+          ₹2 Crores was sufficient, only to realize later that her purchasing
+          power would be nearly halved by around year 12.
+        </p>
+      </div>
 
       <p class="mb-6">
         Below is an illustration of the year-on-year withdrawals and estimated
@@ -1825,7 +2222,7 @@
         Explore More Popular Calculators
       </h2>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-2 lg:gap-6">
         <a
           href="./sip-calculator.html"
           class="inline-flex items-center justify-center bg-white text-black pl-5 pr-3 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
@@ -1856,6 +2253,16 @@
             class="w-5 h-5 text-black group-hover:text-white"
           ></i>
           Lump Sump Calculator
+        </a>
+        <a
+          href="./lumpsum+sip-calculator.html"
+          class="inline-flex items-center justify-center bg-white text-black pl-5 pr-4 py-3.5 border border-gray-300 rounded-full text-sm gap-3 group transition hover:bg-[#161f48] hover:text-white hover:border-transparent"
+        >
+          <i
+            data-lucide="merge"
+            class="w-5 h-5 text-black group-hover:text-white"
+          ></i>
+          Lumpsum + SIP Calculator
         </a>
       </div>
     </section>
@@ -2030,10 +2437,10 @@
     </script>
     <script>
       let chart;
-      let isMonthlyMode = true; // Default to Monthly SWP
-      let inflationEnabled = false; // Default inflation disabled
+      let chart2;
+      let isMonthlyMode = true;
+      let inflationEnabled = false;
 
-      // Global variables to store latest calculated results
       let lastCalculatedResults = {
         initialInvestment: 0,
         totalWithdrawn: 0,
@@ -2042,7 +2449,12 @@
         sustainability: "Sustainable",
       };
 
-      // Initialize chart
+      let lastCalculatedResultsTab2 = {
+        futureWithdrawalValue: 0,
+        finalPortfolioValue: 0,
+        requiredPortfolioValue: 0,
+      };
+
       function initChart() {
         const ctx = document.getElementById("swpChart").getContext("2d");
         chart = new Chart(ctx, {
@@ -2051,11 +2463,8 @@
             labels: ["Total Withdrawn", "Remaining Balance"],
             datasets: [
               {
-                data: [1200000, 850000], // Initial data
-                backgroundColor: [
-                  "#d1d5db", // Light grey for withdrawn amount
-                  "#161f48", // Secondary color for remaining balance
-                ],
+                data: [1200000, 850000],
+                backgroundColor: ["#d1d5db", "#161f48"],
                 borderColor: "white",
                 borderWidth: 2,
                 cutout: "80%",
@@ -2066,20 +2475,15 @@
             responsive: true,
             maintainAspectRatio: true,
             plugins: {
-              legend: {
-                display: false, // Custom legend handled in HTML
-              },
+              legend: { display: false },
               tooltip: {
                 enabled: true,
                 callbacks: {
                   label: function (context) {
                     let label = context.label || "";
-                    if (label) {
-                      label += ": ";
-                    }
-                    if (context.parsed !== null) {
+                    if (label) label += ": ";
+                    if (context.parsed !== null)
                       label += formatCurrency(context.parsed);
-                    }
                     return label;
                   },
                 },
@@ -2094,18 +2498,67 @@
         });
       }
 
-      // Format number to Indian currency format (Lakhs, Crores)
+      function initChart2() {
+        const ctx = document.getElementById("swpChart2").getContext("2d");
+        chart2 = new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            labels: ["Total Withdrawn", "Final Portfolio Value"],
+            datasets: [
+              {
+                data: [0, 0],
+                backgroundColor: ["#d1d5db", "#161f48"],
+                borderColor: "white",
+                borderWidth: 2,
+                cutout: "80%",
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                enabled: true,
+                callbacks: {
+                  label: function (context) {
+                    let label = context.label || "";
+                    if (label) label += ": ";
+                    if (context.parsed !== null)
+                      label += formatCurrency(context.parsed);
+                    return label;
+                  },
+                },
+              },
+            },
+            animation: {
+              animateRotate: true,
+              duration: 800,
+              easing: "easeOutQuart",
+            },
+          },
+        });
+      }
+
       function formatCurrency(amount) {
         if (amount >= 10000000) {
-          return "₹" + (amount / 10000000).toFixed(2) + " Crores";
+          return (
+            "₹" + (amount / 10000000).toFixed(2).replace(".", ".") + " Crores"
+          );
         } else if (amount >= 100000) {
-          return "₹" + (amount / 100000).toFixed(2) + " Lakhs";
+          return (
+            "₹" + (amount / 100000).toFixed(2).replace(".", ".") + " Lakhs"
+          );
+        } else if (amount >= 1000) {
+          return (
+            "₹" + (amount / 1000).toFixed(2).replace(".", ".") + " Thousand"
+          );
         } else {
           return "₹" + Math.round(amount).toLocaleString("en-IN");
         }
       }
 
-      // Formats a number with Indian comma system for input fields
       function formatNumberWithIndianCommas(num) {
         if (isNaN(num) || num === null) return "";
         return Number(num).toLocaleString("en-IN", {
@@ -2113,13 +2566,11 @@
         });
       }
 
-      // Parses an Indian-formatted string back to a number
       function parseIndianFormattedNumber(str) {
         if (!str) return 0;
         return parseFloat(str.replace(/[^0-9.]/g, ""));
       }
 
-      // Calculate SWP
       function calculateSWP() {
         const initialInvestment = parseIndianFormattedNumber(
           document.getElementById("investmentInput").value,
@@ -2134,8 +2585,6 @@
         const inflationRate = parseFloat(
           document.getElementById("inflationInput").value,
         );
-
-        // Convert to monthly values
         const monthlyReturn = annualReturn / 100 / 12;
         const totalMonths = years * 12;
         let currentBalance = initialInvestment;
@@ -2144,21 +2593,13 @@
           ? withdrawalAmount
           : withdrawalAmount / 12;
 
-        // Apply inflation adjustment if enabled
         if (inflationEnabled) {
           const monthlyInflation = inflationRate / 100 / 12;
-          // Calculate inflation-adjusted withdrawal for the period
           for (let month = 1; month <= totalMonths; month++) {
             if (currentBalance <= 0) break;
-
-            // Apply return
             currentBalance = currentBalance * (1 + monthlyReturn);
-
-            // Calculate inflation-adjusted withdrawal for this month
             const inflationAdjustedWithdrawal =
               monthlyWithdrawal * Math.pow(1 + monthlyInflation, month - 1);
-
-            // Withdraw amount
             if (currentBalance >= inflationAdjustedWithdrawal) {
               currentBalance -= inflationAdjustedWithdrawal;
               totalWithdrawn += inflationAdjustedWithdrawal;
@@ -2169,14 +2610,9 @@
             }
           }
         } else {
-          // Simple calculation without inflation
           for (let month = 1; month <= totalMonths; month++) {
             if (currentBalance <= 0) break;
-
-            // Apply return
             currentBalance = currentBalance * (1 + monthlyReturn);
-
-            // Withdraw amount
             if (currentBalance >= monthlyWithdrawal) {
               currentBalance -= monthlyWithdrawal;
               totalWithdrawn += monthlyWithdrawal;
@@ -2192,7 +2628,6 @@
         const sustainability =
           finalBalance > 0 ? "Sustainable" : "Not Sustainable";
 
-        // Store results
         lastCalculatedResults = {
           initialInvestment,
           totalWithdrawn,
@@ -2204,10 +2639,8 @@
         updateResults();
       }
 
-      // Update results display
       function updateResults() {
         const results = lastCalculatedResults;
-
         document.getElementById("initialInvestmentResult").textContent =
           formatCurrency(results.initialInvestment);
         document.getElementById("totalWithdrawn").textContent = formatCurrency(
@@ -2221,171 +2654,423 @@
         document.getElementById("withdrawalAmount").textContent =
           formatCurrency(results.withdrawalAmount);
 
-        // Update sustainability with color coding
-        const sustainabilityElement = document.getElementById("sustainability");
-        sustainabilityElement.textContent = results.sustainability;
-        sustainabilityElement.style.color =
-          results.sustainability === "Sustainable" ? "#fcaf1b" : "#ef4444";
-
-        // Update chart data
         chart.data.datasets[0].data = [
           results.totalWithdrawn,
           results.finalBalance,
         ];
-        chart.update("active");
+        chart.update("none");
       }
 
-      // Toggle between modes (Monthly vs Yearly)
+      function calculateMonthlyWithdrawal() {
+        const monthlyWithdrawalToday = parseIndianFormattedNumber(
+          document.getElementById("monthlyWithdrawInput").value,
+        );
+        const yearsToStart = parseInt(
+          document.getElementById("startYearsInput").value,
+        );
+        const inflationRate = parseFloat(
+          document.getElementById("inflationRateInput").value,
+        );
+        const yearsOfWithdrawal = parseInt(
+          document.getElementById("withdrawYearsInput").value,
+        );
+        const growthRate = parseFloat(
+          document.getElementById("growthRateInput").value,
+        );
+        const hasCorpus = document.getElementById("corpusToggle").checked;
+        const corpusAmount = hasCorpus
+          ? parseIndianFormattedNumber(
+              document.getElementById("corpusAmountInput").value,
+            )
+          : 0;
+
+        // Calculate future value of monthly withdrawal
+        const monthlyInflation = inflationRate / 100 / 12;
+        let monthlyWithdrawalFutureValue = monthlyWithdrawalToday;
+
+        for (let i = 0; i < yearsToStart * 12; i++) {
+          monthlyWithdrawalFutureValue *= 1 + monthlyInflation;
+        }
+
+        // Calculate total portfolio needed
+        const monthlyGrowthRate = growthRate / 100 / 12;
+        let requiredPortfolio = 0;
+
+        for (let month = 1; month <= yearsOfWithdrawal * 12; month++) {
+          const withdrawalAtMonth =
+            monthlyWithdrawalFutureValue *
+            Math.pow(1 + monthlyInflation, month - 1);
+          const discountFactor =
+            1 / Math.pow(1 + monthlyGrowthRate, yearsToStart * 12 + month - 1);
+          requiredPortfolio += withdrawalAtMonth * discountFactor;
+        }
+
+        if (hasCorpus) {
+          const corpusDiscountFactor =
+            1 /
+            Math.pow(
+              1 + monthlyGrowthRate,
+              (yearsToStart + yearsOfWithdrawal) * 12,
+            );
+          requiredPortfolio += corpusAmount * corpusDiscountFactor;
+        }
+
+        // Final portfolio value after withdrawal (simplified)
+        let portfolioAfterWithdrawal = requiredPortfolio;
+        for (
+          let month = 1;
+          month <= (yearsToStart + yearsOfWithdrawal) * 12;
+          month++
+        ) {
+          portfolioAfterWithdrawal *= 1 + monthlyGrowthRate;
+          if (month > yearsToStart * 12) {
+            portfolioAfterWithdrawal -=
+              monthlyWithdrawalFutureValue *
+              Math.pow(1 + monthlyInflation, month - yearsToStart * 12 - 1);
+          }
+        }
+
+        // Calculate total withdrawn amount
+        let totalWithdrawnAmount = 0;
+        for (let month = 1; month <= yearsOfWithdrawal * 12; month++) {
+          totalWithdrawnAmount +=
+            monthlyWithdrawalFutureValue *
+            Math.pow(1 + monthlyInflation, month - 1);
+        }
+
+        lastCalculatedResultsTab2 = {
+          futureWithdrawalValue: totalWithdrawnAmount,
+          finalPortfolioValue: Math.max(0, portfolioAfterWithdrawal),
+          requiredPortfolioValue: requiredPortfolio,
+        };
+
+        updateResultsTab2();
+      }
+
+      function updateResultsTab2() {
+        const results = lastCalculatedResultsTab2;
+        const yearsOfWithdrawal = parseInt(
+          document.getElementById("withdrawYearsInput").value,
+        );
+
+        document.getElementById("futureWithdrawalValue").textContent =
+          formatCurrency(results.futureWithdrawalValue);
+        document.getElementById("finalPortfolioValue").textContent =
+          formatCurrency(results.finalPortfolioValue);
+        document.getElementById("requiredPortfolioValue").textContent =
+          formatCurrency(results.requiredPortfolioValue);
+        document.getElementById("requiredPortfolioCenter").textContent =
+          formatCurrency(results.requiredPortfolioValue);
+
+        // Update year labels dynamically
+        document.getElementById("yearsLabel1").textContent = yearsOfWithdrawal;
+        document.getElementById("yearsLabel2").textContent = yearsOfWithdrawal;
+
+        if (chart2) {
+          chart2.data.datasets[0].data = [
+            results.futureWithdrawalValue,
+            results.finalPortfolioValue,
+          ];
+          chart2.update("none");
+        }
+      }
+
       function toggleMode(monthlyMode) {
         isMonthlyMode = monthlyMode;
         const monthlyBtn = document.getElementById("monthlyModeBtn");
         const yearlyBtn = document.getElementById("yearlyModeBtn");
-        const withdrawalLabel = document.getElementById("withdrawalLabel");
-        const withdrawalPeriodLabel = document.getElementById(
-          "withdrawalPeriodLabel",
-        );
-        const withdrawalInput = document.getElementById("withdrawalInput");
-        const withdrawalSlider = document.getElementById("withdrawalSlider");
-        const withdrawalMinLabel =
-          document.getElementById("withdrawalMinLabel");
-        const withdrawalMaxLabel =
-          document.getElementById("withdrawalMaxLabel");
+        const portfolioTab = document.getElementById("portfolioTab");
+        const withdrawalTab = document.getElementById("withdrawalTab");
 
         if (monthlyMode) {
           monthlyBtn.classList.add("bg-white", "text-gray-800", "shadow-sm");
           monthlyBtn.classList.remove("text-gray-600", "hover:bg-gray-200");
           yearlyBtn.classList.remove("bg-white", "text-gray-800", "shadow-sm");
           yearlyBtn.classList.add("text-gray-600", "hover:bg-gray-200");
-
-          withdrawalLabel.textContent = "Monthly Withdrawal";
-          withdrawalPeriodLabel.textContent = "Monthly Withdrawal";
-          withdrawalInput.value = formatNumberWithIndianCommas(10000);
-          withdrawalSlider.value = "10000";
-          withdrawalSlider.min = "1000";
-          withdrawalSlider.max = "1000000";
-          withdrawalMinLabel.textContent = "₹1K";
-          withdrawalMaxLabel.textContent = "₹10L";
+          portfolioTab.classList.remove("hidden");
+          withdrawalTab.classList.add("hidden");
+          calculateSWP();
         } else {
           yearlyBtn.classList.add("bg-white", "text-gray-800", "shadow-sm");
           yearlyBtn.classList.remove("text-gray-600", "hover:bg-gray-200");
           monthlyBtn.classList.remove("bg-white", "text-gray-800", "shadow-sm");
           monthlyBtn.classList.add("text-gray-600", "hover:bg-gray-200");
-
-          withdrawalLabel.textContent = "Yearly Withdrawal";
-          withdrawalPeriodLabel.textContent = "Yearly Withdrawal";
-          withdrawalInput.value = formatNumberWithIndianCommas(120000);
-          withdrawalSlider.value = "120000";
-          withdrawalSlider.min = "12000";
-          withdrawalSlider.max = "12000000";
-          withdrawalMinLabel.textContent = "₹12K";
-          withdrawalMaxLabel.textContent = "₹1.2Cr";
+          portfolioTab.classList.add("hidden");
+          withdrawalTab.classList.remove("hidden");
+          calculateMonthlyWithdrawal();
         }
-
-        calculateSWP();
       }
 
-      // Toggle inflation adjustment
       function toggleInflation() {
         inflationEnabled = document.getElementById("inflationToggle").checked;
         const inflationRateSection = document.getElementById(
           "inflationRateSection",
         );
-
-        if (inflationEnabled) {
-          inflationRateSection.style.display = "block";
-        } else {
-          inflationRateSection.style.display = "none";
-        }
-
+        inflationRateSection.style.display = inflationEnabled
+          ? "block"
+          : "none";
         calculateSWP();
       }
 
-      // Function to generate email content
+      function toggleCorpus() {
+        const hasCorpus = document.getElementById("corpusToggle").checked;
+        const corpusAmountSection = document.getElementById(
+          "corpusAmountSection",
+        );
+        corpusAmountSection.style.display = hasCorpus ? "block" : "none";
+        calculateMonthlyWithdrawal();
+      }
+
+      function setupEventListeners() {
+        document
+          .getElementById("monthlyModeBtn")
+          .addEventListener("click", () => toggleMode(true));
+        document
+          .getElementById("yearlyModeBtn")
+          .addEventListener("click", () => toggleMode(false));
+        document
+          .getElementById("inflationToggle")
+          .addEventListener("change", toggleInflation);
+        document
+          .getElementById("corpusToggle")
+          .addEventListener("change", toggleCorpus);
+
+        // Modal handlers
+        const openBtn = document.getElementById("openDisclaimer");
+        const openBtn2 = document.getElementById("openDisclaimer2");
+        const closeBtn = document.getElementById("closeDisclaimer");
+        const modal = document.getElementById("disclaimerModal");
+        const modalContent = document.getElementById("modalContent");
+
+        [openBtn, openBtn2].forEach((btn) => {
+          btn.addEventListener("click", () => {
+            modal.classList.remove("hidden");
+            setTimeout(() => {
+              modal.classList.add("opacity-100");
+              modalContent.classList.remove("scale-95");
+              modalContent.classList.add("scale-100");
+            }, 10);
+          });
+        });
+
+        const closeModal = () => {
+          modalContent.classList.remove("scale-100");
+          modalContent.classList.add("scale-95");
+          modal.classList.remove("opacity-100");
+          setTimeout(() => {
+            modal.classList.add("hidden");
+          }, 300);
+        };
+
+        closeBtn.addEventListener("click", closeModal);
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeModal();
+        });
+
+        // Tab 1 inputs
+        const inputs1 = [
+          {
+            id: "investment",
+            slider: "investmentSlider",
+            input: "investmentInput",
+          },
+          {
+            id: "withdrawal",
+            slider: "withdrawalSlider",
+            input: "withdrawalInput",
+          },
+          { id: "return", slider: "returnSlider", input: "returnInput" },
+          { id: "time", slider: "timeSlider", input: "timeInput" },
+          {
+            id: "inflation",
+            slider: "inflationSlider",
+            input: "inflationInput",
+          },
+        ];
+
+        inputs1.forEach((item) => {
+          const slider = document.getElementById(item.slider);
+          const input = document.getElementById(item.input);
+
+          if (item.id === "investment" || item.id === "withdrawal") {
+            input.addEventListener("input", function () {
+              let parsedValue = parseIndianFormattedNumber(this.value);
+              slider.value = parsedValue;
+              this.value = formatNumberWithIndianCommas(parsedValue);
+              calculateSWP();
+            });
+
+            slider.addEventListener("input", function () {
+              input.value = formatNumberWithIndianCommas(
+                parseFloat(this.value),
+              );
+              calculateSWP();
+            });
+          } else {
+            input.addEventListener("input", function () {
+              slider.value = this.value;
+              calculateSWP();
+            });
+
+            slider.addEventListener("input", function () {
+              input.value = this.value;
+              calculateSWP();
+            });
+          }
+        });
+
+        // Tab 2 inputs
+        const inputs2 = [
+          {
+            id: "monthlyWithdraw",
+            slider: "monthlyWithdrawSlider",
+            input: "monthlyWithdrawInput",
+          },
+          {
+            id: "startYears",
+            slider: "startYearsSlider",
+            input: "startYearsInput",
+          },
+          {
+            id: "inflationRate",
+            slider: "inflationRateSlider",
+            input: "inflationRateInput",
+          },
+          {
+            id: "withdrawYears",
+            slider: "withdrawYearsSlider",
+            input: "withdrawYearsInput",
+          },
+          {
+            id: "growthRate",
+            slider: "growthRateSlider",
+            input: "growthRateInput",
+          },
+          {
+            id: "corpusAmount",
+            slider: "corpusAmountSlider",
+            input: "corpusAmountInput",
+          },
+        ];
+
+        inputs2.forEach((item) => {
+          const slider = document.getElementById(item.slider);
+          const input = document.getElementById(item.input);
+
+          if (item.id === "monthlyWithdraw" || item.id === "corpusAmount") {
+            input.addEventListener("input", function () {
+              let parsedValue = parseIndianFormattedNumber(this.value);
+              slider.value = parsedValue;
+              this.value = formatNumberWithIndianCommas(parsedValue);
+              calculateMonthlyWithdrawal();
+            });
+
+            slider.addEventListener("input", function () {
+              input.value = formatNumberWithIndianCommas(
+                parseFloat(this.value),
+              );
+              calculateMonthlyWithdrawal();
+            });
+          } else {
+            input.addEventListener("input", function () {
+              slider.value = this.value;
+              calculateMonthlyWithdrawal();
+            });
+
+            slider.addEventListener("input", function () {
+              input.value = this.value;
+              calculateMonthlyWithdrawal();
+            });
+          }
+        });
+
+        // Action buttons
+        document
+          .getElementById("emailPlanBtn")
+          .addEventListener("click", sendEmailPlan);
+        document
+          .getElementById("whatsappBtn")
+          .addEventListener("click", sendWhatsAppPlan);
+        document
+          .getElementById("downloadImageBtn")
+          .addEventListener("click", downloadCalculatorImage);
+      }
+
       function sendEmailPlan() {
         const subject = encodeURIComponent("My SWP Calculator Plan");
         let body = `Hello,\n\nHere is my SWP calculation plan:\n\n`;
 
-        body += `Mode: ${isMonthlyMode ? "Monthly" : "Yearly"} SWP\n`;
-        body += `Initial Investment: ${formatCurrency(
-          lastCalculatedResults.initialInvestment,
-        )}\n`;
-        body += `${
-          isMonthlyMode ? "Monthly" : "Yearly"
-        } Withdrawal: ${formatCurrency(
-          lastCalculatedResults.withdrawalAmount,
-        )}\n`;
-        body += `Expected Return Rate: ${
-          document.getElementById("returnInput").value
-        }%\n`;
-        body += `Withdrawal Period: ${
-          document.getElementById("timeInput").value
-        } Years\n`;
+        if (isMonthlyMode) {
+          body += `Mode: Portfolio Value\n\n`;
+          body += `Initial Portfolio: ${formatCurrency(lastCalculatedResults.initialInvestment)}\n`;
+          body += `Monthly Withdrawal: ${formatCurrency(lastCalculatedResults.withdrawalAmount)}\n`;
+          body += `Total Withdrawn: ${formatCurrency(lastCalculatedResults.totalWithdrawn)}\n`;
+          body += `Final Balance: ${formatCurrency(lastCalculatedResults.finalBalance)}\n`;
+        } else {
+          body += `Mode: Monthly Withdrawal\n\n`;
+          body += `Monthly Withdrawal (Today): ${formatCurrency(parseIndianFormattedNumber(document.getElementById("monthlyWithdrawInput").value))}\n`;
+          body += `Years to Start Withdrawal: ${document.getElementById("startYearsInput").value}\n`;
+          body += `Duration of Withdrawal: ${document.getElementById("withdrawYearsInput").value} years\n`;
+          body += `Expected Inflation: ${document.getElementById("inflationRateInput").value}%\n`;
+          body += `Portfolio Growth Rate: ${document.getElementById("growthRateInput").value}%\n`;
 
-        if (inflationEnabled) {
-          body += `Expected Inflation: ${
-            document.getElementById("inflationInput").value
-          }%\n`;
+          const hasCorpus = document.getElementById("corpusToggle").checked;
+          if (hasCorpus) {
+            const corpusAmount = parseIndianFormattedNumber(
+              document.getElementById("corpusAmountInput").value,
+            );
+            body += `Leave Behind Corpus: Yes\n`;
+            body += `Corpus Amount: ${formatCurrency(corpusAmount)}\n`;
+          } else {
+            body += `Leave Behind Corpus: No\n`;
+          }
+
+          body += `\nResults:\n`;
+          body += `Future Withdrawal Value: ${document.getElementById("futureWithdrawalValue").textContent}\n`;
+          body += `Final Portfolio Value: ${document.getElementById("finalPortfolioValue").textContent}\n`;
+          body += `Required Portfolio: ${document.getElementById("requiredPortfolioValue").textContent}\n`;
         }
 
-        body += `\n--- Results ---\n`;
-        body += `Initial Investment: ${formatCurrency(
-          lastCalculatedResults.initialInvestment,
-        )}\n`;
-        body += `Total Withdrawn: ${formatCurrency(
-          lastCalculatedResults.totalWithdrawn,
-        )}\n`;
-        body += `Final Balance: ${formatCurrency(
-          lastCalculatedResults.finalBalance,
-        )}\n`;
-        body += `Sustainability: ${lastCalculatedResults.sustainability}\n\n`;
-
-        body += `Calculated using Chimulkar Financial Services SWP Calculator.\n`;
+        body += `\n\ncalculated using Chimulkar Financial Services SWP Calculator.\n`;
         body += `Calculate yours now at ${window.location.href}`;
 
-        window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
-          body,
-        )}`;
+        window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(body)}`;
       }
 
-      // Function to generate WhatsApp message
       function sendWhatsAppPlan() {
         let message = `My SWP Calculation Plan:\n\n`;
+        message += `Mode: *${isMonthlyMode ? "Portfolio Value" : "Monthly Withdrawal"}*\n\n`;
 
-        message += `Mode: *${isMonthlyMode ? "Monthly" : "Yearly"} SWP*\n`;
-        message += `Initial Investment: *${formatCurrency(
-          lastCalculatedResults.initialInvestment,
-        )}*\n`;
-        message += `${
-          isMonthlyMode ? "Monthly" : "Yearly"
-        } Withdrawal: *${formatCurrency(
-          lastCalculatedResults.withdrawalAmount,
-        )}*\n`;
-        message += `Expected Return Rate: *${
-          document.getElementById("returnInput").value
-        }%*\n`;
-        message += `Withdrawal Period: *${
-          document.getElementById("timeInput").value
-        } Years*\n`;
+        if (isMonthlyMode) {
+          message += `Initial Portfolio: *${formatCurrency(lastCalculatedResults.initialInvestment)}*\n`;
+          message += `Monthly Withdrawal: *${formatCurrency(lastCalculatedResults.withdrawalAmount)}*\n`;
+          message += `Total Withdrawn: *${formatCurrency(lastCalculatedResults.totalWithdrawn)}*\n`;
+          message += `Final Balance: *${formatCurrency(lastCalculatedResults.finalBalance)}*\n`;
+        } else {
+          message += `Monthly Withdrawal (Today): *${formatCurrency(parseIndianFormattedNumber(document.getElementById("monthlyWithdrawInput").value))}*\n`;
+          message += `Years to Start: *${document.getElementById("startYearsInput").value}*\n`;
+          message += `Duration: *${document.getElementById("withdrawYearsInput").value} years*\n`;
+          message += `Inflation Rate: *${document.getElementById("inflationRateInput").value}%*\n`;
+          message += `Growth Rate: *${document.getElementById("growthRateInput").value}%*\n`;
 
-        if (inflationEnabled) {
-          message += `Expected Inflation: *${
-            document.getElementById("inflationInput").value
-          }%*\n`;
+          const hasCorpus = document.getElementById("corpusToggle").checked;
+          if (hasCorpus) {
+            const corpusAmount = parseIndianFormattedNumber(
+              document.getElementById("corpusAmountInput").value,
+            );
+            message += `Leave Behind Corpus: *Yes*\n`;
+            message += `Corpus Amount: *${formatCurrency(corpusAmount)}*\n`;
+          } else {
+            message += `Leave Behind Corpus: *No*\n`;
+          }
+
+          message += `\nResults:\n`;
+          message += `Future Withdrawal Value: *${document.getElementById("futureWithdrawalValue").textContent}*\n`;
+          message += `Final Portfolio Value: *${document.getElementById("finalPortfolioValue").textContent}*\n`;
+          message += `Required Portfolio: *${document.getElementById("requiredPortfolioValue").textContent}*\n`;
         }
 
-        message += `\n--- Results ---\n`;
-        message += `Initial Investment: *${formatCurrency(
-          lastCalculatedResults.initialInvestment,
-        )}*\n`;
-        message += `Total Withdrawn: *${formatCurrency(
-          lastCalculatedResults.totalWithdrawn,
-        )}*\n`;
-        message += `Final Balance: *${formatCurrency(
-          lastCalculatedResults.finalBalance,
-        )}*\n`;
-        message += `Sustainability: *${lastCalculatedResults.sustainability}*\n\n`;
-
-        message += `Calculated using Chimulkar Financial Services SWP Calculator.\n`;
+        message += `\n\ncalculated using Chimulkar Financial Services SWP Calculator.\n`;
         message += `Calculate yours now at ${window.location.href}`;
 
         window.open(
@@ -2394,7 +3079,6 @@
         );
       }
 
-      // Function to download calculator image
       function downloadCalculatorImage() {
         const calculatorElement = document.getElementById(
           "calculatorContainer",
@@ -2418,93 +3102,12 @@
           });
       }
 
-      // Setup event listeners
-      function setupEventListeners() {
-        // Mode toggle
-        document
-          .getElementById("monthlyModeBtn")
-          .addEventListener("click", () => toggleMode(true));
-        document
-          .getElementById("yearlyModeBtn")
-          .addEventListener("click", () => toggleMode(false));
-
-        // Inflation toggle
-        document
-          .getElementById("inflationToggle")
-          .addEventListener("change", toggleInflation);
-
-        // Action Buttons
-        document
-          .getElementById("emailPlanBtn")
-          .addEventListener("click", sendEmailPlan);
-        document
-          .getElementById("whatsappBtn")
-          .addEventListener("click", sendWhatsAppPlan);
-        document
-          .getElementById("downloadImageBtn")
-          .addEventListener("click", downloadCalculatorImage);
-
-        // Input and Slider sync
-        const inputs = [
-          {
-            id: "investment",
-            slider: "investmentSlider",
-            input: "investmentInput",
-          },
-          {
-            id: "withdrawal",
-            slider: "withdrawalSlider",
-            input: "withdrawalInput",
-          },
-          { id: "return", slider: "returnSlider", input: "returnInput" },
-          { id: "time", slider: "timeSlider", input: "timeInput" },
-          {
-            id: "inflation",
-            slider: "inflationSlider",
-            input: "inflationInput",
-          },
-        ];
-
-        inputs.forEach((item) => {
-          const slider = document.getElementById(item.slider);
-          const input = document.getElementById(item.input);
-
-          if (item.id === "investment" || item.id === "withdrawal") {
-            // Special handling for amount inputs with Indian commas
-            input.addEventListener("input", function () {
-              let parsedValue = parseIndianFormattedNumber(this.value);
-              slider.value = parsedValue;
-              this.value = formatNumberWithIndianCommas(parsedValue);
-              calculateSWP();
-            });
-
-            slider.addEventListener("input", function () {
-              input.value = formatNumberWithIndianCommas(
-                parseFloat(this.value),
-              );
-              calculateSWP();
-            });
-          } else {
-            // Standard handling for other number inputs
-            input.addEventListener("input", function () {
-              slider.value = this.value;
-              calculateSWP();
-            });
-
-            slider.addEventListener("input", function () {
-              input.value = this.value;
-              calculateSWP();
-            });
-          }
-        });
-      }
-
-      // Initialize everything on load
       window.addEventListener("load", function () {
         initChart();
+        initChart2();
         setupEventListeners();
-        // Initial calculation
         calculateSWP();
+        calculateMonthlyWithdrawal();
       });
     </script>
   </body>
