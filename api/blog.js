@@ -1,6 +1,6 @@
 // api/blogs.js
 export default async function handler(req, res) {
-  const HASHNODE_USERNAME = "niraj1709"; // your Hashnode username
+  const HASHNODE_USERNAME = "niraj1709"; // your username
   const API_URL = "https://gql.hashnode.com/";
 
   const query = `
@@ -13,6 +13,12 @@ export default async function handler(req, res) {
             slug
             coverImage
           }
+        }
+        posts(page: 0) {
+          title
+          brief
+          slug
+          coverImage
         }
       }
     }
@@ -27,7 +33,12 @@ export default async function handler(req, res) {
 
     const result = await response.json();
 
-    const posts = result.data.user.publication.posts.map((post) => ({
+    // Use personal posts if publication is null
+    const posts = (
+      result.data.user.publication?.posts ||
+      result.data.user.posts ||
+      []
+    ).map((post) => ({
       title: post.title,
       brief: post.brief,
       slug: post.slug,
