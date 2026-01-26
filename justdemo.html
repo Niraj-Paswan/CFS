@@ -1,0 +1,1521 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIP Calculator - Chimulkar Financial Services</title>
+    <link
+      rel="shortcut icon"
+      href="../assets/favicon.png"
+      type="image/x-icon"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include html2canvas library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      /* Custom Slider Styles */
+      .custom-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 6px;
+        border-radius: 3px;
+        background: #e5e7eb; /* Light grey track - NOT FILLED */
+        outline: none;
+        transition: all 0.3s ease;
+      }
+      .custom-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fcaf1b; /* [#fcaf1b] color for thumb */
+        cursor: grab;
+        border: none;
+        box-shadow: 0 2px 6px rgba(252, 175, 27, 0.4); /* Shadow matching [#fcaf1b] */
+        transition: all 0.2s ease;
+      }
+      .custom-slider::-webkit-slider-thumb:active {
+        cursor: grabbing;
+      }
+      .custom-slider::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fcaf1b; /* [#fcaf1b] color for thumb */
+        cursor: grab;
+        border: none;
+        box-shadow: 0 2px 6px rgba(252, 175, 27, 0.4); /* Shadow matching [#fcaf1b] */
+        transition: all 0.2s ease;
+      }
+      /* Toggle Switch */
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 48px;
+        height: 28px;
+      }
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #e5e7eb;
+        transition: all 0.3s ease;
+        border-radius: 28px;
+      }
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: all 0.3s ease;
+        border-radius: 50%;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      }
+      input:checked + .toggle-slider {
+        background-color: #161f48; /* Secondary color for active toggle */
+      }
+      input:checked + .toggle-slider:before {
+        transform: translateX(20px);
+      }
+      /* Input field styling */
+      .input-value-box {
+        background-color: #f3f4f6; /* Light grey background */
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-weight: 600;
+        color: #1f2937;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.2s ease;
+      }
+      .input-value-box:focus-within {
+        box-shadow: 0 0 0 2px rgba(22, 31, 72, 0.2); /* Shadow matching secondary */
+      }
+      .input-value-box input {
+        background: none;
+        border: none;
+        outline: none;
+        width: 100%;
+        font-weight: 600;
+        color: #1f2937;
+        text-align: right; /* Align text to right */
+        padding: 0; /* Remove default padding */
+      }
+      /* Result item styling */
+      .result-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #f3f4f6;
+      }
+      .result-item:last-child {
+        border-bottom: none;
+      }
+      .result-item .label {
+        font-weight: 500;
+        color: #4b5563;
+      }
+      .result-item .value {
+        font-weight: 600;
+        color: #1f2937;
+      }
+      /* Chart legend dots */
+      .chart-legend-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 8px;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-100 flex items-center justify-center min-h-screen flex-col"
+  >
+    <div
+      class="max-w-6xl w-full flex justify-center items-center text-center flex-col mt-16 p-4"
+    >
+      <div class="text-center mb-8 mt-8">
+        <h1 class="text-2xl lg:text-4xl font-semibold text-black mb-3">
+          Systematic Investment Plan
+          <span class="text-[#fcaf1b]">Calculator</span>
+        </h1>
+        <p class="text-gray-500 text-base lg:text-lg">
+          Easily plan, save, or share your SIP goals in one place.
+        </p>
+      </div>
+      <div
+        id="calculatorContainer"
+        class="max-w-6xl w-full bg-white p-4 rounded-3xl border border-gray-300 overflow-hidden"
+      >
+        <!-- Mode Toggle (Investment vs Target) -->
+        <div class="flex justify-center p-2 mt-1 border-b border-gray-100">
+          <div class="inline-flex bg-gray-100 rounded-lg p-1">
+            <button
+              id="investmentModeBtn"
+              class="px-5 py-2 text-base font-medium rounded-md transition-colors duration-200 bg-white text-black shadow-base"
+            >
+              Monthly Investment
+            </button>
+            <button
+              id="targetModeBtn"
+              class="px-5 py-2 text-base font-medium rounded-md transition-colors duration-200 text-black hover:bg-gray-200"
+            >
+              Target Amount
+            </button>
+          </div>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-8 p-8">
+          <!-- Left Side - Input Controls -->
+          <div class="space-y-8">
+            <!-- Monthly Investment / Target Amount -->
+            <div>
+              <div class="flex items-start justify-between mb-3">
+                <label
+                  id="amountLabel"
+                  class="text-lg text-start font-medium text-gray-700"
+                  >Monthly Investment</label
+                >
+                <div class="input-value-box w-40">
+                  <span class="text-gray-500">₹</span>
+                  <input
+                    type="text"
+                    id="amountInput"
+                    value="25,000"
+                    min="500"
+                    max="1000000"
+                    step="500"
+                  />
+                </div>
+              </div>
+              <input
+                type="range"
+                id="amountSlider"
+                min="500"
+                max="1000000"
+                value="25000"
+                step="500"
+                class="custom-slider w-full mt-4"
+              />
+              <div class="flex justify-between text-xs text-gray-500 mt-2">
+                <span>₹500</span>
+                <span>₹10L</span>
+              </div>
+            </div>
+            <!-- Expected Return Rate -->
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <label class="text-lg text-start font-medium text-gray-700"
+                  >Expected return rate (p.a)</label
+                >
+                <div class="input-value-box w-32">
+                  <input
+                    type="number"
+                    id="returnInput"
+                    value="12"
+                    min="1"
+                    max="30"
+                    step="0.1"
+                  />
+                  <span class="text-gray-500">%</span>
+                </div>
+              </div>
+              <input
+                type="range"
+                id="returnSlider"
+                min="1"
+                max="30"
+                value="12"
+                step="0.1"
+                class="custom-slider w-full mt-4"
+              />
+              <div class="flex justify-between text-xs text-gray-500 mt-2">
+                <span>1%</span>
+                <span>30%</span>
+              </div>
+            </div>
+            <!-- Time Period -->
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <label class="text-lg font-medium text-gray-700"
+                  >Time period</label
+                >
+                <div class="input-value-box w-32">
+                  <input
+                    type="number"
+                    id="timeInput"
+                    value="10"
+                    min="1"
+                    max="50"
+                    step="1"
+                  />
+                  <span class="text-gray-500">Y</span>
+                </div>
+              </div>
+              <input
+                type="range"
+                id="timeSlider"
+                min="1"
+                max="50"
+                value="10"
+                step="1"
+                class="custom-slider w-full mt-4"
+              />
+              <div class="flex justify-between text-xs text-gray-500 mt-2">
+                <span>1Y</span>
+                <span>50Y</span>
+              </div>
+            </div>
+            <!-- Annual Step-up (Visible only in Investment Mode) -->
+            <div id="stepUpSection">
+              <div class="flex items-center justify-between mb-3">
+                <label class="text-lg font-medium text-gray-700"
+                  >Annual Step-up</label
+                >
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm text-gray-600">No</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="stepUpToggle" />
+                    <span class="toggle-slider"></span>
+                  </label>
+                  <span class="text-sm text-gray-600">Yes</span>
+                </div>
+              </div>
+              <div
+                id="stepUpControls"
+                class="hidden opacity-50 pointer-events-none transition-all duration-300"
+              >
+                <div class="flex items-center justify-end mt-4">
+                  <div class="input-value-box w-32">
+                    <input
+                      type="number"
+                      id="stepUpInput"
+                      value="5"
+                      min="0"
+                      max="20"
+                      step="0.1"
+                    />
+                    <span class="text-gray-500">%</span>
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="stepUpSlider"
+                  min="0"
+                  max="20"
+                  value="5"
+                  step="0.1"
+                  class="custom-slider w-full mt-4"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>0%</span>
+                  <span>20%</span>
+                </div>
+              </div>
+            </div>
+            <!-- Expected Inflation (Visible only in Target Amount Mode) -->
+            <div id="inflationSection" class="hidden">
+              <div class="flex items-center justify-between mb-3">
+                <label class="text-lg font-medium text-gray-700"
+                  >Expected Inflation (p.a)</label
+                >
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm text-gray-600">No</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="inflationToggle" />
+                    <span class="toggle-slider"></span>
+                  </label>
+                  <span class="text-sm text-gray-600">Yes</span>
+                </div>
+              </div>
+              <div
+                id="inflationControls"
+                class="hidden opacity-50 pointer-events-none transition-all duration-300"
+              >
+                <div class="flex items-end justify-end">
+                  <div class="input-value-box w-32">
+                    <input
+                      type="number"
+                      id="inflationInput"
+                      value="5"
+                      min="0"
+                      max="15"
+                      step="0.1"
+                    />
+                    <span class="text-gray-500">%</span>
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="inflationSlider"
+                  min="0"
+                  max="15"
+                  value="5"
+                  step="0.1"
+                  class="custom-slider w-full mt-4"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>0%</span>
+                  <span>15%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Annual SIP Top Up (Visible only in Target Amount Mode) -->
+            <div id="sipTopUpSection" class="hidden">
+              <div class="flex items-center justify-between mb-3">
+                <label class="text-lg font-medium text-gray-700"
+                  >Annual SIP Top up</label
+                >
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm text-gray-600">No</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="sipTopUpToggle" />
+                    <span class="toggle-slider"></span>
+                  </label>
+                  <span class="text-sm text-gray-600">Yes</span>
+                </div>
+              </div>
+              <div
+                id="sipTopUpControls"
+                class="hidden opacity-50 pointer-events-none transition-all duration-300"
+              >
+                <div class="flex items-center justify-end mt-4">
+                  <div class="input-value-box w-32">
+                    <input
+                      type="number"
+                      id="sipTopUpInput"
+                      value="5"
+                      min="0"
+                      max="20"
+                      step="0.1"
+                    />
+                    <span class="text-gray-500">%</span>
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="sipTopUpSlider"
+                  min="0"
+                  max="20"
+                  value="5"
+                  step="0.1"
+                  class="custom-slider w-full mt-4"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>0%</span>
+                  <span>20%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Trigger Text -->
+            <h1
+              id="openDisclaimer"
+              class="text-sm text-blue-600 hover:underline hover:cursor-pointer text-start"
+            >
+              View Disclaimer
+            </h1>
+
+            <!-- Modal -->
+            <div
+              id="disclaimerModal"
+              class="fixed inset-0 p-4 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300"
+            >
+              <div
+                class="bg-white rounded-2xl shadow-lg max-w-4xl w-full p-8 relative transform transition-transform duration-300 scale-95"
+                id="modalContent"
+              >
+                <!-- Close Button -->
+                <button
+                  id="closeDisclaimer"
+                  class="absolute top-3 right-3 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200 group"
+                >
+                  <i
+                    data-lucide="x"
+                    class="text-gray-600 w-4 h-4 group-hover:rotate-90 transition-transform duration-300"
+                  ></i>
+                </button>
+
+                <!-- Title -->
+                <h2 class="text-lg font-semibold mb-4 text-blue-700">
+                  Disclaimer ⚠️
+                </h2>
+
+                <!-- Content -->
+                <p class="text-sm text-gray-700 leading-relaxed text-start">
+                  These Calculators alone are not sufficient and shouldn't be
+                  used for development or implementation of an investment
+                  strategy. The examples do not purport to represent the
+                  performance of any security or investments. The recipient is
+                  advised to consult his or her advisor/tax consultant prior to
+                  arriving at any investment decision. Mutual Funds do not have
+                  a fixed rate of return and it is not possible to predict the
+                  rate of return. Past performance may or may not be sustained
+                  in future and is not a guarantee of any future returns. Mutual
+                  Fund Investments are subject to market risks, read all scheme
+                  related documents carefully.
+                </p>
+              </div>
+            </div>
+
+            <script>
+              const openBtn = document.getElementById("openDisclaimer");
+              const closeBtn = document.getElementById("closeDisclaimer");
+              const modal = document.getElementById("disclaimerModal");
+              const modalContent = document.getElementById("modalContent");
+
+              openBtn.addEventListener("click", () => {
+                modal.classList.remove("hidden");
+                setTimeout(() => {
+                  modal.classList.add("opacity-100");
+                  modalContent.classList.remove("scale-95");
+                  modalContent.classList.add("scale-100");
+                }, 10);
+              });
+
+              const closeModal = () => {
+                modalContent.classList.remove("scale-100");
+                modalContent.classList.add("scale-95");
+                modal.classList.remove("opacity-100");
+                setTimeout(() => {
+                  modal.classList.add("hidden");
+                }, 300);
+              };
+
+              closeBtn.addEventListener("click", closeModal);
+
+              modal.addEventListener("click", (e) => {
+                if (e.target === modal) closeModal();
+              });
+            </script>
+
+            <!-- Lucide Icons -->
+            <script src="https://unpkg.com/lucide@latest"></script>
+            <script>
+              lucide.createIcons();
+            </script>
+          </div>
+          <!-- Right Side - Results and Chart -->
+          <div class="space-y-8">
+            <!-- Chart -->
+            <div class="flex justify-center items-center h-64">
+              <div class="relative w-64 h-64">
+                <canvas id="sipChart"></canvas>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="text-center">
+                    <div class="text-sm text-gray-500">Total Value</div>
+                    <div
+                      id="totalValueCenter"
+                      class="text-xl font-semibold text-gray-800"
+                    >
+                      ₹58.08 L
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Chart Legend -->
+            <div class="flex justify-center space-x-6 text-sm text-gray-600">
+              <div>
+                <span class="chart-legend-dot bg-gray-300"></span>
+                <span>Invested amount</span>
+              </div>
+              <div>
+                <span
+                  class="chart-legend-dot"
+                  style="background-color: #161f48"
+                ></span>
+                <!-- Secondary color for legend dot -->
+                <span>Est. returns</span>
+              </div>
+            </div>
+            <!-- Results -->
+            <div class="space-y-2">
+              <!-- Monthly SIP Required (for target amount mode) -->
+              <div id="sipRequired" class="hidden result-item">
+                <span class="label" style="color: #161f48"
+                  >Est. monthly SIP required</span
+                >
+                <span
+                  id="requiredSip"
+                  class="value"
+                  style="color: #161f48; font-size: 1rem"
+                  >₹10,000</span
+                >
+              </div>
+
+              <!-- Target amount (inflation adjusted) (for target amount mode) -->
+              <div id="inflationAdjustedTargetItem" class="hidden result-item">
+                <span class="label text-start" style="color: #161f48"
+                  >Target amount (inflation adjusted)</span
+                >
+                <span
+                  id="inflationAdjustedTargetValue"
+                  class="value text-end"
+                  style="color: #161f48; font-size: 1rem"
+                  >₹0.00 L</span
+                >
+              </div>
+
+              <!-- New: Est. Total amount invested in (X) years (for target mode) -->
+              <div
+                id="estimatedTotalInvestedYearsItem"
+                class="hidden result-item text-start"
+              >
+                <span class="label"
+                  >Est. Total amount invested in (<span id="timePeriodLabel"
+                    >10</span
+                  >) years</span
+                >
+                <span
+                  id="estimatedTotalInvestedYearsValue"
+                  class="value text-end"
+                  >₹0.00 L</span
+                >
+              </div>
+
+              <!-- Original Invested amount (label changes based on mode) -->
+              <div class="result-item" id="investedAmountItem">
+                <span class="label" id="totalInvestmentLabel"
+                  >Invested amount</span
+                >
+                <span id="totalInvestment" class="value">₹30.00 L</span>
+              </div>
+
+              <!-- Original Est. returns (label changes based on mode) -->
+              <div class="result-item">
+                <span class="label" id="expectedGrowthLabel">Est. returns</span>
+                <span id="expectedGrowth" class="value">₹28.08 L</span>
+              </div>
+
+              <!-- Original Total value -->
+              <div class="result-item">
+                <span class="label">Total value</span>
+                <span id="totalValue" class="value text-lg font-bold"
+                  >₹58.08 L</span
+                >
+              </div>
+
+              <!-- Growth Percentage (hidden in target mode) -->
+              <div id="growthPercentageItem" class="result-item">
+                <span class="label">Growth Percentage</span>
+                <span
+                  id="growthPercentage"
+                  class="value text-lg font-bold bg-[#161f48]/10 rounded-full px-4 py-1"
+                  >93.6%</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Action Buttons -->
+        <div class="p-8 border-t border-gray-200">
+          <div class="flex flex-wrap gap-4 justify-center">
+            <button
+              id="emailPlanBtn"
+              class="flex items-center gap-2 text-sm lg:text-base px-4 lg:px-6 py-2 lg:py-3 rounded-full text-black border border-gray-300 hover:bg-gray-100 transition-colors cursor-pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="24"
+                height="24"
+                viewBox="0 0 48 48"
+              >
+                <path
+                  fill="#4caf50"
+                  d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"
+                ></path>
+                <path
+                  fill="#1e88e5"
+                  d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"
+                ></path>
+                <polygon
+                  fill="#e53935"
+                  points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"
+                ></polygon>
+                <path
+                  fill="#c62828"
+                  d="M3,12.298V16.2l10,7.5V11.2L9.876,8.859C9.132,8.301,8.228,8,7.298,8h0C4.924,8,3,9.924,3,12.298z"
+                ></path>
+                <path
+                  fill="#fbc02d"
+                  d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341C38.868,8.301,39.772,8,40.702,8h0 C43.076,8,45,9.924,45,12.298z"
+                ></path>
+              </svg>
+              Email Plan
+            </button>
+            <button
+              id="whatsappBtn"
+              class="flex items-center gap-2 text-base px-6 py-3 rounded-full text-black border border-gray-300 hover:bg-gray-100 transition-colors cursor-pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="24"
+                height="24"
+                viewBox="0 0 48 48"
+              >
+                <path
+                  fill="#fff"
+                  d="M4.9,43.3l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24 c0,10.5-8.5,19-19,19c0,0,0,0,0,0h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3z"
+                ></path>
+                <path
+                  fill="#fff"
+                  d="M4.9,43.8c-0.1,0-0.3-0.1-0.4-0.1c-0.1-0.1-0.2-0.3-0.1-0.5L7,33.5c-1.6-2.9-2.5-6.2-2.5-9.6 C4.5,13.2,13.3,4.5,24,4.5c5.2,0,10.1,2,13.8,5.7c3.7,3.7,5.7,8.6,5.7,13.8c0,10.7-8.7,19.5-19.5,19.5c-3.2,0-6.3-0.8-9.1-2.3 L5,43.8C5,43.8,4.9,43.8,4.9,43.8z"
+                ></path>
+                <path
+                  fill="#cfd8dc"
+                  d="M24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24c0,10.5-8.5,19-19,19h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3 l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5 M24,43L24,43L24,43 M24,43L24,43L24,43 M24,4L24,4C13,4,4,13,4,24 c0,3.4,0.8,6.7,2.5,9.6L3.9,43c-0.1,0.3,0,0.7,0.3,1c0.2,0.2,0.4,0.3,0.7,0.3c0.1,0,0.2,0,0.3,0l9.7-2.5c2.8,1.5,6,2.2,9.2,2.2 c11,0,20-9,20-20c0-5.3-2.1-10.4-5.8-14.1C34.4,6.1,29.4,4,24,4L24,4z"
+                ></path>
+                <path
+                  fill="#40c351"
+                  d="M35.2,12.8c-3-3-6.9-4.6-11.2-4.6C15.3,8.2,8.2,15.3,8.2,24c0,3,0.8,5.9,2.4,8.4L11,33l-1.6,5.8l6-1.6l0.6,0.3 c2.4,1.4,5.2,2.2,8,2.2h0c8.7,0,15.8-7.1,15.8-15.8C39.8,19.8,38.2,15.8,35.2,12.8z"
+                ></path>
+                <path
+                  fill="#fff"
+                  fill-rule="evenodd"
+                  d="M19.3,16c-0.4-0.8-0.7-0.8-1.1-0.8c-0.3,0-0.6,0-0.9,0s-0.8,0.1-1.3,0.6c-0.4,0.5-1.7,1.6-1.7,4 s1.7,4.6,1.9,4.9s3.3,5.3,8.1,7.2c4,1.6,4.8,1.3,5.7,1.2c0.9-0.1,2.8-1.1,3.2-2.3c0.4-1.1,0.4-2.1,0.3-2.3c-0.1-0.2-0.4-0.3-0.9-0.6 s-2.8-1.4-3.2-1.5c-0.4-0.2-0.8-0.2-1.1,0.2c-0.3,0.5-1.2,1.5-1.5,1.9c-0.3,0.3-0.6,0.4-1,0.1c-0.5-0.2-2-0.7-3.8-2.4 c-1.4-1.3-2.4-2.8-2.6-3.3c-0.3-0.5,0-0.7,0.2-1c0.2-0.2,0.5-0.6,0.7-0.8c0.2-0.3,0.3-0.5,0.5-0.8c0.2-0.3,0.1-0.6,0-0.8 C20.6,19.3,19.7,17,19.3,16z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              WhatsApp
+            </button>
+            <button
+              id="downloadImageBtn"
+              class="flex items-center gap-2 text-base px-6 py-3 rounded-full text-black border border-gray-300 hover:bg-gray-100 transition-colors cursor-pointer"
+            >
+              <i data-lucide="download" class="w-5 h-5"></i>
+              Download Image
+            </button>
+            <a
+              href="../index.html#consultation"
+              class="inline-flex items-center bg-[#fcaf1b] text-black hover:text-white pl-5 pr-3 py-3 rounded-full text-base gap-3 group transition hover:bg-[#161f48]"
+            >
+              Start Investing
+              <span
+                class="bg-white text-black rounded-full p-1.5 flex items-center justify-center transition-transform group-hover:translate-x-1"
+              >
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main calculator container with an ID for html2canvas -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script>
+      let chart;
+      let isTargetMode = false; // Default to Investment Mode
+      // Global variables to store latest calculated results
+      let lastCalculatedInvestment = 0;
+      let lastCalculatedReturns = 0;
+      let lastCalculatedTotal = 0;
+      let lastCalculatedGrowthPercentage = 0;
+      let lastCalculatedRequiredSip = 0;
+      let lastCalculatedInflationAdjustedTarget = 0; // New global variable
+
+      // Initialize chart with specific colors and simplified legend
+      function initChart() {
+        const ctx = document.getElementById("sipChart").getContext("2d");
+        chart = new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            labels: ["Invested amount", "Est. returns"],
+            datasets: [
+              {
+                data: [30, 28.08], // Initial dummy data (in Lakhs)
+                backgroundColor: [
+                  "#d1d5db", // Light grey for invested amount
+                  "#161f48", // Secondary color for estimated returns
+                ],
+                borderColor: "white",
+                borderWidth: 2,
+                cutout: "80%",
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+              legend: {
+                display: false, // Custom legend handled in HTML
+              },
+              tooltip: {
+                enabled: true,
+                callbacks: {
+                  label: function (context) {
+                    let label = context.label || "";
+                    if (label) {
+                      label += ": ";
+                    }
+                    if (context.parsed !== null) {
+                      // Convert chart data back to full amount for tooltip
+                      label += formatCurrency(context.parsed); // Pass raw value to formatCurrency
+                    }
+                    return label;
+                  },
+                },
+              },
+            },
+            animation: {
+              animateRotate: true,
+              duration: 800,
+              easing: "easeOutQuart",
+            },
+          },
+        });
+      }
+      // Format number to Indian currency format (Lakhs, Crores)
+      function formatCurrency(amount) {
+        if (amount >= 10000000) {
+          return "₹" + (amount / 10000000).toFixed(2) + " Crores";
+        } else if (amount >= 100000) {
+          return "₹" + (amount / 100000).toFixed(2) + " Lakhs";
+        } else {
+          return "₹" + Math.round(amount).toLocaleString("en-IN");
+        }
+      }
+      // Formats a number with Indian comma system for input fields
+      function formatNumberWithIndianCommas(num) {
+        if (isNaN(num) || num === null) return "";
+        // Use toLocaleString with 'en-IN' locale for Indian comma format
+        // Ensure it's a number before calling toLocaleString, and no fraction digits
+        return Number(num).toLocaleString("en-IN", {
+          maximumFractionDigits: 0,
+        });
+      }
+      // Parses an Indian-formatted string back to a number
+      function parseIndianFormattedNumber(str) {
+        if (!str) return 0;
+        // Remove all non-digit characters except the decimal point
+        return parseFloat(str.replace(/[^0-9.]/g, ""));
+      }
+      // Calculate SIP (Investment Mode)
+      function calculateSIP() {
+        const monthlyInvestment = parseIndianFormattedNumber(
+          document.getElementById("amountInput").value,
+        );
+        const annualReturn = parseFloat(
+          document.getElementById("returnInput").value,
+        );
+        const years = parseInt(document.getElementById("timeInput").value);
+        const stepUpEnabled = document.getElementById("stepUpToggle").checked;
+        const stepUpRate = stepUpEnabled
+          ? parseFloat(document.getElementById("stepUpInput").value)
+          : 0;
+        const monthlyReturn = annualReturn / 100 / 12;
+        const months = years * 12;
+        let futureValue = 0;
+        let totalInvestment = 0;
+        let currentMonthlyInvestment = monthlyInvestment;
+        for (let month = 1; month <= months; month++) {
+          futureValue =
+            (futureValue + currentMonthlyInvestment) * (1 + monthlyReturn);
+          totalInvestment += currentMonthlyInvestment;
+          if (stepUpEnabled && month % 12 === 0) {
+            currentMonthlyInvestment *= 1 + stepUpRate / 100;
+          }
+        }
+        const expectedReturns = futureValue - totalInvestment;
+        const growthPercentage =
+          totalInvestment > 0 ? (expectedReturns / totalInvestment) * 100 : 0;
+        updateResults(
+          totalInvestment,
+          expectedReturns,
+          futureValue,
+          growthPercentage,
+          0, // No inflation adjusted target in investment mode
+        );
+      }
+      // Calculate required SIP (Target Mode)
+      function calculateRequiredSIP() {
+        const targetAmount = parseIndianFormattedNumber(
+          document.getElementById("amountInput").value,
+        );
+        const annualReturn = parseFloat(
+          document.getElementById("returnInput").value,
+        );
+        const years = parseInt(document.getElementById("timeInput").value);
+        const inflationEnabled =
+          document.getElementById("inflationToggle").checked;
+        const expectedInflation = inflationEnabled
+          ? parseFloat(document.getElementById("inflationInput").value)
+          : 0;
+        const sipTopUpEnabled =
+          document.getElementById("sipTopUpToggle").checked;
+        const sipTopUpRate = sipTopUpEnabled
+          ? parseFloat(document.getElementById("sipTopUpInput").value)
+          : 0;
+
+        const monthlyReturn = annualReturn / 100 / 12;
+        const months = years * 12;
+        const inflationRatePerPeriod = expectedInflation / 100;
+        // Corrected: Adjust target amount for inflation to maintain purchasing power
+        // If inflation is enabled, the nominal target amount needs to be higher
+        // to achieve the same purchasing power as the initial target amount.
+        const inflationAdjustedTarget = inflationEnabled
+          ? targetAmount * Math.pow(1 + inflationRatePerPeriod, years)
+          : targetAmount;
+
+        let requiredMonthly = 0;
+        if (monthlyReturn === 0) {
+          // Simple interest if return is 0
+          if (sipTopUpEnabled) {
+            // With annual top-up
+            let totalNeeded = inflationAdjustedTarget;
+            let annualTopUpRate = sipTopUpRate / 100;
+            let investmentWithTopUp = 0;
+            let currentMonthly = 0;
+            // Estimate initial monthly SIP needed
+            let estimatedMonthly =
+              inflationAdjustedTarget /
+              (months * (1 + (annualTopUpRate * years) / 2));
+            requiredMonthly = estimatedMonthly;
+          } else {
+            requiredMonthly = inflationAdjustedTarget / months;
+          }
+        } else {
+          if (sipTopUpEnabled) {
+            // With annual top-up
+            const annualTopUpRate = sipTopUpRate / 100;
+            let futureValueWithTopUp = 0;
+            let currentMonthly = 0;
+            // Estimate initial monthly SIP
+            let estimatedMonthly =
+              (inflationAdjustedTarget * monthlyReturn) /
+              (Math.pow(1 + monthlyReturn, months) - 1) /
+              (1 + (annualTopUpRate * years) / 2); // Adjustment factor
+            currentMonthly = estimatedMonthly;
+
+            // Refine estimate with iteration
+            for (let iteration = 0; iteration < 5; iteration++) {
+              futureValueWithTopUp = 0;
+              currentMonthly = estimatedMonthly;
+              for (let month = 1; month <= months; month++) {
+                futureValueWithTopUp =
+                  (futureValueWithTopUp + currentMonthly) * (1 + monthlyReturn);
+                if (month % 12 === 0) {
+                  currentMonthly *= 1 + annualTopUpRate;
+                }
+              }
+              // Adjust estimate
+              const ratio = inflationAdjustedTarget / futureValueWithTopUp;
+              estimatedMonthly *= ratio;
+            }
+            requiredMonthly = estimatedMonthly;
+          } else {
+            requiredMonthly =
+              (inflationAdjustedTarget * monthlyReturn) /
+              (Math.pow(1 + monthlyReturn, months) - 1);
+          }
+        }
+
+        document.getElementById("requiredSip").textContent =
+          formatCurrency(requiredMonthly);
+        lastCalculatedRequiredSip = requiredMonthly; // Store the raw value for sharing
+
+        // For chart and other results, calculate what this required SIP would yield
+        let futureValue = 0;
+        let totalInvestment = 0;
+        let currentMonthlyInvestment = requiredMonthly;
+        for (let month = 1; month <= months; month++) {
+          futureValue =
+            (futureValue + currentMonthlyInvestment) * (1 + monthlyReturn);
+          totalInvestment += currentMonthlyInvestment;
+          if (sipTopUpEnabled && month % 12 === 0) {
+            currentMonthlyInvestment *= 1 + sipTopUpRate / 100;
+          }
+        }
+        const expectedReturns = futureValue - totalInvestment;
+        const growthPercentage =
+          totalInvestment > 0 ? (expectedReturns / totalInvestment) * 100 : 0;
+        updateResults(
+          totalInvestment,
+          expectedReturns,
+          futureValue,
+          growthPercentage,
+          inflationAdjustedTarget, // Pass the inflation adjusted target
+        );
+      }
+
+      // Update results with smooth transitions
+      function updateResults(
+        investment,
+        returns,
+        total,
+        growth,
+        inflationAdjustedTarget = 0,
+      ) {
+        // Update main values
+        document.getElementById("expectedGrowth").textContent =
+          formatCurrency(returns);
+        document.getElementById("totalValue").textContent =
+          formatCurrency(total);
+        document.getElementById("totalValueCenter").textContent =
+          formatCurrency(total);
+
+        // Get result item elements
+        const investedAmountItem =
+          document.getElementById("investedAmountItem");
+        const growthPercentageItem = document.getElementById(
+          "growthPercentageItem",
+        );
+        const inflationAdjustedTargetItem = document.getElementById(
+          "inflationAdjustedTargetItem",
+        );
+        const estimatedTotalInvestedYearsItem = document.getElementById(
+          "estimatedTotalInvestedYearsItem",
+        );
+
+        // Handle "Invested amount" visibility
+        if (!isTargetMode) {
+          document.getElementById("totalInvestment").textContent =
+            formatCurrency(investment);
+          investedAmountItem.classList.remove("hidden");
+        } else {
+          investedAmountItem.classList.add("hidden");
+        }
+
+        // Handle growth percentage visibility
+        if (!isTargetMode) {
+          document.getElementById("growthPercentage").textContent =
+            growth.toFixed(1) + "%";
+          growthPercentageItem.classList.remove("hidden");
+        } else {
+          growthPercentageItem.classList.add("hidden");
+        }
+
+        // Handle inflation adjusted target visibility
+        if (
+          isTargetMode &&
+          document.getElementById("inflationToggle").checked
+        ) {
+          document.getElementById("inflationAdjustedTargetValue").textContent =
+            formatCurrency(inflationAdjustedTarget);
+          inflationAdjustedTargetItem.classList.remove("hidden");
+        } else {
+          inflationAdjustedTargetItem.classList.add("hidden");
+        }
+
+        // Handle "Est. Total amount invested in (X) years" visibility and value
+        const timePeriod = document.getElementById("timeInput").value;
+        document.getElementById("timePeriodLabel").textContent = timePeriod; // Update (X) in label
+
+        if (isTargetMode) {
+          document.getElementById(
+            "estimatedTotalInvestedYearsValue",
+          ).textContent = formatCurrency(investment); // Use 'investment' from target mode calculation
+          estimatedTotalInvestedYearsItem.classList.remove("hidden");
+        } else {
+          estimatedTotalInvestedYearsItem.classList.add("hidden");
+        }
+
+        // Store raw values for sharing
+        lastCalculatedInvestment = investment;
+        lastCalculatedReturns = returns;
+        lastCalculatedTotal = total;
+        lastCalculatedGrowthPercentage = growth;
+        if (!isTargetMode) {
+          // Reset required SIP if in investment mode
+          lastCalculatedRequiredSip = 0;
+        }
+        lastCalculatedInflationAdjustedTarget = inflationAdjustedTarget; // Store for sharing
+
+        // Update chart data and trigger animation
+        chart.data.datasets[0].data = [investment, returns];
+        chart.update("active");
+      }
+      // Toggle between modes (Investment vs Target)
+      function toggleMode(targetMode) {
+        isTargetMode = targetMode;
+        const investmentBtn = document.getElementById("investmentModeBtn");
+        const targetBtn = document.getElementById("targetModeBtn");
+        const sipRequired = document.getElementById("sipRequired");
+        const amountLabel = document.getElementById("amountLabel");
+        const amountInput = document.getElementById("amountInput");
+        const amountSlider = document.getElementById("amountSlider");
+        const amountMinSpan = amountSlider.nextElementSibling.children[0];
+        const amountMaxSpan = amountSlider.nextElementSibling.children[1];
+        const stepUpSection = document.getElementById("stepUpSection");
+        const inflationSection = document.getElementById("inflationSection");
+        const sipTopUpSection = document.getElementById("sipTopUpSection");
+
+        // Elements for results
+        const investedAmountItem =
+          document.getElementById("investedAmountItem");
+        const totalInvestmentLabel = document.getElementById(
+          "totalInvestmentLabel",
+        );
+        const expectedGrowthLabel = document.getElementById(
+          "expectedGrowthLabel",
+        );
+        const growthPercentageItem = document.getElementById(
+          "growthPercentageItem",
+        );
+        const inflationAdjustedTargetItem = document.getElementById(
+          "inflationAdjustedTargetItem",
+        );
+        const estimatedTotalInvestedYearsItem = document.getElementById(
+          "estimatedTotalInvestedYearsItem",
+        );
+
+        // Get toggle and control elements for step-up, inflation, and SIP top-up
+        const stepUpToggle = document.getElementById("stepUpToggle");
+        const stepUpControls = document.getElementById("stepUpControls");
+        const inflationToggle = document.getElementById("inflationToggle");
+        const inflationControls = document.getElementById("inflationControls");
+        const sipTopUpToggle = document.getElementById("sipTopUpToggle");
+        const sipTopUpControls = document.getElementById("sipTopUpControls");
+
+        // Reset toggles and hide controls when switching modes
+        stepUpToggle.checked = false;
+        stepUpControls.classList.add(
+          "hidden",
+          "opacity-50",
+          "pointer-events-none",
+        );
+        inflationToggle.checked = false;
+        inflationControls.classList.add(
+          "hidden",
+          "opacity-50",
+          "pointer-events-none",
+        );
+        sipTopUpToggle.checked = false;
+        sipTopUpControls.classList.add(
+          "hidden",
+          "opacity-50",
+          "pointer-events-none",
+        );
+
+        if (targetMode) {
+          targetBtn.classList.add("bg-white", "text-gray-800", "shadow-sm");
+          targetBtn.classList.remove("text-gray-600", "hover:bg-gray-200");
+          investmentBtn.classList.remove(
+            "bg-white",
+            "text-gray-800",
+            "shadow-sm",
+          );
+          investmentBtn.classList.add("text-gray-600", "hover:bg-gray-200");
+
+          sipRequired.classList.remove("hidden");
+          inflationAdjustedTargetItem.classList.remove("hidden");
+          estimatedTotalInvestedYearsItem.classList.remove("hidden"); // Show new item
+          growthPercentageItem.classList.add("hidden"); // Hide growth percentage
+          investedAmountItem.classList.add("hidden"); // Hide invested amount in target mode
+
+          amountLabel.textContent = "Target Amount";
+          amountInput.value = formatNumberWithIndianCommas(10000000); // Default target 1 Cr
+          amountInput.min = "100000"; // Min target 1 Lakh
+          amountInput.max = "1000000000"; // Max target 100 Cr
+          amountSlider.value = "10000000";
+          amountSlider.min = "100000";
+          amountSlider.max = "1000000000";
+          amountMinSpan.textContent = "₹1L";
+          amountMaxSpan.textContent = "₹100Cr";
+
+          stepUpSection.classList.add("hidden"); // Hide step-up section in target mode
+          inflationSection.classList.remove("hidden"); // Show inflation section in target mode
+          sipTopUpSection.classList.remove("hidden"); // Show SIP top-up section in target mode
+
+          // Set fixed labels for investment mode
+          totalInvestmentLabel.textContent = "Invested amount"; // Revert to original label
+          expectedGrowthLabel.textContent = "Est. returns"; // Revert to original label
+
+          calculateRequiredSIP();
+        } else {
+          investmentBtn.classList.add("bg-white", "text-gray-800", "shadow-sm");
+          investmentBtn.classList.remove("text-gray-600", "hover:bg-gray-200");
+          targetBtn.classList.remove("bg-white", "text-gray-800", "shadow-sm");
+          targetBtn.classList.add("text-gray-600", "hover:bg-gray-200");
+
+          sipRequired.classList.add("hidden");
+          inflationAdjustedTargetItem.classList.add("hidden");
+          estimatedTotalInvestedYearsItem.classList.add("hidden"); // Hide new item
+          growthPercentageItem.classList.remove("hidden"); // Show growth percentage
+          investedAmountItem.classList.remove("hidden"); // Show invested amount in investment mode
+
+          amountLabel.textContent = "Monthly Investment";
+          amountInput.value = formatNumberWithIndianCommas(25000); // Default monthly 25k
+          amountInput.min = "500";
+          amountInput.max = "1000000"; // Max monthly 10L
+          amountSlider.value = "25000";
+          amountSlider.min = "500";
+          amountSlider.max = "1000000";
+          amountMinSpan.textContent = "₹500";
+          amountMaxSpan.textContent = "₹10L";
+
+          stepUpSection.classList.remove("hidden"); // Show step-up section in investment mode
+          inflationSection.classList.add("hidden"); // Hide inflation section in investment mode
+          sipTopUpSection.classList.add("hidden"); // Hide SIP top-up section in investment mode
+
+          // Set fixed labels for investment mode
+          totalInvestmentLabel.textContent = "Invested amount";
+          expectedGrowthLabel.textContent = "Est. returns";
+
+          calculateSIP();
+        }
+      }
+      // Function to generate email content and open mail client
+      function sendEmailPlan() {
+        const subject = encodeURIComponent("My SIP Calculator Plan");
+        let body = `Hello,\n\nHere is my SIP calculation plan:\n\n`;
+
+        // --- Inputs / Assumptions ---
+        if (isTargetMode) {
+          body += `Mode: Target Amount\n`;
+
+          body += `Target Amount: ${formatCurrency(
+            parseIndianFormattedNumber(
+              document.getElementById("amountInput").value,
+            ),
+          )}\n`;
+
+          const inflationEnabled =
+            document.getElementById("inflationToggle").checked;
+          if (inflationEnabled) {
+            body += `Expected Inflation: ${document.getElementById("inflationInput").value}%\n`;
+            body += `Target Amount (Inflation Adjusted): ${formatCurrency(
+              lastCalculatedInflationAdjustedTarget,
+            )}\n`;
+          } else {
+            body += `Expected Inflation: Not considered\n`;
+          }
+
+          const sipTopUpEnabled =
+            document.getElementById("sipTopUpToggle").checked;
+          if (sipTopUpEnabled) {
+            body += `Annual SIP Top-up: ${document.getElementById("sipTopUpInput").value}%\n`;
+          } else {
+            body += `Annual SIP Top-up: No\n`;
+          }
+        } else {
+          body += `Mode: Monthly Investment\n`;
+
+          body += `Monthly Investment: ${formatCurrency(
+            parseIndianFormattedNumber(
+              document.getElementById("amountInput").value,
+            ),
+          )}\n`;
+
+          const stepUpEnabled = document.getElementById("stepUpToggle").checked;
+          if (stepUpEnabled) {
+            body += `Annual Step-up: ${document.getElementById("stepUpInput").value}%\n`;
+          } else {
+            body += `Annual Step-up: No\n`;
+          }
+        }
+
+        body += `Expected Return Rate: ${document.getElementById("returnInput").value}%\n`;
+        body += `Time Period: ${document.getElementById("timeInput").value} Years\n\n`;
+
+        // --- Results Section ---
+        body += `--- Results ---\n`;
+
+        if (isTargetMode) {
+          body += `Est. Monthly SIP Required: ${formatCurrency(lastCalculatedRequiredSip)}\n`;
+        } else {
+          body += `Invested Amount: ${formatCurrency(lastCalculatedInvestment)}\n`;
+        }
+
+        body += `Estimated Returns: ${formatCurrency(lastCalculatedReturns)}\n`;
+        body += `Total Value: ${formatCurrency(lastCalculatedTotal)}\n`;
+
+        if (!isTargetMode) {
+          body += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(1)}%\n`;
+        }
+
+        body += `\nCalculated using Chimulkar Financial Services SIP Calculator.\n`;
+        body += `Calculate yours now at ${window.location.href}`;
+
+        // Open mail client
+        window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(body)}`;
+      }
+
+      // Function to generate WhatsApp message and open WhatsApp
+      function sendWhatsAppPlan() {
+        let message = `My SIP Calculation Plan:\n\n`;
+
+        // --- Inputs / Assumptions ---
+        if (isTargetMode) {
+          message += `Mode: *Target Amount*\n`;
+
+          message += `Target Amount: *${formatCurrency(
+            parseIndianFormattedNumber(
+              document.getElementById("amountInput").value,
+            ),
+          )}*\n`;
+
+          const inflationEnabled =
+            document.getElementById("inflationToggle").checked;
+          if (inflationEnabled) {
+            message += `Expected Inflation: *${document.getElementById("inflationInput").value}%*\n`;
+            message += `Target Amount (Inflation Adjusted): *${formatCurrency(
+              lastCalculatedInflationAdjustedTarget,
+            )}*\n`;
+          } else {
+            message += `Expected Inflation: *Not considered*\n`;
+          }
+
+          const sipTopUpEnabled =
+            document.getElementById("sipTopUpToggle").checked;
+          if (sipTopUpEnabled) {
+            message += `Annual SIP Top-up: *${document.getElementById("sipTopUpInput").value}%*\n`;
+          } else {
+            message += `Annual SIP Top-up: *No*\n`;
+          }
+        } else {
+          message += `Mode: *Monthly Investment*\n`;
+
+          message += `Monthly Investment: *${formatCurrency(
+            parseIndianFormattedNumber(
+              document.getElementById("amountInput").value,
+            ),
+          )}*\n`;
+
+          const stepUpEnabled = document.getElementById("stepUpToggle").checked;
+          if (stepUpEnabled) {
+            message += `Annual Step-up: *${document.getElementById("stepUpInput").value}%*\n`;
+          } else {
+            message += `Annual Step-up: *No*\n`;
+          }
+        }
+
+        message += `Expected Return Rate: *${document.getElementById("returnInput").value}%*\n`;
+        message += `Time Period: *${document.getElementById("timeInput").value} Years*\n\n`;
+
+        // --- Results ---
+        message += `--- Results ---\n`;
+
+        if (isTargetMode) {
+          message += `Est. Monthly SIP Required: *${formatCurrency(lastCalculatedRequiredSip)}*\n`;
+        } else {
+          message += `Invested Amount: *${formatCurrency(lastCalculatedInvestment)}*\n`;
+        }
+
+        message += `Estimated Returns: *${formatCurrency(lastCalculatedReturns)}*\n`;
+        message += `Total Value: *${formatCurrency(lastCalculatedTotal)}*\n`;
+
+        if (!isTargetMode) {
+          message += `Growth Percentage: *${lastCalculatedGrowthPercentage.toFixed(1)}%*\n`;
+        }
+
+        message += `\nCalculated using Chimulkar Financial Services SIP Calculator.\n`;
+        message += `Calculate yours now at ${window.location.href}`;
+
+        // Open WhatsApp
+        window.open(
+          `https://wa.me/?text=${encodeURIComponent(message)}`,
+          "_blank",
+        );
+      }
+
+      // Function to download the entire calculator as an image
+      function downloadCalculatorImage() {
+        const calculatorContainer = document.getElementById(
+          "calculatorContainer",
+        );
+        // Use html2canvas to capture the content of the calculatorContainer
+        html2canvas(calculatorContainer, {
+          scale: 2, // Increase scale for better resolution
+          useCORS: true, // Enable CORS if you have external images/fonts
+          logging: false, // Disable logging for cleaner console
+        })
+          .then((canvas) => {
+            const image = canvas.toDataURL("image/png"); // Get data URL of the canvas content as PNG
+            const link = document.createElement("a");
+            link.href = image;
+            link.download = "sip_calculator_screenshot.png"; // Set the filename for download
+            document.body.appendChild(link); // Append to body to make it clickable
+            link.click(); // Programmatically click the link to trigger download
+            document.body.removeChild(link); // Clean up the temporary link
+          })
+          .catch((error) => {
+            console.error("Error capturing calculator image:", error);
+            alert("Failed to capture image. Please try again.");
+          });
+      }
+      // Setup event listeners
+      function setupEventListeners() {
+        // Mode toggle
+        document
+          .getElementById("investmentModeBtn")
+          .addEventListener("click", () => toggleMode(false));
+        document
+          .getElementById("targetModeBtn")
+          .addEventListener("click", () => toggleMode(true));
+        // Action Buttons
+        document
+          .getElementById("emailPlanBtn")
+          .addEventListener("click", sendEmailPlan);
+        document
+          .getElementById("whatsappBtn")
+          .addEventListener("click", sendWhatsAppPlan);
+        document
+          .getElementById("downloadImageBtn")
+          .addEventListener("click", downloadCalculatorImage); // Updated event listener
+        // Input and Slider sync
+        const inputs = [
+          { id: "amount", slider: "amountSlider", input: "amountInput" },
+          { id: "return", slider: "returnSlider", input: "returnInput" },
+          { id: "time", slider: "timeSlider", input: "timeInput" },
+          { id: "stepUp", slider: "stepUpSlider", input: "stepUpInput" },
+          {
+            id: "inflation",
+            slider: "inflationSlider",
+            input: "inflationInput",
+          },
+          {
+            id: "sipTopUp",
+            slider: "sipTopUpSlider",
+            input: "sipTopUpInput",
+          },
+        ];
+        inputs.forEach((item) => {
+          const slider = document.getElementById(item.slider);
+          const input = document.getElementById(item.input);
+          if (item.id === "amount") {
+            // Special handling for amount input
+            input.addEventListener("input", function () {
+              let parsedValue = parseIndianFormattedNumber(this.value);
+              slider.value = parsedValue;
+              this.value = formatNumberWithIndianCommas(parsedValue);
+              isTargetMode ? calculateRequiredSIP() : calculateSIP();
+            });
+            slider.addEventListener("input", function () {
+              input.value = formatNumberWithIndianCommas(
+                parseFloat(this.value),
+              );
+              isTargetMode ? calculateRequiredSIP() : calculateSIP();
+            });
+          } else {
+            // Standard handling for other number inputs
+            input.addEventListener("input", function () {
+              slider.value = this.value;
+              isTargetMode ? calculateRequiredSIP() : calculateSIP();
+            });
+            slider.addEventListener("input", function () {
+              input.value = this.value;
+              isTargetMode ? calculateRequiredSIP() : calculateSIP();
+            });
+          }
+        });
+        // Step-up toggle
+        const stepUpToggle = document.getElementById("stepUpToggle");
+        const stepUpControls = document.getElementById("stepUpControls");
+        stepUpToggle.addEventListener("change", function () {
+          if (this.checked) {
+            stepUpControls.classList.remove(
+              "hidden",
+              "opacity-50",
+              "pointer-events-none",
+            );
+          } else {
+            stepUpControls.classList.add(
+              "hidden",
+              "opacity-50",
+              "pointer-events-none",
+            );
+          }
+          if (!isTargetMode) calculateSIP(); // Only recalculate if in investment mode
+        });
+        // Inflation toggle
+        const inflationToggle = document.getElementById("inflationToggle");
+        const inflationControls = document.getElementById("inflationControls");
+        inflationToggle.addEventListener("change", function () {
+          if (this.checked) {
+            inflationControls.classList.remove(
+              "hidden",
+              "opacity-50",
+              "pointer-events-none",
+            );
+          } else {
+            inflationControls.classList.add(
+              "hidden",
+              "opacity-50",
+              "pointer-events-none",
+            );
+          }
+          if (isTargetMode) calculateRequiredSIP(); // Only recalculate if in target mode
+        });
+
+        // SIP Top-up toggle
+        const sipTopUpToggle = document.getElementById("sipTopUpToggle");
+        const sipTopUpControls = document.getElementById("sipTopUpControls");
+        sipTopUpToggle.addEventListener("change", function () {
+          if (this.checked) {
+            sipTopUpControls.classList.remove(
+              "hidden",
+              "opacity-50",
+              "pointer-events-none",
+            );
+          } else {
+            sipTopUpControls.classList.add(
+              "hidden",
+              "opacity-50",
+              "pointer-events-none",
+            );
+          }
+          if (isTargetMode) calculateRequiredSIP(); // Only recalculate if in target mode
+        });
+
+        // Listen for changes on the time input/slider to update the label for "Est. Total amount invested in (X) years"
+        document
+          .getElementById("timeInput")
+          .addEventListener("input", function () {
+            document.getElementById("timePeriodLabel").textContent = this.value;
+            if (isTargetMode) calculateRequiredSIP(); // Recalculate if in target mode to update the value
+          });
+        document
+          .getElementById("timeSlider")
+          .addEventListener("input", function () {
+            document.getElementById("timeInput").value = this.value; // Sync input with slider
+            document.getElementById("timePeriodLabel").textContent = this.value;
+            if (isTargetMode) calculateRequiredSIP(); // Recalculate if in target mode to update the value
+          });
+      }
+      // Initialize everything on load
+      window.addEventListener("load", function () {
+        initChart();
+        setupEventListeners();
+        // Initial calculation (default to Investment Mode)
+        calculateSIP();
+      });
+    </script>
+  </body>
+</html>
