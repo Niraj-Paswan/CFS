@@ -2435,6 +2435,7 @@
       const heroVideoPopup = document.getElementById("videoPopup");
       const heroYoutubeFrame = document.getElementById("youtubeFrame");
     </script>
+
     <script>
       let chart;
       let chart2;
@@ -2684,7 +2685,7 @@
             )
           : 0;
 
-        // Calculate future value of monthly withdrawal
+        // Calculate future value of monthly withdrawal at start of SWP
         const monthlyInflation = inflationRate / 100 / 12;
         let monthlyWithdrawalFutureValue = monthlyWithdrawalToday;
 
@@ -2692,42 +2693,33 @@
           monthlyWithdrawalFutureValue *= 1 + monthlyInflation;
         }
 
-        // Calculate total portfolio needed
+        // Calculate portfolio needed for withdrawals only
         const monthlyGrowthRate = growthRate / 100 / 12;
-        let requiredPortfolio = 0;
+        let portfolioForWithdrawals = 0;
 
         for (let month = 1; month <= yearsOfWithdrawal * 12; month++) {
           const withdrawalAtMonth =
             monthlyWithdrawalFutureValue *
             Math.pow(1 + monthlyInflation, month - 1);
-          const discountFactor =
-            1 / Math.pow(1 + monthlyGrowthRate, yearsToStart * 12 + month - 1);
-          requiredPortfolio += withdrawalAtMonth * discountFactor;
+          const discountFactor = 1 / Math.pow(1 + monthlyGrowthRate, month);
+          portfolioForWithdrawals += withdrawalAtMonth * discountFactor;
         }
 
-        if (hasCorpus) {
-          const corpusDiscountFactor =
-            1 /
-            Math.pow(
-              1 + monthlyGrowthRate,
-              (yearsToStart + yearsOfWithdrawal) * 12,
-            );
-          requiredPortfolio += corpusAmount * corpusDiscountFactor;
-        }
+        // Simply add corpus amount to required portfolio
+        // This ensures the slider directly impacts the required starting amount
+        const requiredPortfolio = portfolioForWithdrawals + corpusAmount;
 
-        // Final portfolio value after withdrawal (simplified)
+        // Simulate actual portfolio after all withdrawals
         let portfolioAfterWithdrawal = requiredPortfolio;
-        for (
-          let month = 1;
-          month <= (yearsToStart + yearsOfWithdrawal) * 12;
-          month++
-        ) {
+
+        for (let month = 1; month <= yearsOfWithdrawal * 12; month++) {
+          // Portfolio grows monthly
           portfolioAfterWithdrawal *= 1 + monthlyGrowthRate;
-          if (month > yearsToStart * 12) {
-            portfolioAfterWithdrawal -=
-              monthlyWithdrawalFutureValue *
-              Math.pow(1 + monthlyInflation, month - yearsToStart * 12 - 1);
-          }
+          // Subtract inflation-adjusted monthly withdrawal
+          const monthlyWithdrawal =
+            monthlyWithdrawalFutureValue *
+            Math.pow(1 + monthlyInflation, month - 1);
+          portfolioAfterWithdrawal -= monthlyWithdrawal;
         }
 
         // Calculate total withdrawn amount
@@ -2738,6 +2730,7 @@
             Math.pow(1 + monthlyInflation, month - 1);
         }
 
+        // Save results
         lastCalculatedResultsTab2 = {
           futureWithdrawalValue: totalWithdrawnAmount,
           finalPortfolioValue: Math.max(0, portfolioAfterWithdrawal),
