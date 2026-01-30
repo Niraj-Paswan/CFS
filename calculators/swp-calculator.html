@@ -2705,9 +2705,20 @@
           portfolioForWithdrawals += withdrawalAtMonth * discountFactor;
         }
 
-        // Simply add corpus amount to required portfolio
-        // This ensures the slider directly impacts the required starting amount
-        const requiredPortfolio = portfolioForWithdrawals + corpusAmount;
+        // Calculate present value of corpus at START of SWP period
+        // The corpus amount represents what you want LEFT at the END
+        // So we discount it back to find how much to set aside NOW
+        let presentValueOfCorpus = 0;
+        if (hasCorpus) {
+          const totalWithdrawalMonths = yearsOfWithdrawal * 12;
+          presentValueOfCorpus =
+            corpusAmount /
+            Math.pow(1 + monthlyGrowthRate, totalWithdrawalMonths);
+        }
+
+        // Total required portfolio = withdrawals + present value of corpus
+        const requiredPortfolio =
+          portfolioForWithdrawals + presentValueOfCorpus;
 
         // Simulate actual portfolio after all withdrawals
         let portfolioAfterWithdrawal = requiredPortfolio;
@@ -2767,7 +2778,6 @@
           chart2.update("none");
         }
       }
-
       function toggleMode(monthlyMode) {
         isMonthlyMode = monthlyMode;
         const monthlyBtn = document.getElementById("monthlyModeBtn");
