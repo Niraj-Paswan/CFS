@@ -358,7 +358,7 @@
                 id="inflationControls"
                 class="hidden opacity-50 pointer-events-none transition-all duration-300"
               >
-                <div class="flex items-center justify-between">
+                <div class="flex items-end justify-end">
                   <div class="input-value-box w-32">
                     <input
                       type="number"
@@ -383,6 +383,54 @@
                 <div class="flex justify-between text-xs text-gray-500 mt-2">
                   <span>0%</span>
                   <span>15%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Annual SIP Top Up (Visible only in Target Amount Mode) -->
+            <div id="sipTopUpSection" class="hidden">
+              <div class="flex items-center justify-between mb-3">
+                <label class="text-lg font-medium text-gray-700"
+                  >Annual SIP Top up</label
+                >
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm text-gray-600">No</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="sipTopUpToggle" />
+                    <span class="toggle-slider"></span>
+                  </label>
+                  <span class="text-sm text-gray-600">Yes</span>
+                </div>
+              </div>
+              <div
+                id="sipTopUpControls"
+                class="hidden opacity-50 pointer-events-none transition-all duration-300"
+              >
+                <div class="flex items-center justify-end mt-4">
+                  <div class="input-value-box w-32">
+                    <input
+                      type="number"
+                      id="sipTopUpInput"
+                      value="5"
+                      min="0"
+                      max="20"
+                      step="0.1"
+                    />
+                    <span class="text-gray-500">%</span>
+                  </div>
+                </div>
+                <input
+                  type="range"
+                  id="sipTopUpSlider"
+                  min="0"
+                  max="20"
+                  value="5"
+                  step="0.1"
+                  class="custom-slider w-full mt-4"
+                />
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>0%</span>
+                  <span>20%</span>
                 </div>
               </div>
             </div>
@@ -518,7 +566,7 @@
                 <span
                   id="requiredSip"
                   class="value"
-                  style="color: #161f48; font-size: 1.25rem"
+                  style="color: #161f48; font-size: 1rem"
                   >₹10,000</span
                 >
               </div>
@@ -531,7 +579,7 @@
                 <span
                   id="inflationAdjustedTargetValue"
                   class="value text-end"
-                  style="color: #161f48; font-size: 1.25rem"
+                  style="color: #161f48; font-size: 1rem"
                   >₹0.00 L</span
                 >
               </div>
@@ -2163,6 +2211,12 @@
         const expectedInflation = inflationEnabled
           ? parseFloat(document.getElementById("inflationInput").value)
           : 0;
+        const sipTopUpEnabled =
+          document.getElementById("sipTopUpToggle").checked;
+        const sipTopUpRate = sipTopUpEnabled
+          ? parseFloat(document.getElementById("sipTopUpInput").value)
+          : 0;
+
         const monthlyReturn = annualReturn / 100 / 12;
         const months = years * 12;
         const inflationRatePerPeriod = expectedInflation / 100;
@@ -2176,12 +2230,56 @@
         let requiredMonthly = 0;
         if (monthlyReturn === 0) {
           // Simple interest if return is 0
-          requiredMonthly = inflationAdjustedTarget / months;
+          if (sipTopUpEnabled) {
+            // With annual top-up
+            let totalNeeded = inflationAdjustedTarget;
+            let annualTopUpRate = sipTopUpRate / 100;
+            let investmentWithTopUp = 0;
+            let currentMonthly = 0;
+            // Estimate initial monthly SIP needed
+            let estimatedMonthly =
+              inflationAdjustedTarget /
+              (months * (1 + (annualTopUpRate * years) / 2));
+            requiredMonthly = estimatedMonthly;
+          } else {
+            requiredMonthly = inflationAdjustedTarget / months;
+          }
         } else {
-          requiredMonthly =
-            (inflationAdjustedTarget * monthlyReturn) /
-            (Math.pow(1 + monthlyReturn, months) - 1);
+          if (sipTopUpEnabled) {
+            // With annual top-up
+            const annualTopUpRate = sipTopUpRate / 100;
+            let futureValueWithTopUp = 0;
+            let currentMonthly = 0;
+            // Estimate initial monthly SIP
+            let estimatedMonthly =
+              (inflationAdjustedTarget * monthlyReturn) /
+              (Math.pow(1 + monthlyReturn, months) - 1) /
+              (1 + (annualTopUpRate * years) / 2); // Adjustment factor
+            currentMonthly = estimatedMonthly;
+
+            // Refine estimate with iteration
+            for (let iteration = 0; iteration < 5; iteration++) {
+              futureValueWithTopUp = 0;
+              currentMonthly = estimatedMonthly;
+              for (let month = 1; month <= months; month++) {
+                futureValueWithTopUp =
+                  (futureValueWithTopUp + currentMonthly) * (1 + monthlyReturn);
+                if (month % 12 === 0) {
+                  currentMonthly *= 1 + annualTopUpRate;
+                }
+              }
+              // Adjust estimate
+              const ratio = inflationAdjustedTarget / futureValueWithTopUp;
+              estimatedMonthly *= ratio;
+            }
+            requiredMonthly = estimatedMonthly;
+          } else {
+            requiredMonthly =
+              (inflationAdjustedTarget * monthlyReturn) /
+              (Math.pow(1 + monthlyReturn, months) - 1);
+          }
         }
+
         document.getElementById("requiredSip").textContent =
           formatCurrency(requiredMonthly);
         lastCalculatedRequiredSip = requiredMonthly; // Store the raw value for sharing
@@ -2189,11 +2287,14 @@
         // For chart and other results, calculate what this required SIP would yield
         let futureValue = 0;
         let totalInvestment = 0;
-        let currentMonthlyInvestment = requiredMonthly; // Use the calculated required monthly SIP
+        let currentMonthlyInvestment = requiredMonthly;
         for (let month = 1; month <= months; month++) {
           futureValue =
             (futureValue + currentMonthlyInvestment) * (1 + monthlyReturn);
           totalInvestment += currentMonthlyInvestment;
+          if (sipTopUpEnabled && month % 12 === 0) {
+            currentMonthlyInvestment *= 1 + sipTopUpRate / 100;
+          }
         }
         const expectedReturns = futureValue - totalInvestment;
         const growthPercentage =
@@ -2206,6 +2307,7 @@
           inflationAdjustedTarget, // Pass the inflation adjusted target
         );
       }
+
       // Update results with smooth transitions
       function updateResults(
         investment,
@@ -2306,6 +2408,7 @@
         const amountMaxSpan = amountSlider.nextElementSibling.children[1];
         const stepUpSection = document.getElementById("stepUpSection");
         const inflationSection = document.getElementById("inflationSection");
+        const sipTopUpSection = document.getElementById("sipTopUpSection");
 
         // Elements for results
         const investedAmountItem =
@@ -2326,11 +2429,13 @@
           "estimatedTotalInvestedYearsItem",
         );
 
-        // Get toggle and control elements for step-up and inflation
+        // Get toggle and control elements for step-up, inflation, and SIP top-up
         const stepUpToggle = document.getElementById("stepUpToggle");
         const stepUpControls = document.getElementById("stepUpControls");
         const inflationToggle = document.getElementById("inflationToggle");
         const inflationControls = document.getElementById("inflationControls");
+        const sipTopUpToggle = document.getElementById("sipTopUpToggle");
+        const sipTopUpControls = document.getElementById("sipTopUpControls");
 
         // Reset toggles and hide controls when switching modes
         stepUpToggle.checked = false;
@@ -2341,6 +2446,12 @@
         );
         inflationToggle.checked = false;
         inflationControls.classList.add(
+          "hidden",
+          "opacity-50",
+          "pointer-events-none",
+        );
+        sipTopUpToggle.checked = false;
+        sipTopUpControls.classList.add(
           "hidden",
           "opacity-50",
           "pointer-events-none",
@@ -2374,6 +2485,7 @@
 
           stepUpSection.classList.add("hidden"); // Hide step-up section in target mode
           inflationSection.classList.remove("hidden"); // Show inflation section in target mode
+          sipTopUpSection.classList.remove("hidden"); // Show SIP top-up section in target mode
 
           // Set fixed labels for investment mode
           totalInvestmentLabel.textContent = "Invested amount"; // Revert to original label
@@ -2404,6 +2516,7 @@
 
           stepUpSection.classList.remove("hidden"); // Show step-up section in investment mode
           inflationSection.classList.add("hidden"); // Hide inflation section in investment mode
+          sipTopUpSection.classList.add("hidden"); // Hide SIP top-up section in investment mode
 
           // Set fixed labels for investment mode
           totalInvestmentLabel.textContent = "Invested amount";
@@ -2417,6 +2530,7 @@
         const subject = encodeURIComponent("My SIP Calculator Plan");
         let body = `Hello,\n\nHere is my SIP calculation plan:\n\n`;
 
+        // --- Inputs / Assumptions ---
         if (isTargetMode) {
           body += `Mode: Target Amount\n`;
 
@@ -2428,26 +2542,22 @@
 
           const inflationEnabled =
             document.getElementById("inflationToggle").checked;
-
           if (inflationEnabled) {
-            body += `Expected Inflation: ${
-              document.getElementById("inflationInput").value
-            }%\n`;
-
-            body += `Target amount (inflation adjusted): ${formatCurrency(
+            body += `Expected Inflation: ${document.getElementById("inflationInput").value}%\n`;
+            body += `Target Amount (Inflation Adjusted): ${formatCurrency(
               lastCalculatedInflationAdjustedTarget,
             )}\n`;
           } else {
             body += `Expected Inflation: Not considered\n`;
           }
 
-          body += `Est. monthly SIP required: ${formatCurrency(
-            lastCalculatedRequiredSip,
-          )}\n`;
-
-          body += `Est. Total amount invested in (${
-            document.getElementById("timeInput").value
-          }) years: ${formatCurrency(lastCalculatedInvestment)}\n\n`;
+          const sipTopUpEnabled =
+            document.getElementById("sipTopUpToggle").checked;
+          if (sipTopUpEnabled) {
+            body += `Annual SIP Top-up: ${document.getElementById("sipTopUpInput").value}%\n`;
+          } else {
+            body += `Annual SIP Top-up: No\n`;
+          }
         } else {
           body += `Mode: Monthly Investment\n`;
 
@@ -2458,54 +2568,44 @@
           )}\n`;
 
           const stepUpEnabled = document.getElementById("stepUpToggle").checked;
-
           if (stepUpEnabled) {
-            body += `Annual Step-up: ${
-              document.getElementById("stepUpInput").value
-            }%\n`;
+            body += `Annual Step-up: ${document.getElementById("stepUpInput").value}%\n`;
           } else {
             body += `Annual Step-up: No\n`;
           }
         }
 
-        body += `Expected Return Rate: ${
-          document.getElementById("returnInput").value
-        }%\n`;
+        body += `Expected Return Rate: ${document.getElementById("returnInput").value}%\n`;
+        body += `Time Period: ${document.getElementById("timeInput").value} Years\n\n`;
 
-        body += `Time Period: ${
-          document.getElementById("timeInput").value
-        } Years\n\n`;
-
+        // --- Results Section ---
         body += `--- Results ---\n`;
 
-        if (!isTargetMode) {
-          body += `Invested amount: ${formatCurrency(
-            lastCalculatedInvestment,
-          )}\n`;
+        if (isTargetMode) {
+          body += `Est. Monthly SIP Required: ${formatCurrency(lastCalculatedRequiredSip)}\n`;
+        } else {
+          body += `Invested Amount: ${formatCurrency(lastCalculatedInvestment)}\n`;
         }
 
-        body += `Estimated returns: ${formatCurrency(lastCalculatedReturns)}\n`;
-
-        body += `Total value: ${formatCurrency(lastCalculatedTotal)}\n`;
+        body += `Estimated Returns: ${formatCurrency(lastCalculatedReturns)}\n`;
+        body += `Total Value: ${formatCurrency(lastCalculatedTotal)}\n`;
 
         if (!isTargetMode) {
-          body += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(
-            1,
-          )}%\n\n`;
+          body += `Growth Percentage: ${lastCalculatedGrowthPercentage.toFixed(1)}%\n`;
         }
 
-        body += `Calculated using Chimulkar Financial Services SIP Calculator.\n`;
+        body += `\nCalculated using Chimulkar Financial Services SIP Calculator.\n`;
         body += `Calculate yours now at ${window.location.href}`;
 
-        window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(
-          body,
-        )}`;
+        // Open mail client
+        window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(body)}`;
       }
 
       // Function to generate WhatsApp message and open WhatsApp
       function sendWhatsAppPlan() {
         let message = `My SIP Calculation Plan:\n\n`;
 
+        // --- Inputs / Assumptions ---
         if (isTargetMode) {
           message += `Mode: *Target Amount*\n`;
 
@@ -2517,26 +2617,22 @@
 
           const inflationEnabled =
             document.getElementById("inflationToggle").checked;
-
           if (inflationEnabled) {
-            message += `Expected Inflation: *${
-              document.getElementById("inflationInput").value
-            }%*\n`;
-
-            message += `Target amount (inflation adjusted): *${formatCurrency(
+            message += `Expected Inflation: *${document.getElementById("inflationInput").value}%*\n`;
+            message += `Target Amount (Inflation Adjusted): *${formatCurrency(
               lastCalculatedInflationAdjustedTarget,
             )}*\n`;
           } else {
             message += `Expected Inflation: *Not considered*\n`;
           }
 
-          message += `Est. monthly SIP required: *${formatCurrency(
-            lastCalculatedRequiredSip,
-          )}*\n`;
-
-          message += `Est. Total amount invested in (${
-            document.getElementById("timeInput").value
-          }) years: *${formatCurrency(lastCalculatedInvestment)}*\n\n`;
+          const sipTopUpEnabled =
+            document.getElementById("sipTopUpToggle").checked;
+          if (sipTopUpEnabled) {
+            message += `Annual SIP Top-up: *${document.getElementById("sipTopUpInput").value}%*\n`;
+          } else {
+            message += `Annual SIP Top-up: *No*\n`;
+          }
         } else {
           message += `Mode: *Monthly Investment*\n`;
 
@@ -2547,47 +2643,36 @@
           )}*\n`;
 
           const stepUpEnabled = document.getElementById("stepUpToggle").checked;
-
           if (stepUpEnabled) {
-            message += `Annual Step-up: *${
-              document.getElementById("stepUpInput").value
-            }%*\n`;
+            message += `Annual Step-up: *${document.getElementById("stepUpInput").value}%*\n`;
           } else {
             message += `Annual Step-up: *No*\n`;
           }
         }
 
-        message += `Expected Return Rate: *${
-          document.getElementById("returnInput").value
-        }%*\n`;
+        message += `Expected Return Rate: *${document.getElementById("returnInput").value}%*\n`;
+        message += `Time Period: *${document.getElementById("timeInput").value} Years*\n\n`;
 
-        message += `Time Period: *${
-          document.getElementById("timeInput").value
-        } Years*\n\n`;
-
+        // --- Results ---
         message += `--- Results ---\n`;
 
-        if (!isTargetMode) {
-          message += `Invested amount: *${formatCurrency(
-            lastCalculatedInvestment,
-          )}*\n`;
+        if (isTargetMode) {
+          message += `Est. Monthly SIP Required: *${formatCurrency(lastCalculatedRequiredSip)}*\n`;
+        } else {
+          message += `Invested Amount: *${formatCurrency(lastCalculatedInvestment)}*\n`;
         }
 
-        message += `Estimated returns: *${formatCurrency(
-          lastCalculatedReturns,
-        )}*\n`;
-
-        message += `Total value: *${formatCurrency(lastCalculatedTotal)}*\n`;
+        message += `Estimated Returns: *${formatCurrency(lastCalculatedReturns)}*\n`;
+        message += `Total Value: *${formatCurrency(lastCalculatedTotal)}*\n`;
 
         if (!isTargetMode) {
-          message += `Growth Percentage: *${lastCalculatedGrowthPercentage.toFixed(
-            1,
-          )}%*\n\n`;
+          message += `Growth Percentage: *${lastCalculatedGrowthPercentage.toFixed(1)}%*\n`;
         }
 
-        message += `Calculated using Chimulkar Financial Services SIP Calculator.\n`;
+        message += `\nCalculated using Chimulkar Financial Services SIP Calculator.\n`;
         message += `Calculate yours now at ${window.location.href}`;
 
+        // Open WhatsApp
         window.open(
           `https://wa.me/?text=${encodeURIComponent(message)}`,
           "_blank",
@@ -2648,6 +2733,11 @@
             id: "inflation",
             slider: "inflationSlider",
             input: "inflationInput",
+          },
+          {
+            id: "sipTopUp",
+            slider: "sipTopUpSlider",
+            input: "sipTopUpInput",
           },
         ];
         inputs.forEach((item) => {
@@ -2710,6 +2800,26 @@
             );
           } else {
             inflationControls.classList.add(
+              "hidden",
+              "opacity-50",
+              "pointer-events-none",
+            );
+          }
+          if (isTargetMode) calculateRequiredSIP(); // Only recalculate if in target mode
+        });
+
+        // SIP Top-up toggle
+        const sipTopUpToggle = document.getElementById("sipTopUpToggle");
+        const sipTopUpControls = document.getElementById("sipTopUpControls");
+        sipTopUpToggle.addEventListener("change", function () {
+          if (this.checked) {
+            sipTopUpControls.classList.remove(
+              "hidden",
+              "opacity-50",
+              "pointer-events-none",
+            );
+          } else {
+            sipTopUpControls.classList.add(
               "hidden",
               "opacity-50",
               "pointer-events-none",
